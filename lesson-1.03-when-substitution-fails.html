@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 1.03</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q1 &middot; Module 1</div>
+        <div style="font-size: 12px; color: #666;">The Idea of a Limit</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 1.03</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">When Substitution Fails</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">The Idea of a Limit</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 1.03</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">When Substitution Fails: The 0/0 Form</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">0/0 is not an answer. It is a question.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">In Lesson 1.02 the quotient law came with a guardrail: it works only when the denominator's limit is not zero. Today you meet the case the guardrail was protecting you from, a limit where direct substitution produces the meaningless expression 0/0. In fact you already solved one of these limits back in Lesson 1.01, without naming it: \( \lim_{x\to2}\frac{x^2-4}{x-2} \) is exactly this form. Today you learn the two algebraic moves, factoring and rationalizing, that turn 0/0 into a real number every time the fraction has a hidden common factor.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> recognize the indeterminate form 0/0 and explain why direct substitution cannot resolve it.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> evaluate a 0/0 limit by factoring the numerator and denominator and canceling the common factor.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> evaluate a 0/0 limit by multiplying by a conjugate to rationalize a root.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil. You will factor and rationalize by hand.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A quick review of factoring differences of squares and cubes, if it has been a while.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; NAMING THE PROBLEM</div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Consider \( \displaystyle\lim_{x\to 3}\frac{x^2-9}{x-3} \). Substituting \(x=3\) gives \( \dfrac{9-9}{3-3} = \dfrac{0}{0} \), and \(\dfrac{0}{0}\) is not a number at all. It does not mean the limit is zero, and it does not mean the limit fails to exist. It means substitution has told you nothing, and you must look closer. Mathematicians call this an <strong>indeterminate form</strong>: a signal to change technique, not a final answer.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The reason a 0/0 form so often hides a real number is algebraic. If both the numerator and the denominator equal zero at \(x=a\), then \((x-a)\) is a factor of both. For every \(x\) near \(a\) but not equal to it, that shared factor may be canceled, and what remains is a simpler expression whose limit substitution can find directly.</p>
+
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E0B15A; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8a6410; margin-bottom: 8px;">&#128161; ONE RULE TO REMEMBER</div>
+            <div style="font-size: 18px; color: #0E1C42; line-height: 1.6; font-style: italic;">0/0 means simplify first, then substitute.</div>
+        </div>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Long before calculators existed, mathematicians and navigators went out of their way to avoid dividing by a root, since long division by an irrational decimal was slow and error-prone by hand. Multiplying a fraction by a cleverly chosen form of 1, built from a conjugate, to clear a root from the denominator, is centuries-old algebra. Today the same move rescues a limit that direct substitution cannot reach.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; RESOLVING 0/0 BY FACTORING</div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Evaluate \( \displaystyle\lim_{x\to 3}\frac{x^2-9}{x-3} \).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">\[
+        \begin{aligned}
+        \lim_{x\to 3}\frac{x^2-9}{x-3} &= \lim_{x\to 3}\frac{(x-3)(x+3)}{x-3} \quad \textit{factor the difference of squares}\\
+        &= \lim_{x\to 3}(x+3) \quad \textit{cancel the shared factor, valid since } x \ne 3\\
+        &= 3+3\\
+        &= 6
+        \end{aligned}
+        \]</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 4px 0;">The cancellation is legal precisely because a limit only cares about values of \(x\) near 3, never \(x=3\) itself. For every such value, \(x-3\) is a genuine nonzero number, so dividing it out of both the numerator and denominator changes nothing about the function's behavior nearby.</p>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 14px 0 0 0;"><em>Convince a classmate:</em> what exactly are you allowed to cancel here, and why does it matter that \(x\) never actually equals 3 while you take the limit?</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Not every fraction that looks like 0/0 can be repaired by factoring. It works only when the numerator and denominator truly share a common factor. If a fraction is not 0/0 at all, such as \( \dfrac{x+7}{x-2} \) as \(x\to 2\), factoring will not help, because the denominator's limit is zero while the numerator's is not; that limit does not exist, for a different reason entirely.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; RESOLVING 0/0 BY RATIONALIZING</div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Evaluate \( \displaystyle\lim_{x\to 0}\frac{\sqrt{x+4}-2}{x} \). There is no common factor to spot here, but the numerator holds a root, and roots respond to multiplying by their conjugate.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">\[
+        \begin{aligned}
+        \lim_{x\to 0}\frac{\sqrt{x+4}-2}{x} &= \lim_{x\to 0}\frac{\sqrt{x+4}-2}{x}\cdot\frac{\sqrt{x+4}+2}{\sqrt{x+4}+2} \quad \textit{multiply by the conjugate}\\
+        &= \lim_{x\to 0}\frac{(x+4)-4}{x\left(\sqrt{x+4}+2\right)} \quad \textit{difference of squares in the numerator}\\
+        &= \lim_{x\to 0}\frac{x}{x\left(\sqrt{x+4}+2\right)}\\
+        &= \lim_{x\to 0}\frac{1}{\sqrt{x+4}+2} \quad \textit{cancel the shared factor of } x\\
+        &= \frac{1}{\sqrt{4}+2}\\
+        &= \frac{1}{4}
+        \end{aligned}
+        \]</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 4px 0;">The conjugate is chosen so that multiplying it out clears the root from the numerator, at the cost of introducing that same root in the denominator, where it causes no trouble because the denominator is not the part heading to zero after cancellation.</p>
+
+        <!-- Commit-then-reveal (E4), instruction in the summary -->
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: factor and cancel to evaluate \( \lim_{x\to -2}\dfrac{x^2-4}{x+2} \). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \( \dfrac{x^2-4}{x+2} = \dfrac{(x-2)(x+2)}{x+2} = x-2 \) for \(x\ne-2\). So the limit is \(-2-2 = -4\).
+            </div>
+        </details>
+
+        <!-- Evaluative widget (E2): spot the technique -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; SPOT THE TECHNIQUE</div>
+          <div class="widget-question">For each limit, choose what you should notice or do first.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The numerator is a difference of squares that shares the factor (x-5) with the denominator." data-hint="Substitute x=5 into both the numerator and denominator. What form do you get?">
+            <div class="widget-row-prompt">1. \( \displaystyle\lim_{x\to 5}\frac{x^2-25}{x-5} \)</div>
+            <div class="widget-options">
+              <button data-choice="0">Rationalize with a conjugate</button>
+              <button data-choice="1">Substitute directly; this is not 0/0</button>
+              <button data-choice="2">Factor the numerator and cancel</button>
+              <button data-choice="3">Cannot be resolved by algebra</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The root in the numerator is the obstacle, so multiply by its conjugate before you can cancel anything." data-hint="Is there a factorable polynomial here, or is the obstacle a square root?">
+            <div class="widget-row-prompt">2. \( \displaystyle\lim_{x\to 0}\frac{\sqrt{x+9}-3}{x} \)</div>
+            <div class="widget-options">
+              <button data-choice="0">Factor and cancel</button>
+              <button data-choice="1">Rationalize the numerator</button>
+              <button data-choice="2">Substitute directly</button>
+              <button data-choice="3">The limit does not exist</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The numerator's limit is 9, not 0, so this is not an indeterminate form at all; the denominator's limit alone is 0, so the two-sided limit does not exist." data-hint="Substitute x=2 into the numerator and the denominator separately. Are both zero?">
+            <div class="widget-row-prompt">3. \( \displaystyle\lim_{x\to 2}\frac{x+7}{x-2} \)</div>
+            <div class="widget-options">
+              <button data-choice="0">The denominator's limit is 0 but the numerator's is 9, so the limit does not exist</button>
+              <button data-choice="1">Both approach 0, so factor</button>
+              <button data-choice="2">Substitute directly; the answer is defined</button>
+              <button data-choice="3">Rationalize immediately</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. The numerator is a difference of cubes, which factors as (x-1)(x^2+x+1), and the (x-1) cancels." data-hint="Check whether the numerator factors as a difference of cubes before reaching for a conjugate.">
+            <div class="widget-row-prompt">4. \( \displaystyle\lim_{x\to 1}\frac{x^3-1}{x-1} \)</div>
+            <div class="widget-options">
+              <button data-choice="0">Rationalize</button>
+              <button data-choice="1">Cannot be simplified</button>
+              <button data-choice="2">Substitute directly</button>
+              <button data-choice="3">Factor and cancel (difference of cubes)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 2 Problem Set: Algebraic and One-Sided Limits</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Download the worksheet, resolve each 0/0 limit by factoring or rationalizing, and show every step.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 2 Quiz: Algebraic and One-Sided Limits</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on factoring, rationalizing, and one-sided limits.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Whenever direct substitution produces 0/0, the fraction is hiding a common factor, and your job is to find it, whether by factoring or by rationalizing, and cancel it before you substitute. 0/0 is never an answer; it is an instruction to look closer. Not every indeterminate expression resolves this neatly, and in Module 2 you will meet limits that call for an entirely different kind of tool.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 1 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 1.03 &middot; When Substitution Fails</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

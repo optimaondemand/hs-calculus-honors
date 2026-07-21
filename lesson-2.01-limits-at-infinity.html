@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 2.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q1 &middot; Module 2</div>
+        <div style="font-size: 12px; color: #666;">Limits Without Bound &amp; Special Limits</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 2.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Limits at Infinity and Horizontal Asymptotes</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Limits Without Bound &amp; Special Limits</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 2.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Limits at Infinity and Horizontal Asymptotes</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Send x as far out as you like, and ask what height the curve is heading toward.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Every limit you studied in Module 1 asked what a function does near a fixed point. This lesson asks a different kind of question: what does a function do as x itself runs out toward infinity? The word for the line a graph settles toward out there is asymptote, from the Greek asymptotos, meaning not falling together. Apollonius of Perga used the idea more than two thousand years ago to describe how the branches of a hyperbola draw closer and closer to certain lines without ever meeting them. Today you will make that ancient picture precise with a limit.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain what \( \lim_{x\to\infty} f(x) = L \) and \( \lim_{x\to-\infty} f(x) = L \) mean, in words and in notation.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> evaluate a limit at infinity for a rational function by comparing the degrees of its numerator and denominator and dividing by the highest power of x.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> identify the horizontal asymptote of a rational function, or explain why it has none.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, for the worked examples and practice.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A graphing calculator or free graphing tool, for checking the end behavior of each function.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE END BEHAVIOR QUESTION</div>
+
+        <!-- Reflective check-in (E1) -->
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Picture the graph of \( f(x) = \dfrac{1}{x} \) as x runs far out to the right, toward 1000, then 1,000,000. What do you expect the height of the graph does? (No wrong answer. Just make a prediction.)</div>
+          <div class="widget-options">
+            <button data-response="A fair guess to test. In a moment you will divide by the highest power of x and see exactly how close the height presses to zero, and why it never quite gets there.">It settles toward a fixed positive height</button>
+            <button data-response="This is the direction the evidence points. Hold onto that prediction; you are about to see the algebra that explains why the height keeps shrinking toward zero without ever landing on it.">It shrinks toward zero, but never quite reaches it</button>
+            <button data-response="Reasonable to wonder, since larger x usually means a wilder graph. Here the opposite happens because x sits in the denominator. Let's see why in the next section.">It grows without bound</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">A limit as x runs out, not in</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A limit at infinity asks the same kind of question as before, aimed in a new direction. Instead of watching x close in on a fixed number, we watch x grow without bound, and ask what height the function is heading toward. We write</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">\[ \lim_{x \to \infty} f(x) = L \qquad \text{and} \qquad \lim_{x \to -\infty} f(x) = L \]</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">read as "the limit of f(x), as x approaches infinity (or negative infinity), equals L." The symbol \(\infty\) is not a number x ever reaches; it is shorthand for growing without bound. If either limit equals a finite number L, the line \(y = L\) is called a horizontal asymptote of the graph: a height the curve presses toward, arbitrarily closely, as x runs out in that direction.</p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The symbol \(\infty\) itself is fairly young. The English mathematician John Wallis introduced it in 1655 in a treatise on conic sections, borrowing a shape that may echo the Roman numeral for one thousand. It took another two centuries before mathematicians agreed on precisely what a statement like "x approaches infinity" is allowed to mean, which is exactly the limit language you are learning now.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; READING END BEHAVIOR FROM DEGREE</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 12px 0;">For a rational function, the technique is always the same: divide every term, top and bottom, by the highest power of x appearing in the denominator. Every term of the form \(\dfrac{c}{x^n}\) then shrinks toward zero, and only the terms with matching top and bottom powers survive the limit. The outcome depends entirely on how the degrees compare.</p>
+
+        <!-- Central "one rule to remember" card -->
+        <div style="background:#FDF3E3; border:1px solid #E8C468; border-radius:8px; padding:16px 20px; margin: 4px 0 16px 0;">
+            <div style="font-size: 11px; color: #8a6d1f; margin-bottom: 10px;">&#128204; THREE CASES, ONE TECHNIQUE</div>
+            <div style="font-size:16px; color:#1a2340; line-height:1.8;">
+                &#9654;&nbsp; Degree of numerator <strong>less than</strong> degree of denominator: the limit is <strong>0</strong>.<br/>
+                &#9654;&nbsp; Degree of numerator <strong>equal to</strong> degree of denominator: the limit is the <strong>ratio of the leading coefficients</strong>.<br/>
+                &#9654;&nbsp; Degree of numerator <strong>greater than</strong> degree of denominator: the limit <strong>grows without bound</strong>; there is no horizontal asymptote on that side.
+            </div>
+        </div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: the equal-degree case</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Evaluate \( \displaystyle\lim_{x\to\infty}\dfrac{3x^2-1}{2x^2+5} \). Both numerator and denominator have degree 2, so we divide every term by \(x^2\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">\[ \lim_{x\to\infty}\frac{3x^2-1}{2x^2+5} = \lim_{x\to\infty}\frac{\dfrac{3x^2}{x^2}-\dfrac{1}{x^2}}{\dfrac{2x^2}{x^2}+\dfrac{5}{x^2}} \]</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">\[ = \lim_{x\to\infty}\frac{3-\dfrac{1}{x^2}}{2+\dfrac{5}{x^2}} \]</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">\[ = \frac{3-0}{2+0} = \frac{3}{2} \]</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 4px 0;">Because x appears squared throughout, sending x to \(-\infty\) produces the identical calculation, so the horizontal asymptote \(y = \dfrac{3}{2}\) holds in both directions.</p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Worked example: when there is no horizontal asymptote</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Evaluate \( \displaystyle\lim_{x\to\infty}\dfrac{x^2+1}{x+1} \). The numerator has degree 2, the denominator degree 1, so we divide by \(x\), the highest power in the denominator.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">\[ \lim_{x\to\infty}\frac{x^2+1}{x+1} = \lim_{x\to\infty}\frac{x+\dfrac{1}{x}}{1+\dfrac{1}{x}} \]</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">As \(x\to\infty\), the numerator still grows without bound while the denominator settles near 1, so the quotient grows without bound as well: the limit is \(\infty\). There is no finite horizontal asymptote here. (Some such graphs press instead toward a slanted line, a case this course does not require.)</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A horizontal asymptote describes what happens far out, not a wall the graph may never touch nearby. Many graphs cross their own horizontal asymptote once or several times close to the origin before settling toward it out at the edges. Do not rule out a horizontal asymptote just because the graph crosses \(y = L\) somewhere in the middle.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; WATCHING THE APPROACH</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 12px 0;">Algebra tells you where a curve is heading. Watching x move tells you how it gets there. Drag the slider below to send x farther and farther to the right, and notice how the value of \(f(x) = \dfrac{3x^2-1}{2x^2+5}\) presses toward \(1.5\) without ever landing exactly on it, no matter how far you drag.</p>
+
+        <!-- Slider visualizer (E6, bespoke) -->
+        <div class="optima-widget ow-slider">
+          <div class="widget-kicker">&#9889; TRY IT &middot; DRAG X OUTWARD</div>
+          <div class="widget-question">Watch f(x) press toward the horizontal asymptote as x grows. The gold marker on the track shows the asymptote height \(y = 1.5\); the blue dot shows the current height of the curve.</div>
+          <input type="range" min="1" max="500" value="2" step="1" id="m2l1-slider" style="width:100%;" />
+          <div style="font-size:16px;color:#0E1C42;margin-top:10px;">x = <output id="m2l1-x">2</output> &nbsp;&middot;&nbsp; f(x) = <output id="m2l1-fx"></output></div>
+          <div style="position:relative; height:34px; background:#F4F6FA; border-radius:6px; margin-top:12px; border:1px solid #D0D9E8;">
+            <div style="position:absolute; right:14px; top:0; bottom:0; width:2px; background:#C7922C;"></div>
+            <div id="m2l1-dot" style="position:absolute; top:5px; width:22px; height:22px; border-radius:50%; background:#2196D0; left:0%; transition: left 0.12s;"></div>
+          </div>
+          <div style="font-size:13px;color:#666;margin-top:6px;">The gold line marks \(y = 1.5\). Watch the blue dot press closer to it as x grows, without ever touching it for any finite x.</div>
+          <button class="widget-reset" id="m2l1-reset">Reset</button>
+        </div>
+        <script>
+        (function () {
+          var s = document.getElementById('m2l1-slider');
+          var xOut = document.getElementById('m2l1-x');
+          var fOut = document.getElementById('m2l1-fx');
+          var dot = document.getElementById('m2l1-dot');
+          var reset = document.getElementById('m2l1-reset');
+          function f(x) { return (3 * x * x - 1) / (2 * x * x + 5); }
+          var minY = f(1), maxY = 1.5;
+          function render() {
+            var x = parseFloat(s.value);
+            var y = f(x);
+            xOut.textContent = x;
+            fOut.textContent = y.toFixed(5);
+            var pct = (y - minY) / (maxY - minY);
+            if (pct < 0) pct = 0;
+            if (pct > 0.95) pct = 0.95;
+            dot.style.left = (pct * 92) + '%';
+          }
+          s.addEventListener('input', render);
+          reset.addEventListener('click', function () { s.value = 2; render(); });
+          render();
+        })();
+        </script>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Not every function settles on the same height in both directions. A function like \(g(x) = \dfrac{2x}{\sqrt{x^2+1}}\) presses toward \(y = 2\) as x runs toward positive infinity, but toward \(y = -2\) as x runs toward negative infinity. A single graph can have two different horizontal asymptotes, one on each side.</div>
+        </div>
+
+        <!-- Commit-then-reveal practice -->
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: evaluate \( \displaystyle\lim_{x\to\infty}\dfrac{5x+1}{x^2-3} \) by dividing by the highest power of x. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Divide every term by \(x^2\): \( \dfrac{\dfrac{5}{x}+\dfrac{1}{x^2}}{1-\dfrac{3}{x^2}} \). As \(x\to\infty\) every fraction with x in the denominator shrinks to 0, leaving \(\dfrac{0+0}{1-0} = 0\). This matches the rule: numerator degree 1 is less than denominator degree 2, so the limit is 0 and \(y=0\) is the horizontal asymptote.
+            </div>
+        </details>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Lesson 2.02</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Next you will look at the opposite edge case: what it means for a function itself, rather than x, to grow without bound.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 3 Problem Set: Limits at Infinity and Vertical Asymptotes</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Comes at the end of the week, once Lesson 2.02 is complete.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A limit at infinity asks what height a function presses toward as x runs out without bound, and dividing by the highest power of x turns that question into simple arithmetic on terms that shrink to zero. Explain to a classmate, in your own words, why a numerator of higher degree than the denominator rules out a horizontal asymptote entirely. In the next lesson you will meet the mirror case: a function that itself runs out toward infinity as x approaches a single fixed point.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 1 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 2.01 &middot; Limits at Infinity and Horizontal Asymptotes</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

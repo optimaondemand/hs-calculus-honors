@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 4.04</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q1 &middot; Module 4</div>
+        <div style="font-size: 12px; color: #666;">The Derivative: Definition and Meaning</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 4.04</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Differentiability and Continuity</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">The Derivative</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 4.04</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Differentiability and Continuity</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">A graph with no gaps can still refuse to have a tangent line.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">You now know how to build \(f'(x)\) from the definition. But the limit that defines it does not always exist. Today you will find the specific places a derivative can fail, corners, cusps, vertical tangents, and discontinuities, and prove a fact that ties this whole module to Module 3: every differentiable function is continuous, but a continuous function is not guaranteed to be differentiable. This is the closing idea of Quarter 1.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> identify the four common ways a derivative can fail to exist at a point: a corner, a cusp, a vertical tangent, and a discontinuity.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> use one-sided difference quotients to show that a function is not differentiable at a corner point.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain why differentiability implies continuity, and why a continuous function need not be differentiable.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, for the one-sided difference-quotient work.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your notes on continuity and one-sided limits from Module 3.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; FOUR WAYS A DERIVATIVE CAN FAIL</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The limit \( \lim_{h\to 0} \dfrac{f(a+h)-f(a)}{h} \) can fail to exist at \(a\) for a few recognizable reasons:</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 12px; margin: 4px 0 14px 0;">
+            <div style="flex: 1; min-width: 190px; background:#F4F6FA; border:1px solid #D0D9E8; border-radius:8px; padding:12px 14px;">
+                <div style="font-size:14px; color:#0e1c42;"><strong>Corner</strong></div>
+                <div style="font-size:14px; color:#1a2340; line-height:1.5;">The one-sided slopes at the point are different finite numbers, like \(f(x) = |x|\) at \(x=0\).</div>
+            </div>
+            <div style="flex: 1; min-width: 190px; background:#F4F6FA; border:1px solid #D0D9E8; border-radius:8px; padding:12px 14px;">
+                <div style="font-size:14px; color:#0e1c42;"><strong>Cusp</strong></div>
+                <div style="font-size:14px; color:#1a2340; line-height:1.5;">The one-sided slopes both march off to infinity, but with opposite signs, like \(f(x) = x^{2/3}\) at \(x=0\).</div>
+            </div>
+            <div style="flex: 1; min-width: 190px; background:#F4F6FA; border:1px solid #D0D9E8; border-radius:8px; padding:12px 14px;">
+                <div style="font-size:14px; color:#0e1c42;"><strong>Vertical tangent</strong></div>
+                <div style="font-size:14px; color:#1a2340; line-height:1.5;">The one-sided slopes both go to the same infinity, like \(f(x)=x^{1/3}\) at \(x=0\); the tangent line is vertical, so its slope is undefined.</div>
+            </div>
+            <div style="flex: 1; min-width: 190px; background:#F4F6FA; border:1px solid #D0D9E8; border-radius:8px; padding:12px 14px;">
+                <div style="font-size:14px; color:#0e1c42;"><strong>Discontinuity</strong></div>
+                <div style="font-size:14px; color:#1a2340; line-height:1.5;">A jump, hole, or infinite break; you already know from Module 3 that a broken graph gives no tangent line at all.</div>
+            </div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 4px 0;">The first three keep the function continuous; only the sharpness or steepness of the graph blocks the derivative. The fourth blocks it because the function itself already fails to be continuous.</p>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; A CONTINUOUS FUNCTION THAT IS NOT DIFFERENTIABLE</div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: \(f(x) = |x|\) at \(x = 0\)</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 8px 0;">\(f(x) = |x|\) is continuous everywhere, including at \(x = 0\): there is no hole, no jump, and \(f(0) = 0\) matches the limit from both sides. Now test differentiability with one-sided difference quotients.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \lim_{h \to 0^+} \frac{|0+h| - |0|}{h} = \lim_{h \to 0^+} \frac{h}{h} = 1
+        \]
+        \[
+        \lim_{h \to 0^-} \frac{|0+h| - |0|}{h} = \lim_{h \to 0^-} \frac{-h}{h} = -1
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The one-sided limits disagree, 1 from the right and \(-1\) from the left, so the two-sided limit that defines \(f'(0)\) does not exist. \(f(x) = |x|\) is continuous at \(x = 0\) but not differentiable there. The graph has a corner: it approaches from two different directions with two different slopes.</p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; WHY DIFFERENTIABLE IMPLIES CONTINUOUS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">If \(f'(a)\) exists, then for \(x\) near \(a\), \(f(x) - f(a) = \left[\dfrac{f(x)-f(a)}{x-a}\right](x-a)\). As \(x \to a\), the bracket approaches the finite number \(f'(a)\) and the factor \((x-a)\) approaches 0, so their product approaches \(f'(a)\cdot 0 = 0\) by the product law for limits. That means \(f(x) \to f(a)\), which is exactly what continuity at \(a\) requires. The argument only runs in one direction: nothing here says the reverse must hold, which is exactly the gap that \(f(x) = |x|\) falls into.</div>
+        </div>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">In 1872 the German mathematician Karl Weierstrass presented a function that is continuous at every single point yet differentiable at none of them, an infinitely jagged curve with no smooth stretch anywhere. Many mathematicians of the time found the result almost impossible to accept, since intuition suggested that a continuous curve should be smooth somewhere. It stands as a permanent warning: continuity guarantees far less than it seems to.</div>
+        </div>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128172; EXPLAIN IT</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">In your notebook, explain to a classmate why "continuous" and "differentiable" are not the same claim about a function, using \(f(x) = |x|\) as your evidence.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; PRACTICE</div>
+
+        <!-- Flip cards (E5), each with its own Reset -->
+        <div style="font-size:16px; color:#0e1c42; margin-bottom:10px;"><strong>Tap each card to reveal its graph signature. Reset any card on its own.</strong></div>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin-bottom:6px;">
+            <div class="optima-widget" style="flex:1; min-width:220px;">
+                <div class="widget-kicker">&#9889; TAP TO REVEAL</div>
+                <div class="ow-flip" tabindex="0">
+                    <div class="ow-flip-front" style="font-size:18px;color:#0E1C42;">Corner</div>
+                    <div class="ow-flip-back" style="font-size:16px;line-height:1.55;">Two straight pieces meet at a point with different finite slopes, like the vertex of \(f(x)=|x|\). Left and right one-sided derivatives disagree but are both finite.</div>
+                </div>
+                <button class="widget-reset">Reset</button>
+            </div>
+            <div class="optima-widget" style="flex:1; min-width:220px;">
+                <div class="widget-kicker">&#9889; TAP TO REVEAL</div>
+                <div class="ow-flip" tabindex="0">
+                    <div class="ow-flip-front" style="font-size:18px;color:#0E1C42;">Cusp</div>
+                    <div class="ow-flip-back" style="font-size:16px;line-height:1.55;">The curve narrows to a sharp point, like the bottom of \(f(x)=x^{2/3}\). Both one-sided slopes shoot toward infinity, but with opposite signs.</div>
+                </div>
+                <button class="widget-reset">Reset</button>
+            </div>
+            <div class="optima-widget" style="flex:1; min-width:220px;">
+                <div class="widget-kicker">&#9889; TAP TO REVEAL</div>
+                <div class="ow-flip" tabindex="0">
+                    <div class="ow-flip-front" style="font-size:18px;color:#0E1C42;">Vertical tangent</div>
+                    <div class="ow-flip-back" style="font-size:16px;line-height:1.55;">The curve is smooth but momentarily straight up and down, like \(f(x)=x^{1/3}\) at the origin. Both one-sided slopes go to the same infinity, so the slope is undefined.</div>
+                </div>
+                <button class="widget-reset">Reset</button>
+            </div>
+            <div class="optima-widget" style="flex:1; min-width:220px;">
+                <div class="widget-kicker">&#9889; TAP TO REVEAL</div>
+                <div class="ow-flip" tabindex="0">
+                    <div class="ow-flip-front" style="font-size:18px;color:#0E1C42;">Discontinuity</div>
+                    <div class="ow-flip-back" style="font-size:16px;line-height:1.55;">A jump, hole, or infinite break in the graph itself. No tangent line can be drawn where the curve is not continuous, so no derivative can exist there either.</div>
+                </div>
+                <button class="widget-reset">Reset</button>
+            </div>
+        </div>
+
+        <!-- Single-select rows (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; DIFFERENTIABLE HERE? WHY OR WHY NOT?</div>
+          <div class="widget-question">For each situation, decide whether the function is differentiable at the point described.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The one-sided slopes disagree, 3 on the left and -1 on the right, so the two-sided limit that defines the derivative does not exist, even though the function is continuous there." data-hint="Compare the two one-sided slopes. Do they agree?">
+            <div class="widget-row-prompt">1. The graph of g has a sharp corner at x = 2, where the slope coming from the left is 3 and the slope coming from the right is -1.</div>
+            <div class="widget-options">
+              <button data-choice="0">Differentiable, since g is continuous at x = 2</button>
+              <button data-choice="1">Not differentiable, because the one-sided slopes disagree</button>
+              <button data-choice="2">Not differentiable, because g is discontinuous at x = 2</button>
+              <button data-choice="3">Cannot be determined without a formula for g</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Matching, finite one-sided slopes at a continuous point are exactly what differentiability requires." data-hint="Check whether the one-sided slopes agree and are both finite.">
+            <div class="widget-row-prompt">2. The graph of h is smooth and continuous at x = 5, with one-sided slopes that both equal 4.</div>
+            <div class="widget-options">
+              <button data-choice="0">Differentiable, since the one-sided slopes agree</button>
+              <button data-choice="1">Not differentiable, because 4 is too large a slope</button>
+              <button data-choice="2">Cannot be determined from one-sided slopes</button>
+              <button data-choice="3">Not differentiable, because h has a cusp</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. A removable discontinuity means k is not even continuous at x = 1, so no tangent line, and therefore no derivative, can exist there." data-hint="Check continuity first. Can a function have a derivative where it is not even continuous?">
+            <div class="widget-row-prompt">3. The graph of k has a removable discontinuity, a hole, at x = 1.</div>
+            <div class="widget-options">
+              <button data-choice="0">Differentiable, because the hole can be filled in</button>
+              <button data-choice="1">Differentiable, since most of the graph nearby is smooth</button>
+              <button data-choice="2">Not differentiable, because k is not continuous at x = 1</button>
+              <button data-choice="3">Cannot be determined without a graph</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 4 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; QUARTER 1 SYNTHESIS</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Trace the whole arc of this quarter. Module 1 defined the limit precisely. Module 2 pushed limits to infinity and resolved indeterminate forms. Module 3 built continuity from limits and proved the Intermediate and Extreme Value Theorems. Module 4 used the limit definition one more time to build the derivative, first at a point, then as a function, and finally examined where that construction breaks down. Every later idea in this course, including the shortcut rules you will learn next quarter, is built on the definition you worked with by hand this module. Knowing that definition means you will always be able to check a shortcut against the reasoning underneath it.</p>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 8 Problem Set: Derivative as a Function</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Download the worksheet, work each differentiability question with your reasoning shown, and upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 8 Quiz: Derivative as a Function</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on differentiability and continuity.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Differentiable always means continuous, but continuous never guarantees differentiable. A corner, a cusp, a vertical tangent, or a break in the graph can each stop a derivative from existing even where the function itself behaves well. You built the derivative from the limit definition this module; next quarter you will learn faster rules for computing it, all of which rest on exactly the reasoning you practiced here.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 1 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 4.04 &middot; Differentiability and Continuity</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

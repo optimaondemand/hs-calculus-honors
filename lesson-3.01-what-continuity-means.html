@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 3.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q1 &middot; Module 3</div>
+        <div style="font-size: 12px; color: #666;">Continuity &amp; the Great Theorems</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 3.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">What Continuity Means</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Continuity &amp; the Great Theorems</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 3.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">What Continuity Means</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">No gaps. No jumps. No broken promises.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">In Module 1 you learned that a limit only asks what a function approaches near a point; it never asks what the function equals at the point itself. Today you meet the functions where those two questions finally agree everywhere they are asked. When what a function approaches at a point matches exactly what it equals there, we say the function is continuous at that point. The definition has three separate conditions, and today you will learn to check each one by name, so that when continuity fails, you can say precisely why.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> state and apply the three-part definition of continuity at a point.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> identify, when a function is not continuous at a point, exactly which of the three conditions fails.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> decide whether a function is continuous on an interval, including at the endpoints of a closed interval.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, for testing each condition by hand.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A graphing calculator or free graphing tool, for checking a function's picture against your reasoning.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE THREE CONDITIONS</div>
+
+        <!-- Reflective check-in (E1) -->
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Picture a graph with an open circle at \((3, 5)\): the curve climbs toward height 5 as \(x\) approaches 3 from both sides, but no point is actually plotted at \((3,5)\). Is this function continuous at \(x = 3\)? Make your best guess before reading on. (No wrong answer.)</div>
+          <div class="widget-options">
+            <button data-response="The curve does approach 5, and that is one necessary piece. Keep reading to see whether approaching a value is enough by itself, or whether something more is required.">Yes, because the curve approaches 5 from both sides</button>
+            <button data-response="That is exactly the kind of observation the formal definition is built to capture. Read on to see it stated precisely, in three separate parts.">No, because there is no point plotted at (3, 5)</button>
+            <button data-response="Continuity is checked one point at a time, so what the function does far away does not decide this particular point. Read on for the three-part test.">It depends on what the function does elsewhere</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Three conditions, checked in order</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A function \(f\) is continuous at \(x = a\) when all three of the following are true.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">1. \(f(a)\) is defined: the function actually has a value there.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">2. \( \displaystyle\lim_{x\to a} f(x) \) exists: the two one-sided limits from Lesson 1.04 agree and are finite.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">3. \( \displaystyle\lim_{x\to a} f(x) = f(a) \): the value the function approaches matches the value it actually takes there.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A function is continuous on an interval when it is continuous at every point of that interval. Each of the three conditions asks a separate, honest question about the function, and each one can fail on its own, independent of the other two.</p>
+
+        <!-- Central visual: three conditions card -->
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; margin: 4px 0 14px 0;">
+            <div style="flex: 1; min-width: 200px; background: #FCFDFE; border: 1px solid #D0D9E8; border-top: 3px solid #2196D0; border-radius: 8px; padding: 14px 16px; text-align: center;">
+                <div style="width: 30px; height: 30px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px auto;">1</div>
+                <div style="font-size: 15px; color: #0e1c42;">Defined</div>
+                <div style="font-size: 13px; color: #666; margin-top: 4px;">\(f(a)\) exists</div>
+            </div>
+            <div style="flex: 1; min-width: 200px; background: #FCFDFE; border: 1px solid #D0D9E8; border-top: 3px solid #2196D0; border-radius: 8px; padding: 14px 16px; text-align: center;">
+                <div style="width: 30px; height: 30px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px auto;">2</div>
+                <div style="font-size: 15px; color: #0e1c42;">Has a limit</div>
+                <div style="font-size: 13px; color: #666; margin-top: 4px;">\( \lim_{x\to a} f(x) \) exists</div>
+            </div>
+            <div style="flex: 1; min-width: 200px; background: #FCFDFE; border: 1px solid #D0D9E8; border-top: 3px solid #2196D0; border-radius: 8px; padding: 14px 16px; text-align: center;">
+                <div style="width: 30px; height: 30px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 14px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px auto;">3</div>
+                <div style="font-size: 15px; color: #0e1c42;">They agree</div>
+                <div style="font-size: 13px; color: #666; margin-top: 4px;">\( \lim_{x\to a} f(x) = f(a) \)</div>
+            </div>
+        </div>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">For centuries, mathematicians described a continuous curve the way Leonhard Euler did: one you could trace without lifting your pen. That picture is vivid, but it is not precise enough to settle hard cases. In 1817 Bernard Bolzano, and a few years later Augustin-Louis Cauchy, replaced the picture with the three-part test above, built entirely from the limit. Precision did not destroy the intuition; it gave the intuition something firm to stand on.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; WORKED EXAMPLES: TESTING ALL THREE CONDITIONS</div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 1: a familiar function, tested honestly</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 8px 0;">Recall \( f(x) = \dfrac{x^2-4}{x-2} \) from Lesson 1.01, where you found \( \displaystyle\lim_{x\to 2} f(x) = 4 \). Is \(f\) continuous at \(x = 2\)?</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">Condition 1: \(f(2)\) requires dividing by zero, so \(f(2)\) is undefined. Condition 1 already fails.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The limit existing does not rescue the function. \(f\) is <em>not</em> continuous at \(x = 2\), because the very first condition, that the function be defined there, is never met. The limit answers a different question than continuity does.</p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Worked example 2: two conditions holding is not enough</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 8px 0;">Let \( g(x) = \begin{cases} x^2 & x \ne 1 \\ 3 & x = 1 \end{cases} \). Is \(g\) continuous at \(x = 1\)?</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">Condition 1: \(g(1) = 3\), defined.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">Condition 2: \( \displaystyle\lim_{x\to 1} g(x) = \lim_{x\to 1} x^2 = 1\), exists.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Condition 3: does the limit equal \(g(1)\)? Here \(1 \ne 3\), so condition 3 fails. Even though \(g\) is defined at 1 and the limit exists, \(g\) is not continuous at \(x = 1\), because the value it approaches and the value it actually takes there disagree.</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WATCH OUT</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Passing two of the three conditions is not enough. All three must hold at the same point for continuity to hold there. Get in the habit of checking them in order and naming, out loud, which one first breaks down.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; CONTINUITY ON AN INTERVAL</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A function is continuous on an open interval when it is continuous at every point inside it. On a closed interval \([a,b]\), the definition also asks about the endpoints: at \(a\) we only require the limit from the right to match \(f(a)\), and at \(b\) we only require the limit from the left to match \(f(b)\), since there is no "other side" to approach from at an endpoint.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Every polynomial function is continuous at every real number. This is not a new fact to memorize; it falls directly out of the limit laws from Lesson 1.02. Direct substitution is always valid for a polynomial, which means \( \displaystyle\lim_{x\to a} p(x) = p(a) \) at every \(a\): the three conditions hold automatically, everywhere.</p>
+
+        <div style="background: #EEF1F8; border-left: 4px solid #0E1C42; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <div style="font-size: 15px; color: #0e1c42; line-height: 1.6;"><strong>Explain to a classmate:</strong> why is every polynomial function continuous at every real number? Use the limit laws from Lesson 1.02 as your evidence, not just the word "obviously."</div>
+        </div>
+
+        <!-- Evaluative widget (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; NAME WHAT FAILS</div>
+          <div class="widget-question">For each situation, decide what it tells you about continuity at the point in question.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Condition 1 fails first: there is no value f(5) to compare a limit against, so continuity cannot hold regardless of the limit." data-hint="Check whether the function is even defined at the point before you check the limit.">
+            <div class="widget-row-prompt">1. \(f(5)\) is undefined, but \( \displaystyle\lim_{x\to 5} f(x) = 12 \).</div>
+            <div class="widget-options">
+              <button data-choice="0">Continuous at 5, because the limit exists</button>
+              <button data-choice="1">Not continuous at 5: condition 2 fails</button>
+              <button data-choice="2">Not continuous at 5: condition 1 fails, since f(5) is undefined</button>
+              <button data-choice="3">Not enough information to decide</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="All three conditions hold: h(2) is defined, the limit exists, and the two values match. That is exactly what continuity means." data-hint="Compare the defined value to the limit value directly.">
+            <div class="widget-row-prompt">2. \(h(2) = 7\), and \( \displaystyle\lim_{x\to 2} h(x) = 7 \).</div>
+            <div class="widget-options">
+              <button data-choice="0">Continuous at 2: all three conditions hold</button>
+              <button data-choice="1">Not continuous, because 7 seems too large</button>
+              <button data-choice="2">Cannot tell without a graph</button>
+              <button data-choice="3">Continuous only if h is a polynomial</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="When the one-sided limits disagree, the two-sided limit does not exist, so condition 2 already fails, before condition 3 is even relevant." data-hint="Recall from Lesson 1.04 what it takes for a two-sided limit to exist.">
+            <div class="widget-row-prompt">3. One-sided limits at \(x=4\): \( \displaystyle\lim_{x\to 4^-} k(x) = 3\) and \( \displaystyle\lim_{x\to 4^+} k(x) = 9\).</div>
+            <div class="widget-options">
+              <button data-choice="0">Continuous at 4</button>
+              <button data-choice="1">Condition 1 fails</button>
+              <button data-choice="2">Cannot be determined</button>
+              <button data-choice="3">Not continuous at 4: condition 2 fails, because the one-sided limits disagree, so the two-sided limit does not exist</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Both the value and the limit exist, but they disagree, so condition 3 fails. The function approaches one number and lands on another." data-hint="Compare m(0) to the limit value: do they actually match?">
+            <div class="widget-row-prompt">4. \(m(0) = 2\), and \( \displaystyle\lim_{x\to 0} m(x) \) exists and equals 5.</div>
+            <div class="widget-options">
+              <button data-choice="0">Not continuous at 0: condition 3 fails, because the limit and the value disagree</button>
+              <button data-choice="1">Continuous at 0</button>
+              <button data-choice="2">Condition 1 fails</button>
+              <button data-choice="3">Cannot be determined without a graph</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <!-- Commit-then-reveal practice -->
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: test whether \( p(x) = \begin{cases} \dfrac{x^2-1}{x-1} & x \ne 1 \\ 2 & x = 1 \end{cases} \) is continuous at \(x = 1\) by checking all three conditions in order. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Condition 1: \(p(1) = 2\), defined. Condition 2: for \(x \ne 1\), \( \dfrac{x^2-1}{x-1} = \dfrac{(x-1)(x+1)}{x-1} = x+1 \), so \( \displaystyle\lim_{x\to 1} p(x) = 2\), exists. Condition 3: the limit (2) equals \(p(1)\) (2). All three conditions hold, so \(p\) is continuous at \(x = 1\). Notice that this function looks, at first glance, like it should have a hole at \(x=1\), but it was defined so that the hole is filled at exactly the right height. That kind of repair is exactly the idea you will use in the next lesson to classify what a discontinuity even is.
+            </div>
+        </details>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 5 Problem Set: Testing and Classifying Continuity</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Download the worksheet, test the three conditions by hand with your work shown, and upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 5 Quiz: Continuity</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on the three-part definition and naming which condition fails.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Continuity is not a vibe; it is three conditions, checked in order: is the function defined here, does it have a limit here, and do the two agree? When you can name exactly which condition fails, you have said something honest and precise about the function, not just a hunch about its picture. In the next lesson you will sort every way those conditions can fail into three named kinds of discontinuity.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 1 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 3.01 &middot; What Continuity Means</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

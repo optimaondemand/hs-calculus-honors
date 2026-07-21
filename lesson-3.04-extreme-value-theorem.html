@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 3.04</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q1 &middot; Module 3</div>
+        <div style="font-size: 12px; color: #666;">Continuity &amp; the Great Theorems</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 3.04</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">The Extreme Value Theorem</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Continuity &amp; the Great Theorems</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 3.04</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">The Extreme Value Theorem</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Guarantees come with fine print.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Today's theorem promises something that sounds almost too convenient: a continuous function on a closed interval always has a highest point and a lowest point. Read that sentence again, though, and notice the two conditions buried inside it. Drop either one, closed or continuous, and the guarantee can quietly disappear. Being precise about when a guarantee applies, and honest about when it does not, is the whole point of today's lesson, and it closes out everything Unit 1 has been building toward.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> state the Extreme Value Theorem, including both of its hypotheses.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain, with a counterexample, why the interval must be closed and the function must be continuous.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> summarize how limits, continuity, and the two great theorems of this module fit together.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, for sketching counterexamples and writing hypothesis checks.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A graphing tool, for viewing the counterexamples.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE THEOREM AND ITS FINE PRINT</div>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">The Extreme Value Theorem</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">If \(f\) is continuous on a closed, bounded interval \([a,b]\), then \(f\) attains an absolute maximum value and an absolute minimum value on \([a,b]\): there exist numbers \(c\) and \(d\) in \([a,b]\) such that \(f(c) \ge f(x)\) for all \(x\) in \([a,b]\), and \(f(d) \le f(x)\) for all \(x\) in \([a,b]\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Notice the theorem promises the max and min are actually reached, at some specific point in the interval, not merely approached. Two hypotheses make that promise good: the interval must be closed, and the function must be continuous on it. Remove either one, and the guarantee can fail.</p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The Extreme Value Theorem is often credited to Karl Weierstrass's rigorous work in the mid-1800s, part of the same broader nineteenth-century project, alongside Cauchy and Bolzano, that replaced calculus's informal picture-drawing with airtight arguments built from limits. The theorem itself only guarantees that a maximum and minimum exist; finding them by hand will wait until you meet the derivative, later this quarter.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; WHY BOTH CONDITIONS MATTER</div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Counterexample 1: continuous, but not closed</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(f(x) = x\) on the open interval \((0,1)\). This function is continuous everywhere on \((0,1)\), but the interval is open: it never includes 0 or 1. As \(x\) gets closer and closer to 1, \(f(x)\) gets closer and closer to 1, but \(x=1\) is never actually in the interval, so \(f\) never reaches a value of 1. There is no largest value \(f\) attains, and by the same reasoning, no smallest value either. Dropping "closed" is enough, by itself, to break the guarantee.</p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Counterexample 2: closed, but not continuous</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 8px 0;">Let \( g(x) = \begin{cases} x & 0 \le x < 1 \\ 0 & x = 1 \end{cases} \) on the closed interval \([0,1]\). The interval is closed, but \(g\) has a jump discontinuity at \(x=1\): as \(x \to 1^-\), \(g(x) \to 1\), yet \(g(1) = 0\). Values of \(g\) get arbitrarily close to 1 without ever reaching it (since \(g(x) < 1\) for every \(x\) in \([0,1)\), and \(g(1)=0\)), so \(g\) has no absolute maximum on \([0,1]\), even though the interval itself is closed. Dropping continuity is enough, by itself, to break the guarantee too.</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WATCH OUT</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Both hypotheses are required together. A function can be continuous on an interval that fails to be closed, or defined on a closed interval while failing to be continuous, and either gap alone is enough to void the guarantee. State both checks explicitly before you claim a maximum or minimum must exist.</div>
+        </div>
+
+        <div style="background: #EEF1F8; border-left: 4px solid #0E1C42; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <div style="font-size: 15px; color: #0e1c42; line-height: 1.6;"><strong>Convince a classmate:</strong> using one of the two counterexamples above, explain why it does not violate the Extreme Value Theorem, even though it has no maximum or minimum.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; DOES THE GUARANTEE APPLY?</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 12px 0;">For each scenario, place it where it belongs on the spectrum below, from no guarantee at all to a fully guaranteed maximum and minimum.</p>
+
+        <!-- Scale widget (E3), reusing the select-row engine -->
+        <div class="optima-widget ow-scale">
+          <div class="widget-kicker">&#9889; TRY IT &middot; CHECK THE HYPOTHESES</div>
+          <div class="widget-question">Read each scenario and choose the point on the spectrum that matches what the theorem does, or does not, guarantee.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The interval (0,5) is open, so the closed-interval hypothesis fails, even though the function itself is perfectly continuous." data-hint="Is the interval actually closed? Check the endpoints.">
+            <div class="widget-row-prompt">1. \(f\) is continuous on the open interval \((0,5)\).</div>
+            <div class="widget-options">
+              <button data-choice="0">No guarantee: neither condition holds</button>
+              <button data-choice="1">No guarantee: not closed</button>
+              <button data-choice="2">No guarantee: not continuous</button>
+              <button data-choice="3">Fully guaranteed: both conditions hold</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The interval [0,5] is closed, but a jump discontinuity means the continuity hypothesis fails, so the guarantee does not apply." data-hint="Is the function continuous at every point of the interval, including at the discontinuity?">
+            <div class="widget-row-prompt">2. \(f\) has a jump discontinuity at \(x=2\), and is defined on the closed interval \([0,5]\).</div>
+            <div class="widget-options">
+              <button data-choice="0">No guarantee: neither condition holds</button>
+              <button data-choice="1">No guarantee: not closed</button>
+              <button data-choice="2">No guarantee: not continuous</button>
+              <button data-choice="3">Fully guaranteed: both conditions hold</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The interval is open and the function has an infinite discontinuity inside it, so neither hypothesis holds, and no conclusion about a maximum or minimum follows." data-hint="Check both the interval and the function's continuity; do either of them hold here?">
+            <div class="widget-row-prompt">3. \(f(x) = \dfrac{1}{x}\) on the open interval \((-1,1)\), which contains the infinite discontinuity at \(x=0\).</div>
+            <div class="widget-options">
+              <button data-choice="0">No guarantee: neither condition holds</button>
+              <button data-choice="1">No guarantee: not closed</button>
+              <button data-choice="2">No guarantee: not continuous</button>
+              <button data-choice="3">Fully guaranteed: both conditions hold</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. Sine is continuous everywhere, and [0, 2 pi] is closed and bounded, so both hypotheses hold and the theorem guarantees an absolute maximum and minimum on this interval." data-hint="Check both conditions together: is the function continuous, and is the interval closed?">
+            <div class="widget-row-prompt">4. \(f(x) = \sin(x)\) on the closed interval \([0, 2\pi]\).</div>
+            <div class="widget-options">
+              <button data-choice="0">No guarantee: neither condition holds</button>
+              <button data-choice="1">No guarantee: not closed</button>
+              <button data-choice="2">No guarantee: not continuous</button>
+              <button data-choice="3">Fully guaranteed: both conditions hold</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 4: SYNTHESIS ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; HOW UNIT 1 FITS TOGETHER</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Everything in Unit 1 has been building in one direction. Module 1 defined the limit: what a function approaches near a point, whether or not it is defined there. Module 2 extended that idea to the edges of a function's domain and to points where a function's behavior runs off to infinity. Module 3 used the limit to define continuity precisely, three conditions at a time, and then showed that continuity is not just tidy bookkeeping: it is the hypothesis that unlocks two genuine theorems, the Intermediate Value Theorem and the Extreme Value Theorem, each of which guarantees something exists (a root, a maximum, a minimum) without having to construct it.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0;">Next quarter opens with a new question built on all of this: not just what a function approaches, but how fast it is changing at a single instant. That question will define the derivative, and it will turn out to depend, at its very foundation, on the limit you have been studying all along.</p>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 6 Problem Set: The Great Theorems</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Download the worksheet, apply the Extreme Value Theorem and check its hypotheses with your reasoning shown, and upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 6 Quiz: IVT and EVT</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on both great theorems and their hypotheses.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A guarantee is only as strong as its hypotheses. The Extreme Value Theorem promises a maximum and a minimum, but only when the interval is closed and the function is continuous on it; drop either condition and the promise can fail. Naming which hypothesis is missing, rather than assuming the guarantee anyway, is the same intellectual honesty that has run through this whole module. Module 4 asks a new question of these continuous functions: how fast are they changing at a single instant?</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 1 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 3.04 &middot; The Extreme Value Theorem</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

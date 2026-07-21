@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 1.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q1 &middot; Module 1</div>
+        <div style="font-size: 12px; color: #666;">The Idea of a Limit</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 1.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">The Limit Laws</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">The Idea of a Limit</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 1.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">The Limit Laws</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">When a function behaves nicely, the limit is just the value.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 1.01 asked you to feel your way toward a limit, one decimal place at a time. That patience is not always necessary. Most of the functions you will meet in this course, including every polynomial and most rational functions, are built from pieces that behave predictably near any point. Mathematicians have proved a small set of laws that let you skip the table entirely and simply substitute. Today you learn those laws, and exactly when substitution is allowed.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> state the basic limit laws: sum, difference, constant multiple, product, quotient, and power or root.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> evaluate a limit by direct substitution and explain why substitution is valid.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> identify which law justifies a given step in a limit computation.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, for the worked examples and practice.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A calculator, only to check an answer after you have substituted by hand.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE LAWS THAT LET US SKIP THE TABLE</div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 12px 0;">A limit law is a proven guarantee, not a shortcut you are merely allowed to try. Each law below says that if the pieces of a function have limits, the combination has the limit you would expect. Let \( \lim_{x\to a} f(x) = F \) and \( \lim_{x\to a} g(x) = G \), both real numbers. Then:</p>
+
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6;"><strong>Sum and difference:</strong> \( \lim_{x\to a}[f(x)\pm g(x)] = F \pm G \)</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6;"><strong>Constant multiple:</strong> \( \lim_{x\to a}[c\,f(x)] = c\,F \), for any constant \(c\)</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6;"><strong>Product:</strong> \( \lim_{x\to a}[f(x)\,g(x)] = F\,G \)</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6;"><strong>Quotient:</strong> \( \lim_{x\to a}\dfrac{f(x)}{g(x)} = \dfrac{F}{G}\), provided \(G \ne 0\)</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6;"><strong>Power and root:</strong> \( \lim_{x\to a}[f(x)]^n = F^n \) and \( \lim_{x\to a}\sqrt[n]{f(x)} = \sqrt[n]{F}\), when the root is defined</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6;"><strong>Composition:</strong> if \(g\) is continuous at \(F\), then \( \lim_{x\to a} g(f(x)) = g(F) \)</div>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 14px 0 10px 0;">Two consequences follow at once. Because a polynomial is nothing but sums, differences, and constant multiples of powers of \(x\), the sum and product laws guarantee that <em>for a polynomial, the limit as \(x\to a\) always equals the polynomial evaluated at \(a\)</em>. Because a rational function is one polynomial divided by another, the quotient law guarantees the same shortcut, with one condition attached: the denominator's limit must not be zero. That single condition is the seam this lesson is built around.</p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">For over a century after Newton and Leibniz, mathematicians combined limits informally, trusting intuition about what "should" happen when quantities are added or multiplied. It was the French mathematician Augustin-Louis Cauchy who, in his 1821 lecture notes <em>Cours d'Analyse</em>, gave the limit a precise definition and proved that these combination rules actually follow from it. What had been a habit became a theorem.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; THE LAWS AT WORK</div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: a polynomial by direct substitution</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Evaluate \( \displaystyle\lim_{x\to 2}(3x^2 - 5x + 1) \). Since this is a polynomial, the sum, difference, constant multiple, and power laws guarantee that substitution alone finds the limit.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">\[
+        \begin{aligned}
+        \lim_{x\to 2}(3x^2 - 5x + 1) &= 3(2)^2 - 5(2) + 1 \quad \textit{substitute } x=2 \\
+        &= 12 - 10 + 1 \\
+        &= 3
+        \end{aligned}
+        \]</p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Worked example: a quotient built from given limits</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Suppose \( \lim_{x\to a} f(x) = 6 \) and \( \lim_{x\to a} g(x) = -2 \). Find \( \displaystyle\lim_{x\to a}\frac{f(x)g(x) + 1}{g(x)} \). Here the values of \(f\) and \(g\) are never given, only their limits, so every step must cite a law.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">\[
+        \begin{aligned}
+        \lim_{x\to a}\frac{f(x)g(x)+1}{g(x)} &= \frac{\lim_{x\to a}[f(x)g(x)+1]}{\lim_{x\to a} g(x)} \quad \textit{quotient law, since } \lim g(x) = -2 \ne 0\\
+        &= \frac{(6)(-2)+1}{-2} \quad \textit{product law, then sum law}\\
+        &= \frac{-11}{-2}\\
+        &= 5.5
+        \end{aligned}
+        \]</p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Worked example: a composition</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Evaluate \( \displaystyle\lim_{x\to 4}\sqrt{2x+1} \). The inner function \(2x+1\) is a polynomial, so its limit at \(4\) is found by substitution; the square root is continuous wherever it is defined, so the composition law applies.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 4px 0;">\[
+        \begin{aligned}
+        \lim_{x\to 4}\sqrt{2x+1} &= \sqrt{\lim_{x\to 4}(2x+1)} \quad \textit{composition law}\\
+        &= \sqrt{9}\\
+        &= 3
+        \end{aligned}
+        \]</p>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 14px 0 0 0;"><em>Explain to a classmate:</em> why is "substituting the number" not simply a shortcut you are permitted to try, but a conclusion guaranteed by a law every single time you use it? Point to a specific law in your answer.</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WATCH OUT</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The quotient law has a guardrail: it requires the denominator's limit to be nonzero. What happens when both the numerator and the denominator approach zero at the same time? Substitution goes silent rather than giving a wrong answer, and a new technique is needed. That guardrail is exactly where Lesson 1.03 begins.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; NAME THE LAW</div>
+
+        <!-- Evaluative widget (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; WHICH LAW JUSTIFIES THIS STEP?</div>
+          <div class="widget-question">For each situation, choose the best conclusion.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. A polynomial is built entirely from sums, constant multiples, and powers of x, so substitution is always valid." data-hint="Ask what kind of function this is, and whether every piece of it is continuous everywhere.">
+            <div class="widget-row-prompt">1. Evaluate \( \lim_{x\to 2}(3x^2-5x+1) \) by direct substitution. Which law allows this?</div>
+            <div class="widget-options">
+              <button data-choice="0">The quotient law</button>
+              <button data-choice="1">The squeeze theorem</button>
+              <button data-choice="2">Polynomials are continuous, so direct substitution gives the limit</button>
+              <button data-choice="3">This cannot be done without a table</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The quotient law applies whenever the denominator's limit is not zero, and here it is -2." data-hint="Substitute into the denominator alone first, and check whether that limit is zero.">
+            <div class="widget-row-prompt">2. Evaluate \( \lim_{x\to 3}\dfrac{x+1}{x-5} \). Can you substitute directly?</div>
+            <div class="widget-options">
+              <button data-choice="0">No, because 3 minus 5 is negative</button>
+              <button data-choice="1">Yes, because the denominator's limit at x=3 is -2, which is nonzero</button>
+              <button data-choice="2">No, the quotient law never allows substitution</button>
+              <button data-choice="3">Only if you rationalize first</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. Multiplying two limits together, term by term, is exactly what the product law states." data-hint="Look at the operation joining f(x) and g(x): is it addition, division, or multiplication?">
+            <div class="widget-row-prompt">3. Which law justifies \( \lim_{x\to a}[f(x)g(x)] = \lim_{x\to a}f(x)\cdot\lim_{x\to a}g(x) \)?</div>
+            <div class="widget-options">
+              <button data-choice="0">Sum law</button>
+              <button data-choice="1">Quotient law</button>
+              <button data-choice="2">Power law</button>
+              <button data-choice="3">Product law</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Because the square root is continuous at 9, evaluating the inner limit first and then applying the root is fully justified." data-hint="Evaluate the inner polynomial's limit first, then decide whether the outer function is continuous there.">
+            <div class="widget-row-prompt">4. \( f \) is continuous with \( \lim_{x\to 1} f(x) = 9 \). Which principle justifies \( \lim_{x\to 1}\sqrt{f(x)} = 3 \)?</div>
+            <div class="widget-options">
+              <button data-choice="0">The composition law: a continuous function of a continuous function may be found by substitution</button>
+              <button data-choice="1">Square roots never have limits</button>
+              <button data-choice="2">You must always rationalize square roots</button>
+              <button data-choice="3">This requires a rule this course has not yet introduced</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <!-- Commit-then-reveal guided practice -->
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: evaluate \( \lim_{x\to -1}\dfrac{2x^2+3}{x+4} \) and name every law you use. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                The denominator's limit is \(-1+4=3\), which is nonzero, so the quotient law applies. \( \lim_{x\to -1}(2x^2+3) = 2(1)+3 = 5 \) by the sum, product, and constant multiple laws. \( \lim_{x\to -1}(x+4) = 3 \) by the sum law. So the quotient is \( \dfrac{5}{3} \).
+            </div>
+        </details>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 1 Problem Set: Limits from Graphs and Tables</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Download the worksheet, apply the limit laws with your work shown, and upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 1 Quiz: The Idea of a Limit</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on estimating limits and applying the limit laws.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">The limit laws let you replace patient tables with fast algebra, whenever a function is built from continuous pieces. But the quotient law carries one guardrail: it only applies when the denominator's limit is not zero. When both the numerator and the denominator approach zero at once, substitution goes silent rather than wrong, and a new technique is needed. That is exactly where Lesson 1.03 begins.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 1 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 1.02 &middot; The Limit Laws</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

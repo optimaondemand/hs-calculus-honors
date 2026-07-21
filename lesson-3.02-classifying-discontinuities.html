@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 3.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q1 &middot; Module 3</div>
+        <div style="font-size: 12px; color: #666;">Continuity &amp; the Great Theorems</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 3.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Classifying Discontinuities</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Continuity &amp; the Great Theorems</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 3.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Classifying Discontinuities</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Every broken promise breaks it differently.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Yesterday you learned three conditions a function must satisfy at a point to count as continuous there, and you learned that any one of the three can fail on its own. Today you will give the failures names. A discontinuity is not just "broken"; it is broken in one of three recognizable ways, and once you can tell them apart on sight, both a graph and an equation will tell you exactly what kind of gap you are looking at.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> define a removable, a jump, and an infinite discontinuity in terms of one-sided limits.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> classify a discontinuity from its graph.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> classify a discontinuity from its formula, without needing to see the graph first.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, for the worked examples and practice.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A graphing calculator or free graphing tool, for viewing each example's picture.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THREE KINDS OF BROKEN</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Every discontinuity you will meet in this course falls into one of three families, distinguished by what the one-sided limits are doing.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;"><strong>Removable.</strong> Both one-sided limits exist and agree, so \( \displaystyle\lim_{x\to a} f(x) \) exists, but either \(f(a)\) is undefined or it does not equal the limit. The graph has a single hole. It earns the name "removable" because redefining the one value \(f(a)\) to equal the limit would patch the hole and make the function continuous there.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;"><strong>Jump.</strong> Both one-sided limits exist, but they disagree. The graph steps abruptly from one height to another. Since the two sides do not agree, the two-sided limit does not exist at all, and there is no single value that could patch the gap.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Infinite.</strong> At least one one-sided limit is \(+\infty\) or \(-\infty\): the function's height grows or falls without bound as \(x\) approaches \(a\) from that side. The graph has a vertical asymptote at \(x = a\).</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WATCH OUT</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A removable discontinuity is still a discontinuity. Calling it "removable" describes what could fix it, not what it currently is. Until someone actually redefines the function at that one point, it remains not continuous there.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; WORKED EXAMPLES: ONE OF EACH KIND</div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Removable: the hole you have already met</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">\( f(x) = \dfrac{x^2-4}{x-2} \) is undefined at \(x=2\), but \( \displaystyle\lim_{x\to 2} f(x) = 4 \) exists (both one-sided limits equal 4, since for \(x \ne 2\), \(f(x) = x+2\)). The graph is the line \(y=x+2\) with a single hole at \((2,4)\). This is a removable discontinuity: defining \(f(2) = 4\) would make the function continuous there.</p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Jump: the two sides disagree</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 8px 0;">Let \( g(x) = \begin{cases} x & x < 1 \\ x + 2 & x \ge 1 \end{cases} \). As \(x \to 1^-\), \(g(x) \to 1\). As \(x \to 1^+\), \(g(x) \to 3\). The one-sided limits both exist, but \(1 \ne 3\), so \( \displaystyle\lim_{x\to 1} g(x) \) does not exist. The graph steps from height 1 up to height 3 at \(x=1\): a jump discontinuity. No single redefinition of \(g(1)\) could patch this, because there is no one value both sides are approaching.</p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Infinite: the graph runs away</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \( h(x) = \dfrac{1}{x-3} \). As \(x \to 3^-\), the denominator is a small negative number, so \(h(x) \to -\infty\). As \(x \to 3^+\), the denominator is a small positive number, so \(h(x) \to +\infty\). Neither one-sided limit is finite, so this is an infinite discontinuity, and the graph has a vertical asymptote at \(x=3\).</p>
+
+        <!-- Central visual: three signatures -->
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; margin: 4px 0 8px 0;">
+            <div style="flex: 1; min-width: 200px; border: 1px solid #D0D9E8; border-radius: 8px; padding: 10px; background: #FCFDFE;">
+                <svg viewBox="0 0 200 140" width="100%" role="img" aria-label="A line with an open circle: a removable discontinuity">
+                    <line x1="20" y1="120" x2="190" y2="120" stroke="#6b7a99" stroke-width="1.5"/>
+                    <line x1="20" y1="10" x2="20" y2="120" stroke="#6b7a99" stroke-width="1.5"/>
+                    <line x1="30" y1="105" x2="180" y2="25" stroke="#2196D0" stroke-width="2.5"/>
+                    <circle cx="105" cy="65" r="5" fill="#FFFFFF" stroke="#0E1C42" stroke-width="2"/>
+                </svg>
+                <div style="font-size:13px; color:#666; text-align:center; margin-top:4px;">Removable: one open circle, otherwise unbroken.</div>
+            </div>
+            <div style="flex: 1; min-width: 200px; border: 1px solid #D0D9E8; border-radius: 8px; padding: 10px; background: #FCFDFE;">
+                <svg viewBox="0 0 200 140" width="100%" role="img" aria-label="Two line segments at different heights: a jump discontinuity">
+                    <line x1="20" y1="120" x2="190" y2="120" stroke="#6b7a99" stroke-width="1.5"/>
+                    <line x1="20" y1="10" x2="20" y2="120" stroke="#6b7a99" stroke-width="1.5"/>
+                    <line x1="30" y1="100" x2="100" y2="70" stroke="#2196D0" stroke-width="2.5"/>
+                    <circle cx="100" cy="70" r="4" fill="#FFFFFF" stroke="#0E1C42" stroke-width="2"/>
+                    <line x1="100" y1="45" x2="180" y2="20" stroke="#2196D0" stroke-width="2.5"/>
+                    <circle cx="100" cy="45" r="4" fill="#0E1C42"/>
+                </svg>
+                <div style="font-size:13px; color:#666; text-align:center; margin-top:4px;">Jump: two segments, stepped, at different heights.</div>
+            </div>
+            <div style="flex: 1; min-width: 200px; border: 1px solid #D0D9E8; border-radius: 8px; padding: 10px; background: #FCFDFE;">
+                <svg viewBox="0 0 200 140" width="100%" role="img" aria-label="A curve shooting toward vertical asymptotes: an infinite discontinuity">
+                    <line x1="20" y1="120" x2="190" y2="120" stroke="#6b7a99" stroke-width="1.5"/>
+                    <line x1="20" y1="10" x2="20" y2="120" stroke="#6b7a99" stroke-width="1.5"/>
+                    <line x1="105" y1="10" x2="105" y2="120" stroke="#D0D9E8" stroke-width="1.5" stroke-dasharray="3,3"/>
+                    <path d="M 30 30 Q 90 65 100 118" stroke="#2196D0" stroke-width="2.5" fill="none"/>
+                    <path d="M 110 22 Q 120 75 180 105" stroke="#2196D0" stroke-width="2.5" fill="none"/>
+                </svg>
+                <div style="font-size:13px; color:#666; text-align:center; margin-top:4px;">Infinite: the curve runs off along a dashed vertical line.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; PRACTICE: NAME THE SIGNATURE</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 12px 0;">Each card below shows a signature. Tap a card to reveal its name and the reason. Try to name it yourself before you tap.</p>
+
+        <!-- Flip cards (E5), each its own optima-widget with its own Reset -->
+        <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 14px;">
+            <div class="optima-widget ow-flip" style="flex: 1; min-width: 220px;">
+                <div class="widget-kicker">&#9889; FLASHCARD 1 OF 3</div>
+                <div class="ow-flip-front">
+                    <div class="widget-question">Both one-sided limits exist and are finite, and they equal the same number, but that number does not match \(f(a)\), or \(f(a)\) is undefined.</div>
+                    <div style="font-size: 13px; color: #1B6A94;">Tap to reveal the name.</div>
+                </div>
+                <div class="ow-flip-back">
+                    <div class="widget-question">Removable discontinuity</div>
+                    <div style="font-size: 15px; color: #1a2340; line-height: 1.5;">A single hole in the graph. Redefining the one value \(f(a)\) to match the limit would make the function continuous there.</div>
+                </div>
+                <button class="widget-reset">Reset</button>
+            </div>
+
+            <div class="optima-widget ow-flip" style="flex: 1; min-width: 220px;">
+                <div class="widget-kicker">&#9889; FLASHCARD 2 OF 3</div>
+                <div class="ow-flip-front">
+                    <div class="widget-question">Both one-sided limits exist and are finite, but they disagree with each other.</div>
+                    <div style="font-size: 13px; color: #1B6A94;">Tap to reveal the name.</div>
+                </div>
+                <div class="ow-flip-back">
+                    <div class="widget-question">Jump discontinuity</div>
+                    <div style="font-size: 15px; color: #1a2340; line-height: 1.5;">The graph steps from one height to another. No single value could patch it, because the two sides are not heading to the same place.</div>
+                </div>
+                <button class="widget-reset">Reset</button>
+            </div>
+
+            <div class="optima-widget ow-flip" style="flex: 1; min-width: 220px;">
+                <div class="widget-kicker">&#9889; FLASHCARD 3 OF 3</div>
+                <div class="ow-flip-front">
+                    <div class="widget-question">At least one one-sided limit is \(+\infty\) or \(-\infty\).</div>
+                    <div style="font-size: 13px; color: #1B6A94;">Tap to reveal the name.</div>
+                </div>
+                <div class="ow-flip-back">
+                    <div class="widget-question">Infinite discontinuity</div>
+                    <div style="font-size: 15px; color: #1a2340; line-height: 1.5;">The graph has a vertical asymptote there; the function's height grows or falls without bound.</div>
+                </div>
+                <button class="widget-reset">Reset</button>
+            </div>
+        </div>
+
+        <!-- Evaluative widget (E2): classify from graph description -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; CLASSIFY THE DISCONTINUITY</div>
+          <div class="widget-question">Read each description and choose the correct classification.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The one-sided limits (2 and 6) both exist and are finite but disagree, so the graph steps: a jump discontinuity." data-hint="Are both one-sided limits finite? Do they agree with each other?">
+            <div class="widget-row-prompt">1. As \(x \to 2^-\), the outputs approach 2. As \(x \to 2^+\), the outputs approach 6.</div>
+            <div class="widget-options">
+              <button data-choice="0">Removable discontinuity</button>
+              <button data-choice="1">Jump discontinuity</button>
+              <button data-choice="2">Infinite discontinuity</button>
+              <button data-choice="3">The function is continuous at 2</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. Both one-sided limits agree at the finite value 4, but f(1) is undefined, so it is a single hole: a removable discontinuity." data-hint="Do the one-sided limits agree? Is the point itself the only thing missing?">
+            <div class="widget-row-prompt">2. As \(x \to 1\) from either side, the outputs approach 4, but \(f(1)\) is undefined.</div>
+            <div class="widget-options">
+              <button data-choice="0">Jump discontinuity</button>
+              <button data-choice="1">The function is continuous at 1</button>
+              <button data-choice="2">Infinite discontinuity</button>
+              <button data-choice="3">Removable discontinuity</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Growing without bound on at least one side means a one-sided limit is infinite, which is exactly an infinite discontinuity, with a vertical asymptote there." data-hint="Is the height growing without bound, or settling near a finite number?">
+            <div class="widget-row-prompt">3. As \(x \to 5^-\), the outputs grow without bound toward \(+\infty\).</div>
+            <div class="widget-options">
+              <button data-choice="0">Infinite discontinuity</button>
+              <button data-choice="1">Removable discontinuity</button>
+              <button data-choice="2">Jump discontinuity</button>
+              <button data-choice="3">Cannot be determined</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <!-- Commit-then-reveal practice -->
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: classify the discontinuity of \( f(x) = \dfrac{1}{(x-1)^2} \) at \(x=1\), stating both one-sided limits. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                As \(x \to 1\) from either side, \((x-1)^2\) is a small positive number, so \( \dfrac{1}{(x-1)^2} \to +\infty\) from both sides. Both one-sided limits are infinite (and, here, they even "agree" in direction), so this is an infinite discontinuity: a vertical asymptote at \(x=1\).
+            </div>
+        </details>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 5 Problem Set: Testing and Classifying Continuity</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Download the worksheet, classify each discontinuity with your reasoning shown, and upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 5 Quiz: Continuity</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check that includes classifying discontinuities.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Every discontinuity has a signature written in its one-sided limits: agree at a finite value but miss the point (removable), disagree with each other (jump), or run off to infinity (infinite). Naming the signature honestly, rather than just saying "it's broken," is what lets you reason precisely about a function's behavior. In the next lesson you will meet what continuity buys you: a theorem that guarantees a root exists, just from a sign change.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 1 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 3.02 &middot; Classifying Discontinuities</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

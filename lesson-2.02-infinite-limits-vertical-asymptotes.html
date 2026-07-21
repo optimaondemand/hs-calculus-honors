@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 2.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q1 &middot; Module 2</div>
+        <div style="font-size: 12px; color: #666;">Limits Without Bound &amp; Special Limits</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 2.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Infinite Limits and Vertical Asymptotes</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Limits Without Bound &amp; Special Limits</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 2.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Infinite Limits and Vertical Asymptotes</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Some approaches do not settle on a number. They shoot away.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Yesterday x ran out toward infinity while f(x) settled down. Today the roles trade places: x approaches an ordinary, finite point, but f(x) itself grows without bound as it gets there. Both situations borrow the symbol \(\infty\), and it is worth being exact about what that symbol is doing in each case. Here it describes the height of the graph, not the input, near a place where the function refuses to level off.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain what it means for a limit to be infinite, and how that differs from a limit that simply does not exist.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> locate a vertical asymptote and determine the sign of a function on each side of it using test values.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> classify one-sided and two-sided infinite behavior from a formula or a graph.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, for the worked examples and practice.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A graphing calculator or free graphing tool, for checking sign behavior near an asymptote.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; WHAT AN INFINITE LIMIT MEANS</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">We write \( \displaystyle\lim_{x\to a} f(x) = \infty \) when f(x) grows arbitrarily large as x approaches a, and \( \displaystyle\lim_{x\to a} f(x) = -\infty \) when f(x) becomes arbitrarily large in the negative direction. Strictly speaking, in neither case does the limit exist as a real number, since f(x) never settles on one. We use the \(\infty\) notation anyway because it names a single, predictable behavior: the outputs are not merely failing to settle, they are heading in one clear, unbounded direction.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">That predictability is exactly what can be missing. If the one-sided limits at a disagree, one side heading to \(+\infty\) and the other to \(-\infty\), there is no single unbounded direction to name, and we simply say the two-sided limit does not exist. The line \(x = a\) is a vertical asymptote of the graph whenever at least one of the one-sided limits there is infinite, whether or not the two sides agree.</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Writing \( \displaystyle\lim_{x\to a} f(x) = \infty \) can look like the limit exists and equals some number called infinity. It does not. The equation is shorthand for "grows without bound," not a value the function reaches. When the two one-sided behaviors disagree in direction, do not write an infinite two-sided limit at all; write that the limit does not exist.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; SIGN ANALYSIS NEAR A VERTICAL ASYMPTOTE</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 12px 0;">To classify an infinite limit, test a point very close to a on each side and track the sign of the result. A denominator that is a small positive number close to zero sends a positive fraction toward \(+\infty\); a small negative denominator sends it toward \(-\infty\).</p>
+
+        <!-- Central visual: two branch behaviors -->
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; margin: 4px 0 16px 0;">
+            <div style="flex: 1; min-width: 220px; border:1px solid #D0D9E8; border-radius:8px; padding:14px; background:#FCFDFE;">
+                <svg viewBox="0 0 220 170" width="100%" role="img" aria-label="A curve with a vertical asymptote where the left branch falls and the right branch rises">
+                    <line x1="20" y1="150" x2="210" y2="150" stroke="#6b7a99" stroke-width="1.5"/>
+                    <line x1="115" y1="10" x2="115" y2="160" stroke="#C7922C" stroke-width="2" stroke-dasharray="4,3"/>
+                    <text x="118" y="20" font-size="11" fill="#8a6d1f">x = 3</text>
+                    <path d="M 30 30 Q 90 120 110 148" fill="none" stroke="#2196D0" stroke-width="2.5"/>
+                    <path d="M 120 12 Q 140 40 200 130" fill="none" stroke="#2196D0" stroke-width="2.5"/>
+                    <text x="40" y="145" font-size="11" fill="#6b7a99">&#8594; &minus;&infin;</text>
+                    <text x="165" y="30" font-size="11" fill="#6b7a99">&#8594; +&infin;</text>
+                </svg>
+                <div style="font-size:13px; color:#666; text-align:center; margin-top:6px;">\(f(x)=\dfrac{1}{x-3}\): the two sides disagree, so the two-sided limit does not exist.</div>
+            </div>
+            <div style="flex: 1; min-width: 220px; border:1px solid #D0D9E8; border-radius:8px; padding:14px; background:#FCFDFE;">
+                <svg viewBox="0 0 220 170" width="100%" role="img" aria-label="A curve with a vertical asymptote where both branches rise">
+                    <line x1="20" y1="150" x2="210" y2="150" stroke="#6b7a99" stroke-width="1.5"/>
+                    <line x1="115" y1="10" x2="115" y2="160" stroke="#C7922C" stroke-width="2" stroke-dasharray="4,3"/>
+                    <text x="118" y="20" font-size="11" fill="#8a6d1f">x = 1</text>
+                    <path d="M 30 40 Q 90 140 112 145" fill="none" stroke="#2196D0" stroke-width="2.5"/>
+                    <path d="M 118 145 Q 140 140 200 40" fill="none" stroke="#2196D0" stroke-width="2.5"/>
+                    <text x="35" y="35" font-size="11" fill="#6b7a99">&#8594; +&infin;</text>
+                    <text x="165" y="35" font-size="11" fill="#6b7a99">&#8594; +&infin;</text>
+                </svg>
+                <div style="font-size:13px; color:#666; text-align:center; margin-top:6px;">\(g(x)=\dfrac{1}{(x-1)^2}\): both sides agree, so \(\lim_{x\to1} g(x) = \infty\).</div>
+            </div>
+        </div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: sides that disagree</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(f(x) = \dfrac{1}{x-3}\). As \(x\to3^{-}\), test \(x=2.999\): the denominator \(x-3=-0.001\) is a small negative number, so \(f(x)\) is a large negative number. As \(x\to3^{+}\), test \(x=3.001\): the denominator is a small positive number, so \(f(x)\) is a large positive number. So</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">\[ \lim_{x\to3^{-}} \frac{1}{x-3} = -\infty \qquad\qquad \lim_{x\to3^{+}} \frac{1}{x-3} = \infty \]</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The one-sided limits disagree, so \( \displaystyle\lim_{x\to3} f(x) \) does not exist. Even so, \(x=3\) is a vertical asymptote, because a vertical asymptote only requires that one side be infinite, not that the two sides agree.</p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Worked example: sides that agree</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(g(x) = \dfrac{1}{(x-1)^2}\). Because the denominator is squared, it is positive on both sides of \(x=1\), so \(g(x)\) is positive and growing on both sides. Both one-sided limits equal \(+\infty\), and here we may write the agreed two-sided statement</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 4px 0;">\[ \lim_{x\to1} \frac{1}{(x-1)^2} = \infty \]</p>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; A CAUTION: NOT EVERY ZERO DENOMINATOR IS INFINITE</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 12px 0;">A denominator of zero at \(x=a\) is not, by itself, proof that the limit is infinite. If the numerator is also zero there, the factor causing the zero may cancel, leaving a perfectly finite limit. Consider \( \displaystyle\lim_{x\to4} \dfrac{x-4}{x^2-16} \). For \(x\ne4\), \( \dfrac{x-4}{x^2-16} = \dfrac{x-4}{(x-4)(x+4)} = \dfrac{1}{x+4} \), so the limit is \(\dfrac{1}{8}\), a finite number. There is no vertical asymptote at \(x=4\); the function simply has a removable hole there, exactly the situation you studied with 0/0 in Module 1.</p>
+
+        <!-- Evaluative widget (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; CLASSIFY THE BEHAVIOR</div>
+          <div class="widget-question">For each function, classify what happens as x approaches the given value.</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The denominator is a small positive number on both sides of x = 5, so the whole expression grows without bound in the positive direction from both sides." data-hint="Check the sign of the denominator on both sides. Squaring makes it positive either way.">
+            <div class="widget-row-prompt">1. \( f(x) = \dfrac{1}{(x-5)^2} \) as \(x \to 5\).</div>
+            <div class="widget-options">
+              <button data-choice="0">Grows toward +&infin; from both sides</button>
+              <button data-choice="1">Grows toward &minus;&infin; from both sides</button>
+              <button data-choice="2">Does not exist, sides disagree</button>
+              <button data-choice="3">Is finite, this is not an infinite limit</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. As x approaches negative 2 from the left the denominator is a small negative number (so f grows toward negative infinity), and from the right it is a small positive number (so f grows toward positive infinity). The two sides disagree, so the two-sided limit does not exist." data-hint="Work out the sign of x + 2 just to the left and just to the right of negative 2, then compare the two sides.">
+            <div class="widget-row-prompt">2. \( f(x) = \dfrac{1}{x+2} \) as \(x \to -2\).</div>
+            <div class="widget-options">
+              <button data-choice="0">Grows toward +&infin; from both sides</button>
+              <button data-choice="1">Grows toward &minus;&infin; from both sides</button>
+              <button data-choice="2">Does not exist, sides disagree</button>
+              <button data-choice="3">Is finite, this is not an infinite limit</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The squared denominator keeps the fraction positive on both sides, and the negative sign out front flips that to a negative number growing without bound: both sides head toward negative infinity." data-hint="Ignore the minus sign for a moment. Without it, which direction would the fraction head from both sides? Now put the sign back.">
+            <div class="widget-row-prompt">3. \( f(x) = \dfrac{-1}{(x-1)^2} \) as \(x \to 1\).</div>
+            <div class="widget-options">
+              <button data-choice="0">Grows toward +&infin; from both sides</button>
+              <button data-choice="1">Grows toward &minus;&infin; from both sides</button>
+              <button data-choice="2">Does not exist, sides disagree</button>
+              <button data-choice="3">Is finite, this is not an infinite limit</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. For x not equal to 4, this simplifies to 1 over (x plus 4), which equals 1/8 at x = 4. The zero in the original denominator cancels against a matching zero in the numerator, so this is a removable discontinuity, not an infinite limit." data-hint="Factor the denominator first. Does anything cancel with the numerator?">
+            <div class="widget-row-prompt">4. \( f(x) = \dfrac{x-4}{x^2-16} \) as \(x \to 4\).</div>
+            <div class="widget-options">
+              <button data-choice="0">Grows toward +&infin; from both sides</button>
+              <button data-choice="1">Grows toward &minus;&infin; from both sides</button>
+              <button data-choice="2">Does not exist, sides disagree</button>
+              <button data-choice="3">Is finite, this is not an infinite limit</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 3 Problem Set: Limits at Infinity and Vertical Asymptotes</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Download the worksheet, work every problem by hand with your reasoning shown, and upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 3 Quiz: Infinity and Asymptotes</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on limits at infinity and infinite limits.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">An infinite limit names a single, predictable, unbounded direction, not a value the function reaches, and a vertical asymptote only needs one side to behave that way. When the two sides disagree, the honest statement is that the limit does not exist, not that it equals some infinite quantity. Next lesson you will meet a limit that resists both of Module 1's algebra tricks and needs a cleverer argument entirely.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 1 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 2.02 &middot; Infinite Limits and Vertical Asymptotes</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

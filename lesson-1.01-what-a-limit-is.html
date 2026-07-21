@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 1.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q1 &middot; Module 1</div>
+        <div style="font-size: 12px; color: #666;">The Idea of a Limit</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 1.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">What a Limit Is</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">The Idea of a Limit</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 1.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">What a Limit Is</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">You can get as close as you like, without ever arriving.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">For two thousand years, mathematicians could find the slope of a straight line but not the slope of a curve at a single point, because a single point gives you nothing to measure against. The whole of calculus begins with one patient idea that dissolves that problem: instead of asking what a function equals at a point, we ask what value it draws near as we approach the point. That value is called a limit, and today you will learn to read it from a table and from a graph.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain what \( \lim_{x\to a} f(x) = L \) means in words and in notation.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> estimate a limit from a table of values computed on both sides of the point.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> estimate a limit from a graph and explain why the limit can exist where the function is undefined.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, for the worked examples and practice.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A graphing calculator or free graphing tool, for checking your estimates against a picture.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE QUESTION CALCULUS ASKS</div>
+
+        <!-- Reflective check-in (E1) -->
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A function has a hole in its graph at \(x = 2\), so \(f(2)\) is undefined. What do you expect happens to the height of the graph as \(x\) slides toward 2 from either side? (No wrong answer. Just make a prediction.)</div>
+          <div class="widget-options">
+            <button data-response="A reasonable guess. Hold onto it. In a moment you will build a table and see whether the heights settle toward one number, even though the point itself is missing.">The heights jump around unpredictably</button>
+            <button data-response="This is exactly the possibility calculus was built to pin down. The height can approach a single value even when the point itself is absent. Let us test it.">The heights settle toward one value</button>
+            <button data-response="Sometimes true, but not always. A missing point does not force the nearby heights to misbehave. Let us look at the evidence in a table.">The graph must shoot off to infinity</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Approaching, not arriving</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Consider the function \( f(x) = \dfrac{x^2 - 4}{x - 2} \). At \(x = 2\) the denominator is zero, so \(f(2)\) does not exist. The graph has a hole there. Yet we can still ask a sharper question: as \(x\) creeps toward 2, without ever equaling 2, what value does \(f(x)\) creep toward? This is the question of the limit. We write it as</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">\[ \lim_{x \to 2} \frac{x^2 - 4}{x - 2} = L \]</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">read aloud as "the limit of \(f(x)\), as \(x\) approaches 2, equals \(L\)." The arrow means approaches. Notice what the notation quietly insists on: it never asks for \(f(2)\). The limit describes the neighborhood of the point, not the point itself. That single distinction is what lets calculus measure a curve where old algebra could not.</p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Newton and Leibniz built working calculus in the 1600s on an idea of the "infinitely small" that no one could quite define. Critics called it reasoning with ghosts. It took nearly two centuries, and the careful work of Cauchy and Weierstrass in the 1800s, to replace the ghost with the precise idea of a limit you are learning now. Useful mathematics sometimes runs ahead of its own foundations, and is set right later.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; ESTIMATING A LIMIT FROM A TABLE</div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: build the table on both sides</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 12px 0;">To estimate \( \displaystyle\lim_{x \to 2} \frac{x^2 - 4}{x - 2} \), we choose \(x\)-values that march toward 2 from below and from above, and we compute \(f(x)\) at each. We never use \(x = 2\) itself.</p>
+
+        <!-- Inline HTML/CSS visual: the zoom-in table -->
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; margin: 4px 0 14px 0;">
+            <div style="flex: 1; min-width: 240px;">
+                <div style="font-size: 12px; color: #1B6A94; margin-bottom: 6px; text-align:center;">Approaching 2 from the left</div>
+                <table style="width:100%; border-collapse: collapse; font-size: 15px;">
+                    <tr style="background:#0E1C42; color:#fff;"><th style="padding:8px 10px; border:1px solid #334; text-align:left;">\(x\)</th><th style="padding:8px 10px; border:1px solid #334; text-align:left;">\(f(x)\)</th></tr>
+                    <tr><td style="padding:7px 10px; border:1px solid #D0D9E8;">1.9</td><td style="padding:7px 10px; border:1px solid #D0D9E8;">3.9</td></tr>
+                    <tr style="background:#F4F6FA;"><td style="padding:7px 10px; border:1px solid #D0D9E8;">1.99</td><td style="padding:7px 10px; border:1px solid #D0D9E8;">3.99</td></tr>
+                    <tr><td style="padding:7px 10px; border:1px solid #D0D9E8;">1.999</td><td style="padding:7px 10px; border:1px solid #D0D9E8;">3.999</td></tr>
+                    <tr style="background:#FDF3E3;"><td style="padding:7px 10px; border:1px solid #C7922C;">1.9999</td><td style="padding:7px 10px; border:1px solid #C7922C;">3.9999</td></tr>
+                </table>
+            </div>
+            <div style="flex: 1; min-width: 240px;">
+                <div style="font-size: 12px; color: #1B6A94; margin-bottom: 6px; text-align:center;">Approaching 2 from the right</div>
+                <table style="width:100%; border-collapse: collapse; font-size: 15px;">
+                    <tr style="background:#0E1C42; color:#fff;"><th style="padding:8px 10px; border:1px solid #334; text-align:left;">\(x\)</th><th style="padding:8px 10px; border:1px solid #334; text-align:left;">\(f(x)\)</th></tr>
+                    <tr><td style="padding:7px 10px; border:1px solid #D0D9E8;">2.1</td><td style="padding:7px 10px; border:1px solid #D0D9E8;">4.1</td></tr>
+                    <tr style="background:#F4F6FA;"><td style="padding:7px 10px; border:1px solid #D0D9E8;">2.01</td><td style="padding:7px 10px; border:1px solid #D0D9E8;">4.01</td></tr>
+                    <tr><td style="padding:7px 10px; border:1px solid #D0D9E8;">2.001</td><td style="padding:7px 10px; border:1px solid #D0D9E8;">4.001</td></tr>
+                    <tr style="background:#FDF3E3;"><td style="padding:7px 10px; border:1px solid #C7922C;">2.0001</td><td style="padding:7px 10px; border:1px solid #C7922C;">4.0001</td></tr>
+                </table>
+            </div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">From the left the outputs climb through 3.9, 3.99, 3.999 toward 4. From the right they fall through 4.1, 4.01, 4.001 toward 4. Both sides press in on the same number. We conclude</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">\[ \lim_{x \to 2} \frac{x^2 - 4}{x - 2} = 4 \]</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 4px 0;">even though \(f(2)\) is undefined. There is a good reason the answer is so clean. For every \(x \ne 2\) we may factor and cancel: \( \dfrac{x^2 - 4}{x - 2} = \dfrac{(x-2)(x+2)}{x - 2} = x + 2 \). Near \(x = 2\) the function behaves exactly like \(x + 2\), whose value at 2 would be 4. You will make this algebra your main tool in Lesson 1.03.</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A limit of 4 does not mean \(f(2) = 4\). Here \(f(2)\) does not exist at all. The limit reports where the outputs are heading, not where they land. Keep those two questions separate and much of this course becomes clear.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; ESTIMATING A LIMIT FROM A GRAPH</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 12px 0;">A graph tells the same story visually. To read \( \lim_{x\to a} f(x) \) from a graph, trace the curve toward \(x = a\) from the left and from the right and see what height the curve is aiming for. An open circle marks a point the graph does not actually include. The limit can still exist there, because the limit cares only about the approach.</p>
+
+        <!-- Inline HTML/CSS visual: a small graph card with a hole at (2,4) -->
+        <div style="max-width:420px; margin: 4px auto 14px auto; border:1px solid #D0D9E8; border-radius:8px; padding:16px; background:#FCFDFE;">
+            <svg viewBox="0 0 260 200" width="100%" role="img" aria-label="A rising line with an open circle at the point (2, 4)">
+                <line x1="30" y1="170" x2="240" y2="170" stroke="#6b7a99" stroke-width="1.5"/>
+                <line x1="30" y1="20" x2="30" y2="170" stroke="#6b7a99" stroke-width="1.5"/>
+                <text x="232" y="185" font-size="11" fill="#6b7a99">x</text>
+                <text x="16" y="26" font-size="11" fill="#6b7a99">y</text>
+                <line x1="120" y1="20" x2="120" y2="170" stroke="#D0D9E8" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="112" y="185" font-size="11" fill="#6b7a99">2</text>
+                <line x1="30" y1="90" x2="240" y2="90" stroke="#D0D9E8" stroke-width="1" stroke-dasharray="3,3"/>
+                <text x="14" y="94" font-size="11" fill="#6b7a99">4</text>
+                <line x1="40" y1="150" x2="230" y2="55" stroke="#2196D0" stroke-width="2.5"/>
+                <circle cx="120" cy="90" r="5" fill="#FFFFFF" stroke="#0E1C42" stroke-width="2"/>
+            </svg>
+            <div style="font-size:13px; color:#666; text-align:center; margin-top:6px;">The line \(y = x + 2\) with an open circle at \((2, 4)\): the curve aims for height 4, though the point itself is missing.</div>
+        </div>
+
+        <!-- Evaluative widget (E2) placed AFTER the teaching -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; READ THE EVIDENCE</div>
+          <div class="widget-question">For each situation, choose the best conclusion about the limit as \(x\) approaches the point in question.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Both sides press toward 7, so the limit is 7 regardless of what happens exactly at the point." data-hint="Look at where both columns are heading, not at any single value.">
+            <div class="widget-row-prompt">1. A table shows \(f(x)\) reaching 6.9, 6.99, 6.999 from the left and 7.1, 7.01, 7.001 from the right. Estimate \( \lim_{x\to a} f(x) \).</div>
+            <div class="widget-options">
+              <button data-choice="0">The limit is 6.999</button>
+              <button data-choice="1">The limit does not exist</button>
+              <button data-choice="2">The limit is 7</button>
+              <button data-choice="3">The limit is 7.001</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The limit describes the approach; a hole at the point does not prevent the outputs from heading to a single value." data-hint="Ask what the outputs approach, not whether the point is defined.">
+            <div class="widget-row-prompt">2. A graph is a straight line except for an open circle at \((3, 5)\). What is \( \lim_{x\to 3} f(x) \)?</div>
+            <div class="widget-options">
+              <button data-choice="0">5, because the curve aims for height 5</button>
+              <button data-choice="1">Undefined, because there is a hole</button>
+              <button data-choice="2">0, because nothing is plotted there</button>
+              <button data-choice="3">It cannot be determined from a graph</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. The left outputs head to 1 and the right outputs head to 4. The two approaches disagree, so the two-sided limit does not exist. You will name this a one-sided situation in Lesson 1.04." data-hint="Compare the two sides. Do they aim for the same number?">
+            <div class="widget-row-prompt">3. A table shows outputs nearing 1 from the left but nearing 4 from the right. What is \( \lim_{x\to a} f(x) \)?</div>
+            <div class="widget-options">
+              <button data-choice="0">The limit is 1</button>
+              <button data-choice="1">The limit is 4</button>
+              <button data-choice="2">The limit is 2.5</button>
+              <button data-choice="3">The limit does not exist</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <!-- Commit-then-reveal practice (E4), instruction in the summary -->
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: build a short two-sided table to estimate \( \lim_{x\to 1} \dfrac{x^2 - 1}{x - 1} \). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                For \(x \ne 1\), \( \dfrac{x^2 - 1}{x - 1} = \dfrac{(x-1)(x+1)}{x-1} = x + 1 \). Values from the left (0.9, 0.99, 0.999) give 1.9, 1.99, 1.999; values from the right (1.1, 1.01, 1.001) give 2.1, 2.01, 2.001. Both sides press toward 2, so the limit is 2, even though \(f(1)\) is undefined.
+            </div>
+        </details>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 1 Problem Set: Limits from Graphs and Tables</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Download the worksheet, estimate each limit by hand with your work shown, and upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 1 Quiz: The Idea of a Limit</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on estimating limits from tables and graphs.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A limit answers a single, patient question: as the input approaches a point, what one value do the outputs approach? It does not ask what happens at the point, which is why a limit can exist where the function is undefined. Hold that distinction firmly. In the next lesson you will learn the laws that let you find many limits at once, by substitution, without building a table every time.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 1 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 1.01 &middot; What a Limit Is</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>
