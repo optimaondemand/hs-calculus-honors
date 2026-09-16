@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 5.04</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q2 &middot; Module 5</div>
+        <div style="font-size: 12px; color: #666;">Derivative Rules I</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 5.04</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">L'H&ocirc;pital's Rule: Closing the Loop</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Derivative Rules I</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 5.04</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">L'H&ocirc;pital's Rule: Closing the Loop</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">This course made you a promise back in Module 2. Today it keeps it.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 2.04 named L'H&ocirc;pital's Rule out loud and told you, plainly, that you were not ready for it yet: "you are not ready to use or prove the rule, only to know its name and what it is for." It left one limit standing, unresolved, as evidence: \(\displaystyle\lim_{x\to0}\dfrac{x-\sin x}{x^3}\), a genuine \(0/0\) form that factoring, rationalizing, dividing by a power, and the Squeeze Theorem all failed to touch. You now have the one thing that limit was waiting for: the derivative. Today you prove L'H&ocirc;pital's Rule from the derivative's own definition, and then you go back and finish that limit.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> state L'H&ocirc;pital's Rule and prove the 0/0 case directly from the definition of the derivative.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> recognize when a limit must be checked again after one application of the rule, and apply the rule repeatedly when it does.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> resolve limits that resisted every Module 2 technique, including the limit Lesson 2.04 deliberately left open.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and your notes from Lesson 2.04 on indeterminate forms.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; padding-left: 14px; border-left: 3px solid #D0D9E8;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The derivative rules from Lessons 5.01 through 5.03, especially the derivatives of \(\sin x\) and \(\cos x\), which this lesson uses without re-deriving (the full trigonometric derivative rules arrive formally in Module 6, but \(\frac{d}{dx}[\sin x] = \cos x\) is used here as a preview, matching Lesson 2.04's own use of \(\sin x\)).</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; PROVING L'H&Ocirc;PITAL'S RULE FROM THE DERIVATIVE</div>
+
+        <!-- Reflective check-in (E1) -->
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Lesson 2.04 said this rule would need the derivative to be proved. Before reading the proof, guess: what part of the derivative's own definition might let you replace f(x) and g(x), near a 0/0 point, with something built from f' and g'? (No wrong answer. Just a guess.)</div>
+          <div class="widget-options">
+            <button data-response="That is exactly the shape of the argument below: near the point where both functions are zero, f(x) and g(x) behave like their own difference quotients, and those difference quotients are built directly from f'(a) and g'(a).">The difference quotient itself, since near a it should resemble f'(a) and g'(a)</button>
+            <button data-response="A reasonable instinct, since tangent lines are the linear stand-ins for a function near a point, but watch how the proof gets there without ever drawing a picture, using only the difference quotient.">The tangent line approximation to each function</button>
+            <button data-response="The Squeeze Theorem does real work elsewhere in this course, but it needs two bounding functions, and there is no natural pair to squeeze f/g between here. The actual tool is more direct.">The Squeeze Theorem from Lesson 2.03</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Suppose \(f\) and \(g\) are both differentiable at \(x = a\), with \(f(a) = 0\), \(g(a) = 0\), and \(g'(a) \ne 0\). Since \(f(a) = 0\) and \(g(a) = 0\), you can insert them for free into the limit \(\displaystyle\lim_{x\to a}\dfrac{f(x)}{g(x)}\) without changing anything:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \lim_{x\to a} \frac{f(x)}{g(x)} = \lim_{x\to a} \frac{f(x) - f(a)}{g(x) - g(a)} = \lim_{x\to a} \dfrac{\dfrac{f(x)-f(a)}{x-a}}{\dfrac{g(x)-g(a)}{x-a}}
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The last step multiplies numerator and denominator by the same quantity, \(\dfrac{1}{x-a}\), which changes nothing. But now each piece is a familiar difference quotient: as \(x \to a\), the numerator converges to \(f'(a)\) and the denominator converges to \(g'(a)\), by the very definition of the derivative from Lesson 4.02. Since \(g'(a) \ne 0\), the quotient of the limits is the limit of the quotient:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">
+        \[ \lim_{x\to a} \frac{f(x)}{g(x)} = \frac{f'(a)}{g'(a)} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">This is <strong>L'H&ocirc;pital's Rule</strong> for the \(0/0\) form: when direct substitution gives \(0/0\), the limit of \(f(x)/g(x)\) equals the limit of \(f'(x)/g'(x)\) instead. The rule also holds for the \(\infty/\infty\) form, though that case needs a more general version of the Mean Value Theorem to prove, a theorem this course meets formally in Module 8. For now, use it on both forms; the proof above covers exactly the case you will use most.</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">L'H&ocirc;pital's Rule only applies to an indeterminate form, \(0/0\) or \(\infty/\infty\). Check by direct substitution first. Applying the rule to a limit that is already determinate, like \(\displaystyle\lim_{x\to2}\dfrac{x+3}{x-1}\), which substitutes cleanly to \(5/1\), produces a wrong answer, not a shortcut. The rule replaces a question you cannot yet answer; it is not a universal first move.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; WHEN ONE APPLICATION IS NOT ENOUGH</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Sometimes \(f'(a)\) and \(g'(a)\) are themselves both 0, so \(f'(x)/g'(x)\) is still an indeterminate \(0/0\) form at \(a\). Nothing about the proof in Part 1 forbids this: \(f'\) and \(g'\) are simply two new functions, and if they meet the same hypotheses, the same rule applies to them. Apply L'H&ocirc;pital's Rule again, to the derivatives of the derivatives, and keep going until the form is no longer indeterminate.</p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Warm-up example: one application</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Evaluate \(\displaystyle\lim_{x\to3}\dfrac{x^2-9}{x-3}\). Direct substitution gives \(0/0\). Differentiate top and bottom separately:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">
+        \[ \lim_{x\to3}\frac{x^2-9}{x-3} = \lim_{x\to3}\frac{2x}{1} = 6 \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">This matches the factoring answer from Module 2: \(\dfrac{x^2-9}{x-3} = \dfrac{(x-3)(x+3)}{x-3} = x+3 \to 6\). Two different tools, the same correct number, exactly the kind of cross-check Module 2 asked you to build the habit of running.</p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The proof in Part 1 is deliberately the simple case, where g'(a) happens not to be zero. The fully general version of L'H&ocirc;pital's Rule, the one that never requires a separate argument for the \(\infty/\infty\) form or for a limit at infinity, was proved rigorously using a strengthened form of the Mean Value Theorem published by Augustin-Louis Cauchy in 1823, more than a century after Bernoulli and L'H&ocirc;pital's original 1696 textbook stated the rule without this level of rigor. You will meet Cauchy's tool by name in Module 8.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; FINISHING THE LIMIT LESSON 2.04 LEFT OPEN</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Return to the exact limit Lesson 2.04 named and set aside:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">
+        \[ \lim_{x\to0}\frac{x-\sin x}{x^3} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(f(x) = x - \sin x\) and \(g(x) = x^3\). Check the form: \(f(0) = 0 - \sin 0 = 0\) and \(g(0) = 0\), so this is \(0/0\), and L'H&ocirc;pital's Rule applies. Differentiate once:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">
+        \[ f'(x) = 1 - \cos x, \qquad g'(x) = 3x^2 \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Check the new limit at \(x=0\): \(f'(0) = 1-\cos 0 = 1-1 = 0\), and \(g'(0) = 0\). Still \(0/0\). Apply the rule again:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">
+        \[ f''(x) = \sin x, \qquad g''(x) = 6x \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Check again: \(f''(0) = \sin 0 = 0\), and \(g''(0) = 0\). Still \(0/0\), a third time. Apply the rule once more:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">
+        \[ f'''(x) = \cos x, \qquad g'''(x) = 6 \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now check the form one last time: \(f'''(0) = \cos 0 = 1\), and \(g'''(0) = 6 \ne 0\). The form is finally determinate. The limit is</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">
+        \[ \lim_{x\to0}\frac{x-\sin x}{x^3} = \frac{f'''(0)}{g'''(0)} = \frac{1}{6} \]
+        </p>
+
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8a6d1f; margin-bottom: 8px;">&#129513; WORTH KNOWING &middot; A PROMISE KEPT</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">This is the limit Lesson 2.04 called on to prove that some indeterminate forms genuinely outrun the algebra of Module 2, factoring, rationalizing, dividing by a power, and the Squeeze Theorem. All four of those tools really do fail here; you were not missing a trick. The gap was not in your effort, it was in the toolkit itself, and it stayed open honestly for an entire quarter until the derivative made it closable. That is what it looks like when a course keeps a promise.</div>
+        </div>
+
+        <!-- Single-select rows (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; HOW MANY TIMES DOES THE RULE APPLY?</div>
+          <div class="widget-question">For each limit, decide how many times L'H&ocirc;pital's Rule must be applied before the form becomes determinate. (Zero means the rule should not be applied at all.)</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. sin(0)=0 and the denominator is 0, so this is 0/0. One application gives cos(x)/1, and cos(0)=1, a determinate value." data-hint="Check the form at x=0 first, then differentiate top and bottom once and recheck.">
+            <div class="widget-row-prompt">1. lim as x&rarr;0 of sin(x) / x</div>
+            <div class="widget-options">
+              <button data-choice="0">0 (do not apply; already determinate)</button>
+              <button data-choice="1">1</button>
+              <button data-choice="2">2</button>
+              <button data-choice="3">3 or more</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Substituting x=2 gives 5/1, a finite determinate value with no zero in sight. The rule does not apply here at all." data-hint="Substitute x=2 directly. Is there any 0/0 or infinity/infinity form here?">
+            <div class="widget-row-prompt">2. lim as x&rarr;2 of (x+3) / (x&minus;1)</div>
+            <div class="widget-options">
+              <button data-choice="0">0 (do not apply; already determinate)</button>
+              <button data-choice="1">1</button>
+              <button data-choice="2">2</button>
+              <button data-choice="3">3 or more</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. This is the limit from today's Part 3. It substitutes to 0/0 three times in a row before the third derivative finally gives a determinate value, 1/6." data-hint="Recall today's worked example: this one needed more than one round.">
+            <div class="widget-row-prompt">3. lim as x&rarr;0 of (x &minus; sin x) / x&sup3;</div>
+            <div class="widget-options">
+              <button data-choice="0">0 (do not apply; already determinate)</button>
+              <button data-choice="1">1</button>
+              <button data-choice="2">2</button>
+              <button data-choice="3">3 or more</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Substituting x=3 gives 0/0. One application gives 2x/1, and substituting x=3 gives 6, a determinate value." data-hint="Check the form at x=3, then differentiate once and recheck.">
+            <div class="widget-row-prompt">4. lim as x&rarr;3 of (x&sup2; &minus; 9) / (x &minus; 3)</div>
+            <div class="widget-options">
+              <button data-choice="0">0 (do not apply; already determinate)</button>
+              <button data-choice="1">1</button>
+              <button data-choice="2">2</button>
+              <button data-choice="3">3 or more</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 10 Problem Set: Fluency and L'H&ocirc;pital's Rule</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Differentiate a mix of polynomial, rational, and radical functions, then apply L'H&ocirc;pital's Rule, and upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 10 Quiz: Fluency and L'H&ocirc;pital's Rule</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on differentiating algebraic functions and applying L'H&ocirc;pital's Rule.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">L'H&ocirc;pital's Rule replaces an indeterminate \(f(x)/g(x)\) with \(f'(x)/g'(x)\), and it earns that replacement from nothing more exotic than the definition of the derivative itself, applied to two functions that both happen to vanish at the same point. Apply it again whenever the new quotient is still indeterminate, and always check the form before you apply it at all. With this rule and five proved derivative rules now behind you, Module 5 has given you a genuinely complete toolkit for differentiating algebraic functions. Module 6 turns that toolkit loose on trigonometric functions and the single most important rule of the semester: the Chain Rule.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 2 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 5.04 &middot; L'H&ocirc;pital's Rule: Closing the Loop</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 5.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q2 &middot; Module 5</div>
+        <div style="font-size: 12px; color: #666;">Derivative Rules I</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 5.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">The Constant, Sum, and Power Rules</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Derivative Rules I</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 5.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">The Constant, Sum, and Power Rules</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">You already know how to find a derivative. It is time to stop doing it the slow way.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">In Module 4 you built \(f'(x)\) from the limit definition every single time, for \(x^2\), for \(\sqrt{x}\), for \(x^2+4x\). That repetition was necessary the first time, so that you would trust what a derivative actually is before you ever shortcut it. Today you prove, once and for all, three rules that let you skip the limit for the building blocks that make up nearly every function you will differentiate this year: a constant, a sum of two functions, and a power of \(x\). A rule earns the right to be used without re-derivation only after it has been proved. That is exactly what today is for.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> prove the Constant Rule and the Constant Multiple Rule from the limit definition of the derivative.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> prove the Sum and Difference Rules from the limit definition, using the limit laws from Module 1.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> prove the Power Rule for positive integer exponents using the Binomial Theorem, and combine all three rules to differentiate any polynomial without returning to the limit definition.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus your worked examples from Lessons 4.02 and 4.03 for reference.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The limit laws from Lesson 1.02 (the limit of a sum is the sum of the limits, and a constant factors out of a limit).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Pascal's Triangle or the Binomial Theorem, for expanding \((x+h)^n\) in Part 3.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE CONSTANT RULE AND THE CONSTANT MULTIPLE RULE</div>
+
+        <!-- Reflective check-in (E1) -->
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Before any algebra: if \(f(x) = 9\) for every \(x\), what do you expect \(f'(x)\) to be, and why? (No wrong answer. Just make a prediction from the graph.)</div>
+          <div class="widget-options">
+            <button data-response="Exactly right, and here is the reasoning you will make precise in a moment: the graph of f is a flat horizontal line, so every tangent line to it is that same flat line, with slope 0.">Zero, because the graph never rises or falls</button>
+            <button data-response="A fair guess if you are thinking of the 9 as an output value, but the derivative measures slope, not height. Watch what the graph of a constant function actually looks like before you decide.">9, because that is the value of the function</button>
+            <button data-response="It is a reasonable worry, but a constant function is defined at every x with no jumps or holes, so nothing about it should be undefined. Let's check with the limit definition directly.">Undefined, because there is no x in the formula</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Proof: the Constant Rule</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(f(x) = c\) for some constant \(c\), for every \(x\). Apply the limit definition from Lesson 4.02 directly:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \begin{aligned}
+        f'(x) &= \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} \\
+        &= \lim_{h \to 0} \frac{c - c}{h} \\
+        &= \lim_{h \to 0} \frac{0}{h} \\
+        &= \lim_{h \to 0} 0 \\
+        &= 0
+        \end{aligned}
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">So \(\dfrac{d}{dx}[c] = 0\) for every constant \(c\). This matches your prediction exactly: the graph of a constant function is a horizontal line, and a horizontal line has slope 0 everywhere.</p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Proof: the Constant Multiple Rule</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now suppose \(g(x) = c \cdot f(x)\), where \(f\) is differentiable and \(c\) is a constant. Then</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \begin{aligned}
+        g'(x) &= \lim_{h \to 0} \frac{c f(x+h) - c f(x)}{h} \\
+        &= \lim_{h \to 0} c\left(\frac{f(x+h) - f(x)}{h}\right) \\
+        &= c \cdot \lim_{h \to 0} \frac{f(x+h) - f(x)}{h} \\
+        &= c \, f'(x)
+        \end{aligned}
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The third step pulls the constant \(c\) outside the limit, which is legal because of the constant-multiple limit law you already proved usable back in Lesson 1.02. So \(\dfrac{d}{dx}\big[c\,f(x)\big] = c\, f'(x)\): a constant factor rides along for free.</p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Every derivative rule you prove today rests on the same limit laws Augustin-Louis Cauchy helped make rigorous in the 1820s. Newton and Leibniz used shortcuts like these a century and a half earlier, by instinct and geometric reasoning, long before anyone could prove they were legitimate. You are retracing, in a few pages, an argument it took mathematics roughly 150 years to make airtight.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; THE SUM AND DIFFERENCE RULES</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(s(x) = f(x) + g(x)\), where \(f\) and \(g\) are both differentiable. Apply the limit definition to \(s\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \begin{aligned}
+        s'(x) &= \lim_{h \to 0} \frac{\big[f(x+h)+g(x+h)\big] - \big[f(x)+g(x)\big]}{h} \\
+        &= \lim_{h \to 0} \left(\frac{f(x+h)-f(x)}{h} + \frac{g(x+h)-g(x)}{h}\right) \\
+        &= \lim_{h \to 0} \frac{f(x+h)-f(x)}{h} \;+\; \lim_{h \to 0} \frac{g(x+h)-g(x)}{h} \\
+        &= f'(x) + g'(x)
+        \end{aligned}
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The third line splits one limit into two, which is legal because of the sum limit law from Lesson 1.02: the limit of a sum is the sum of the limits, whenever both limits exist. Since \(f\) and \(g\) are differentiable, both \(f'(x)\) and \(g'(x)\) exist, so the split is justified. The identical argument, with a minus sign carried through, proves the Difference Rule: \(\dfrac{d}{dx}\big[f(x)-g(x)\big] = f'(x) - g'(x)\).</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The Sum Rule works precisely because addition splits cleanly across the difference quotient. Do not assume the same trick works for a product: as you will see next lesson, \((f\cdot g)'\) is not \(f' \cdot g'\). A rule proved for one operation is not automatically true of another; each one earns its own proof.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; THE POWER RULE AND YOUR FIRST FULL POLYNOMIAL</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">For a positive integer \(n\), the Binomial Theorem expands \((x+h)^n\) as</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">
+        \[ (x+h)^n = x^n + n\,x^{n-1}h + \binom{n}{2}x^{n-2}h^2 + \cdots + h^n \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Every term after the first two carries a factor of \(h^2\) or higher. Watch what happens when this expansion goes into the limit definition for \(f(x) = x^n\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \begin{aligned}
+        f'(x) &= \lim_{h \to 0} \frac{(x+h)^n - x^n}{h} \\
+        &= \lim_{h \to 0} \frac{n\,x^{n-1}h + \binom{n}{2}x^{n-2}h^2 + \cdots + h^n}{h} \\
+        &= \lim_{h \to 0} \left(n\,x^{n-1} + \binom{n}{2}x^{n-2}h + \cdots + h^{n-1}\right) \\
+        &= n\,x^{n-1}
+        \end{aligned}
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Every term except \(n\,x^{n-1}\) still carries at least one factor of \(h\), so every one of them vanishes as \(h \to 0\), leaving only \(n\,x^{n-1}\). This is the Power Rule: \(\dfrac{d}{dx}\big[x^n\big] = n\,x^{n-1}\).</p>
+
+        <div style="border:1px solid #D0D9E8; border-radius:8px; padding:16px 20px; margin: 4px 0 16px 0; background:#FCFDFE;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 10px;">&#128204; SEE IT FOR TWO SMALL CASES FIRST</div>
+            <div style="display:flex; flex-wrap:wrap; gap:16px;">
+                <div style="flex:1; min-width:220px;">
+                    <div style="font-size:14px; color:#0E1C42; margin-bottom:6px;"><strong>n = 2:</strong> \((x+h)^2 = x^2+2xh+h^2\)</div>
+                    <div style="font-size:14px; color:#1a2340;">\(\dfrac{2xh+h^2}{h} = 2x+h \;\to\; 2x\), matching \(n x^{n-1} = 2x^1\).</div>
+                </div>
+                <div style="flex:1; min-width:220px;">
+                    <div style="font-size:14px; color:#0E1C42; margin-bottom:6px;"><strong>n = 3:</strong> \((x+h)^3 = x^3+3x^2h+3xh^2+h^3\)</div>
+                    <div style="font-size:14px; color:#1a2340;">\(\dfrac{3x^2h+3xh^2+h^3}{h} = 3x^2+3xh+h^2 \;\to\; 3x^2\), matching \(n x^{n-1} = 3x^2\).</div>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: a full polynomial, no limit required</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Differentiate \(f(x) = 3x^4 - 7x^3 + 2x^2 - 5x + 9\). Apply the Power Rule to each term, the Constant Multiple Rule to carry each coefficient along, the Sum and Difference Rules to combine the terms, and the Constant Rule to the final 9:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        f'(x) = 3(4x^3) - 7(3x^2) + 2(2x) - 5(1) + 0 = 12x^3 - 21x^2 + 4x - 5
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Compare this to what Lesson 4.03 would have demanded: a full difference quotient, a full binomial expansion of \((x+h)^4\) and \((x+h)^3\), and a careful simplification, all to differentiate one function. Three proved rules just replaced that entire process with a line of arithmetic. That trade, rigor first and speed second, is the whole point of today.</p>
+
+        <!-- Single-select rows (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; APPLY THE THREE RULES</div>
+          <div class="widget-question">For each function, choose its derivative.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The Constant Multiple Rule and Power Rule give d/dx[5x^3] = 15x^2, and the Sum/Difference and Constant Rules give d/dx[-2x] = -2 and d/dx[7] = 0." data-hint="Differentiate term by term: the power rule on 5x^3, the constant multiple rule on -2x, and the constant rule on 7.">
+            <div class="widget-row-prompt">1. f(x) = 5x&sup3; &minus; 2x + 7</div>
+            <div class="widget-options">
+              <button data-choice="0">15x&sup2; &minus; 2x</button>
+              <button data-choice="1">5x&sup2; &minus; 2</button>
+              <button data-choice="2">15x&sup2; &minus; 2</button>
+              <button data-choice="3">15x&sup3; &minus; 2</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. A constant function, no matter how large the constant, has derivative 0 by the Constant Rule." data-hint="This is a horizontal line. What is the slope of a horizontal line?">
+            <div class="widget-row-prompt">2. g(x) = 42</div>
+            <div class="widget-options">
+              <button data-choice="0">0</button>
+              <button data-choice="1">42</button>
+              <button data-choice="2">1</button>
+              <button data-choice="3">Undefined</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. The Power Rule gives d/dx[x^5] = 5x^4 and d/dx[x^2] = 2x, and the Sum Rule combines them." data-hint="Apply the Power Rule to each term separately, then add the results.">
+            <div class="widget-row-prompt">3. h(x) = x&#8309; + x&sup2;</div>
+            <div class="widget-options">
+              <button data-choice="0">5x&#8308;</button>
+              <button data-choice="1">x&#8308; + 2x</button>
+              <button data-choice="2">5x&#8309; + 2x&sup2;</button>
+              <button data-choice="3">5x&#8308; + 2x</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Term by term: d/dx[4x^3] = 12x^2, d/dx[-x^2] = -2x, and d/dx[6x] = 6." data-hint="Watch the sign on the middle term carefully; the Difference Rule still applies.">
+            <div class="widget-row-prompt">4. k(x) = 4x&sup3; &minus; x&sup2; + 6x &minus; 1</div>
+            <div class="widget-options">
+              <button data-choice="0">12x&sup2; &minus; x + 6</button>
+              <button data-choice="1">12x&sup2; &minus; 2x + 6</button>
+              <button data-choice="2">4x&sup2; &minus; 2x + 6</button>
+              <button data-choice="3">12x&sup2; + 2x + 6</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 9 Problem Set: The Basic Derivative Rules</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Prove and apply the constant, sum, power, product, and quotient rules by hand, and upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 9 Quiz: The Basic Derivative Rules</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on the constant, sum, power, product, and quotient rules.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A shortcut is only trustworthy once it has been proved from the definition it shortcuts. The Constant, Sum, Difference, and Power Rules all trace back to the same limit definition you built by hand in Module 4, and that ancestry is exactly what lets you use them freely from here forward. Every polynomial in this course is now yours to differentiate in one line. Next lesson asks what happens when two functions are multiplied or divided together, where a new and less obvious rule is required.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 2 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 5.01 &middot; The Constant, Sum, and Power Rules</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>
