@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 6.04</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q2 &middot; Module 6</div>
+        <div style="font-size: 12px; color: #666;">The Chain Rule and Trigonometric Derivatives</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 6.04</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">The Chain Rule with Trig Functions, and a Preview of Inverse Trig Derivatives</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">The Chain Rule and Trigonometric Derivatives</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 6.04</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">The Chain Rule with Trig Functions, and a Preview of Inverse Trig Derivatives</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Every tool this module has built comes together today, and one new trick, run in reverse, opens the next module early.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 6.01 and 6.02 gave you six trigonometric derivatives. Lesson 6.03 gave you the Chain Rule. Today combines them: functions like \(\sin(3x^2)\), where a trigonometric function sits on the outside of an algebraic inside, and functions nested three layers deep. Then the lesson turns the Chain Rule around. If \(y=\arcsin x\), you do not yet have a direct rule for \(y\), but you do know that \(\sin y = x\) &mdash; and differentiating both sides of that equation, with the Chain Rule applied to \(y\) as a hidden function of \(x\), hands you the derivative anyway. That maneuver has a name, implicit differentiation, and Module 7 will make it official. Today you get an early, honest look at what it can already do.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> apply the Chain Rule to composite trigonometric functions, including functions nested more than two layers deep.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> derive \(\frac{d}{dx}[\arcsin x]\) and \(\frac{d}{dx}[\arctan x]\) by differentiating both sides of \(\sin y = x\) and \(\tan y = x\) with the Chain Rule.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> apply the Chain Rule to a real motion model and connect it to the four-step cycle from Lesson 6.01.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and the Chain Rule and General Power Rule from Lesson 6.03.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; padding-left: 14px; border-left: 3px solid #D0D9E8;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The six trigonometric derivatives from Lessons 6.01&ndash;6.02, and the inverse trig function definitions and ranges from your precalculus work: \(y=\arcsin x\) means \(\sin y = x\) with \(-\tfrac{\pi}{2}\le y\le\tfrac{\pi}{2}\); \(y=\arctan x\) means \(\tan y = x\) with \(-\tfrac{\pi}{2}<y<\tfrac{\pi}{2}\).</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE CHAIN RULE ON TRIGONOMETRIC FUNCTIONS</div>
+
+        <!-- Reflective check-in (E1) -->
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">For \(y=\sin(3x^2)\), what is the outer function and what is the inner function? Guess before reading on.</div>
+          <div class="widget-options">
+            <button data-response="Right. u = 3x^2 is computed first (the inside), then sine is applied to that result (the outside). The Chain Rule gives dy/dx = cos(3x^2) times the inner derivative 6x.">Outer: sine. Inner: \(3x^2\).</button>
+            <button data-response="Reversed: 3x^2 has to be computed before sine can be applied to it, so 3x^2 is the inner function and sine, applied last, is the outer one.">Outer: \(3x^2\). Inner: sine.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">For \(y=\sin(3x^2)\), let \(u=3x^2\), so \(y=\sin u\). The Chain Rule gives \(\frac{dy}{dx}=\frac{dy}{du}\cdot\frac{du}{dx} = \cos(u)\cdot\frac{du}{dx}\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 4px 0;">
+        \[ \frac{d}{dx}\big[\sin(3x^2)\big] = \cos(3x^2)\cdot 6x = 6x\cos(3x^2) \]
+        </p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Combining the Chain Rule with the General Power Rule</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Differentiate \(y=\tan^3 x\), meaning \((\tan x)^3\). Here the outer function is a power, \(u^3\), with inner function \(u=\tan x\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 4px 0;">
+        \[ \frac{d}{dx}\big[\tan^3 x\big] = 3\tan^2 x\cdot\sec^2 x \]
+        </p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">Nesting the Chain Rule three layers deep</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Differentiate \(y = \sqrt{\sin(2x)}\), which stacks a square root on the outside, sine in the middle, and \(2x\) on the inside. Peel one layer at a time, from the outside in, multiplying by each layer's own derivative:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \frac{dy}{dx} = \underbrace{\frac{1}{2\sqrt{\sin(2x)}}}_{\text{outermost: }\sqrt{\,\cdot\,}} \;\cdot\; \underbrace{\cos(2x)}_{\text{middle: }\sin(\,\cdot\,)} \;\cdot\; \underbrace{2}_{\text{innermost: }2x}
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 4px 0;">
+        \[ = \frac{\cos(2x)}{\sqrt{\sin(2x)}} \]
+        </p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Each layer contributes exactly one factor, and every factor must appear. Stopping after the first two layers of a three-layer chain (writing \(\frac{\cos(2x)}{2\sqrt{\sin(2x)}}\) and forgetting the innermost factor of 2 from \(\frac{d}{dx}[2x]\)) is the most common way this goes wrong. Count your layers before you start, and check that you have multiplied by one factor per layer at the end.</div>
+        </div>
+
+        <!-- Single-select rows (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; HOW MANY LAYERS?</div>
+          <div class="widget-question">For each function, decide how many layers deep the Chain Rule needs to reach (1 = no chain rule needed; 2 = one application; 3 = nested twice).</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Outer: square, u^2. Middle/inner: cos x. Two layers, one application of the Chain Rule." data-hint="Identify the outer function (a power) and the inner function (cosine).">
+            <div class="widget-row-prompt">1. \(y = \cos^2 x\)</div>
+            <div class="widget-options">
+              <button data-choice="1">1 (no chain rule)</button>
+              <button data-choice="2">2</button>
+              <button data-choice="3">3</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. sin x is not built by feeding one function into another here; it is differentiated directly by Lesson 6.01's rule. No chain rule needed." data-hint="Is sin x itself a composite function, or is it one of the six basic trig derivatives from Lessons 6.01-6.02?">
+            <div class="widget-row-prompt">2. \(y = \sin x\)</div>
+            <div class="widget-options">
+              <button data-choice="1">1 (no chain rule)</button>
+              <button data-choice="2">2</button>
+              <button data-choice="3">3</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. Outer: square root. Middle: tangent. Inner: 5x. Three layers, chain rule applied twice." data-hint="Peel from the outside: square root, then tangent, then 5x.">
+            <div class="widget-row-prompt">3. \(y = \sqrt{\tan(5x)}\)</div>
+            <div class="widget-options">
+              <button data-choice="1">1 (no chain rule)</button>
+              <button data-choice="2">2</button>
+              <button data-choice="3">3</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; RUNNING THE CHAIN RULE IN REVERSE: A PREVIEW OF INVERSE TRIG DERIVATIVES</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(y = \arcsin x\), so by definition \(\sin y = x\), with \(y\) restricted to \(-\tfrac{\pi}{2}\le y\le\tfrac{\pi}{2}\). There is no direct formula for \(y\) yet, but both sides of \(\sin y = x\) are equal functions of \(x\), so their derivatives with respect to \(x\) must also be equal. The left side is where the trick lives: \(y\) is secretly a function of \(x\), so differentiating \(\sin y\) with respect to \(x\) is a Chain Rule problem, with \(y\) itself playing the role of the inner function:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \frac{d}{dx}\big[\sin y\big] = \frac{d}{dx}\big[x\big] \quad\Longrightarrow\quad \cos y\cdot\frac{dy}{dx} = 1
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Solve for \(\frac{dy}{dx}\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ \frac{dy}{dx} = \frac{1}{\cos y} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">This answer is in terms of \(y\), and the goal is a derivative in terms of \(x\). Since \(-\tfrac{\pi}{2}\le y\le\tfrac{\pi}{2}\), \(\cos y \ge 0\), so \(\cos y = \sqrt{1-\sin^2 y} = \sqrt{1-x^2}\) by the Pythagorean identity and \(\sin y = x\). Substituting back,</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \boxed{\dfrac{d}{dx}\big[\arcsin x\big] = \dfrac{1}{\sqrt{1-x^2}}} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The same maneuver on \(y=\arctan x\), where \(\tan y = x\), gives \(\sec^2 y \cdot\frac{dy}{dx}=1\), so \(\frac{dy}{dx} = \frac{1}{\sec^2 y} = \frac{1}{1+\tan^2 y} = \frac{1}{1+x^2}\) by the Pythagorean identity for tangent:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \boxed{\dfrac{d}{dx}\big[\arctan x\big] = \dfrac{1}{1+x^2}} \]
+        </p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The move you just made &mdash; differentiating both sides of an equation that defines \(y\) implicitly in terms of \(x\), then solving for \(\frac{dy}{dx}\) &mdash; is called <strong>implicit differentiation</strong>. It works for any equation relating \(x\) and \(y\), not only inverse trig functions, and Module 7 will develop it as a technique in its own right, alongside the full family of inverse function derivatives it unlocks. Today's derivation is an honest preview using only the Chain Rule, the same way Lesson 5.04 previewed the derivative of \(\sin x\) using a rule Module 6 had not officially taught yet.</div>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0 0 0;">Since \(\arccos x = \tfrac{\pi}{2} - \arcsin x\), differentiating both sides with the Constant and Sum Rules gives \(\frac{d}{dx}[\arccos x] = -\frac{1}{\sqrt{1-x^2}}\) immediately, with no new derivation required.</p>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; A PHYSICAL APPLICATION: SIMPLE HARMONIC MOTION</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A mass bobbing on a spring, with no friction, has position given by \(x(t) = A\sin(\omega t + \varphi)\), where \(A\) is the amplitude, \(\omega\) is the angular frequency, and \(\varphi\) is a phase shift setting the starting position. Its velocity is \(x'(t)\), found with the Chain Rule, inner function \(u=\omega t+\varphi\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ x'(t) = A\cos(\omega t+\varphi)\cdot\omega = A\omega\cos(\omega t+\varphi) \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Differentiate once more for acceleration, using the Chain Rule again:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ x''(t) = -A\omega^2\sin(\omega t+\varphi) = -\omega^2\, x(t) \]
+        </p>
+
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Before you reveal: why does \(x''(t) = -\omega^2 x(t)\) matter? What does it say, in words, about how the spring's acceleration relates to its position?
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                It says the acceleration is always proportional to the position, and always points the opposite direction: the farther the mass is displaced, the harder it is pulled back. That single relationship, acceleration proportional to negative position, is what makes the motion oscillate forever (undamped) rather than fly off or die out, and it is exactly the four-step differentiation cycle from Lesson 6.01 (\(\sin\to\cos\to-\sin\to-\cos\)) showing up as physics rather than as algebra. You will build on this equation directly when Module 12 studies motion.
+            </div>
+        </details>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 12 Problem Set: The Chain Rule and Inverse Trig Derivatives</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Apply the Chain Rule to algebraic and trigonometric composites, and use today's two inverse trig derivatives, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 12 Quiz: The Chain Rule and Inverse Trig Derivatives</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on the Chain Rule, trigonometric composites, and the derivatives of arcsin x and arctan x.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">The Chain Rule works forward, peeling layers off a composite function, and it works in reverse, differentiating both sides of an equation that only implicitly defines one variable in terms of another. Module 6 leaves you with all six trigonometric derivatives, a real chain of layered functions you can peel apart with confidence, and an early, honest look at \(\arcsin x\) and \(\arctan x\). Module 7 opens by making that reverse trick official, gives you the full family of inverse function derivatives, and adds logarithms and exponentials to the toolkit.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 2 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 6.04 &middot; The Chain Rule with Trig Functions, and a Preview of Inverse Trig Derivatives</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

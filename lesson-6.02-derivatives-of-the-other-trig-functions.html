@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 6.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q2 &middot; Module 6</div>
+        <div style="font-size: 12px; color: #666;">The Chain Rule and Trigonometric Derivatives</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 6.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Derivatives of the Other Trigonometric Functions</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">The Chain Rule and Trigonometric Derivatives</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 6.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Derivatives of the Other Trigonometric Functions</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">You already have every tool this lesson needs; today is about combining them.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Four more trigonometric functions remain: tangent, cotangent, secant, and cosecant. None of them needs a new proof technique. Each is a ratio built entirely from \(\sin x\) and \(\cos x\), the two functions Lesson 6.01 differentiated from scratch, so the Quotient Rule from Lesson 5.02 finishes the job in a few lines each. This is what it feels like when a toolkit is genuinely complete: a whole new family of results falls out of tools you already trust, with no new proof machinery required.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> derive \(\frac{d}{dx}[\tan x] = \sec^2 x\) and \(\frac{d}{dx}[\cot x] = -\csc^2 x\) using the Quotient Rule and the Pythagorean identity.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> derive \(\frac{d}{dx}[\sec x] = \sec x\tan x\) and \(\frac{d}{dx}[\csc x] = -\csc x\cot x\) the same way.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> differentiate fluently using all six trigonometric derivatives together.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and today's rules from Lesson 6.01: \(\frac{d}{dx}[\sin x]=\cos x\) and \(\frac{d}{dx}[\cos x]=-\sin x\).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; padding-left: 14px; border-left: 3px solid #D0D9E8;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The Quotient Rule from Lesson 5.02, the Pythagorean identity \(\sin^2 x + \cos^2 x = 1\), and the ratio identities \(\tan x = \frac{\sin x}{\cos x}\), \(\cot x = \frac{\cos x}{\sin x}\), \(\sec x = \frac{1}{\cos x}\), \(\csc x = \frac{1}{\sin x}\).</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; TANGENT AND COTANGENT</div>
+
+        <!-- Reflective check-in (E1) -->
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">\(\tan x = \dfrac{\sin x}{\cos x}\) is a ratio of two functions you can already differentiate. Which Module 5 rule is built exactly for differentiating a ratio? Name it before reading on.</div>
+          <div class="widget-options">
+            <button data-response="Exactly right. Watch it applied to sin x over cos x below.">The Quotient Rule</button>
+            <button data-response="The Product Rule differentiates a product, not a ratio; using it here would require rewriting tan x as sin x times (cos x)^-1 first, which is legal but is not the direct tool. The Quotient Rule handles the ratio in one step.">The Product Rule</button>
+            <button data-response="The Chain Rule handles composite functions, one function plugged inside another. tan x = sin x / cos x is a ratio of two functions, not a composition, so the Quotient Rule is the direct tool.">The Chain Rule</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Write \(\tan x = \dfrac{\sin x}{\cos x}\) and apply the Quotient Rule, \(\left(\frac{u}{v}\right)' = \frac{u'v - uv'}{v^2}\), with \(u=\sin x\) and \(v=\cos x\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \frac{d}{dx}[\tan x] = \frac{(\cos x)(\cos x) - (\sin x)(-\sin x)}{\cos^2 x} = \frac{\cos^2 x + \sin^2 x}{\cos^2 x}
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The numerator is exactly the Pythagorean identity, \(\cos^2 x + \sin^2 x = 1\), so the whole expression collapses to \(\frac{1}{\cos^2 x}\), which is \(\sec^2 x\) by definition:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \boxed{\dfrac{d}{dx}[\tan x] = \sec^2 x} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Cotangent follows the identical pattern with \(\cot x = \dfrac{\cos x}{\sin x}\), \(u=\cos x\), \(v=\sin x\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \frac{d}{dx}[\cot x] = \frac{(-\sin x)(\sin x) - (\cos x)(\cos x)}{\sin^2 x} = \frac{-(\sin^2 x + \cos^2 x)}{\sin^2 x} = \frac{-1}{\sin^2 x}
+        \]
+        </p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \boxed{\dfrac{d}{dx}[\cot x] = -\csc^2 x} \]
+        </p>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; SECANT AND COSECANT</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Write \(\sec x = \dfrac{1}{\cos x}\) as a quotient with \(u=1\) (so \(u'=0\)) and \(v=\cos x\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \frac{d}{dx}[\sec x] = \frac{(0)(\cos x) - (1)(-\sin x)}{\cos^2 x} = \frac{\sin x}{\cos^2 x}
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Split \(\dfrac{\sin x}{\cos^2 x}\) into \(\dfrac{1}{\cos x}\cdot\dfrac{\sin x}{\cos x}\), which is exactly \(\sec x\cdot\tan x\):</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \boxed{\dfrac{d}{dx}[\sec x] = \sec x\tan x} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The same steps on \(\csc x = \dfrac{1}{\sin x}\) give:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \frac{d}{dx}[\csc x] = \frac{(0)(\sin x) - (1)(\cos x)}{\sin^2 x} = \frac{-\cos x}{\sin^2 x} = -\frac{1}{\sin x}\cdot\frac{\cos x}{\sin x}
+        \]
+        </p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \boxed{\dfrac{d}{dx}[\csc x] = -\csc x\cot x} \]
+        </p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Notice the pattern: every "co-" function &mdash; cosine, cotangent, cosecant &mdash; has a negative derivative, while sine, tangent, and secant do not. The prefix "co-" itself is a seventeenth-century abbreviation of "complement": Edmund Gunter coined <em>cosine</em> around 1620 as shorthand for "sine of the complementary angle," since \(\cos x = \sin(90^\circ - x)\). The family resemblance in the names turns out to predict a family resemblance in the calculus, three centuries before anyone was differentiating anything.</div>
+        </div>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The sign is the single easiest thing to drop. \(\sec x\) and \(\tan x\) both have positive derivatives built from products (\(\sec x\tan x\) and \(\sec^2 x\)), while \(\csc x\) and \(\cot x\) both carry a leading minus sign. Write the minus sign down the moment you recall the rule, before you substitute anything, so it never gets lost partway through a computation.</div>
+        </div>
+
+        <!-- Commit-then-reveal (E4) -->
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: differentiate \(f(x) = \sec x + \tan x\), and see if the result simplifies. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f'(x) = \sec x\tan x + \sec^2 x = \sec x(\tan x + \sec x)\). The derivative factors back into \(\sec x\) times the <em>original function</em> \(f(x) = \sec x + \tan x\), so \(f'(x) = \sec x\cdot f(x)\) &mdash; a genuinely elegant closed loop, and not an accident. You will see this exact combination again when Quarter 4 studies integration; a function whose derivative reproduces itself this cleanly is always worth a second look.
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; ALL SIX, TOGETHER</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The complete table, all six derived from the definition and the Quotient Rule in the last two lessons:</p>
+        <div style="overflow-x:auto; margin: 4px 0 16px 0;">
+        <table style="border-collapse: collapse; width: 100%; font-size: 17px; color: #1a2340;">
+          <tr style="background:#EEF1F8;"><th style="text-align:left; padding:8px 14px; border:1px solid #D0D9E8;">Function</th><th style="text-align:left; padding:8px 14px; border:1px solid #D0D9E8;">Derivative</th></tr>
+          <tr><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(\sin x\)</td><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(\cos x\)</td></tr>
+          <tr><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(\cos x\)</td><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(-\sin x\)</td></tr>
+          <tr><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(\tan x\)</td><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(\sec^2 x\)</td></tr>
+          <tr><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(\cot x\)</td><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(-\csc^2 x\)</td></tr>
+          <tr><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(\sec x\)</td><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(\sec x\tan x\)</td></tr>
+          <tr><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(\csc x\)</td><td style="padding:8px 14px; border:1px solid #D0D9E8;">\(-\csc x\cot x\)</td></tr>
+        </table>
+        </div>
+
+        <!-- Single-select rows (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; MATCH THE DERIVATIVE</div>
+          <div class="widget-question">Choose the correct derivative for each function.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. d/dx[cot x] = -csc^2 x, straight from Part 1." data-hint="Recall the Part 1 derivation for cot x = cos x / sin x.">
+            <div class="widget-row-prompt">1. \(\dfrac{d}{dx}[\cot x] = \;?\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\csc^2 x\)</button>
+              <button data-choice="1">\(\sec^2 x\)</button>
+              <button data-choice="2">\(-\csc^2 x\)</button>
+              <button data-choice="3">\(-\sec^2 x\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. d/dx[sec x] = sec x tan x, both factors positive, no leading minus sign." data-hint="Recall Part 2: sec x is one of the two 'co-less' functions with a positive derivative.">
+            <div class="widget-row-prompt">2. \(\dfrac{d}{dx}[\sec x] = \;?\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(-\sec x\tan x\)</button>
+              <button data-choice="1">\(\sec x\tan x\)</button>
+              <button data-choice="2">\(\csc x\cot x\)</button>
+              <button data-choice="3">\(\tan^2 x\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. At x = pi/4, sec^2(pi/4) = (sqrt 2)^2 = 2." data-hint="First find f'(x) = sec^2 x, then substitute x = pi/4, where sec(pi/4) = sqrt 2.">
+            <div class="widget-row-prompt">3. If \(f(x) = \tan x\), find \(f'(\pi/4)\).</div>
+            <div class="widget-options">
+              <button data-choice="0">2</button>
+              <button data-choice="1">1</button>
+              <button data-choice="2">\(\sqrt2\)</button>
+              <button data-choice="3">0</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 11 Problem Set: The Six Trigonometric Derivatives</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Prove and apply this week's rules by hand, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 11 Quiz: The Six Trigonometric Derivatives</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on all six trigonometric derivatives.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">All six trigonometric derivatives now sit on the same two proved facts from Lesson 6.01, connected by nothing more than the Quotient Rule and the Pythagorean identity. That completeness is itself the point: a genuinely proved toolkit lets a whole family of new results fall out with no new machinery. Next week the toolkit grows in a different direction: Lessons 6.03 and 6.04 introduce the Chain Rule, the single most important rule of this semester, needed the moment a function is built by feeding one function into another.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 2 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 6.02 &middot; Derivatives of the Other Trigonometric Functions</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>
