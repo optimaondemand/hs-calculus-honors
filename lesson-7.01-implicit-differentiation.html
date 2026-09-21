@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 7.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q2 &middot; Module 7</div>
+        <div style="font-size: 12px; color: #666;">Implicit Differentiation, Inverses, Logs and Exponentials</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 7.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Implicit Differentiation</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Implicit Differentiation, Inverses, Logs and Exponentials</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 7.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Implicit Differentiation</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Lesson 6.04 used a trick without naming it. Today the trick gets a name, a justification, and a lot more curves to work on.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">The circle \(x^2+y^2=25\) is not the graph of a function &mdash; it fails the vertical line test &mdash; and yet it plainly has a tangent line at every point, with a slope you ought to be able to find. Every rule since Module 4 has differentiated \(y\) written explicitly in terms of \(x\); \(y=x^2\), \(y=\sin x\), and so on. \(x^2+y^2=25\) is not written that way, and solving it for \(y\) produces two ugly square-root pieces that make the Chain Rule messier than it needs to be. <strong>Implicit differentiation</strong> sidesteps that entirely: differentiate both sides of the equation exactly as they stand, treat \(y\) as a hidden function of \(x\), and solve for \(\frac{dy}{dx}\) at the end. You have already done this once, in Lesson 6.04, to find the derivatives of \(\arcsin x\) and \(\arctan x\). Today the technique becomes official, and works on any curve, not just inverse trig functions.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain why an equation relating \(x\) and \(y\) can define \(y\) as a function of \(x\) even when it cannot be solved for \(y\) explicitly.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> differentiate both sides of an implicit equation with respect to \(x\), applying the Chain Rule to every \(y\)-term.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> solve the resulting equation for \(\frac{dy}{dx}\) and evaluate it at a specific point on the curve.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and the Chain Rule from Lesson 6.03.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; padding-left: 14px; border-left: 3px solid #D0D9E8;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your work from Lesson 6.04, where you differentiated \(\sin y = x\) to find the derivative of \(\arcsin x\) &mdash; that was already implicit differentiation, just not yet under that name.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; DIFFERENTIATING BOTH SIDES</div>
+
+        <!-- Reflective check-in (E1) -->
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">In Lesson 6.04 you differentiated \(\sin y = x\) and got \(\cos y\cdot\dfrac{dy}{dx} = 1\), not just \(\cos y = 1\). Why did a \(\dfrac{dy}{dx}\) appear on the left side but not on the right?</div>
+          <div class="widget-options">
+            <button data-response="Exactly. y is a hidden function of x, so differentiating sin y with respect to x is a Chain Rule problem: the derivative of the outside (cos y) times the derivative of the inside (dy/dx). x, meanwhile, is differentiating with respect to itself, so d/dx[x] = 1 with no extra factor.">Because y is secretly a function of x, so differentiating anything containing y needs the Chain Rule &mdash; but x is just x.</button>
+            <button data-response="Not quite: the appearance of dy/dx has nothing to do with which side of the equation a term sits on. It appears specifically because sin y contains y, and y is being treated as a function of x. If x appeared inside a function on the right side, no dy/dx would appear there either.">Because dy/dx only ever shows up on the left side of an equation, by convention.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">An equation like \(x^2+y^2=25\) does not give \(y\) as an explicit function of \(x\), but near almost any point on the circle, a small piece of the curve <em>does</em> look like the graph of some function \(y=f(x)\) &mdash; the graph just needs two pieces (the top half and the bottom half) to cover the whole circle. <strong>Implicit differentiation</strong> treats \(y\) as one of those hidden functions of \(x\), without ever solving for it, and finds \(\frac{dy}{dx}\) directly:</p>
+        <ol style="font-size: 17px; color: #1a2340; line-height: 1.9; padding-left: 22px; margin: 0 0 10px 0;">
+          <li>Differentiate both sides of the equation with respect to \(x\).</li>
+          <li>Every time you differentiate a term containing \(y\), apply the Chain Rule: differentiate as usual, then multiply by \(\frac{dy}{dx}\).</li>
+          <li>Solve the resulting equation algebraically for \(\frac{dy}{dx}\).</li>
+        </ol>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: the circle</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Find \(\frac{dy}{dx}\) for \(x^2+y^2=25\). Differentiate both sides with respect to \(x\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ \frac{d}{dx}\big[x^2\big] + \frac{d}{dx}\big[y^2\big] = \frac{d}{dx}\big[25\big] \quad\Longrightarrow\quad 2x + 2y\frac{dy}{dx} = 0 \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Solve for \(\frac{dy}{dx}\):</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \frac{dy}{dx} = -\frac{x}{y} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">At the point \((3,4)\), which does lie on the circle since \(3^2+4^2=25\), the slope is \(\frac{dy}{dx} = -\frac{3}{4}\). Check this against what you already know from precalculus: the radius to \((3,4)\) has slope \(\frac{4}{3}\), and a tangent line to a circle is always perpendicular to the radius at that point. Perpendicular slopes multiply to \(-1\), and indeed \(\frac{4}{3}\cdot\left(-\frac{3}{4}\right) = -1\). The calculus answer and the geometry agree.</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The single most common error is writing \(\frac{d}{dx}[y^2] = 2y\), forgetting the Chain Rule's \(\frac{dy}{dx}\) factor entirely. \(y\) is a function of \(x\), not the variable of differentiation itself, so \(\frac{d}{dx}[y^2] = 2y\cdot\frac{dy}{dx}\), never just \(2y\). Every single \(y\)-term needs this extra factor; \(x\)-terms never do.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; A CURVE WITH NO EXPLICIT FORMULA AT ALL</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The circle could, in principle, be split into two explicit pieces, \(y=\sqrt{25-x^2}\) and \(y=-\sqrt{25-x^2}\). Implicit differentiation earns its keep most clearly on curves where that is not a realistic option. The <strong>folium of Descartes</strong>, \(x^3+y^3=6xy\), cannot be solved for \(y\) by hand at all, yet it is a perfectly good curve with a well-defined tangent line almost everywhere.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Differentiate both sides of \(x^3+y^3=6xy\) with respect to \(x\). The right side is a product, \(6xy\), so it needs the Product Rule as well as the Chain Rule:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ 3x^2 + 3y^2\frac{dy}{dx} = 6y + 6x\frac{dy}{dx} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Collect every \(\frac{dy}{dx}\) term on one side and everything else on the other:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ 3y^2\frac{dy}{dx} - 6x\frac{dy}{dx} = 6y - 3x^2 \quad\Longrightarrow\quad \frac{dy}{dx}\big(3y^2-6x\big) = 6y-3x^2 \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Divide out the common factor of 3 and solve:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \frac{dy}{dx} = \frac{2y-x^2}{y^2-2x} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The point \((3,3)\) lies on the curve, since \(3^3+3^3=54\) and \(6(3)(3)=54\). At that point, \(\frac{dy}{dx} = \frac{6-9}{9-6} = \frac{-3}{3} = -1\).</p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Ren&eacute; Descartes proposed his folium in 1638, in a letter challenging Pierre de Fermat to find its tangent lines &mdash; decades before either Newton or Leibniz had formalized the calculus that makes the problem routine. Descartes believed, wrongly, that no general method could find the tangent to a curve like this one. Implicit differentiation is the general method he doubted existed.</div>
+        </div>
+
+        <!-- Single-select rows (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; DIFFERENTIATE IMPLICITLY</div>
+          <div class="widget-question">Find \(\dfrac{dy}{dx}\) for each equation.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Differentiate: 2x + 4y(dy/dx) = 0, so dy/dx = -2x/(4y) = -x/(2y)." data-hint="Differentiate both sides: d/dx[x^2] = 2x, d/dx[2y^2] = 4y(dy/dx), d/dx[8] = 0. Then solve for dy/dx.">
+            <div class="widget-row-prompt">1. \(x^2 + 2y^2 = 8\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\dfrac{-x}{y}\)</button>
+              <button data-choice="1">\(\dfrac{-2x}{y}\)</button>
+              <button data-choice="2">\(\dfrac{-x}{2y}\)</button>
+              <button data-choice="3">\(\dfrac{x}{2y}\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Differentiate: y + x(dy/dx) = 6, using the Product Rule on xy. Solve: x(dy/dx) = 6 - y, so dy/dx = (6-y)/x." data-hint="xy needs the Product Rule: d/dx[xy] = y + x(dy/dx). The right side, 6, differentiates to 0.">
+            <div class="widget-row-prompt">2. \(xy = 6x - y\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\dfrac{6-y}{x-1}\)</button>
+              <button data-choice="1">\(\dfrac{6-y}{x+1}\)</button>
+              <button data-choice="2">\(\dfrac{6+y}{x-1}\)</button>
+              <button data-choice="3">\(6-y\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Lesson 7.02</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Next you will apply implicit differentiation to one very specific equation, \(f(g(x))=x\), and discover a general rule for the derivative of any inverse function.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">When an equation relates \(x\) and \(y\) without solving for \(y\), differentiate both sides with respect to \(x\) anyway, apply the Chain Rule to every \(y\)-term, and solve for \(\frac{dy}{dx}\) at the end. Nothing about the method requires \(y\) to have a tidy explicit formula; that is exactly what makes it more powerful than every rule that came before it.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 2 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 7.01 &middot; Implicit Differentiation</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

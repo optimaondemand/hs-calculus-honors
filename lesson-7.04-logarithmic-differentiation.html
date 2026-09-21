@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 7.04</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q2 &middot; Module 7</div>
+        <div style="font-size: 12px; color: #666;">Implicit Differentiation, Inverses, Logs and Exponentials</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 7.04</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Logarithmic Differentiation</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Implicit Differentiation, Inverses, Logs and Exponentials</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 7.04</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Logarithmic Differentiation</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">What rule differentiates \(y=x^x\)? None of them, directly &mdash; until logarithms turn the question into one you can already answer.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">\(y=x^x\) is neither the Power Rule's shape (a variable base with a <em>constant</em> exponent) nor Lesson 7.03's exponential shape (a constant base with a <em>variable</em> exponent). Both the base and the exponent are \(x\), and no rule in this course, as built, reaches it directly. The fix uses the oldest trick a logarithm ever performed: turning a hard operation into an easy one. Napier invented logarithms in 1614 to turn multiplication into addition, for hand calculation. Today's technique, <strong>logarithmic differentiation</strong>, uses that same power &mdash; log of a product is a sum, log of a quotient is a difference, log of a power pulls the exponent down front &mdash; to turn a derivative you cannot find directly into one you can.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> recognize a function shape (variable base, variable exponent, or a complicated product/quotient/power) that calls for logarithmic differentiation.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> apply logarithmic differentiation using the log laws, implicit differentiation, and algebraic solving for \(y'\), in order.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> differentiate a product, quotient, or power of several functions by taking logarithms first, instead of a long chain of Product and Quotient Rule steps.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, implicit differentiation (7.01), and \(\dfrac{d}{dx}[\ln x]=\dfrac{1}{x}\) from Lesson 7.03.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; padding-left: 14px; border-left: 3px solid #D0D9E8;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The three log laws from precalculus: \(\ln(ab)=\ln a+\ln b\), \(\ln(a/b)=\ln a-\ln b\), and \(\ln(a^n)=n\ln a\).</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE METHOD, ON X^X</div>
+
+        <!-- Reflective check-in (E1) -->
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">If you take \(\ln\) of both sides of \(y=x^x\), the log law for powers lets you pull the exponent down: \(\ln y = x\ln x\). What kind of problem is the right side now &mdash; and what technique from this week handles the left side, which still has a \(y\) in it?</div>
+          <div class="widget-options">
+            <button data-response="Exactly. x ln x is a plain product, differentiable with the Product Rule you already know. And ln y still contains the hidden function y, so differentiating it needs implicit differentiation from Lesson 7.01, producing a (1/y)(dy/dx) term. Watch both play out below.">The right side is now a Product Rule problem; the left side needs implicit differentiation, since y is still hidden inside ln y.</button>
+            <button data-response="ln y does not vanish on its own; y is still an unknown function of x sitting inside it, so differentiating the left side is exactly where implicit differentiation is needed. Nothing about taking a logarithm removes the need to differentiate y itself.">Both sides become ordinary functions of x with no y remaining, so any rule works.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Logarithmic differentiation follows three steps:</p>
+        <ol style="font-size: 17px; color: #1a2340; line-height: 1.9; padding-left: 22px; margin: 0 0 10px 0;">
+          <li>Take \(\ln\) of both sides, and use the log laws to break apart any product, quotient, or power on the right.</li>
+          <li>Differentiate both sides with respect to \(x\), using implicit differentiation on the left (which produces \(\frac{1}{y}\cdot\frac{dy}{dx}\)).</li>
+          <li>Solve for \(\frac{dy}{dx}\) by multiplying both sides by \(y\), then substitute the original expression for \(y\) back in.</li>
+        </ol>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: y = x^x</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(y=x^x\) for \(x>0\). Step 1, take \(\ln\) of both sides and apply the power law:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ \ln y = \ln(x^x) = x\ln x \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Step 2, differentiate both sides. The left side needs implicit differentiation (Lesson 7.01) together with \(\frac{d}{dx}[\ln y] = \frac{1}{y}\cdot\frac{dy}{dx}\); the right side is a product, needing the Product Rule:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ \frac{1}{y}\cdot\frac{dy}{dx} = (1)\ln x + x\cdot\frac{1}{x} = \ln x + 1 \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Step 3, solve for \(\frac{dy}{dx}\) by multiplying both sides by \(y\), then substitute \(y=x^x\) back in:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \frac{dy}{dx} = y(\ln x + 1) = x^x(\ln x + 1) \]
+        </p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Stopping at \(\frac{1}{y}\cdot\frac{dy}{dx} = \ln x + 1\) and reporting that as the final answer is the most common way this technique goes unfinished. That expression is \(\frac{y'}{y}\), not \(y'\). Always finish the last step: multiply by \(y\), then substitute the original formula for \(y\) back in, so the final answer is written entirely in terms of \(x\).</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; A FUNCTION NO OTHER RULE CAN TOUCH</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">\(y=x^x\) at least resembled a power or an exponential. \(y=(x^2+1)^{\sin x}\) resembles neither: the base \(x^2+1\) is not constant, so Lesson 7.03's exponential rule does not apply, and the exponent \(\sin x\) is not constant, so the Power Rule does not apply either. Logarithmic differentiation is the only tool in this course built to reach it.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Step 1:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ \ln y = \sin x\cdot\ln(x^2+1) \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Step 2, differentiate both sides, using the Product Rule on the right (with the Chain Rule needed for \(\ln(x^2+1)\)):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ \frac{1}{y}\cdot\frac{dy}{dx} = \cos x\cdot\ln(x^2+1) + \sin x\cdot\frac{2x}{x^2+1} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Step 3, multiply by \(y\) and substitute back:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \frac{dy}{dx} = (x^2+1)^{\sin x}\left[\cos x\,\ln(x^2+1) + \frac{2x\sin x}{x^2+1}\right] \]
+        </p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Logarithmic differentiation also shortens ordinary Product- and Quotient-Rule work when several factors are multiplied or divided together, such as \(y=\dfrac{x^3\sqrt{x-1}}{(x+2)^4}\): taking \(\ln\) turns it into \(\ln y = 3\ln x + \tfrac12\ln(x-1) - 4\ln(x+2)\), a sum of simple pieces to differentiate one at a time, rather than one long Quotient Rule computation with several nested Product Rules inside it. The same idea that let Napier's contemporaries multiply four-digit numbers by adding table entries now shortens calculus computations the same way.</div>
+        </div>
+
+        <!-- Commit-then-reveal (E4) -->
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: use logarithmic differentiation to find \(\dfrac{dy}{dx}\) for \(y = x^{\cos x}\) (\(x>0\)). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Step 1: \(\ln y = \cos x\cdot\ln x\). Step 2: \(\dfrac{1}{y}\dfrac{dy}{dx} = -\sin x\ln x + \cos x\cdot\dfrac{1}{x}\), using the Product Rule on the right. Step 3: \(\dfrac{dy}{dx} = x^{\cos x}\left(-\sin x\ln x + \dfrac{\cos x}{x}\right)\). Notice the same three steps, in the same order, as both worked examples above &mdash; the method does not change, only the function inside it does.
+            </div>
+        </details>
+
+        <!-- Single-select rows (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; WHICH RULE APPLIES?</div>
+          <div class="widget-question">For each function, decide which tool is the right one to reach for first.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The base (3) is constant and the exponent (x) varies: this is Lesson 7.03's exponential rule, d/dx[a^x] = a^x ln a. No logarithmic differentiation needed." data-hint="Check which part changes: is the base constant and the exponent variable, or the other way around, or both variable?">
+            <div class="widget-row-prompt">1. \(y = 3^x\)</div>
+            <div class="widget-options">
+              <button data-choice="0">The Power Rule</button>
+              <button data-choice="1">Logarithmic differentiation</button>
+              <button data-choice="2">The exponential rule (7.03)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Both the base (x) and the exponent (2x+1) are variable, so neither the Power Rule nor the exponential rule applies. Logarithmic differentiation is the only tool built for this shape." data-hint="Check both the base and the exponent: are they both changing with x?">
+            <div class="widget-row-prompt">2. \(y = x^{2x+1}\)</div>
+            <div class="widget-options">
+              <button data-choice="0">The Power Rule</button>
+              <button data-choice="1">Logarithmic differentiation</button>
+              <button data-choice="2">The exponential rule (7.03)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The base (x) is variable and the exponent (7) is constant: this is exactly the Power Rule's shape, d/dx[x^n] = n x^(n-1). No logarithms needed." data-hint="Check which part changes: is the exponent a fixed constant here?">
+            <div class="widget-row-prompt">3. \(y = x^7\)</div>
+            <div class="widget-options">
+              <button data-choice="0">The Power Rule</button>
+              <button data-choice="1">Logarithmic differentiation</button>
+              <button data-choice="2">The exponential rule (7.03)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 14 Problem Set: Exponential, Logarithmic, and Logarithmic-Differentiation Derivatives</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Apply all four rules from this week, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 14 Quiz: Exponential, Logarithmic, and Logarithmic-Differentiation Derivatives</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Whenever a function's base and exponent are both variable, or a product/quotient tangles together more factors than you want to Product-Rule by hand, take \(\ln\) of both sides first, differentiate implicitly, and solve for \(y'\) by multiplying back through by \(y\). Module 7 leaves you with a genuinely complete differentiation toolkit: algebraic, trigonometric, inverse, exponential, logarithmic, and now this. Module 8 turns to higher-order derivatives and the Mean Value Theorem, the last piece of Quarter 2 before Quarter 3 puts all of it to work.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 2 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 7.04 &middot; Logarithmic Differentiation</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

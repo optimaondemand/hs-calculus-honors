@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 7.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q2 &middot; Module 7</div>
+        <div style="font-size: 12px; color: #666;">Implicit Differentiation, Inverses, Logs and Exponentials</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 7.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">The Derivative of an Inverse Function</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Implicit Differentiation, Inverses, Logs and Exponentials</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 7.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">The Derivative of an Inverse Function</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">One equation, differentiated implicitly, explains every inverse-function derivative you will ever need.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 6.04 found \(\frac{d}{dx}[\arcsin x]\) and \(\frac{d}{dx}[\arctan x]\) one at a time, each by a separate implicit-differentiation argument starting from \(\sin y = x\) or \(\tan y = x\). Today's lesson asks a more ambitious question: is there a single equation, differentiated once, that produces a rule for the derivative of <em>any</em> inverse function at all &mdash; without needing to know its formula? There is. Every inverse function \(g=f^{-1}\) satisfies exactly one equation, \(f(g(x))=x\), and implicit differentiation applied to that one equation is all it takes.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> derive the general Inverse Function Rule, \((f^{-1})'(x) = \dfrac{1}{f'(f^{-1}(x))}\), from implicit differentiation.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> confirm that the general rule reproduces the arcsin and arctan derivatives already found in Lesson 6.04.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> find the derivative of an inverse function at a point, even with no explicit formula for the inverse itself.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and implicit differentiation from Lesson 7.01.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; padding-left: 14px; border-left: 3px solid #D0D9E8;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your precalculus understanding of inverse functions: \(g=f^{-1}\) means \(f(g(x))=x\) for every \(x\) in the domain of \(g\), and the graphs of \(f\) and \(g\) are reflections of each other across the line \(y=x\).</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; DERIVING THE GENERAL RULE</div>
+
+        <!-- Reflective check-in (E1) -->
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">If \(g=f^{-1}\), then \(f(g(x))=x\) for every \(x\). If you differentiated both sides of that equation with respect to \(x\) right now, which rule would you need for the left side?</div>
+          <div class="widget-options">
+            <button data-response="Exactly right. f(g(x)) is a composite function, f applied to g(x), so differentiating it needs the Chain Rule: f'(g(x)) times g'(x). Watch this play out below.">The Chain Rule, since f(g(x)) is a composite function</button>
+            <button data-response="The Product Rule is for a product of two functions multiplied together, like f(x) times g(x). f(g(x)) is f applied TO g(x), a composition, not a product, so the Chain Rule is the tool that applies here.">The Product Rule, since f and g are both functions of x</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(g=f^{-1}\), so that \(f(g(x))=x\) for every \(x\) in the domain of \(g\). Differentiate both sides with respect to \(x\). The left side is a composite function, so it needs the Chain Rule; the right side differentiates to 1:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ \frac{d}{dx}\big[f(g(x))\big] = \frac{d}{dx}[x] \quad\Longrightarrow\quad f'(g(x))\cdot g'(x) = 1 \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Solve for \(g'(x)\), provided \(f'(g(x)) \ne 0\):</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \boxed{\big(f^{-1}\big)'(x) = \dfrac{1}{f'\big(f^{-1}(x)\big)}} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In words: to find the derivative of the inverse at \(x\), find where the inverse sends \(x\) (that is, \(f^{-1}(x)\)), evaluate the <em>original</em> function's derivative there, and take the reciprocal. This single equation is exactly the same move as Lesson 6.04's arcsin derivation, run in general rather than for one specific function.</p>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">This rule has a picture behind it. The graphs of \(f\) and \(f^{-1}\) are mirror images across the line \(y=x\), and reflecting a line across \(y=x\) swaps its rise and its run &mdash; which flips its slope to the reciprocal. \((f^{-1})'(x) = \frac{1}{f'(f^{-1}(x))}\) is that geometric fact, stated algebraically.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; CHECKING THE RULE AGAINST WHAT YOU ALREADY KNOW</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A genuinely general rule should reproduce every special case you have already proved by hand. Test it on \(\arcsin x\), the inverse of \(f(y) = \sin y\), where \(f'(y) = \cos y\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ \frac{d}{dx}[\arcsin x] = \frac{1}{\cos(\arcsin x)} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 6.04 already worked out that \(\cos(\arcsin x) = \sqrt{1-x^2}\) (since \(\arcsin x\) is an angle whose sine is \(x\), and cosine is non-negative on its restricted range), so this becomes \(\frac{1}{\sqrt{1-x^2}}\) &mdash; exactly the formula Lesson 6.04 found the long way. The general rule and the specific derivation agree, as they must.</p>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 18px 0 8px 0;">A genuinely new example: no formula required</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(f(x) = x^3+2x-1\). Since \(f'(x)=3x^2+2\) is always positive, \(f\) is increasing everywhere and has an inverse \(g=f^{-1}\), even though solving \(y=x^3+2x-1\) for \(x\) by hand is not realistic. Find \(g'(2)\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The rule needs \(g(2) = f^{-1}(2)\): the input to \(f\) that outputs 2. Solve \(x^3+2x-1=2\), that is, \(x^3+2x-3=0\). Testing \(x=1\): \(1+2-3=0\). So \(g(2)=1\), even without a general formula for \(g\). Now apply the rule:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ g'(2) = \frac{1}{f'(g(2))} = \frac{1}{f'(1)} = \frac{1}{3(1)^2+2} = \frac{1}{5} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The derivative of the inverse at a point, found without ever writing down a formula for the inverse itself. This is the real power of the rule: it needs only one input value of the original function, found by inspection or a little algebra, not a full inverse formula.</p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">\((f^{-1})'(2)\) is <strong>not</strong> \(\dfrac{1}{f'(2)}\). The rule evaluates \(f'\) at \(f^{-1}(2)\), not at 2 itself. In the example above, that meant evaluating \(f'\) at \(g(2)=1\), not at \(x=2\). Skipping the step of finding \(g(2)\) first is the most common way this rule goes wrong.</div>
+        </div>
+
+        <!-- Single-select rows (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; APPLY THE INVERSE FUNCTION RULE</div>
+          <div class="widget-question">Answer each question.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. f(3)=5, so g(5)=3. g'(5) = 1/f'(g(5)) = 1/f'(3) = 1/4." data-hint="First find g(5): what input to f gives output 5? Then evaluate f' there and take the reciprocal.">
+            <div class="widget-row-prompt">1. Let \(f(x)=x^2-4\) for \(x\ge0\), with inverse \(g\). Given \(f(3)=5\), find \(g'(5)\). (Recall \(f'(x)=2x\).)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\dfrac{1}{5}\)</button>
+              <button data-choice="1">\(\dfrac{1}{6}\)</button>
+              <button data-choice="2">6</button>
+              <button data-choice="3">\(\dfrac{1}{10}\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. This is exactly Part 1's check: the Inverse Function Rule applied to f(y) = tan y reproduces d/dx[arctan x] = 1/(1+x^2), matching Lesson 6.04." data-hint="Apply the general rule to f(y) = tan y, whose derivative is sec^2 y, then use the Pythagorean identity to rewrite in terms of x.">
+            <div class="widget-row-prompt">2. Applying the Inverse Function Rule to \(f(y)=\tan y\) should reproduce which Lesson 6.04 result?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\dfrac{d}{dx}[\arcsin x] = \dfrac{1}{\sqrt{1-x^2}}\)</button>
+              <button data-choice="1">\(\dfrac{d}{dx}[\arccos x] = \dfrac{-1}{\sqrt{1-x^2}}\)</button>
+              <button data-choice="2">\(\dfrac{d}{dx}[\arctan x] = \dfrac{1}{1+x^2}\)</button>
+              <button data-choice="3">\(\dfrac{d}{dx}[\tan x] = \sec^2 x\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 13 Problem Set: Implicit Differentiation and Inverse Functions</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Apply both of this week's techniques, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 13 Quiz: Implicit Differentiation and Inverse Functions</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on both techniques.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Every inverse function satisfies \(f(g(x))=x\), and implicit differentiation of that one equation gives \((f^{-1})'(x) = \dfrac{1}{f'(f^{-1}(x))}\) for free &mdash; no explicit inverse formula required. Week 14 puts this exact rule to work on the most important inverse pair in all of mathematics: \(e^x\) and \(\ln x\).</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 2 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 7.02 &middot; The Derivative of an Inverse Function</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

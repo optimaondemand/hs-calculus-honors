@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 7.03</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q2 &middot; Module 7</div>
+        <div style="font-size: 12px; color: #666;">Implicit Differentiation, Inverses, Logs and Exponentials</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 7.03</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Derivatives of Exponential and Logarithmic Functions</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Implicit Differentiation, Inverses, Logs and Exponentials</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 7.03</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Derivatives of Exponential and Logarithmic Functions</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">One function is its own derivative. Today you meet it properly, and everything from the last two lessons comes together to explain its inverse.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Every rule so far has changed a function under differentiation: \(x^2\) became \(2x\), \(\sin x\) became \(\cos x\). One function refuses to change at all. \(e^x\), where \(e\approx2.71828\) is a specific irrational number, is its own derivative, and that single fact is the reason \(e\) matters throughout mathematics and the sciences: any process whose rate of growth is proportional to its own size &mdash; population, radioactive decay, compound interest, a heating cup of coffee &mdash; is described by a function built from \(e^x\). Today you prove that fact, and then find the derivative of its inverse, \(\ln x\), two different ways using the two tools Lessons 7.01 and 7.02 just gave you &mdash; a genuine test of whether those tools actually agree with each other.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> prove that \(\dfrac{d}{dx}[e^x] = e^x\) from the limit definition of the derivative.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> derive \(\dfrac{d}{dx}[\ln x] = \dfrac{1}{x}\) by two independent methods and show they agree.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> differentiate \(a^x\) and \(\log_a x\) for any base \(a>0\), and combine all four rules fluently.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and implicit differentiation (7.01) and the Inverse Function Rule (7.02).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; padding-left: 14px; border-left: 3px solid #D0D9E8;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The Chain Rule from Lesson 6.03, and the fact from precalculus that \(e^x\) and \(\ln x\) are inverse functions of each other.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; WHY E, AND THE DERIVATIVE OF E^X</div>
+
+        <!-- Reflective check-in (E1) -->
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">If a function equals its own derivative everywhere, what do you expect its graph to look like near any point, in terms of slope versus height?</div>
+          <div class="widget-options">
+            <button data-response="Exactly the intuition this lesson formalizes. At every point, the steepness of the curve exactly matches how high up it already is &mdash; which is why exponential growth feels like it 'runs away': the bigger it gets, the faster it grows, in direct proportion.">The slope at any point should exactly equal the height (the y-value) at that point.</button>
+            <button data-response="A reasonable first guess for many functions, but a constant-slope function is a straight line, y = mx + b, whose derivative is the constant m, not the function mx + b itself. A function equal to its own derivative has to behave very differently from a line, in fact growing without bound.">The slope should be constant everywhere, like a straight line.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Among all exponential functions \(b^x\), exactly one base makes \(\frac{d}{dx}[b^x]\) equal to \(b^x\) itself, with no extra constant multiplied in front. That base is called \(e\), and it can be <em>defined</em> as the unique number satisfying</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">
+        \[ \lim_{h\to0}\frac{e^h-1}{h} = 1 \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Numerically, \(e \approx 2.71828\ldots\), an irrational number, and this one property is all the proof below needs. Let \(f(x)=e^x\). By the limit definition of the derivative:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        f'(x) = \lim_{h\to0}\frac{e^{x+h}-e^x}{h} = \lim_{h\to0}\frac{e^x\cdot e^h - e^x}{h} = \lim_{h\to0}e^x\cdot\frac{e^h-1}{h}
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Pull the constant \(e^x\) (constant with respect to \(h\)) out of the limit, and apply the defining property of \(e\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        f'(x) = e^x\cdot\lim_{h\to0}\frac{e^h-1}{h} = e^x\cdot 1
+        \]
+        </p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \boxed{\dfrac{d}{dx}[e^x] = e^x} \]
+        </p>
+
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8a6d1f; margin-bottom: 8px;">&#129513; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Notice what this proof does and does not do: it takes the limit \(\lim_{h\to0}\frac{e^h-1}{h}=1\) as the very definition of what \(e\) is, so nothing further needs proving about that limit. This is the same move Lesson 6.01 made in reverse &mdash; there, two limits were proved geometrically and then used to define a derivative; here, a limit's value is used to <em>define</em> a number. Mathematics is comfortable defining a quantity by the one property you most need from it.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; THE DERIVATIVE OF LN X, TWO WAYS</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Method 1: the Inverse Function Rule (Lesson 7.02).</strong> \(\ln x\) is the inverse of \(f(y)=e^y\), and \(f'(y)=e^y\). Apply the rule directly:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \frac{d}{dx}[\ln x] = \frac{1}{f'(\ln x)} = \frac{1}{e^{\ln x}} = \frac{1}{x}
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Method 2: implicit differentiation (Lesson 7.01).</strong> Let \(y=\ln x\), so \(e^y=x\). Differentiate both sides with respect to \(x\), using the Chain Rule on the left:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        e^y\cdot\frac{dy}{dx} = 1 \quad\Longrightarrow\quad \frac{dy}{dx} = \frac{1}{e^y} = \frac{1}{x}
+        \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Both methods, built from different lessons, land on the identical answer:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \boxed{\dfrac{d}{dx}[\ln x] = \dfrac{1}{x}} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">This agreement is not a coincidence to shrug off. It is a genuine cross-check: two lessons built from entirely different starting points, tested against each other on the single most important inverse pair in the course, and they hold together exactly.</p>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; ANY BASE: A^X AND LOG BASE A</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">For a base \(a>0\), \(a\ne1\), rewrite \(a^x\) using the identity \(a^x = e^{x\ln a}\) (valid since \(a=e^{\ln a}\)). Now it is a Chain Rule problem, with inner function \(u=x\ln a\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[
+        \frac{d}{dx}\big[a^x\big] = \frac{d}{dx}\big[e^{x\ln a}\big] = e^{x\ln a}\cdot\ln a = a^x\ln a
+        \]
+        </p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \boxed{\dfrac{d}{dx}\big[a^x\big] = a^x\ln a} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">For \(\log_a x\), use the change-of-base identity \(\log_a x = \dfrac{\ln x}{\ln a}\), where \(\ln a\) is just a constant. Differentiate with the Constant Multiple Rule:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \boxed{\dfrac{d}{dx}\big[\log_a x\big] = \dfrac{1}{x\ln a}} \]
+        </p>
+
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">\(\dfrac{d}{dx}[a^x]\) is <strong>not</strong> \(x\,a^{x-1}\). That answer applies the Power Rule, which is for a <em>variable base with a constant exponent</em> (like \(x^5\)). Here the base is constant and the exponent is the variable; that is an exponential function, and it needs the exponential rule above, carrying its own factor of \(\ln a\). Confusing these two is the single most common error at this point in the course &mdash; always check which part of the expression is changing, the base or the exponent, before choosing a rule.</div>
+        </div>
+
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">John Napier published the first logarithm tables in 1614, more than sixty years before Newton and Leibniz developed the calculus, as a way to turn slow multiplication into fast addition for astronomers and navigators doing arithmetic by hand. Leonhard Euler chose the letter \(e\) for this specific constant around 1731 (likely for "exponential," though he never said so explicitly), and proved many of its defining properties, including the one this lesson used to find its derivative.</div>
+        </div>
+
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: combining the rules</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Differentiate \(f(x) = 3e^x - 5\ln x + 2^x\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 4px 0;">
+        \[ f'(x) = 3e^x - \frac{5}{x} + 2^x\ln 2 \]
+        </p>
+
+        <!-- Single-select rows (E2) -->
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; DIFFERENTIATE</div>
+          <div class="widget-question">Find each derivative.</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. d/dx[e^x] = e^x (unchanged), and d/dx[4x] = 4." data-hint="Differentiate term by term: e^x stays e^x, and 4x differentiates to the constant 4.">
+            <div class="widget-row-prompt">1. \(f(x) = e^x + 4x\), find \(f'(x)\).</div>
+            <div class="widget-options">
+              <button data-choice="0">\(e^x + 4\)</button>
+              <button data-choice="1">\(e^x\)</button>
+              <button data-choice="2">\(xe^{x-1} + 4\)</button>
+              <button data-choice="3">4</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. d/dx[5^x] = 5^x ln 5, using the exponential rule with base a = 5." data-hint="This is a constant base (5) with a variable exponent, so use the exponential rule, not the Power Rule.">
+            <div class="widget-row-prompt">2. \(g(x) = 5^x\), find \(g'(x)\).</div>
+            <div class="widget-options">
+              <button data-choice="0">\(x\cdot5^{x-1}\)</button>
+              <button data-choice="1">\(5^x\)</button>
+              <button data-choice="2">\(5^x\ln 5\)</button>
+              <button data-choice="3">\(5^x\log 5\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Lesson 7.04</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Next you will use logarithms as a differentiation tool in their own right, for functions no rule so far can reach directly.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 14 Problem Set: Exponential, Logarithmic, and Logarithmic-Differentiation Derivatives</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Comes at the end of the week, once Lesson 7.04 is complete.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">\(e^x\) is its own derivative, \(\ln x\) differentiates to \(\dfrac{1}{x}\) by two independent methods that agree, and both generalize cleanly to any base: \(\dfrac{d}{dx}[a^x]=a^x\ln a\) and \(\dfrac{d}{dx}[\log_a x]=\dfrac{1}{x\ln a}\). The derivative toolkit for every elementary function &mdash; algebraic, trigonometric, exponential, logarithmic &mdash; is now complete. Lesson 7.04 asks what happens when a function combines several of these in a form no single rule reaches directly.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 2 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 7.03 &middot; Derivatives of Exponential and Logarithmic Functions</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>
