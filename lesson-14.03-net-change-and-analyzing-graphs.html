@@ -152,7 +152,7 @@
                 <span style="color: #C7922C;">&#9654;</span>&nbsp; Predict first: is the volume still rising at hour 8? Then check it against the integral over the first six hours.
             </summary>
             <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
-                The rate \(12-2t\) is positive for \(t<6\) and negative for \(t>6\), so the volume rises until hour 6 and falls afterward. Over \([0,6]\): \(\int_0^6(12-2t)\,dt=72-36=36\), so \(V(6)=86\). Over \([6,8]\): \(\int_6^8(12-2t)\,dt=(96-64)-(72-36)=-4\), so the volume falls back to \(V(8)=82\). Notice that the net change over \([0,8]\) is \(36+(-4)=32\): the falling part subtracts from the rising part, just as area below the axis counts as negative.
+                The rate \(12-2t\) is positive for \(t\lt 6\) and negative for \(t>6\), so the volume rises until hour 6 and falls afterward. Over \([0,6]\): \(\int_0^6(12-2t)\,dt=72-36=36\), so \(V(6)=86\). Over \([6,8]\): \(\int_6^8(12-2t)\,dt=(96-64)-(72-36)=-4\), so the volume falls back to \(V(8)=82\). Notice that the net change over \([0,8]\) is \(36+(-4)=32\): the falling part subtracts from the rising part, just as area below the axis counts as negative.
             </div>
         </details>
         <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
@@ -175,10 +175,10 @@
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In practice you do not integrate \(|v|\) in one step. You find where \(v\) changes sign, split the interval there, and integrate each piece with the right sign.</p>
         <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: a particle that turns around twice</h3>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A particle moves along a line with velocity \(v(t)=t^2-4t+3\) meters per second for \(0\le t\le 4\). Find its displacement and its total distance traveled.</p>
-        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Step 1, sign chart.</strong> Factor: \(v(t)=(t-1)(t-3)\). So \(v>0\) on \((0,1)\), \(v<0\) on \((1,3)\), and \(v>0\) on \((3,4)\). The particle turns around at \(t=1\) and \(t=3\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Step 1, sign chart.</strong> Factor: \(v(t)=(t-1)(t-3)\). So \(v>0\) on \((0,1)\), \(v\lt 0\) on \((1,3)\), and \(v>0\) on \((3,4)\). The particle turns around at \(t=1\) and \(t=3\).</p>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Step 2, one antiderivative.</strong> Let \(S(t)=\dfrac{t^3}{3}-2t^2+3t\), so \(S'=v\). The values at the key times are \(S(0)=0\), \(S(1)=\tfrac43\), \(S(3)=0\), \(S(4)=\tfrac43\).</p>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Step 3, displacement.</strong> \(\displaystyle\int_0^4 v\,dt=S(4)-S(0)=\tfrac43\) meters.</p>
-        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Step 4, total distance.</strong> Integrate each piece, flipping the sign where \(v<0\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Step 4, total distance.</strong> Integrate each piece, flipping the sign where \(v\lt 0\):</p>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
         \[ \int_0^4|v|\,dt=\underbrace{\bigl(S(1)-S(0)\bigr)}_{\frac43}-\underbrace{\bigl(S(3)-S(1)\bigr)}_{-\frac43}+\underbrace{\bigl(S(4)-S(3)\bigr)}_{\frac43}=\tfrac43+\tfrac43+\tfrac43=4. \]
         </p>
@@ -191,7 +191,7 @@
           <div class="widget-kicker">&#9889; TRY IT &middot; Displacement or distance?</div>
           <div class="widget-question">For each question about a particle with velocity \(v(t)\) on \([0,6]\), choose the integral that answers it.</div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. Position at the end minus position at the start is \(\int_0^6 v\,dt\), the displacement. (The particle's final position equals its displacement because it started at the origin.)" data-hint="Final position minus starting position is the change in position, which comes from integrating the rate of change of position.">
+          <div class="widget-row" data-correct="1" data-fb="Correct. Position at the end minus position at the start is ∫_0^6 v dt, the displacement. (The particle&#x27;s final position equals its displacement because it started at the origin.)" data-hint="Final position minus starting position is the change in position, which comes from integrating the rate of change of position.">
             <div class="widget-row-prompt">1. &ldquo;How far is the particle from its starting point at \(t=6\)?&rdquo; (it started at the origin and ends at positive position)</div>
             <div class="widget-options">
               <button data-choice="0">\(\displaystyle\int_0^6 |v(t)|\,dt\)</button>
@@ -200,7 +200,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="2" data-fb="Correct. Distance counts motion in either direction as positive, so it integrates the speed \(|v|\)." data-hint="Both of the other expressions let backward motion cancel forward motion. Distance cannot cancel.">
+          <div class="widget-row" data-correct="2" data-fb="Correct. Distance counts motion in either direction as positive, so it integrates the speed |v|." data-hint="Both of the other expressions let backward motion cancel forward motion. Distance cannot cancel.">
             <div class="widget-row-prompt">2. &ldquo;What is the total length of path the particle covered?&rdquo;</div>
             <div class="widget-options">
               <button data-choice="0">\(\displaystyle\int_0^6 v(t)\,dt\)</button>
@@ -228,7 +228,7 @@
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The same two ideas run in the opposite direction too. Lesson 14.01 showed that if you <em>accumulate</em> a function, \(g(x)=\displaystyle\int_0^x f(t)\,dt\), then \(g'(x)=f(x)\). That one fact, \(g'=f\), lets you read the shape of \(g\) straight off the graph of \(f\), without ever finding a formula for \(g\). The tools are the ones from Modules 10 and 11, with a change of names:</p>
         <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
             <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Reading \(g\) from the graph of \(f\)</strong></div>
-            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Let \(g(x)=\int_0^x f(t)\,dt\), so \(g'=f\) and \(g''=f'\). <br/>&bull; \(g\) is <strong>increasing</strong> where \(f>0\) and <strong>decreasing</strong> where \(f<0\). <br/>&bull; \(g\) has a <strong>local maximum</strong> where \(f\) crosses from positive to negative, and a <strong>local minimum</strong> where \(f\) crosses from negative to positive (the First Derivative Test, Lesson 10.02, applied to \(g\)). <br/>&bull; \(g\) is <strong>concave up</strong> where \(f\) is increasing and <strong>concave down</strong> where \(f\) is decreasing (Lesson 11.01, applied to \(g\), since \(g''=f'\)). <br/>&bull; \(g(0)=0\), and the <strong>value</strong> of \(g(x)\) is the signed area between the graph of \(f\) and the \(t\)-axis from \(0\) to \(x\).</div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Let \(g(x)=\int_0^x f(t)\,dt\), so \(g'=f\) and \(g''=f'\). <br/>&bull; \(g\) is <strong>increasing</strong> where \(f>0\) and <strong>decreasing</strong> where \(f\lt 0\). <br/>&bull; \(g\) has a <strong>local maximum</strong> where \(f\) crosses from positive to negative, and a <strong>local minimum</strong> where \(f\) crosses from negative to positive (the First Derivative Test, Lesson 10.02, applied to \(g\)). <br/>&bull; \(g\) is <strong>concave up</strong> where \(f\) is increasing and <strong>concave down</strong> where \(f\) is decreasing (Lesson 11.01, applied to \(g\), since \(g''=f'\)). <br/>&bull; \(g(0)=0\), and the <strong>value</strong> of \(g(x)\) is the signed area between the graph of \(f\) and the \(t\)-axis from \(0\) to \(x\).</div>
         </div>
         <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: from a graph of f to a picture of g</h3>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The graph below shows \(f\): a straight line from \((0,2)\) down to \((4,-2)\), flat at \(-2\) from \(t=4\) to \(t=6\), then a straight line rising to \((8,0)\). Let \(g(x)=\int_0^x f(t)\,dt\).</p>
@@ -245,7 +245,7 @@
           </g>
         </svg>
         </div>
-        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Where is \(g\) increasing?</strong> \(f>0\) on \([0,2)\) and \(f<0\) on \((2,8)\). So \(g\) rises until \(x=2\) and falls after, which makes \(x=2\) the location of the absolute maximum of \(g\) on \([0,8]\) (\(f\) crosses from positive to negative there).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Where is \(g\) increasing?</strong> \(f>0\) on \([0,2)\) and \(f\lt 0\) on \((2,8)\). So \(g\) rises until \(x=2\) and falls after, which makes \(x=2\) the location of the absolute maximum of \(g\) on \([0,8]\) (\(f\) crosses from positive to negative there).</p>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>How does \(g\) bend?</strong> \(f\) is decreasing on \((0,4)\), constant on \((4,6)\), and increasing on \((6,8)\). So \(g\) is concave down on \((0,4)\), a straight line on \((4,6)\) (slope \(-2\)), and concave up on \((6,8)\). The slope of \(g\) is as steep as it ever gets downward at \(x\) between 4 and 6, and it eases to \(0\) at \(x=8\).</p>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>What are the values?</strong> Signed areas, one piece at a time (each is a triangle, trapezoid, or rectangle, so you need no antiderivative):</p>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
@@ -268,7 +268,7 @@
           <div class="widget-kicker">&#9889; TRY IT &middot; Reading g from f</div>
           <div class="widget-question">Use the graph of \(f\) above, with \(g(x)=\int_0^x f(t)\,dt\).</div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. \(g'=f\), and \(f>0\) only on \((0,2)\)." data-hint="Increasing means \(g'=f\) is positive. Where is the graph of \(f\) above the \(t\)-axis?">
+          <div class="widget-row" data-correct="1" data-fb="Correct. g&#x27;=f, and f&gt;0 only on (0,2)." data-hint="Increasing means g&#x27;=f is positive. Where is the graph of f above the t-axis?">
             <div class="widget-row-prompt">1. On which interval is \(g\) <em>increasing</em>?</div>
             <div class="widget-options">
               <button data-choice="0">\((2,8)\)</button>
@@ -277,7 +277,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="2" data-fb="Correct. \(f\) changes from positive to negative at \(t=2\), so \(g\) stops rising and starts falling there." data-hint="A maximum of \(g\) is where \(g'=f\) changes from positive to negative.">
+          <div class="widget-row" data-correct="2" data-fb="Correct. f changes from positive to negative at t=2, so g stops rising and starts falling there." data-hint="A maximum of g is where g&#x27;=f changes from positive to negative.">
             <div class="widget-row-prompt">2. At which \(x\) does \(g\) have its absolute maximum on \([0,8]\)?</div>
             <div class="widget-options">
               <button data-choice="0">\(x=4\)</button>
@@ -286,7 +286,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. \(g''=f'\), and \(f\) is increasing (so \(f'>0\)) only on \((6,8)\)." data-hint="Concave up means \(g''=f'\) is positive, so ask where the graph of \(f\) is <em>rising</em>, not where it is positive.">
+          <div class="widget-row" data-correct="0" data-fb="Correct. g&#x27;&#x27;=f&#x27;, and f is increasing (so f&#x27;&gt;0) only on (6,8)." data-hint="Concave up means g&#x27;&#x27;=f&#x27; is positive, so ask where the graph of f is rising, not where it is positive.">
             <div class="widget-row-prompt">3. Where is \(g\) concave <em>up</em>?</div>
             <div class="widget-options">
               <button data-choice="0">\((6,8)\)</button>
@@ -295,7 +295,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. The triangle above the axis from 0 to 2 has area 2, and the triangle below the axis from 2 to 4 has area 2, so they cancel." data-hint="\(g(4)\) is signed area. Add the area above the axis from 0 to 2 and subtract the area below it from 2 to 4.">
+          <div class="widget-row" data-correct="1" data-fb="Correct. The triangle above the axis from 0 to 2 has area 2, and the triangle below the axis from 2 to 4 has area 2, so they cancel." data-hint="g(4) is signed area. Add the area above the axis from 0 to 2 and subtract the area below it from 2 to 4.">
             <div class="widget-row-prompt">4. What is the value of \(g(4)\)?</div>
             <div class="widget-options">
               <button data-choice="0">\(2\)</button>

@@ -122,8 +122,8 @@
           <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
           <div class="widget-question">A particle's position at time \(t\) is \(s(t)\). Velocity is how fast the position changes. What do you think acceleration is, in terms of the derivative?</div>
           <div class="widget-options">
-            <button data-response="Exactly. Position \(s\), velocity \(v=s'\), acceleration \(a=v'=s''\). Each is the derivative of the one before. Watch the three work together below.">The rate of change of velocity, so the derivative of velocity, which is the second derivative of position.</button>
-            <button data-response="Not quite. The rate of change of position <em>is</em> velocity. Acceleration is one derivative further: it measures how fast the velocity itself is changing, which makes it the second derivative of position.">The rate of change of position, the same quantity as velocity under another name.</button>
+            <button data-response="Exactly. Position s, velocity v=s&#x27;, acceleration a=v&#x27;=s&#x27;&#x27;. Each is the derivative of the one before. Watch the three work together below.">The rate of change of velocity, so the derivative of velocity, which is the second derivative of position.</button>
+            <button data-response="Not quite. The rate of change of position is velocity. Acceleration is one derivative further: it measures how fast the velocity itself is changing, which makes it the second derivative of position.">The rate of change of position, the same quantity as velocity under another name.</button>
           </div>
           <div class="widget-feedback"></div>
           <button class="widget-reset">Reset</button>
@@ -171,7 +171,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. Zero velocity is a single instant, the top of the flight. The acceleration is still \(-32\), which is why the velocity is about to become negative." data-hint="Zero velocity does not mean zero acceleration. What is a(2)?">
+          <div class="widget-row" data-correct="0" data-fb="Correct. Zero velocity is a single instant, the top of the flight. The acceleration is still -32, which is why the velocity is about to become negative." data-hint="Zero velocity does not mean zero acceleration. What is a(2)?">
             <div class="widget-row-prompt">3. At \(t=2\): \(v(2)=0\) and \(a(2)=-32\) ft/s&sup2;. The ball is&hellip;</div>
             <div class="widget-options">
               <button data-choice="0">momentarily at rest, with gravity still pulling</button>
@@ -190,7 +190,7 @@
         <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #55C8E8; border-radius: 6px; padding: 12px 18px; margin: 10px 0 14px 0;">
             <div style="font-size: 17px; color: #0e1c42; line-height: 1.8;"><strong>\(v\) and \(a\) have the <em>same</em> sign:</strong> the object is <strong>speeding up</strong>.<br/><strong>\(v\) and \(a\) have <em>opposite</em> signs:</strong> the object is <strong>slowing down</strong>.<br/><strong>\(v=0\):</strong> the object is momentarily at rest; if \(v\) changes sign there, it has turned around.</div>
         </div>
-<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The reason is that speed is \(|v|\). If \(v>0\) and \(a>0\), the velocity is positive and getting larger, so \(|v|\) grows. If \(v<0\) and \(a<0\), the velocity is negative and getting more negative, so \(|v|\) grows again. If the signs differ, the acceleration is pulling the velocity toward zero, so \(|v|\) shrinks.</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The reason is that speed is \(|v|\). If \(v>0\) and \(a>0\), the velocity is positive and getting larger, so \(|v|\) grows. If \(v\lt 0\) and \(a\lt 0\), the velocity is negative and getting more negative, so \(|v|\) grows again. If the signs differ, the acceleration is pulling the velocity toward zero, so \(|v|\) shrinks.</p>
 <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: a particle that turns around</h3>
 <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A particle moves along a line with position \(s(t)=t^3-6t^2+9t\) meters for \(t\ge 0\) seconds. Differentiate and factor:</p>
 <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
@@ -200,9 +200,9 @@
         <div style="overflow-x:auto; margin: 10px 0 14px 0;">
         <table style="border-collapse: collapse; width: 100%; font-size: 16px; color: #1a2340; text-align: center;">
           <tr style="background: #0E1C42; color: #ffffff;"><th style="padding: 8px; border: 1px solid #D0D9E8;">Interval</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Sign of \(v\)</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Sign of \(a\)</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Direction</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Speed</th></tr>
-          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\(0<t<1\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(+\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">positive direction</td><td style="padding: 8px; border: 1px solid #D0D9E8;">slowing down</td></tr>
-          <tr style="background: #F4F6FA;"><td style="padding: 8px; border: 1px solid #D0D9E8;">\(1<t<2\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">negative direction</td><td style="padding: 8px; border: 1px solid #D0D9E8;">speeding up</td></tr>
-          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\(2<t<3\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(+\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">negative direction</td><td style="padding: 8px; border: 1px solid #D0D9E8;">slowing down</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\(0\lt t\lt 1\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(+\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">positive direction</td><td style="padding: 8px; border: 1px solid #D0D9E8;">slowing down</td></tr>
+          <tr style="background: #F4F6FA;"><td style="padding: 8px; border: 1px solid #D0D9E8;">\(1\lt t\lt 2\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">negative direction</td><td style="padding: 8px; border: 1px solid #D0D9E8;">speeding up</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\(2\lt t\lt 3\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(+\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">negative direction</td><td style="padding: 8px; border: 1px solid #D0D9E8;">slowing down</td></tr>
           <tr style="background: #F4F6FA;"><td style="padding: 8px; border: 1px solid #D0D9E8;">\(t>3\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(+\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(+\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">positive direction</td><td style="padding: 8px; border: 1px solid #D0D9E8;">speeding up</td></tr>
         </table>
         </div>
@@ -217,7 +217,7 @@
           <div class="widget-kicker">&#9889; TRY IT &middot; SPEEDING UP OR SLOWING DOWN?</div>
           <div class="widget-question">For \(s(t)=t^3-6t^2+9t\), use \(v(t)=3(t-1)(t-3)\) and \(a(t)=6(t-2)\) to decide what the particle is doing.</div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. \(v>0\) and \(a<0\) have opposite signs, so the particle is slowing down as it approaches its first turnaround at \(t=1\)." data-hint="Compare the signs of v and a. Same sign means speeding up; opposite signs means slowing down.">
+          <div class="widget-row" data-correct="1" data-fb="Correct. v&gt;0 and a&lt;0 have opposite signs, so the particle is slowing down as it approaches its first turnaround at t=1." data-hint="Compare the signs of v and a. Same sign means speeding up; opposite signs means slowing down.">
             <div class="widget-row-prompt">1. At \(t=0.5\) (\(v=3.75\), \(a=-9\)), the particle is&hellip;</div>
             <div class="widget-options">
               <button data-choice="0">speeding up</button>
@@ -235,7 +235,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. \(v<0\) and \(a>0\) have opposite signs: the particle is still moving left, but the acceleration is pulling its velocity back toward zero, which it reaches at \(t=3\)." data-hint="v is negative and a is positive. What do opposite signs mean for speed?">
+          <div class="widget-row" data-correct="0" data-fb="Correct. v&lt;0 and a&gt;0 have opposite signs: the particle is still moving left, but the acceleration is pulling its velocity back toward zero, which it reaches at t=3." data-hint="v is negative and a is positive. What do opposite signs mean for speed?">
             <div class="widget-row-prompt">3. At \(t=2.5\) (\(v=-2.25\), \(a=3\)), the particle is&hellip;</div>
             <div class="widget-options">
               <button data-choice="0">slowing down</button>
@@ -251,7 +251,7 @@
                 <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: a particle has position \(s(t)=t^3-9t^2+24t\) for \(t\ge0\). Find when it is momentarily at rest, its position at those times, and its acceleration at those times. Then reveal the check.
             </summary>
             <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
-                \(v(t)=3t^2-18t+24=3(t-2)(t-4)\), so the particle is at rest at \(t=2\) and \(t=4\). Positions: \(s(2)=8-36+48=20\) and \(s(4)=64-144+96=16\). Acceleration: \(a(t)=6t-18\), so \(a(2)=-6\) and \(a(4)=6\). Reading the story: \(v>0\) before \(t=2\) (testing \(t=1\) gives \(v=9\)), \(v<0\) between 2 and 4 (testing \(t=3\) gives \(v=-3\)), and \(v>0\) after 4. So the particle moves right, turns around at position 20 (where \(a<0\) pulls it back), moves left, turns around again at position 16 (where \(a>0\) pushes it forward), and moves right from then on.
+                \(v(t)=3t^2-18t+24=3(t-2)(t-4)\), so the particle is at rest at \(t=2\) and \(t=4\). Positions: \(s(2)=8-36+48=20\) and \(s(4)=64-144+96=16\). Acceleration: \(a(t)=6t-18\), so \(a(2)=-6\) and \(a(4)=6\). Reading the story: \(v>0\) before \(t=2\) (testing \(t=1\) gives \(v=9\)), \(v\lt 0\) between 2 and 4 (testing \(t=3\) gives \(v=-3\)), and \(v>0\) after 4. So the particle moves right, turns around at position 20 (where \(a\lt 0\) pulls it back), moves left, turns around again at position 16 (where \(a>0\) pushes it forward), and moves right from then on.
             </div>
         </details>
     </div>

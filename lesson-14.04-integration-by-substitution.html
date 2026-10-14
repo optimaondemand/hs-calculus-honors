@@ -128,7 +128,7 @@
           <div class="widget-question">You want an antiderivative of \(2x(x^2+1)^5\). Expanding \((x^2+1)^5\) and multiplying out by \(2x\) is possible but long. Is there something about this expression that might make the job shorter?</div>
           <div class="widget-options">
             <button data-response="That is the observation the whole lesson is built on. The Chain Rule produces an inside derivative as a factor; when you see one, you can run the Chain Rule backward. Today you turn that glance into a method.">Yes. The \(2x\) looks like the derivative of the inside, \(x^2+1\).</button>
-            <button data-response="Expanding does work, and you can always fall back on it. But look again: \(2x\) is exactly the derivative of the inside function \(x^2+1\). That is no accident of this example. It is the signature of a function the Chain Rule built, and recognizing it lets you undo the Chain Rule in one move.">No. I would have to expand it or guess an antiderivative.</button>
+            <button data-response="Expanding does work, and you can always fall back on it. But look again: 2x is exactly the derivative of the inside function x^2+1. That is no accident of this example. It is the signature of a function the Chain Rule built, and recognizing it lets you undo the Chain Rule in one move.">No. I would have to expand it or guess an antiderivative.</button>
           </div>
           <div class="widget-feedback"></div>
           <button class="widget-reset">Reset</button>
@@ -176,7 +176,7 @@
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Option 1: find the antiderivative first.</strong> Work the indefinite integral in \(x\), return to \(x\), then plug in the original limits. <strong>Option 2: change the limits.</strong> When you switch to \(u\), also switch the limits to \(u\)-values, using \(u=g(x)\) at each end, and never go back to \(x\).</p>
         <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
             <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Substitution for definite integrals</strong></div>
-            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">\[ \int_a^b f(g(x))\,g'(x)\,dx \;=\; \int_{g(a)}^{g(b)} f(u)\,du. \] The new limits are \(u=g(a)\) at the bottom and \(u=g(b)\) at the top, even when \(g(b)<g(a)\).</div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">\[ \int_a^b f(g(x))\,g'(x)\,dx \;=\; \int_{g(a)}^{g(b)} f(u)\,du. \] The new limits are \(u=g(a)\) at the bottom and \(u=g(b)\) at the top, even when \(g(b)\lt g(a)\).</div>
         </div>
         <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 3: change the limits</h3>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Find \(\displaystyle\int_0^1 2x\,(x^2+1)^3\,dx\). Let \(u=x^2+1\), so \(du=2x\,dx\). When \(x=0\), \(u=1\); when \(x=1\), \(u=2\). Then</p>
@@ -203,7 +203,7 @@
           <div class="widget-kicker">&#9889; TRY IT &middot; Set up the substitution</div>
           <div class="widget-question">For each integral, choose the substitution that works (or the correct new limits).</div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. \(u=x^2\) gives \(\tfrac12\int e^u\,du=\tfrac12e^{x^2}+C\)." data-hint="Look for an inside function whose derivative (up to a constant) is also in the integrand.">
+          <div class="widget-row" data-correct="1" data-fb="Correct. u=x^2 gives 1/2∫ e^u du=1/2e^(x^2)+C." data-hint="Look for an inside function whose derivative (up to a constant) is also in the integrand.">
             <div class="widget-row-prompt">1. \(\displaystyle\int x\,e^{x^2}\,dx\)</div>
             <div class="widget-options">
               <button data-choice="0">\(u=e^{x}\)</button>
@@ -212,7 +212,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. \(x=0\) gives \(u=1\), and \(x=2\) gives \(u=5\). The integral is \(\tfrac12\int_1^5 \dfrac{du}{u}=\tfrac12\ln5\)." data-hint="Plug each original limit into \(u=x^2+1\).">
+          <div class="widget-row" data-correct="1" data-fb="Correct. x=0 gives u=1, and x=2 gives u=5. The integral is 1/2∫_1^5 du/u=1/2ln5." data-hint="Plug each original limit into u=x^2+1.">
             <div class="widget-row-prompt">2. \(\displaystyle\int_0^2\dfrac{x}{x^2+1}\,dx\): what are the new limits after \(u=x^2+1\)?</div>
             <div class="widget-options">
               <button data-choice="0">\(u=0\) to \(u=2\)</button>
@@ -221,7 +221,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. With \(u=x^3\), \(du=3x^2\,dx\) the factor \(3x^2\) matches exactly, so \(\int\cos u\,du=\sin u+C\)." data-hint="Here \(du=3x^2\,dx\) is already in the integrand with its 3. Do you need to divide by anything?">
+          <div class="widget-row" data-correct="0" data-fb="Correct. With u=x^3, du=3x^2 dx the factor 3x^2 matches exactly, so ∫cos u du=sin u+C." data-hint="Here du=3x^2 dx is already in the integrand with its 3. Do you need to divide by anything?">
             <div class="widget-row-prompt">3. \(\displaystyle\int 3x^2\cos(x^3)\,dx\)</div>
             <div class="widget-options">
               <button data-choice="0">\(\sin(x^3)+C\)</button>
@@ -245,7 +245,7 @@
           <div class="widget-kicker">&#9889; TRY IT &middot; Does substitution apply?</div>
           <div class="widget-question">Decide whether a substitution works for each integral, and why.</div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. The factor \(x\) is the derivative of the inside \(x^2+4\) up to the constant 2, and a constant is repairable. The result is \(\tfrac13(x^2+4)^{3/2}+C\)." data-hint="The inside is \(x^2+4\). Its derivative is \(2x\). Is \(x\) a constant multiple of that?">
+          <div class="widget-row" data-correct="0" data-fb="Correct. The factor x is the derivative of the inside x^2+4 up to the constant 2, and a constant is repairable. The result is 1/3(x^2+4)^(3/2)+C." data-hint="The inside is x^2+4. Its derivative is 2x. Is x a constant multiple of that?">
             <div class="widget-row-prompt">1. \(\displaystyle\int x\sqrt{x^2+4}\,dx\)</div>
             <div class="widget-options">
               <button data-choice="0">Yes: \(u=x^2+4\), and \(x\,dx=\tfrac12\,du\)</button>
@@ -254,7 +254,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. With \(u=x^2+4\) you would need an \(x\,dx\) to pair with \(du\). A missing variable factor cannot be fixed, so this integral needs a different method, which is beyond what this course covers." data-hint="What would \(du\) be, and is that factor in the integrand?">
+          <div class="widget-row" data-correct="1" data-fb="Correct. With u=x^2+4 you would need an x dx to pair with du. A missing variable factor cannot be fixed, so this integral needs a different method, which is beyond what this course covers." data-hint="What would du be, and is that factor in the integrand?">
             <div class="widget-row-prompt">2. \(\displaystyle\int \sqrt{x^2+4}\,dx\)</div>
             <div class="widget-options">
               <button data-choice="0">Yes: \(u=x^2+4\)</button>
@@ -263,7 +263,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="2" data-fb="Correct. \(\dfrac{1}{x}\,dx\) is exactly \(du\) when \(u=\ln x\), so the integral is \(\tfrac12(\ln x)^2+C\)." data-hint="Remember \(\dfrac{d}{dx}\ln x=\dfrac1x\) (Lesson 7.03). Which piece is the inside, and is its derivative present?">
+          <div class="widget-row" data-correct="2" data-fb="Correct. 1/x dx is exactly du when u=ln x, so the integral is 1/2(ln x)^2+C." data-hint="Remember d/dxln x=1/x (Lesson 7.03). Which piece is the inside, and is its derivative present?">
             <div class="widget-row-prompt">3. \(\displaystyle\int \dfrac{\ln x}{x}\,dx\)</div>
             <div class="widget-options">
               <button data-choice="0">No: logarithms are not allowed</button>

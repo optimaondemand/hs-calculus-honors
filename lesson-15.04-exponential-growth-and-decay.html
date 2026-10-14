@@ -128,7 +128,7 @@
           <div class="widget-question">A town has 1000 residents and its population grows at a rate proportional to its current size, so a larger town grows faster in absolute terms. Which graph shape do you expect?</div>
           <div class="widget-options">
             <button data-response="Yes. If the rate of growth is proportional to the size, then as the population grows its growth rate grows too, so the curve steepens. That upward bend is exponential growth, and today you will derive its formula from the proportionality statement alone.">A curve that bends upward, getting steeper and steeper.</button>
-            <button data-response="A fixed <em>percentage</em> of a growing quantity is a growing <em>amount</em>, so the slope is not constant. A straight line would be growth by a fixed amount per year. Percentage growth makes the curve bend upward, and you will see why in the derivation.">A straight line, because the rate is a fixed percentage.</button>
+            <button data-response="A fixed percentage of a growing quantity is a growing amount, so the slope is not constant. A straight line would be growth by a fixed amount per year. Percentage growth makes the curve bend upward, and you will see why in the derivation.">A straight line, because the rate is a fixed percentage.</button>
           </div>
           <div class="widget-feedback"></div>
           <button class="widget-reset">Reset</button>
@@ -141,7 +141,7 @@
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">This is separable, with \(g(t)=k\) and \(h(y)=y\). Separate: \(\dfrac{dy}{y}=k\,dt\). Integrate: \(\ln|y|=kt+C\). Exponentiate: \(|y|=e^{C}e^{kt}\), so \(y=Ae^{kt}\) for a constant \(A\). At \(t=0\), \(y(0)=A\), so \(A\) is the starting amount \(y_0\).</p>
         <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
             <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Exponential growth and decay</strong></div>
-            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(\dfrac{dy}{dt}=ky\) and \(y(0)=y_0\), then \(y=y_0e^{kt}\). If \(k>0\) the quantity grows exponentially; if \(k<0\) it decays exponentially. The constant solution \(y=0\) is the case \(y_0=0\).</div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(\dfrac{dy}{dt}=ky\) and \(y(0)=y_0\), then \(y=y_0e^{kt}\). If \(k>0\) the quantity grows exponentially; if \(k\lt 0\) it decays exponentially. The constant solution \(y=0\) is the case \(y_0=0\).</div>
         </div>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Check it: \(\dfrac{d}{dt}\bigl[y_0e^{kt}\bigr]=y_0\,k\,e^{kt}=k\,y\) &#10003;. This is Lesson 7.03's result, \(\dfrac{d}{dx}e^{x}=e^{x}\), with the Chain Rule bringing down the factor \(k\). Notice the logic runs in both directions now: Lesson 7.03 showed that \(e^{kt}\) satisfies the equation, and today's derivation shows that nothing else does.</p>
         <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
@@ -174,7 +174,7 @@
         </svg>
         <div style="font-size: 14px; color: #666; margin-top: 4px;">A population that doubles every 3 hours: 1000, 2000, 4000, 8000, 16000. Equal time steps multiply the quantity by equal factors.</div>
         </div>
-        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In general, the <strong>doubling time</strong> of \(y=y_0e^{kt}\) with \(k>0\) is found from \(e^{kT}=2\), so \(T=\dfrac{\ln2}{k}\). It does not depend on \(y_0\): a culture of 1000 and a culture of one million double in the same time. For decay (\(k<0\)), the <strong>half-life</strong> is found from \(e^{kT}=\tfrac12\), so \(T=\dfrac{\ln2}{|k|}\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In general, the <strong>doubling time</strong> of \(y=y_0e^{kt}\) with \(k>0\) is found from \(e^{kT}=2\), so \(T=\dfrac{\ln2}{k}\). It does not depend on \(y_0\): a culture of 1000 and a culture of one million double in the same time. For decay (\(k\lt 0\)), the <strong>half-life</strong> is found from \(e^{kT}=\tfrac12\), so \(T=\dfrac{\ln2}{|k|}\).</p>
         <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
             <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
                 <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: a quantity grows according to \(\dfrac{dy}{dt}=0.04\,y\). Find its doubling time. Then reveal the check.
@@ -203,7 +203,7 @@
             <div class="widget-row-prompt">1. A drug leaves the bloodstream so that its amount is 80 mg at \(t=0\) and 40 mg at \(t=6\) hours.</div>
             <div class="widget-options">
               <button data-choice="0">\(k>0\), doubling every 6 hours</button>
-              <button data-choice="1">\(k<0\), with half-life 6 hours</button>
+              <button data-choice="1">\(k\lt 0\), with half-life 6 hours</button>
               <button data-choice="2">\(k=0\), the amount is constant</button>
             </div>
           </div>

@@ -127,7 +127,7 @@
           <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
           <div class="widget-question">Two functions \(f\) and \(g\) have exactly the same derivative, \(f'(x)=g'(x)\), at every point of an interval. What do you expect the graphs of \(f\) and \(g\) to look like?</div>
           <div class="widget-options">
-            <button data-response="That is exactly what the Mean Value Theorem proves, and you will prove it below. The functions \(x^2\) and \(x^2+5\) both have derivative \(2x\), and they differ by the constant 5. The surprise is that nothing else is possible.">They are the same curve shifted up or down, so \(f(x)-g(x)\) is a constant.</button>
+            <button data-response="That is exactly what the Mean Value Theorem proves, and you will prove it below. The functions x^2 and x^2+5 both have derivative 2x, and they differ by the constant 5. The surprise is that nothing else is possible.">They are the same curve shifted up or down, so \(f(x)-g(x)\) is a constant.</button>
             <button data-response="It feels possible, but it is not. If two curves have the same slope at every point, the vertical gap between them never changes, so it is constant. Seeing why that is airtight, and not just plausible, is today's first proof.">They could be completely different curves that happen to have the same slope everywhere.</button>
           </div>
           <div class="widget-feedback"></div>
@@ -139,7 +139,7 @@
             <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Theorem A: zero derivative means constant</strong></div>
             <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(f'(x)=0\) for every \(x\) in an interval \(I\), then \(f\) is constant on \(I\).</div>
         </div>
-        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Proof.</strong> Choose any two points \(a<b\) in \(I\). Then \(f\) is differentiable, hence continuous, on \([a,b]\), so the Mean Value Theorem gives a \(c\) in \((a,b)\) with</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Proof.</strong> Choose any two points \(a\lt b\) in \(I\). Then \(f\) is differentiable, hence continuous, on \([a,b]\), so the Mean Value Theorem gives a \(c\) in \((a,b)\) with</p>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
         \[ f(b)-f(a)=f'(c)\,(b-a)=0\cdot(b-a)=0. \]
         </p>
@@ -152,7 +152,7 @@
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example.</strong> Suppose \(f'(x)=2x\) for all \(x\), and \(f(1)=4\). The function \(g(x)=x^2\) also has \(g'(x)=2x\), so by Theorem B, \(f(x)=x^2+C\) for some \(C\). Use the given point: \(4=1^2+C\), so \(C=3\), and \(f(x)=x^2+3\). One extra piece of information pins the function down completely. This is the seed of antiderivatives, which Module 15 develops fully: a derivative determines a function only up to a constant.</p>
         <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
             <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
-            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The word <em>interval</em> in both theorems is not decoration. \(f(x)=\dfrac{x}{|x|}\) equals \(1\) for \(x>0\) and \(-1\) for \(x<0\), so \(f'(x)=0\) at every point where it is defined, yet \(f\) is not constant. Its domain \((-\infty,0)\cup(0,\infty)\) is two pieces, not one interval. The theorem applies on each piece separately, and says nothing across the gap. The guarantee holds only where its hypotheses hold.</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The word <em>interval</em> in both theorems is not decoration. \(f(x)=\dfrac{x}{|x|}\) equals \(1\) for \(x>0\) and \(-1\) for \(x\lt 0\), so \(f'(x)=0\) at every point where it is defined, yet \(f\) is not constant. Its domain \((-\infty,0)\cup(0,\infty)\) is two pieces, not one interval. The theorem applies on each piece separately, and says nothing across the gap. The guarantee holds only where its hypotheses hold.</div>
         </div>
         <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
             <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
@@ -170,11 +170,11 @@
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The Mean Value Theorem also converts the <em>sign</em> of the derivative into the <em>direction</em> of the function. This is the first time calculus tells you something about the shape of a graph without plotting a single point, and it is the engine behind most of Quarter 3.</p>
         <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
             <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Theorem C: the sign of \(f'\) controls the direction of \(f\)</strong></div>
-            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Let \(f\) be differentiable on an interval \(I\). If \(f'(x)>0\) for all \(x\) in \(I\), then \(f\) is <strong>increasing</strong> on \(I\): \(a<b\) implies \(f(a)<f(b)\). If \(f'(x)<0\) for all \(x\) in \(I\), then \(f\) is <strong>decreasing</strong> on \(I\): \(a<b\) implies \(f(a)>f(b)\).</div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Let \(f\) be differentiable on an interval \(I\). If \(f'(x)>0\) for all \(x\) in \(I\), then \(f\) is <strong>increasing</strong> on \(I\): \(a\lt b\) implies \(f(a)\lt f(b)\). If \(f'(x)\lt 0\) for all \(x\) in \(I\), then \(f\) is <strong>decreasing</strong> on \(I\): \(a\lt b\) implies \(f(a)>f(b)\).</div>
         </div>
-        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Proof</strong> (for \(f'>0\)). Take \(a<b\) in \(I\). The Mean Value Theorem gives a \(c\) in \((a,b)\) with \(f(b)-f(a)=f'(c)(b-a)\). Here \(f'(c)>0\) and \(b-a>0\), so the product is positive, and \(f(b)>f(a)\). The decreasing case is identical with the sign reversed. \(\blacksquare\)</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Proof</strong> (for \(f'>0\)). Take \(a\lt b\) in \(I\). The Mean Value Theorem gives a \(c\) in \((a,b)\) with \(f(b)-f(a)=f'(c)(b-a)\). Here \(f'(c)>0\) and \(b-a>0\), so the product is positive, and \(f(b)>f(a)\). The decreasing case is identical with the sign reversed. \(\blacksquare\)</p>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1.</strong> \(f(x)=x^3+x\) has \(f'(x)=3x^2+1\). Since \(3x^2\ge0\), we have \(f'(x)\ge1>0\) for every \(x\), so \(f\) is increasing on all of \((-\infty,\infty)\). You did not need a graph, a table of values, or a calculator.</p>
-        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2 (a warning).</strong> \(f(x)=\dfrac1x\) has \(f'(x)=-\dfrac{1}{x^2}\), which is negative at every \(x\ne0\). So \(f\) is decreasing on \((-\infty,0)\) and decreasing on \((0,\infty)\), separately. It is <em>not</em> decreasing on the whole domain: \(f(-1)=-1<1=f(1)\), even though \(-1<1\). The domain is two intervals, and Theorem C is about one interval at a time, the same fine print as Part 1.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2 (a warning).</strong> \(f(x)=\dfrac1x\) has \(f'(x)=-\dfrac{1}{x^2}\), which is negative at every \(x\ne0\). So \(f\) is decreasing on \((-\infty,0)\) and decreasing on \((0,\infty)\), separately. It is <em>not</em> decreasing on the whole domain: \(f(-1)=-1\lt 1=f(1)\), even though \(-1\lt 1\). The domain is two intervals, and Theorem C is about one interval at a time, the same fine print as Part 1.</p>
         <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3 (a one-way street).</strong> Theorem C says positive derivative implies increasing; it does not say the reverse. \(f(x)=x^3\) is increasing on \((-\infty,\infty)\), yet \(f'(0)=0\). The derivative is allowed to touch zero at isolated points while the function keeps climbing.</p>
         <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
             <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
@@ -203,7 +203,7 @@
           </div>
 
           <div class="widget-row" data-correct="1" data-fb="Correct. The domain is two intervals, and Theorem C applies to one interval at a time. Across the gap the claim fails: h(-1) = -1 is less than h(1) = 1." data-hint="Is the domain of 1/x a single interval? Test the claim with x = -1 and x = 1.">
-            <div class="widget-row-prompt">3. \(h(x)=\dfrac{1}{x}\) has \(h'(x)=-\dfrac{1}{x^2}<0\) wherever it is defined.</div>
+            <div class="widget-row-prompt">3. \(h(x)=\dfrac{1}{x}\) has \(h'(x)=-\dfrac{1}{x^2}\lt 0\) wherever it is defined.</div>
             <div class="widget-options">
               <button data-choice="0">\(h\) is decreasing on its whole domain, so \(h(-1)>h(1)\)</button>
               <button data-choice="1">\(h\) is decreasing on \((-\infty,0)\) and on \((0,\infty)\), separately</button>

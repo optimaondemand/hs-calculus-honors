@@ -122,8 +122,8 @@
           <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
           <div class="widget-question">The derivative of some unknown function \(F\) is \(F'(x)=2x\). What do you think is the most you can say about \(F\)?</div>
           <div class="widget-options">
-            <button data-response="Right. Adding a constant to \(F\) never changes its derivative, so one derivative can come from a whole family of functions. Today's work is to describe that family exactly.">It could be \(x^2\), or \(x^2+5\), or \(x^2-100\): infinitely many functions fit.</button>
-            <button data-response="Close, and \(x^2\) certainly works. But so does \(x^2+5\): its derivative is also \(2x\), since the derivative of a constant is zero. Going backward from a derivative leaves a constant undetermined.">It has to be exactly \(x^2\); there is only one answer.</button>
+            <button data-response="Right. Adding a constant to F never changes its derivative, so one derivative can come from a whole family of functions. Today&#x27;s work is to describe that family exactly.">It could be \(x^2\), or \(x^2+5\), or \(x^2-100\): infinitely many functions fit.</button>
+            <button data-response="Close, and x^2 certainly works. But so does x^2+5: its derivative is also 2x, since the derivative of a constant is zero. Going backward from a derivative leaves a constant undetermined.">It has to be exactly \(x^2\); there is only one answer.</button>
           </div>
           <div class="widget-feedback"></div>
           <button class="widget-reset">Reset</button>
@@ -212,13 +212,13 @@
         </div>
         <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
             <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
-            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Do not use the power rule on \(\int \dfrac1x\,dx\): the formula would divide by \(n+1=0\). The answer is \(\ln|x|+C\), and the absolute value matters, since \(\ln x\) is not defined for \(x<0\) while \(\dfrac1x\) is. Also, there is no product rule for antiderivatives: \(\int x\cdot x^2\,dx\) is <em>not</em> \(\int x\,dx\cdot\int x^2\,dx\). Multiply out first (\(\int x^3\,dx=\tfrac{x^4}{4}+C\)), or wait for substitution in Lesson 14.04 (Integration by Substitution).</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Do not use the power rule on \(\int \dfrac1x\,dx\): the formula would divide by \(n+1=0\). The answer is \(\ln|x|+C\), and the absolute value matters, since \(\ln x\) is not defined for \(x\lt 0\) while \(\dfrac1x\) is. Also, there is no product rule for antiderivatives: \(\int x\cdot x^2\,dx\) is <em>not</em> \(\int x\,dx\cdot\int x^2\,dx\). Multiply out first (\(\int x^3\,dx=\tfrac{x^4}{4}+C\)), or wait for substitution in Lesson 14.04 (Integration by Substitution).</div>
         </div>
         <div class="optima-widget ow-select">
           <div class="widget-kicker">&#9889; TRY IT &middot; FIND AND CHECK</div>
           <div class="widget-question">For each row, choose the correct antiderivative family. Differentiate the answer in your head to check it.</div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. \(\int 3x^2\,dx=x^3\) and \(\int\cos x\,dx=\sin x\). The derivative of \(x^3+\sin x\) is \(3x^2+\cos x\)." data-hint="Antiderivative of cosine is sine, with no minus sign. And the power rule raises the exponent; it does not differentiate.">
+          <div class="widget-row" data-correct="1" data-fb="Correct. ∫ 3x^2 dx=x^3 and ∫cos x dx=sin x. The derivative of x^3+sin x is 3x^2+cos x." data-hint="Antiderivative of cosine is sine, with no minus sign. And the power rule raises the exponent; it does not differentiate.">
             <div class="widget-row-prompt">1. \(\displaystyle\int (3x^2+\cos x)\,dx=\)</div>
             <div class="widget-options">
               <button data-choice="0">\(x^3-\sin x+C\)</button>
@@ -227,7 +227,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. The power rule does not apply to \(1/x\); the antiderivative is \(\ln|x|\). And \(e^x\) is its own antiderivative." data-hint="The power rule breaks for 1/x. Which function has derivative 1/x?">
+          <div class="widget-row" data-correct="0" data-fb="Correct. The power rule does not apply to 1/x; the antiderivative is ln|x|. And e^x is its own antiderivative." data-hint="The power rule breaks for 1/x. Which function has derivative 1/x?">
             <div class="widget-row-prompt">2. \(\displaystyle\int \left(\dfrac{1}{x}+e^x\right)dx=\)</div>
             <div class="widget-options">
               <button data-choice="0">\(\ln|x|+e^x+C\)</button>
@@ -236,7 +236,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. Write \(\sqrt{x}=x^{1/2}\); add 1 to the exponent to get \(3/2\), then divide by \(3/2\), which is the same as multiplying by \(2/3\)." data-hint="Rewrite as x^(1/2). New exponent is 3/2, and you divide by 3/2.">
+          <div class="widget-row" data-correct="1" data-fb="Correct. Write √x=x^(1/2); add 1 to the exponent to get 3/2, then divide by 3/2, which is the same as multiplying by 2/3." data-hint="Rewrite as x^(1/2). New exponent is 3/2, and you divide by 3/2.">
             <div class="widget-row-prompt">3. \(\displaystyle\int \sqrt{x}\,dx=\)</div>
             <div class="widget-options">
               <button data-choice="0">\(\dfrac{1}{2\sqrt{x}}+C\)</button>
@@ -271,7 +271,7 @@
           <div class="widget-kicker">&#9889; TRY IT &middot; INITIAL VALUE PROBLEMS</div>
           <div class="widget-question">Choose the particular solution that satisfies both the derivative equation and the condition.</div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. The family is \(\sin x+e^x+C\). At \(x=0\) this is \(0+1+C=4\), so \(C=3\)." data-hint="Find the family, then put x = 0 in and remember sin 0 = 0 and e^0 = 1.">
+          <div class="widget-row" data-correct="0" data-fb="Correct. The family is sin x+e^x+C. At x=0 this is 0+1+C=4, so C=3." data-hint="Find the family, then put x = 0 in and remember sin 0 = 0 and e^0 = 1.">
             <div class="widget-row-prompt">1. \(f'(x)=\cos x+e^x\) with \(f(0)=4\)</div>
             <div class="widget-options">
               <button data-choice="0">\(f(x)=\sin x+e^x+3\)</button>
@@ -280,7 +280,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. The family is \(x^4-3x^2+x+C\); at \(x=2\) it is \(16-12+2+C=10\), so \(C=4\), and \(f(0)=C=4\)." data-hint="Solve for C using x = 2 first. Then evaluate at 0, where every x-term vanishes.">
+          <div class="widget-row" data-correct="1" data-fb="Correct. The family is x^4-3x^2+x+C; at x=2 it is 16-12+2+C=10, so C=4, and f(0)=C=4." data-hint="Solve for C using x = 2 first. Then evaluate at 0, where every x-term vanishes.">
             <div class="widget-row-prompt">2. \(f'(x)=4x^3-6x+1\) with \(f(2)=10\). What is \(f(0)\)?</div>
             <div class="widget-options">
               <button data-choice="0">\(0\)</button>
@@ -289,7 +289,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. \(f'(x)=6x^2+C_1\) with \(C_1=0\), then \(f(x)=2x^3+C_2\) with \(C_2=1\)." data-hint="Integrate twice. Use f'(0)=0 after the first integration, and f(0)=1 after the second.">
+          <div class="widget-row" data-correct="1" data-fb="Correct. f&#x27;(x)=6x^2+C_1 with C_1=0, then f(x)=2x^3+C_2 with C_2=1." data-hint="Integrate twice. Use f'(0)=0 after the first integration, and f(0)=1 after the second.">
             <div class="widget-row-prompt">3. \(f''(x)=12x\) with \(f'(0)=0\) and \(f(0)=1\). Then \(f(x)=\)</div>
             <div class="widget-options">
               <button data-choice="0">\(6x^2+1\)</button>

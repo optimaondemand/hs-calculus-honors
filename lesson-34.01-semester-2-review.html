@@ -175,7 +175,7 @@
         </div>
     </div>
 <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Joint 1: slope and area are inverses</h3>
-<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 14.01 asked you to accumulate area from a fixed left end, and the answer was startling. For \(f(t)=t^2\), the accumulated area is \(F(x)=\int_0^x t^2\,dt=\tfrac{x^3}{3}\), and differentiating it returns the rate you started with:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 14.01 asked you to accumulate area from a fixed left end, and the answer was startling: the derivative of the accumulated area is the height of the graph. For \(f(t)=t^2\), the accumulated area is \(F(x)=\int_0^x t^2\,dt=\tfrac{x^3}{3}\), and differentiating it returns the rate you started with:</p>
 <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
         \[ \frac{d}{dx}\int_0^x t^2\,dt=\frac{d}{dx}\,\frac{x^3}{3}=x^2 \]
         </p>
@@ -183,7 +183,7 @@
 <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Joint 2: reading graphs of \(f\), \(f'\), and \(f''\), then reading them in reverse</h3>
 <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In Lesson 11.04 you matched a function to its derivative graphs: where \(f'\) is positive, \(f\) rises; where \(f''\) is positive, \(f\) bends up. Lesson 14.03 ran the same skill in reverse. If \(F(x)=\int_0^x f(t)\,dt\), then \(F'=f\) and \(F''=f'\), so the graph of \(f\) <em>is</em> the slope graph of \(F\): \(F\) rises where \(f\) is positive, has a maximum where \(f\) crosses from positive to negative, and bends up where \(f\) is increasing. Nothing new had to be learned; the old graph-reading ran in the other direction.</p>
 <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Joint 3: the Mean Value Theorem returns</h3>
-<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The Mean Value Theorem of Lesson 8.03 says that somewhere inside an interval, the instantaneous rate equals the average rate. Lesson 16.02 gave the integral version: a continuous function on \([a,b]\) takes its average value \(\tfrac{1}{b-a}\int_a^b f\) at some point of the interval. For \(f(x)=x^2\) on \([0,3]\), the average value is \(\tfrac13\int_0^3x^2\,dx=\tfrac13\cdot9=3\), and \(f(c)=3\) at \(c=\sqrt3\approx1.73\), which lies inside \((0,3)\). The same theorem also underlies the proof of Part 1 of the Fundamental Theorem, so the Semester 1 guarantee is quietly holding up Semester 2.</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The Mean Value Theorem of Lesson 8.03 says that somewhere inside an interval, the instantaneous rate equals the average rate. Lesson 16.02 gave the integral version: a continuous function on \([a,b]\) takes its average value \(\tfrac{1}{b-a}\int_a^b f\) at some point of the interval. For \(f(x)=x^2\) on \([0,3]\), the average value is \(\tfrac13\int_0^3x^2\,dx=\tfrac13\cdot9=3\), and \(f(c)=3\) at \(c=\sqrt3\approx1.73\), which lies inside \((0,3)\). The two theorems are close relatives of the argument behind Part 1 of the Fundamental Theorem: Lesson 14.01 proves Part 1 from the Extreme Value Theorem and the Squeeze Theorem, and the integral Mean Value Theorem gives another route to the same proof, so a Semester 1 guarantee is quietly holding up Semester 2.</p>
         <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
             <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
             <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Substitution is the Chain Rule run backward, and only works when the inner derivative is actually present. \(\int2x\cos(x^2)\,dx=\sin(x^2)+C\) works because \(2x\) is the derivative of \(x^2\). If a different factor stood there, you would not get to &ldquo;fix&rdquo; it by guessing; check by differentiating your answer.</div>
@@ -206,7 +206,7 @@
           <div class="widget-kicker">&#9889; TRY IT &middot; WHICH TOOL DOES THIS CALL FOR?</div>
           <div class="widget-question">Choose the first tool for each problem. Do not solve it yet; just decide.</div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. With width \(x\) the area is \(A=x(20-x)\), \(A'=20-2x=0\) at \(x=10\), and \(A''=-2&lt;0\) confirms a maximum of \(100\) m². Justifying that it is a maximum is part of the answer." data-hint="Is this asking for a best case, a rate, or an accumulated total?">
+          <div class="widget-row" data-correct="1" data-fb="Correct. With width x the area is A=x(20-x), A&#x27;=20-2x=0 at x=10, and A&#x27;&#x27;=-2&lt;0 confirms a maximum of 100 m². Justifying that it is a maximum is part of the answer." data-hint="Is this asking for a best case, a rate, or an accumulated total?">
             <div class="widget-row-prompt">1. A farmer has \(40\) m of fence for a rectangular pen. Which dimensions give the largest area?</div>
             <div class="widget-options">
               <button data-choice="0">Area between curves</button>
@@ -215,7 +215,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="2" data-fb="Correct. Two quantities change together over time. With \(x=5\) and \(y=12\), \(x\,x'+y\,y'=0\) gives \(y'=-\tfrac{5\cdot2}{12}=-\tfrac56\) ft/s." data-hint="Several quantities are changing with time and linked by one equation. Which technique differentiates such a relationship?">
+          <div class="widget-row" data-correct="2" data-fb="Correct. Two quantities change together over time. With x=5 and y=12, x x&#x27;+y y&#x27;=0 gives y&#x27;=-(5·2)/12=-5/6 ft/s." data-hint="Several quantities are changing with time and linked by one equation. Which technique differentiates such a relationship?">
             <div class="widget-row-prompt">2. A \(13\)-ft ladder slides down a wall as its base moves away at \(2\) ft/s. How fast is the top falling when the base is \(5\) ft from the wall?</div>
             <div class="widget-options">
               <button data-choice="0">Linear approximation</button>
@@ -224,7 +224,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. Separating gives \(\int\tfrac{dy}{y}=\int2\,dx\), so \(\ln|y|=2x+C\), and the initial condition gives \(y=3e^{2x}\)." data-hint="The equation relates \(y\) to its own rate of change. Which technique handles that?">
+          <div class="widget-row" data-correct="0" data-fb="Correct. Separating gives ∫dy/y=∫2 dx, so ln|y|=2x+C, and the initial condition gives y=3e^(2x)." data-hint="The equation relates y to its own rate of change. Which technique handles that?">
             <div class="widget-row-prompt">3. Find \(y\) if \(\dfrac{dy}{dx}=2y\) and \(y(0)=3\).</div>
             <div class="widget-options">
               <button data-choice="0">Separate variables: this is a growth model</button>
@@ -233,7 +233,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="2" data-fb="Correct. Each slice is a disk of radius \(\sqrt x\), so \(V=\pi\int_0^4x\,dx=\pi\cdot8=8\pi\)." data-hint="A region spun around an axis sweeps out circular slices. Which method adds those up?">
+          <div class="widget-row" data-correct="2" data-fb="Correct. Each slice is a disk of radius √x, so V=π∫_0^4x dx=π·8=8π." data-hint="A region spun around an axis sweeps out circular slices. Which method adds those up?">
             <div class="widget-row-prompt">4. The region under \(y=\sqrt x\) on \([0,4]\) is rotated about the \(x\)-axis. Find the volume.</div>
             <div class="widget-options">
               <button data-choice="0">Area between curves</button>
@@ -242,7 +242,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. With \(f(x)=\sqrt x\), \(f(25)=5\) and \(f'(25)=\tfrac1{10}\), so \(\sqrt{26}\approx5+\tfrac1{10}(1)=5.1\). The true value is about \(5.099\)." data-hint="You know a nearby value and its slope. What tool uses exactly that?">
+          <div class="widget-row" data-correct="1" data-fb="Correct. With f(x)=√x, f(25)=5 and f&#x27;(25)=1/10, so √26≈5+(1/10)(1)=5.1. The true value is about 5.099." data-hint="You know a nearby value and its slope. What tool uses exactly that?">
             <div class="widget-row-prompt">5. Estimate \(\sqrt{26}\) without a calculator.</div>
             <div class="widget-options">
               <button data-choice="0">The Trapezoidal Rule</button>
@@ -251,7 +251,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. The total change of a quantity is the integral of its rate: \(\int_0^4(6-t)\,dt=24-8=16\) gallons." data-hint="You are given a rate and want the total. Which direction is that: derivative or integral?">
+          <div class="widget-row" data-correct="0" data-fb="Correct. The total change of a quantity is the integral of its rate: ∫_0^4(6-t) dt=24-8=16 gallons." data-hint="You are given a rate and want the total. Which direction is that: derivative or integral?">
             <div class="widget-row-prompt">6. Water flows into a tank at \(r(t)=6-t\) gallons per minute for \(0\le t\le4\). How much water enters?</div>
             <div class="widget-options">
               <button data-choice="0">Net change: integrate the rate</button>
@@ -323,7 +323,7 @@
           <div class="widget-kicker">&#9889; TRY IT &middot; WHAT ARE YOU ENTITLED TO CLAIM?</div>
           <div class="widget-question">For each, say what is wrong or what the facts support.</div>
 
-          <div class="widget-row" data-correct="2" data-fb="Correct. \(1/x^2\) is undefined at \(0\), inside the interval. The theorem needs continuity on the whole closed interval, and the negative answer for an everywhere-positive function is the warning sign. Even \(\int_1^2\tfrac1{x^2}dx=\tfrac12\) is positive." data-hint="Check the hypothesis: is the function continuous at every point of the interval? And can a positive function have a negative integral?">
+          <div class="widget-row" data-correct="2" data-fb="Correct. 1/x^2 is undefined at 0, inside the interval. The theorem needs continuity on the whole closed interval, and the negative answer for an everywhere-positive function is the warning sign. Even the integral of 1/x^2 from 1 to 2 equals 1/2 is positive." data-hint="Check the hypothesis: is the function continuous at every point of the interval? And can a positive function have a negative integral?">
             <div class="widget-row-prompt">1. A student computes \(\displaystyle\int_{-1}^{1}\frac1{x^2}\,dx=\left[-\frac1x\right]_{-1}^{1}=-2\). What is wrong?</div>
             <div class="widget-options">
               <button data-choice="0">The antiderivative of \(1/x^2\) is wrong</button>
@@ -332,7 +332,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. A critical point is a candidate, not a verdict. \(f'(x)=3x^2\) is positive on both sides of \(0\), so \(f\) keeps rising, and \(f''(0)=0\) is inconclusive." data-hint="Does the derivative change sign at \(0\)?">
+          <div class="widget-row" data-correct="0" data-fb="Correct. A critical point is a candidate, not a verdict. f&#x27;(x)=3x^2 is positive on both sides of 0, so f keeps rising, and f&#x27;&#x27;(0)=0 is inconclusive." data-hint="Does the derivative change sign at 0?">
             <div class="widget-row-prompt">2. For \(f(x)=x^3\), \(f'(0)=0\). What are you entitled to claim about \(x=0\)?</div>
             <div class="widget-options">
               <button data-choice="0">It is only a candidate; you must check the sign of \(f'\) to classify it (here it is neither a maximum nor a minimum)</button>
@@ -341,7 +341,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. Finding where \(A'=0\) is only the first half. Show the sign change of \(A'\), or the sign of \(A''\), or compare against the endpoints, and then answer in context with units." data-hint="What separates a maximum from a minimum or an inflection point?">
+          <div class="widget-row" data-correct="1" data-fb="Correct. Finding where A&#x27;=0 is only the first half. Show the sign change of A&#x27;, or the sign of A&#x27;&#x27;, or compare against the endpoints, and then answer in context with units." data-hint="What separates a maximum from a minimum or an inflection point?">
             <div class="widget-row-prompt">3. A student finds a single critical point \(x=5\) in an optimization problem on \((0,10)\) and writes &ldquo;so this is the maximum.&rdquo; What is missing?</div>
             <div class="widget-options">
               <button data-choice="0">Nothing; every critical point is a maximum</button>
@@ -350,7 +350,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. The units of an integral are the units of the integrand times the units of the variable: \((\text{m/s})\cdot\text{s}=\text{m}\). Stating units is part of the answer, and it catches many setup errors." data-hint="Multiply the units of the integrand by the units of \(dt\).">
+          <div class="widget-row" data-correct="0" data-fb="Correct. The units of an integral are the units of the integrand times the units of the variable: (m/s)·s=m. Stating units is part of the answer, and it catches many setup errors." data-hint="Multiply the units of the integrand by the units of dt.">
             <div class="widget-row-prompt">4. A particle has velocity \(v(t)\) in meters per second, with \(t\) in seconds. What are the units of \(\displaystyle\int_0^4v(t)\,dt\)?</div>
             <div class="widget-options">
               <button data-choice="0">Meters (a displacement: velocity times time)</button>

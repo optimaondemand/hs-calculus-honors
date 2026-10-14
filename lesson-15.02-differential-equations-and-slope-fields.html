@@ -122,8 +122,8 @@
           <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
           <div class="widget-question">Consider the equation \(y'=2y\): a function whose derivative equals twice the function itself. Which kind of function do you think could satisfy it?</div>
           <div class="widget-options">
-            <button data-response="Good instinct. By the chain rule \(\dfrac{d}{dx}e^{2x}=2e^{2x}\), exactly twice the function. Check it for yourself below, along with what happens to constant multiples.">An exponential, like \(e^{2x}\), since exponentials reproduce themselves under differentiation.</button>
-            <button data-response="Test it: if \(y=x^2\) then \(y'=2x\), but \(2y=2x^2\). Those are not equal, so \(x^2\) fails. The equation compares the derivative to the function itself, and only functions that reproduce themselves, like exponentials, can pass.">A power function, like \(x^2\), since its derivative is \(2x\), which has a 2 in it.</button>
+            <button data-response="Good instinct. By the chain rule d/dx of e^(2x) is 2e^(2x), exactly twice the function. Check it for yourself below, along with what happens to constant multiples.">An exponential, like \(e^{2x}\), since exponentials reproduce themselves under differentiation.</button>
+            <button data-response="Test it: if y=x^2 then y&#x27;=2x, but 2y=2x^2. Those are not equal, so x^2 fails. The equation compares the derivative to the function itself, and only functions that reproduce themselves, like exponentials, can pass.">A power function, like \(x^2\), since its derivative is \(2x\), which has a 2 in it.</button>
           </div>
           <div class="widget-feedback"></div>
           <button class="widget-reset">Reset</button>
@@ -142,7 +142,7 @@
           <div class="widget-kicker">&#9889; TRY IT &middot; IS IT A SOLUTION?</div>
           <div class="widget-question">For each proposed function, decide whether it satisfies the differential equation.</div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. The chain rule gives \(y'=3e^{3x}\), which is exactly \(3y\)." data-hint="Differentiate e^{3x} with the chain rule, then compare to 3y.">
+          <div class="widget-row" data-correct="0" data-fb="Correct. The chain rule gives y&#x27;=3e^(3x), which is exactly 3y." data-hint="Differentiate e^{3x} with the chain rule, then compare to 3y.">
             <div class="widget-row-prompt">1. Does \(y=e^{3x}\) solve \(y'=3y\)?</div>
             <div class="widget-options">
               <button data-choice="0">Yes: \(y'=3e^{3x}=3y\)</button>
@@ -151,7 +151,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. \(2x\) and \(2x^2\) are different functions (they agree only at \(x=0\) and \(x=1\)), so the equation fails." data-hint="Compute y' and 2y separately and compare them as functions of x.">
+          <div class="widget-row" data-correct="1" data-fb="Correct. 2x and 2x^2 are different functions (they agree only at x=0 and x=1), so the equation fails." data-hint="Compute y' and 2y separately and compare them as functions of x.">
             <div class="widget-row-prompt">2. Does \(y=x^2\) solve \(y'=2y\)?</div>
             <div class="widget-options">
               <button data-choice="0">Yes, since the derivative of \(x^2\) is \(2x\)</button>
@@ -160,7 +160,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. \(y'=\cos x\), \(y''=-\sin x\), and \(-\sin x+\sin x=0\)." data-hint="Differentiate twice. What is the derivative of cos x?">
+          <div class="widget-row" data-correct="1" data-fb="Correct. y&#x27;=cos x, y&#x27;&#x27;=-sin x, and -sin x+sin x=0." data-hint="Differentiate twice. What is the derivative of cos x?">
             <div class="widget-row-prompt">3. Does \(y=\sin x\) solve \(y''+y=0\)?</div>
             <div class="widget-options">
               <button data-choice="0">No: \(y''=\sin x\)</button>
@@ -407,7 +407,7 @@
           <div class="widget-kicker">&#9889; TRY IT &middot; READ THE FIELD</div>
           <div class="widget-question">Use the slope field for \(\dfrac{dy}{dx}=x-y\), or compute straight from the equation, to answer each row.</div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. \(x-y=1-0=1\): a segment rising at 45 degrees." data-hint="Substitute x = 1 and y = 0 into x - y.">
+          <div class="widget-row" data-correct="1" data-fb="Correct. x-y=1-0=1: a segment rising at 45 degrees." data-hint="Substitute x = 1 and y = 0 into x - y.">
             <div class="widget-row-prompt">1. At the point \((1,0)\), the segment has slope&hellip;</div>
             <div class="widget-options">
               <button data-choice="0">\(0\)</button>
@@ -416,7 +416,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. Slope zero means \(x-y=0\), which is \(y=x\). On the axes the slopes are \(x\) and \(-y\), which are not zero in general." data-hint="Set the slope x - y equal to 0 and describe the set of points.">
+          <div class="widget-row" data-correct="0" data-fb="Correct. Slope zero means x-y=0, which is y=x. On the axes the slopes are x and -y, which are not zero in general." data-hint="Set the slope x - y equal to 0 and describe the set of points.">
             <div class="widget-row-prompt">2. Along which curve are all the segments horizontal?</div>
             <div class="widget-options">
               <button data-choice="0">The line \(y=x\)</button>
@@ -425,7 +425,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="1" data-fb="Correct. \(x-y=0-2=-2\). The curve is falling steeply at that point, which is why curves that start high swoop down toward the line \(y=x-1\)." data-hint="Compute x - y at (0, 2).">
+          <div class="widget-row" data-correct="1" data-fb="Correct. x-y=0-2=-2. The curve is falling steeply at that point, which is why curves that start high swoop down toward the line y=x-1." data-hint="Compute x - y at (0, 2).">
             <div class="widget-row-prompt">3. A solution passes through \((0,2)\). Right there it is&hellip;</div>
             <div class="widget-options">
               <button data-choice="0">rising with slope \(2\)</button>
@@ -440,7 +440,7 @@
           <div class="widget-kicker">&#9889; TRY IT &middot; MATCH THE EQUATION TO ITS FIELD</div>
           <div class="widget-question">Each row describes a feature of a slope field. Choose the equation that produces it.</div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. Only \(x-y\) vanishes along \(y=x\). (For \(x+y\) the horizontal line is \(y=-x\); for \(y\) it is the \(x\)-axis.)" data-hint="Which expression equals zero exactly when y = x?">
+          <div class="widget-row" data-correct="0" data-fb="Correct. Only x-y vanishes along y=x. (For x+y the horizontal line is y=-x; for y it is the x-axis.)" data-hint="Which expression equals zero exactly when y = x?">
             <div class="widget-row-prompt">1. All segments are horizontal along the entire line \(y=x\), and steepen as you move away from it.</div>
             <div class="widget-options">
               <button data-choice="0">\(\dfrac{dy}{dx}=x-y\)</button>
@@ -449,7 +449,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. With \(y'=y\) the slope at \((x,0)\) is 0 for every \(x\), and moving up a row changes the slope but moving sideways does not." data-hint="If the slope depends only on y, what happens to the segments as x changes?">
+          <div class="widget-row" data-correct="0" data-fb="Correct. With y&#x27;=y the slope at (x,0) is 0 for every x, and moving up a row changes the slope but moving sideways does not." data-hint="If the slope depends only on y, what happens to the segments as x changes?">
             <div class="widget-row-prompt">2. Every segment on the \(x\)-axis is horizontal, and the slope depends only on \(y\), so the segments are identical along each horizontal row.</div>
             <div class="widget-options">
               <button data-choice="0">\(\dfrac{dy}{dx}=y\)</button>
@@ -458,7 +458,7 @@
             </div>
           </div>
 
-          <div class="widget-row" data-correct="0" data-fb="Correct. The slope depends on \(x\) alone. These are exactly the equations of Lesson 15.01, whose solutions are the vertical shifts \(y=\tfrac{x^2}{2}+C\)." data-hint="Which equation has no y in it?">
+          <div class="widget-row" data-correct="0" data-fb="Correct. The slope depends on x alone. These are exactly the equations of Lesson 15.01, whose solutions are the vertical shifts y=(x^2)/2+C." data-hint="Which equation has no y in it?">
             <div class="widget-row-prompt">3. In every vertical column, all the segments are parallel; only moving left or right changes the slope.</div>
             <div class="widget-options">
               <button data-choice="0">\(\dfrac{dy}{dx}=x\)</button>
