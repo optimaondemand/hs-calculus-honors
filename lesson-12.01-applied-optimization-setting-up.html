@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 12.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 12</div>
+        <div style="font-size: 12px; color: #666;">Optimization, Motion, and Related Rates</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 12.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Applied Optimization: Setting Up the Problem</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Optimization, Motion, and Related Rates</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 12.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Applied Optimization: Setting Up the Problem</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">If you have a fixed length of fence, what is the largest pen you can build?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">The oldest optimization problem in the Western tradition may be a legend. In Virgil's <em>Aeneid</em>, Queen Dido, fleeing her brother Pygmalion, is told she may have only as much land for her new city as an ox-hide can cover. She cuts the hide into one long thin strip, lays it out along the coast, and encloses a whole hill: Carthage. Whether or not it happened, the problem is real and beautiful: <em>with a fixed length of boundary, how much can you enclose?</em> This module is about the most useful move in all of calculus, turning a story about the world into a function and letting the derivative find the best case. Today you learn the routine that does it: draw, name, constrain, state the domain, optimize and justify, and answer in a sentence. The calculus you need you already own. What you are building now is the habit of translating, and the discipline of saying <em>why</em> the answer is the best one.</div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> translate an optimization story into an objective function of one variable, using a labeled diagram, the constraint, and a stated domain.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> find the maximum or minimum with the Closed Interval Method, a first-derivative sign chart, or the Second Derivative Test, choosing the tool that the domain allows.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> justify that a critical point is the extremum you want, reject candidates outside the domain, and answer the original question in a full sentence with units.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus the extreme-value tools from Module 10 (the Closed Interval Method and the first-derivative sign chart) and the Second Derivative Test from Lesson 11.02.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A calculator or graphing tool is optional and may be used only to check work you have already done by hand.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE SIX-MOVE ROUTINE</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A farmer has 200 m of fencing and wants to enclose a rectangular pen with the greatest possible area. Before any calculus, what is your instinct about the shape?</div>
+          <div class="widget-options">
+            <button data-response="Worth testing, not trusting. A 1 m by 99 m pen uses 200 m of fence and encloses only 99 square meters. Hold the instinct, and let the derivative judge it in the next few minutes.">A long, thin rectangle gives the most room, because the sides can stretch out.</button>
+            <button data-response="A fair instinct, and the calculation below will confirm it for this problem. Notice that your guess was a prediction; the calculus will supply the proof and tell you exactly how good the guess was.">Something close to a square, because the sides share the fence evenly.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Every optimization problem is a story that has to be turned into a function before calculus can touch it. The derivative cannot read words. It can only differentiate a formula in <em>one</em> variable. So the real work of an optimization problem is the translation, and the differentiation at the end is the easy part. Here is the routine, in six moves, that you will use all week:</p>
+<ol style="font-size: 17px; color: #1a2340; line-height: 1.9; padding-left: 22px; margin: 0 0 10px 0;"><li><strong>Draw</strong> the situation and label every quantity that can change.</li><li><strong>Name the objective.</strong> Write the quantity you want to make largest or smallest (area, cost, distance, volume) as a formula, possibly in several variables.</li><li><strong>Use the constraint.</strong> The story always ties the variables together (a fixed amount of fence, a fixed volume). Solve the constraint for one variable and substitute, so the objective becomes a function of <em>one</em> variable.</li><li><strong>State the domain.</strong> Which values of that variable make sense in the story? The domain decides which tool you may use in move 5.</li><li><strong>Optimize and justify.</strong> Find the critical points, then prove which one gives the maximum or minimum, using the Closed Interval Method (Lesson 10.03, Absolute Extrema on a Closed Interval), a sign chart for the first derivative (Lesson 10.02), or the Second Derivative Test (Lesson 11.02).</li><li><strong>Answer the question that was asked,</strong> in a full sentence with units.</li></ol>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 1: the pen with four fenced sides</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A farmer has 200 m of fencing and wants a rectangular pen of greatest area. Let the width be \(x\) and the length \(y\), both in meters.</p>
+<div style="text-align:center; margin: 10px 0 14px 0;"><svg viewBox="0 0 300 170" width="300" height="170" role="img" aria-label="A rectangular pen with width x and length y, fenced on all four sides">
+<rect x="60" y="30" width="180" height="100" fill="#E8F6FB" stroke="#0E1C42" stroke-width="3"/>
+<text x="150" y="152" text-anchor="middle" font-size="16" fill="#0E1C42" font-style="italic">x</text>
+<text x="256" y="85" text-anchor="start" font-size="16" fill="#0E1C42" font-style="italic">y</text>
+<text x="150" y="86" text-anchor="middle" font-size="15" fill="#1B6A94">Area = xy</text>
+</svg><div style="font-size: 14px; color: #666; font-style: italic; margin-top: 4px;">Move 1: draw and label.</div></div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Objective.</strong> Area \(A = xy\), which has two variables. <strong>Constraint.</strong> The fence goes around all four sides, so \(2x+2y=200\), which gives \(y=100-x\). Substitute to get a function of one variable:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ A(x)=x(100-x)=100x-x^2 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Domain.</strong> A pen needs positive width and positive length. Since \(y=100-x>0\), we need \(0&lt;x&lt;100\), an <em>open</em> interval. <strong>Optimize.</strong></p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ A'(x)=100-2x=0 \;\Longrightarrow\; x=50, \qquad A''(x)=-2&lt;0 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The second derivative is negative, so the graph of \(A\) is concave down and \(x=50\) is a local maximum (Lesson 11.02). It is the only critical point on the interval, so it is the absolute maximum on the whole domain. As a check on the open ends, \(A\) approaches \(0\) as \(x\to0^+\) and as \(x\to100^-\): the pen disappears at both extremes, so the best pen cannot be at an end. <strong>Answer.</strong> With \(x=50\) we get \(y=100-50=50\), so the greatest area is \(50\cdot50=2500\ \text{m}^2\), achieved by a \(50\ \text{m}\) by \(50\ \text{m}\) square pen. Your instinct about squares was right.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 2: change the constraint, change the answer</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now let one side of the pen be a straight river that needs no fence. The same \(200\) m of fence goes on three sides: two ends of length \(x\) and one side of length \(y\) parallel to the river.</p>
+<div style="text-align:center; margin: 10px 0 14px 0;"><svg viewBox="0 0 300 170" width="300" height="170" role="img" aria-label="A rectangular pen against a river; the river side needs no fence">
+<rect x="40" y="12" width="220" height="14" fill="#55C8E8" opacity="0.55"/>
+<text x="150" y="23" text-anchor="middle" font-size="11" fill="#0E1C42">river (no fence)</text>
+<path d="M60 28 L60 130 L240 130 L240 28" fill="#E8F6FB" stroke="#0E1C42" stroke-width="3"/>
+<line x1="60" y1="28" x2="240" y2="28" stroke="#0E1C42" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="150" y="152" text-anchor="middle" font-size="16" fill="#0E1C42" font-style="italic">y</text>
+<text x="40" y="85" text-anchor="end" font-size="16" fill="#0E1C42" font-style="italic">x</text>
+<text x="256" y="85" text-anchor="start" font-size="16" fill="#0E1C42" font-style="italic">x</text>
+</svg><div style="font-size: 14px; color: #666; font-style: italic; margin-top: 4px;">Same fence, new constraint.</div></div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The constraint is now \(2x+y=200\), so \(y=200-2x\), and the area is</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ A(x)=x(200-2x)=200x-2x^2, \qquad 0&lt;x&lt;100 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Then \(A'(x)=200-4x=0\) gives \(x=50\), and \(A''(x)=-4&lt;0\), so this is the maximum. The pen is \(50\) m wide and \(y=200-2(50)=100\) m long, with area \(50\cdot100=5000\ \text{m}^2\). The river bank is worth a lot: the same fence now encloses twice the area, and the best shape is no longer a square. The shape of the optimum depends on the constraint, which is why you must read the story before you write any formula.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Do not differentiate \(A=xy\) as it stands. With two variables, \(\dfrac{d}{dx}[xy]\) is not \(y\) unless \(y\) is a constant, and here \(y\) changes with \(x\). Use the constraint first to write \(y\) in terms of \(x\) (Lesson 7.01 showed what happens when \(y\) secretly depends on \(x\)), and only then differentiate. A second common slip: setting \(A'(x)=0\) and stopping. A critical point is a <em>candidate</em>, not a verdict.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; THE DOMAIN DECIDES THE TOOL</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The domain you wrote in move 4 is not decoration. It tells you which justification tool is available. When the domain is a <em>closed</em> interval \([a,b]\), the Extreme Value Theorem (Lesson 3.04) guarantees that the continuous objective has an absolute maximum and minimum, and the Closed Interval Method (Lesson 10.03) finds them: compare the objective at the critical points <em>and at the endpoints</em>. When the domain is <em>open</em> or unbounded, you have no such guarantee, so you must justify by a sign chart or by the Second Derivative Test, and you should look at what the objective does near the ends.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 3: the open-top box</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A square sheet of cardboard \(12\) inches on a side has a small square of side \(x\) cut from each corner. The four flaps are folded up to make an open-top box. What value of \(x\) gives the box of greatest volume?</p>
+<div style="text-align:center; margin: 10px 0 14px 0;"><svg viewBox="0 0 280 230" width="280" height="230" role="img" aria-label="A 12 inch square sheet with a square of side x cut from each corner">
+<rect x="50" y="20" width="180" height="180" fill="#E8F6FB" stroke="#0E1C42" stroke-width="3"/>
+<rect x="50" y="20" width="40" height="40" fill="#FDF3E3" stroke="#C7922C" stroke-width="2" stroke-dasharray="4 3"/>
+<rect x="190" y="20" width="40" height="40" fill="#FDF3E3" stroke="#C7922C" stroke-width="2" stroke-dasharray="4 3"/>
+<rect x="50" y="160" width="40" height="40" fill="#FDF3E3" stroke="#C7922C" stroke-width="2" stroke-dasharray="4 3"/>
+<rect x="190" y="160" width="40" height="40" fill="#FDF3E3" stroke="#C7922C" stroke-width="2" stroke-dasharray="4 3"/>
+<text x="70" y="46" text-anchor="middle" font-size="15" fill="#8A5F12" font-style="italic">x</text>
+<text x="140" y="116" text-anchor="middle" font-size="15" fill="#1B6A94">fold up: base 12 &minus; 2x</text>
+<text x="140" y="216" text-anchor="middle" font-size="14" fill="#0E1C42">12 in</text>
+</svg><div style="font-size: 14px; color: #666; font-style: italic; margin-top: 4px;">Cut a square of side x from each corner, then fold up the flaps.</div></div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The base of the box is \((12-2x)\) by \((12-2x)\) and the height is \(x\), so the <strong>objective</strong> is already a function of one variable, because the cut size \(x\) <em>is</em> the only thing the builder chooses:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ V(x)=x(12-2x)^2 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Domain.</strong> We cannot cut a negative square, and the two cuts along one edge, \(x+x=2x\), cannot exceed \(12\). So \(0\le x\le 6\), a <em>closed</em> interval, and we may use the Closed Interval Method. Differentiate with the Product and Chain Rules:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ V'(x)=(12-2x)^2+x\cdot 2(12-2x)(-2)=(12-2x)(12-6x)=12(x-6)(x-2) \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The critical points are \(x=2\) and \(x=6\). Compare the volume at each critical point and each endpoint:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ V(0)=0, \qquad V(2)=2\cdot8^2=128, \qquad V(6)=6\cdot0^2=0 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The largest value is \(128\), at \(x=2\). <strong>Answer.</strong> Cutting \(2\)-inch squares from the corners gives the box of greatest volume, \(128\ \text{in}^3\). Notice how little the formula alone tells you. Both ends of the interval give a box of volume zero (no height, or no base), which is why the endpoints lose, but you had to <em>check</em>.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Pierre de Fermat described a method for finding maxima and minima in the 1630s, decades before Newton and Leibniz. His idea was to look for the place where a small change in the variable makes no change, to first order, in the quantity being optimized. That is exactly the condition \(f'(x)=0\) in modern language. Calculus did not invent optimization; it made Fermat's special trick into a routine anyone can follow.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: a rectangular pen must enclose \(400\ \text{ft}^2\). What dimensions use the <em>least</em> fence? Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Let the width be \(x\) and the length \(y\), so \(xy=400\) and \(y=\dfrac{400}{x}\). The perimeter, the quantity to <em>minimize</em>, is \(P(x)=2x+2y=2x+\dfrac{800}{x}\) with domain \(x>0\) (open and unbounded, so there is no Closed Interval Method here). Then \(P'(x)=2-\dfrac{800}{x^2}=0\) gives \(x^2=400\), so \(x=20\) (we reject \(x=-20\) because it is outside the domain). Since \(P''(x)=\dfrac{1600}{x^3}>0\) for \(x>0\), the graph of \(P\) is concave up and \(x=20\) is the absolute minimum. Then \(y=\dfrac{400}{20}=20\), and the least fence is \(P(20)=80\) ft, for a \(20\) ft by \(20\) ft square. Notice that the minimum perimeter for a given area is again a square, the mirror image of Example 1.
+            </div>
+        </details>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; SET UP, THEN CHECK THE DOMAIN</div>
+          <div class="widget-question">Decide each answer before you click. These are the moves that decide whether an optimization problem is set up correctly.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The constraint is \(2x+2y=80\), so \(y=40-x\), and \(A=xy=x(40-x)\)." data-hint="Write the constraint first: all four sides use the fence, so 2x + 2y = 80. Solve for y, then substitute into A = xy.">
+            <div class="widget-row-prompt">1. You have \(80\) ft of fence for a rectangular pen fenced on all four sides, with width \(x\). Which function gives the area?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(A(x)=x(80-x)\)</button>
+              <button data-choice="1">\(A(x)=x(40-x)\)</button>
+              <button data-choice="2">\(A(x)=2x(40-x)\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The width and the length \(y=40-x\) must both be positive, so \(0&lt;x&lt;40\), an open interval." data-hint="Both the width x and the length y = 40 - x have to be positive for a real pen.">
+            <div class="widget-row-prompt">2. What is the natural domain of \(A(x)=x(40-x)\) for that pen?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(x\ge0\)</button>
+              <button data-choice="1">\(0\le x\le80\)</button>
+              <button data-choice="2">\(0&lt;x&lt;40\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. On a closed interval the Closed Interval Method compares the critical points &lt;em&gt;and&lt;/em&gt; both endpoints." data-hint="The domain is a closed interval. Which tool applies there, and what does it compare?">
+            <div class="widget-row-prompt">3. For the box, \(V'(x)=12(x-6)(x-2)\) on \([0,6]\). Which values do you compare?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(V(2)\) only</button>
+              <button data-choice="1">\(V(0)\), \(V(2)\), and \(V(6)\)</button>
+              <button data-choice="2">\(V(2)\) and \(V(6)\) only</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; JUSTIFY AND ANSWER</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Finding \(x=50\) is not the end of the problem. Two disciplines turn a calculation into a solution: <strong>justify</strong> that the critical point really is the maximum or minimum you want, and <strong>answer in context</strong>, in the words and units of the original story.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Which justification, when?</h3>
+<ul style="font-size: 17px; color: #1a2340; line-height: 1.9; padding-left: 22px; margin: 0 0 10px 0;"><li><strong>Closed interval domain.</strong> Use the Closed Interval Method: compare the objective at the critical points and the endpoints. The biggest value is the absolute maximum; the smallest is the absolute minimum. No further test is needed.</li><li><strong>One critical point, open or unbounded domain.</strong> Show that it is a local extremum, by a sign change of \(f'\) (Lesson 10.02) or by the sign of \(f''\) (Lesson 11.02). If the continuous objective has <em>only one</em> critical point on the interval, a local maximum there is the absolute maximum, and likewise for a minimum.</li><li><strong>Several critical points, open domain.</strong> Compute the objective at each, and also check what it does near the ends of the domain.</li></ul>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Then check that the answer is <em>reasonable</em>. A pen of width \(-4\) m is not a pen, and a box of volume more than the sheet could ever hold is a sign of an algebra slip. A critical point outside the domain is not an answer; it is a number to reject, and saying why is part of the solution. Honesty in mathematics includes reporting not only what the formula produced but whether the story permits it.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E8B96A; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AND COMPUTER ALGEBRA</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A graphing tool can draw \(A(x)=100x-x^2\) and mark the peak for you in a second. It cannot decide that your constraint was written correctly, that your domain matches the story, or that the answer should be a sentence about a pen. Those are the parts of the problem that are yours. Use a tool afterward to confirm a result you have already justified by hand, never in place of the justification.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; JUSTIFY AND ANSWER</div>
+          <div class="widget-question">Three more decisions that separate a solution from a calculation.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Concave down at the only critical point gives a local maximum that is also the absolute maximum on the interval." data-hint="A zero derivative alone could be a maximum, a minimum, or neither. What extra fact settles which?">
+            <div class="widget-row-prompt">1. For \(A(x)=100x-x^2\) on \(0&lt;x&lt;100\), \(A'(50)=0\) and \(A''(x)=-2\). Which statement proves the area is greatest at \(x=50\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(A(50)=2500\), which is a large number.</button>
+              <button data-choice="1">\(A'(50)=0\), and a derivative of zero always means a maximum.</button>
+              <button data-choice="2">\(A''&lt;0\) means the graph is concave down, so \(x=50\) is a local maximum, and it is the only critical point on the interval.</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. It answers the question that was asked, names the shape and the area, and carries the units." data-hint="The question asked for the greatest area and the pen that achieves it. Which choice states both, with units?">
+            <div class="widget-row-prompt">2. Which is the best final answer to Example 1?</div>
+            <div class="widget-options">
+              <button data-choice="0">The greatest area is \(2500\ \text{m}^2\), from a \(50\) m by \(50\) m square pen.</button>
+              <button data-choice="1">\(x=50\)</button>
+              <button data-choice="2">\(2500\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. A width cannot be negative, so \(x=-4\) is rejected on the grounds of the domain you stated in move 4." data-hint="Look back at the domain. Does a negative width describe a real pen?">
+            <div class="widget-row-prompt">3. While solving a pen problem with width \(x>0\), the algebra gives critical points \(x=-4\) and \(x=9\). What do you do with \(x=-4\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">Test it, because every critical point could be the answer.</button>
+              <button data-choice="1">Reject it: it lies outside the domain \(x>0\), and say so.</button>
+              <button data-choice="2">Use it, since it makes the derivative zero.</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 24 Problem Set: Applied Optimization</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Work the problems by hand, show every step, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 0;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 24 Quiz: Applied Optimization</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">An optimization problem is solved in the setup. Draw it, write the objective, use the constraint to reduce to one variable, and state the domain; the derivative then finds the critical points, and the domain decides whether you justify with the Closed Interval Method, a sign chart, or the Second Derivative Test. Finish by answering the question that was asked, in a sentence with units. Lesson 12.02 applies the same routine to a point closest to a curve, to a can of least surface area, and to cost and revenue, including a case where the best answer sits at an endpoint.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 12.01 &middot; Applied Optimization: Setting Up the Problem</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

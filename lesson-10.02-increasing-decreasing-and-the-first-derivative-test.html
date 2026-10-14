@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 10.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 10</div>
+        <div style="font-size: 12px; color: #666;">Increasing, Decreasing, and Extrema</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 10.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Increasing, Decreasing, and the First Derivative Test</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Increasing, Decreasing, and Extrema</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 10.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Increasing, Decreasing, and the First Derivative Test</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Lesson 10.01 gave you the suspects. How do you decide, case by case, which suspects are guilty?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">The sign of a derivative is a compass for the graph. Where \(f'\) is positive the function climbs, where it is negative the function falls, and a critical point where the sign flips is a turning point. In this lesson you prove the first part from the Mean Value Theorem, turn it into a bookkeeping method called a sign chart, and use that to classify every critical point as a local maximum, a local minimum, or neither.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> state and prove the Increasing/Decreasing Test, using the Mean Value Theorem.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> build a sign chart for \(f'\) and use it to find the intervals on which \(f\) increases and decreases.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> apply the First Derivative Test to classify critical points, including points where the derivative does not exist.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus the Mean Value Theorem from Lesson 8.03 and its consequences from Lesson 8.04.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your list of critical points from Lesson 10.01. The examples today pick up where it stopped.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; WHAT THE SIGN OF f' TELLS YOU</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Suppose \(f'(x)\) is negative at every point of an interval. Moving left to right across that interval, what do you expect the graph of \(f\) to do?</div>
+          <div class="widget-options">
+            <button data-response="Yes. A negative derivative is a negative slope, and a graph with negative slope falls as you move to the right. You will prove that today instead of just believing it.">Go down.</button>
+            <button data-response="Think again about what the derivative measures. It is the slope of the tangent line. A line with negative slope goes down as you move to the right, so a function whose slope is negative everywhere should fall. You will prove that today, with a result from Lesson 8.04.">Go up.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 10.01 gave you a list of suspects, the critical points. The next question is the one a detective asks: what does each suspect actually do? The answer lives in the sign of \(f'\) on either side. To use it, we first need the right vocabulary.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Increasing and decreasing on an interval</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">A function \(f\) is <strong>increasing</strong> on an interval \(I\) if \(f(x_1)&lt;f(x_2)\) whenever \(x_1&lt;x_2\) are in \(I\). It is <strong>decreasing</strong> on \(I\) if \(f(x_1)>f(x_2)\) whenever \(x_1&lt;x_2\) are in \(I\). A function that is either one is called <strong>monotonic</strong> on \(I\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">This is a statement about <em>pairs of points</em>, with no mention of derivatives. That is deliberate: it says what the graph does, so a derivative-based test has something to be tested against. The test itself is the payoff of Lesson 8.04.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The Increasing/Decreasing Test</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Suppose \(f\) is continuous on an interval \(I\) and differentiable at every interior point of \(I\). If \(f'(x)>0\) for every interior \(x\), then \(f\) is increasing on \(I\). If \(f'(x)&lt;0\) for every interior \(x\), then \(f\) is decreasing on \(I\).</div>
+        </div>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Why it is true</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Take any two points \(x_1&lt;x_2\) in \(I\). On \([x_1,x_2]\), \(f\) is continuous, and it is differentiable inside, so the Mean Value Theorem (Lesson 8.03) gives a number \(c\) strictly between them with</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ f(x_2)-f(x_1)=f'(c)\,(x_2-x_1). \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now read the right-hand side. The factor \(x_2-x_1\) is positive because \(x_1&lt;x_2\). If \(f'(c)>0\), the product is positive, so \(f(x_2)>f(x_1)\): the function is increasing. If \(f'(c)&lt;0\), the product is negative, so \(f(x_2)&lt;f(x_1)\): decreasing. This is exactly the argument behind Lesson 8.04's claim that a positive derivative means an increasing function, and it is the reason a positive slope, which only describes one instant, controls what the function does over a whole interval.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The test goes one way. If \(f'>0\) on an interval, \(f\) is increasing there. But an increasing function can have a derivative that is zero at an isolated point: \(f(x)=x^3\) is increasing on all of \((-\infty,\infty)\), yet \(f'(0)=0\). So, from a sign chart, the correct reading is &ldquo;\(f'>0\) on this interval, therefore increasing,&rdquo; and never &ldquo;increasing, therefore \(f'>0\) everywhere.&rdquo;</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; THE SIGN CHART</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now we can turn the theorem into a procedure that works every time. It is called a <strong>sign chart</strong>, and it is the single most reusable tool of the next three weeks.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The steps.</strong> (1) Find \(f'(x)\). (2) Mark every critical point of \(f\), and also any \(x\) where \(f\) is not defined, on a number line. These divide the line into open intervals. (3) On each interval, \(f'\) cannot change sign (that would require passing through \(0\), or a break), so test <em>one</em> point of the interval. (4) Read off the sign, and so whether \(f\) increases or decreases there.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1.</strong> Return to \(f(x)=x^3-3x^2-9x+5\) from Lesson 10.01, where \(f'(x)=3(x-3)(x+1)\) and the critical points are \(x=-1\) and \(x=3\). These cut the number line into three intervals. Test one point in each:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ f'(-2)=3(-5)(-1)=15>0,\qquad f'(0)=3(-3)(1)=-9&lt;0,\qquad f'(4)=3(1)(5)=15>0. \]
+        </p>
+        <div style="margin: 14px 0; text-align: center;">
+        <svg viewBox="0 0 600 150" width="100%" style="max-width: 600px;" role="img" aria-label="A sign chart for f prime of x equals 3 times x minus 3 times x plus 1. The number line shows critical points at x equals negative 1 and x equals 3. To the left of negative 1 the derivative is positive and f increases; between negative 1 and 3 it is negative and f decreases; to the right of 3 it is positive and f increases.">
+            <line x1="30" y1="70" x2="570" y2="70" stroke="#0E1C42" stroke-width="2.5"/>
+            <g stroke="#0E1C42" stroke-width="2.5">
+                <line x1="200" y1="58" x2="200" y2="82"/>
+                <line x1="400" y1="58" x2="400" y2="82"/>
+            </g>
+            <g font-family="Segoe UI, Arial, sans-serif" font-size="14" fill="#1a2340" text-anchor="middle">
+                <text x="200" y="102">-1</text>
+                <text x="400" y="102">3</text>
+                <text x="115" y="48" fill="#1A6B3D" font-size="20">+</text>
+                <text x="300" y="48" fill="#8A1F16" font-size="20">&#8722;</text>
+                <text x="485" y="48" fill="#1A6B3D" font-size="20">+</text>
+                <text x="115" y="30">f' &gt; 0</text>
+                <text x="300" y="30">f' &lt; 0</text>
+                <text x="485" y="30">f' &gt; 0</text>
+                <text x="115" y="130">f increases</text>
+                <text x="300" y="130">f decreases</text>
+                <text x="485" y="130">f increases</text>
+            </g>
+        </svg>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">So \(f\) is increasing on \((-\infty,-1)\) and on \((3,\infty)\), and decreasing on \((-1,3)\). Narrate what the picture says: the graph climbs to \(x=-1\), turns around and falls until \(x=3\), then turns again and climbs forever.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Do not skip the test points and guess that the signs alternate. They <em>often</em> do, but not always: for \(f(x)=x^4-4x^3\), whose derivative is \(4x^2(x-3)\), the sign is negative on both sides of \(x=0\), because \(x^2\) is positive on both sides. One test point per interval is the only reliable method, and it takes seconds.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; THE FIRST DERIVATIVE TEST</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A sign chart tells you where \(f\) increases and decreases. The extremum verdict then falls out in one line, because a peak is exactly a place where the graph stops climbing and begins to fall.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The First Derivative Test</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Suppose \(c\) is a critical point of \(f\) and \(f\) is continuous at \(c\). Look at the sign of \(f'\) just to the left and just to the right of \(c\). <ul style="margin: 8px 0 0 0;"><li>If \(f'\) changes from <strong>positive to negative</strong> at \(c\), then \(f\) has a <strong>local maximum</strong> at \(c\).</li><li>If \(f'\) changes from <strong>negative to positive</strong> at \(c\), then \(f\) has a <strong>local minimum</strong> at \(c\).</li><li>If \(f'\) does <strong>not change sign</strong> at \(c\), then \(f\) has <strong>no extremum</strong> at \(c\).</li></ul></div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The reason is the Increasing/Decreasing Test. If \(f'>0\) just to the left, then \(f\) is increasing there, so values rise up to \(f(c)\). If \(f'&lt;0\) just to the right, \(f\) is decreasing there, so values fall away from \(f(c)\). So \(f(c)\) is at least as high as every nearby value: a local maximum. The other cases are the same argument with the signs changed.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2 (two critical points, two different verdicts).</strong> Let \(f(x)=x^4-4x^3\). Then \(f'(x)=4x^3-12x^2=4x^2(x-3)\), so the critical points are \(x=0\) and \(x=3\). Test one point in each interval:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ f'(-1)=4(1)(-4)=-16,\qquad f'(1)=4(1)(-2)=-8,\qquad f'(4)=4(16)(1)=64. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The signs are \(-,\,-,\,+\). At \(x=0\) the sign is negative on both sides, so there is <strong>no extremum</strong> there, even though \(f'(0)=0\). At \(x=3\) the sign changes from \(-\) to \(+\), so \(f\) has a <strong>local minimum</strong> at \(x=3\), with value \(f(3)=81-108=-27\). This is the question Lesson 10.01 left open, and now it is settled.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3 (a cusp).</strong> Let \(f(x)=x^{5/3}-5x^{2/3}\). Differentiate and factor:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ f'(x)=\tfrac53x^{2/3}-\tfrac{10}{3}x^{-1/3}=\frac{5(x-2)}{3\sqrt[3]{x}} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The critical points are \(x=2\) (numerator zero) and \(x=0\), where \(f'\) does not exist but \(f\) is defined. Testing: \(f'(-1)=\dfrac{5(-3)}{3(-1)}=5>0\), \(f'(1)=\dfrac{5(-1)}{3(1)}=-\tfrac53&lt;0\), and \(f'(3)=\dfrac{5(1)}{3\sqrt[3]{3}}>0\). The signs are \(+,\,-,\,+\), so \(f\) has a <strong>local maximum at \(x=0\)</strong>, with \(f(0)=0\), and a <strong>local minimum at \(x=2\)</strong>, with \(f(2)=2^{2/3}(2-5)=-3\sqrt[3]{4}\approx-4.762\). The maximum sits at a cusp, a place no equation \(f'(x)=0\) would ever find. That is why Lesson 10.01 insisted on both kinds of critical point.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; READ THE SIGN CHART</div>
+          <div class="widget-question">In each row, \(c\) is a critical point of a function that is continuous at \(c\). Decide what the sign of \(f'\) says.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The function falls up to c and then rises, so f(c) is at the bottom of a valley." data-hint="Falling, then rising. What shape is that?">
+            <div class="widget-row-prompt">1. \(f'\) goes from \(-\) to \(+\) at \(c\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Local maximum at \(c\)</button>
+              <button data-choice="1">Local minimum at \(c\)</button>
+              <button data-choice="2">No extremum at \(c\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The function is increasing on both sides of c, so it just pauses at c on its way up, like x^3 at 0." data-hint="Does the function ever turn around?">
+            <div class="widget-row-prompt">2. \(f'\) is \(+\) on both sides of \(c\), with \(f'(c)=0\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Local maximum at \(c\)</button>
+              <button data-choice="1">Local minimum at \(c\)</button>
+              <button data-choice="2">No extremum at \(c\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The function rises up to c and then falls, so f(c) is at the top of a hill." data-hint="Rising, then falling. What shape is that?">
+            <div class="widget-row-prompt">3. \(f'\) goes from \(+\) to \(-\) at \(c\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Local maximum at \(c\)</button>
+              <button data-choice="1">Local minimum at \(c\)</button>
+              <button data-choice="2">No extremum at \(c\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. A corner or cusp does not change the test: falling, then rising, is a local minimum, like |x| at 0." data-hint="The test only needs the sign on each side. It does not need f'(c) to exist.">
+            <div class="widget-row-prompt">4. \(f'\) goes from \(-\) to \(+\) at \(c\), and \(f'(c)\) does not exist (a corner)</div>
+            <div class="widget-options">
+              <button data-choice="0">Local maximum at \(c\)</button>
+              <button data-choice="1">Local minimum at \(c\)</button>
+              <button data-choice="2">No extremum at \(c\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find the intervals of increase and decrease of \(f(x)=xe^{-x}\), and classify every critical point. Commit, then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f'(x)=e^{-x}-xe^{-x}=e^{-x}(1-x)\). Since \(e^{-x}>0\) always, the only critical point is \(x=1\). Test: \(f'(0)=1>0\) and \(f'(2)=-e^{-2}&lt;0\). So \(f\) is increasing on \((-\infty,1)\) and decreasing on \((1,\infty)\), and \(f\) has a local maximum at \(x=1\) with value \(f(1)=e^{-1}\approx0.368\).
+            </div>
+        </details>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> in two sentences, why is &ldquo;\(f'(c)=0\)&rdquo; not enough to decide whether \(c\) is a maximum, a minimum, or neither? Use \(x^2\), \(-x^2\) and \(x^3\) at \(x=0\) as your three pieces of evidence.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A graphing tool will draw the curve and let you <em>see</em> the peak. That is good evidence, but a window of the graph is not a proof: a hill that is too small for the window, or a cusp, can be missed. The sign chart is the argument; the picture is the check. Use the tool to confirm what your reasoning predicts, and when the two disagree, trust neither until you find out why.</div>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 20 Problem Set: Critical Points and the First Derivative Test</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Find critical points, build sign charts, and classify every critical point with a written reason, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 20 Quiz: Critical Points and the First Derivative Test</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material. Lesson 10.03 comes next week, so finish this quiz first.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">The sign of \(f'\) controls the behavior of \(f\): positive means increasing, negative means decreasing, and the Mean Value Theorem is why. A sign chart organizes this, and the First Derivative Test reads a verdict off it, a local maximum if the sign goes from \(+\) to \(-\), a local minimum if it goes from \(-\) to \(+\), and no extremum if it does not change. Lesson 10.03 asks a bigger question: not just where a function peaks nearby, but where it is largest or smallest on a whole interval.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 10.02 &middot; Increasing, Decreasing, and the First Derivative Test</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

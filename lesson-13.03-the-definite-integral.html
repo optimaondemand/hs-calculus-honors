@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 13.03</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 13</div>
+        <div style="font-size: 12px; color: #666;">Riemann Sums and Approximating Integrals</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 13.03</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">The Definite Integral</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Riemann Sums and Approximating Integrals</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 13.03</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">The Definite Integral</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">What number do all the Riemann sums close in on, and what does it mean when part of the graph lies below the axis?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lessons 13.01 and 13.02 built the machinery: rectangles, sigma notation, and a limit as the rectangles grow thin. Today the machinery gets a name. The limit of Riemann sums is the <strong>definite integral</strong>, and once it has a name and a notation, you can reason with it instead of recomputing it each time. You will meet its notation, learn that it counts area above the axis as positive and area below as negative, collect the rules that let you split and combine integrals, and learn when the limit fails to exist. Newton and Leibniz each had a version of this idea; the careful definition we use, as a limit of sums, was made rigorous by Cauchy and Riemann in the nineteenth century.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> define the definite integral as a limit of Riemann sums, read and write its notation, and evaluate a simple integral from the definition.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> interpret an integral as signed area, evaluate integrals of lines and circles by geometry, and distinguish an integral from an area.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> use the properties of the integral (linearity, additivity, reversing limits, comparison and bounds) and say when an integral does not exist.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus the summation formula \(\sum i^2=\tfrac{n(n+1)(2n+1)}{6}\) and the limit-at-infinity idea from Lesson 2.01.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The geometry formulas for the area of a triangle, rectangle, trapezoid, and circle, and a ruler for sketching graphs.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A willingness to keep two questions apart: what is the integral, and how much area is enclosed?</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; FROM SUMS TO THE DEFINITE INTEGRAL</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">In Lessons 13.01 and 13.02 you built left, right, and midpoint sums, and you watched them close in on a single number as the number of rectangles grew. Suppose someone hands you a continuous function on \([a,b]\) and asks for the number those sums are closing in on. Does that number depend on which kind of sum you chose (left, right, or midpoint)?</div>
+          <div class="widget-options">
+            <button data-response="For a fixed number of rectangles they differ, and the gap is exactly the one you measured in 13.01. But the gap shrinks to zero as the rectangles get thinner, so every kind of sum settles on the same number. That shared number is today's subject.">Yes, a left sum and a right sum would settle on different numbers.</button>
+            <button data-response="That is the right instinct, and it is a real theorem for continuous functions, not just a hunch. The shared limit is called the definite integral, and today you give it a name, a notation, and a set of rules.">No, every kind of sum settles on the same number as the rectangles get thinner.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">For two thousand years that number was found one problem at a time, by cleverness. Archimedes squeezed the area of a parabolic segment between inscribed and circumscribed figures. Today we name the whole idea once and for all. Cut \([a,b]\) into \(n\) equal pieces of width \(\Delta x=\dfrac{b-a}{n}\), pick a sample point \(x_i^*\) in each piece, and add up the thin rectangle areas. Then let \(n\) grow without bound.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The definite integral</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Let \(f\) be defined on \([a,b]\). The <strong>definite integral</strong> of \(f\) from \(a\) to \(b\) is \[ \int_a^b f(x)\,dx=\lim_{n\to\infty}\sum_{i=1}^{n} f(x_i^*)\,\Delta x,\qquad \Delta x=\frac{b-a}{n}, \] provided the limit exists and is the same number no matter how the sample points \(x_i^*\) are chosen. In that case we say \(f\) is <strong>integrable</strong> on \([a,b]\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Read the notation aloud, because every piece of it is a piece of the idea. The elongated \(\int\) is an old-fashioned letter S, for <em>summa</em>, the Latin word for sum; Leibniz drew it that way in 1675. The numbers \(a\) and \(b\) are the <strong>limits of integration</strong>. The \(f(x)\) is the height of a rectangle, and the \(dx\) is the width of one, the limiting form of \(\Delta x\). The letter \(x\) is a <em>dummy variable</em>: \(\int_a^b f(x)\,dx\) and \(\int_a^b f(t)\,dt\) are the same number, just as \(\sum_{i=1}^{n} i\) and \(\sum_{k=1}^{n} k\) are.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>A worked limit, using the method of Lesson 13.02.</strong> Find \(\displaystyle\int_0^3 x^2\,dx\) straight from the definition, with right endpoints \(x_i=\dfrac{3i}{n}\) and \(\Delta x=\dfrac{3}{n}\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \sum_{i=1}^{n}\Bigl(\frac{3i}{n}\Bigr)^2\frac{3}{n}=\frac{27}{n^3}\sum_{i=1}^{n} i^2=\frac{27}{n^3}\cdot\frac{n(n+1)(2n+1)}{6}=\frac{9(n+1)(2n+1)}{2n^2}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">As \(n\to\infty\), \(\dfrac{(n+1)(2n+1)}{n^2}\to 2\) (the leading coefficients, the idea of Lesson 2.01), so the sum tends to \(\dfrac{9\cdot2}{2}=9\). Therefore</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \int_0^3 x^2\,dx=9. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Which functions are guaranteed to have such a limit? Here is the fact that covers nearly everything you will meet.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Continuous functions are integrable</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(f\) is continuous on \([a,b]\), then \(f\) is integrable on \([a,b]\). The same is true if \(f\) has only finitely many jump discontinuities and is bounded.</div>
+        </div>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">We state this theorem without proving it, and we say so plainly: its proof uses the completeness of the real numbers and belongs to a later course in analysis. In this course, accept it as a fact you can rely on, and notice what it is <em>not</em> saying. It does not say that a discontinuous function can never be integrated, and it does not tell you how to compute the number. It only tells you that, for a continuous function, the number exists.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> Explain to a partner why the letter inside the integral, \(x\) or \(t\), does not change the value of \(\int_0^3 x^2\,dx\).</p>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; SIGNED AREA AND GEOMETRY</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A Riemann sum adds the quantities \(f(x_i^*)\,\Delta x\), and where \(f\) is negative those quantities are negative. So the integral is not simply &quot;the area under the curve.&quot; It is a <strong>signed area</strong>: area above the \(x\)-axis counts as positive, area below counts as negative.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Signed area</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">\(\displaystyle\int_a^b f(x)\,dx\) equals the area of the regions between the graph and the \(x\)-axis that lie above the axis, <em>minus</em> the area of the regions that lie below it.</div>
+        </div>
+        <svg viewBox="0 0 440 210" width="100%" style="max-width:460px; display:block; margin: 8px auto 14px auto;" role="img" aria-label="Graph of y = x - 2 on the interval from 0 to 5. A small triangle below the axis from x = 0 to 2 has area 2 and counts as negative. A larger triangle above the axis from x = 2 to 5 has area 4.5 and counts as positive.">
+            <line x1="30" y1="120" x2="420" y2="120" stroke="#6b7a99" stroke-width="1.5"/>
+            <line x1="50" y1="20" x2="50" y2="200" stroke="#6b7a99" stroke-width="1.5"/>
+            <polygon points="50,120 50,160 130,120" fill="#E74C3C" fill-opacity="0.35" stroke="#C0392B" stroke-width="1"/>
+            <polygon points="130,120 370,120 370,48" fill="#55C8E8" fill-opacity="0.45" stroke="#2196D0" stroke-width="1"/>
+            <line x1="50" y1="160" x2="370" y2="48" stroke="#0E1C42" stroke-width="2.5"/>
+            <text x="64" y="146" font-size="13" fill="#8A1F16">area 2</text>
+            <text x="64" y="162" font-size="13" fill="#8A1F16">(counts as &#8722;2)</text>
+            <text x="270" y="104" font-size="13" fill="#1B6A94">area 4.5 (counts as +4.5)</text>
+            <text x="126" y="136" font-size="12" fill="#0E1C42">2</text>
+            <text x="366" y="136" font-size="12" fill="#0E1C42">5</text>
+            <text x="40" y="136" font-size="12" fill="#0E1C42">0</text>
+            <text x="320" y="38" font-size="13" fill="#0E1C42">y = x &#8722; 2</text>
+        </svg>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Worked example.</strong> Evaluate \(\displaystyle\int_0^5 (x-2)\,dx\) with geometry alone. The line \(y=x-2\) crosses the axis at \(x=2\). From \(0\) to \(2\) it lies below the axis and encloses a triangle of base \(2\) and height \(2\), area \(\tfrac12\cdot2\cdot2=2\). From \(2\) to \(5\) it lies above the axis and encloses a triangle of base \(3\) and height \(3\), area \(\tfrac12\cdot3\cdot3=\tfrac92\). Signed area:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \int_0^5 (x-2)\,dx=\frac92-2=\frac52. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The <em>total</em> (unsigned) area between the line and the axis is \(\tfrac92+2=\tfrac{13}{2}\), a different number answering a different question. Keep the two questions apart: &quot;what is the integral?&quot; and &quot;how much area is enclosed?&quot; are not the same question whenever the graph dips below the axis.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Geometry gives exact integrals.</strong> When the graph is a line, a rectangle, a triangle, or part of a circle, you know the area formula already:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \int_0^4 x\,dx=\tfrac12(4)(4)=8,\qquad \int_{-2}^{2}\sqrt{4-x^2}\,dx=\tfrac12\pi(2)^2=2\pi. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The second graph is the upper half of the circle \(x^2+y^2=4\), a semicircle of radius \(2\), so its area is half of \(\pi r^2\). No limit of sums was needed. The ancient geometers would have felt right at home.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;"><strong>Integral does not mean area.</strong> \(\displaystyle\int_{-3}^{3} x^3\,dx=0\), because the area below the axis on \([-3,0]\) exactly cancels the area above it on \([0,3]\). A student who reads that as &quot;there is no area between the curve and the axis&quot; has misread the symbol. When a problem asks for <em>area</em> you split at the places where the graph crosses the axis; when it asks for the <em>integral</em> you do not.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; SIGNED AREA</div>
+          <div class="widget-question">Each row asks for an integral, so keep the sign in mind. Choose the value.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The triangle has area 1/2 * 6 * 3 = 9, and it lies above the axis, so the integral is +9." data-hint="Use the triangle formula: half of base times height. Is the region above or below the axis?">
+            <div class="widget-row-prompt">1. \(\displaystyle\int_0^6 \bigl(\tfrac12 x\bigr)\,dx\) (a triangle above the axis with base 6 and height 3)</div>
+            <div class="widget-options">
+              <button data-choice="0">3</button>
+              <button data-choice="1">9</button>
+              <button data-choice="2">18</button>
+              <button data-choice="3">-9</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. The triangle on [-1,0] lies below the axis (area 1/2, counted negative) and the triangle on [0,1] lies above (area 1/2, counted positive). They cancel." data-hint="Sketch y = x on [-1,1]. How do the two triangles compare, and what are their signs?">
+            <div class="widget-row-prompt">2. \(\displaystyle\int_{-1}^{1} x\,dx\)</div>
+            <div class="widget-options">
+              <button data-choice="0">2</button>
+              <button data-choice="1">1</button>
+              <button data-choice="2">-1</button>
+              <button data-choice="3">0</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. A constant function -3 on an interval of length 2 is a rectangle of area 6 lying below the axis, so the integral is -6." data-hint="The graph is a horizontal line below the axis. Find the rectangle's area, then decide its sign.">
+            <div class="widget-row-prompt">3. \(\displaystyle\int_0^2 (-3)\,dx\)</div>
+            <div class="widget-options">
+              <button data-choice="0">-6</button>
+              <button data-choice="1">6</button>
+              <button data-choice="2">-3</button>
+              <button data-choice="3">0</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. A quarter of a circle of radius 2 has area (1/4) * pi * 2^2 = pi." data-hint="The region is a quarter of a full circle of radius 2. What fraction of pi r^2 is that?">
+            <div class="widget-row-prompt">4. \(\displaystyle\int_0^2 \sqrt{4-x^2}\,dx\) (a quarter of the circle \(x^2+y^2=4\))</div>
+            <div class="widget-options">
+              <button data-choice="0">\(2\pi\)</button>
+              <button data-choice="1">\(\pi\)</button>
+              <button data-choice="2">\(4\pi\)</button>
+              <button data-choice="3">\(\pi/2\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; THE RULES OF THE INTEGRAL</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Because the integral is a limit of sums, it inherits the rules of sums. These rules let you break a hard integral into easy ones, and they are the working vocabulary of the rest of the course. Assume \(f\) and \(g\) are integrable on every interval below.</p>
+        <div style="border: 1px solid #D0D9E8; border-radius: 6px; overflow: hidden; margin: 12px 0;">
+            <div style="display:flex; flex-wrap:wrap; gap:12px; padding:10px 16px; background:#FFFFFF; border-top:none;"><div style="flex:2; min-width:230px; font-size:17px; color:#0e1c42;">\[ \int_a^a f(x)\,dx=0 \]</div><div style="flex:1; min-width:180px; font-size:15px; color:#444; line-height:1.5; align-self:center;">No width, no area.</div></div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; padding:10px 16px; background:#F7F9FC; border-top:1px solid #D0D9E8;"><div style="flex:2; min-width:230px; font-size:17px; color:#0e1c42;">\[ \int_b^a f(x)\,dx=-\int_a^b f(x)\,dx \]</div><div style="flex:1; min-width:180px; font-size:15px; color:#444; line-height:1.5; align-self:center;">Reversing the direction of travel reverses the sign (\(\Delta x\) becomes negative).</div></div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; padding:10px 16px; background:#FFFFFF; border-top:1px solid #D0D9E8;"><div style="flex:2; min-width:230px; font-size:17px; color:#0e1c42;">\[ \int_a^b c\,f(x)\,dx=c\int_a^b f(x)\,dx \]</div><div style="flex:1; min-width:180px; font-size:15px; color:#444; line-height:1.5; align-self:center;">A constant multiple comes outside.</div></div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; padding:10px 16px; background:#F7F9FC; border-top:1px solid #D0D9E8;"><div style="flex:2; min-width:230px; font-size:17px; color:#0e1c42;">\[ \int_a^b \bigl[f(x)\pm g(x)\bigr]\,dx=\int_a^b f(x)\,dx\pm\int_a^b g(x)\,dx \]</div><div style="flex:1; min-width:180px; font-size:15px; color:#444; line-height:1.5; align-self:center;">The limit of a sum is the sum of the limits (Lesson 1.02).</div></div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; padding:10px 16px; background:#FFFFFF; border-top:1px solid #D0D9E8;"><div style="flex:2; min-width:230px; font-size:17px; color:#0e1c42;">\[ \int_a^c f(x)\,dx+\int_c^b f(x)\,dx=\int_a^b f(x)\,dx \]</div><div style="flex:1; min-width:180px; font-size:15px; color:#444; line-height:1.5; align-self:center;">Additivity: cut the interval anywhere, even outside \([a,b]\) if \(f\) is integrable there.</div></div>
+            <div style="display:flex; flex-wrap:wrap; gap:12px; padding:10px 16px; background:#F7F9FC; border-top:1px solid #D0D9E8;"><div style="flex:2; min-width:230px; font-size:17px; color:#0e1c42;">\[ \text{If } f(x)\ge g(x)\text{ on }[a,b]\text{, then }\int_a^b f(x)\,dx\ge\int_a^b g(x)\,dx \]</div><div style="flex:1; min-width:180px; font-size:15px; color:#444; line-height:1.5; align-self:center;">Comparison: a taller function encloses at least as much signed area.</div></div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Worked example (using only the rules).</strong> Suppose \(\int_0^2 f(x)\,dx=3\), \(\int_2^5 f(x)\,dx=-1\), and \(\int_0^5 g(x)\,dx=4\). Find \(\int_0^5 \bigl[2f(x)-g(x)\bigr]\,dx\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">By additivity, \(\int_0^5 f(x)\,dx=3+(-1)=2\). By linearity,</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \int_0^5 \bigl[2f(x)-g(x)\bigr]\,dx=2(2)-4=0. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Notice what we never did: we never needed to know what \(f\) or \(g\) <em>is</em>. The rules are enough.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Bounding an integral without computing it</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Comparison has a handy consequence. If \(m\le f(x)\le M\) on \([a,b]\), then the integral lies between the area of the smallest and the largest rectangle that fit the interval:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ m(b-a)\le\int_a^b f(x)\,dx\le M(b-a). \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">For \(f(x)=\dfrac{1}{1+x^2}\) on \([0,1]\), the function falls from \(f(0)=1\) to \(f(1)=\tfrac12\), so \(\tfrac12\le f(x)\le1\), and therefore \(\tfrac12(1)\le\int_0^1\frac{dx}{1+x^2}\le1(1)\). The integral is trapped between \(0.5\) and \(1\) before we know anything else about it. (In a later lesson you will find its exact value, about \(0.785\), and see that it sits comfortably inside the bounds.)</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; PROPERTIES</div>
+          <div class="widget-question">Suppose \(\int_1^4 f(x)\,dx=5\) and \(\int_1^4 g(x)\,dx=2\). Use the rules to evaluate each.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Linearity: 5 + 2 = 7." data-hint="The integral of a sum is the sum of the integrals.">
+            <div class="widget-row-prompt">1. \(\displaystyle\int_1^4 \bigl[f(x)+g(x)\bigr]\,dx\)</div>
+            <div class="widget-options">
+              <button data-choice="0">10</button>
+              <button data-choice="1">3</button>
+              <button data-choice="2">7</button>
+              <button data-choice="3">-7</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Reversing the limits flips the sign, so the answer is -5." data-hint="The limits are written in the opposite order from the given integral.">
+            <div class="widget-row-prompt">2. \(\displaystyle\int_4^1 f(x)\,dx\)</div>
+            <div class="widget-options">
+              <button data-choice="0">5</button>
+              <button data-choice="1">-5</button>
+              <button data-choice="2">0</button>
+              <button data-choice="3">1/5</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. 3(5) - 2(2) = 15 - 4 = 11." data-hint="Pull each constant out front, then substitute the two known values.">
+            <div class="widget-row-prompt">3. \(\displaystyle\int_1^4 \bigl[3f(x)-2g(x)\bigr]\,dx\)</div>
+            <div class="widget-options">
+              <button data-choice="0">11</button>
+              <button data-choice="1">19</button>
+              <button data-choice="2">6</button>
+              <button data-choice="3">-11</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. By the bound m(b - a) with m = 2 and b - a = 3, the integral is at least 6." data-hint="Use m(b - a). What is the width of the interval?">
+            <div class="widget-row-prompt">4. If \(h(x)\ge 2\) on \([1,4]\), what is the smallest value \(\int_1^4 h(x)\,dx\) could have?</div>
+            <div class="widget-options">
+              <button data-choice="0">2</button>
+              <button data-choice="1">6</button>
+              <button data-choice="2">8</button>
+              <button data-choice="3">3</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 4 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; WHEN THE INTEGRAL DOES NOT EXIST</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The definition has fine print, and an honest mathematician reads it. The integral is defined only when the limit of the sums <em>exists</em>. For a continuous function on a closed interval, it always does. For other functions, it can fail.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The integral that does not exist.</strong> Consider \(\displaystyle\int_{-1}^{1}\frac{1}{x^2}\,dx\). The graph of \(f(x)=1/x^2\) shoots up without bound near \(x=0\) (Lesson 2.02's vertical asymptote), and \(f\) is not even defined at \(0\). A Riemann sum would have to evaluate \(f\) at a sample point in the piece containing \(0\), and by choosing that point closer and closer to \(0\) you can make the sum as large as you like, so the sums have no limit. This integral does not exist as a definite integral, and no formula, however tempting, can make it exist.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">This is the same honesty you practiced with the Mean Value Theorem in Lesson 8.03: a result is a promise that holds <em>only while its hypotheses hold</em>. Later this semester you will learn a shortcut for evaluating integrals. Before you trust any shortcut, ask first whether the integral exists. A machine will sometimes hand back a number for \(\int_{-1}^{1}x^{-2}\,dx\) anyway, and the number will be meaningless.</div>
+        </div>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A graphing tool or computer algebra system can evaluate a definite integral in a blink. Treat its answer as a claim to check, not a verdict. Does the answer have the right sign for the picture? Is it between the bounds \(m(b-a)\) and \(M(b-a)\)? Does the integral exist at all? The tool does not know which of these questions you needed answered. You do.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it first: using signed area, evaluate \(\displaystyle\int_0^4 \bigl|x-2\bigr|\,dx\), then explain why \(\displaystyle\int_0^4 (x-2)\,dx\) is a different number.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                The graph of \(y=|x-2|\) is a &quot;V&quot; with its vertex at \((2,0)\) and it lies on or above the axis, so there is no negative area. Two triangles, each with base \(2\) and height \(2\), give \(2+2=4\), so \(\int_0^4|x-2|\,dx=4\). For \(y=x-2\), the left triangle lies below the axis and counts as \(-2\) while the right triangle counts as \(+2\), so \(\int_0^4(x-2)\,dx=0\). Same triangles, but the sign decides the answer.
+            </div>
+        </details>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it first: write \(\displaystyle\int_0^3 (2x+1)\,dx\) as a sum of two integrals you can evaluate by geometry, and find its value.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Linearity gives \(2\int_0^3 x\,dx+\int_0^3 1\,dx\). The first is a triangle: \(\tfrac12(3)(3)=\tfrac92\), times \(2\) gives \(9\). The second is a rectangle of height \(1\) and width \(3\), area \(3\). Total: \(9+3=12\). (Check by trapezoid: the line goes from height \(1\) to height \(7\) over width \(3\), so the area is \(\tfrac{1+7}{2}\cdot3=12\). It agrees.)
+            </div>
+        </details>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 27 Problem Set: The Definite Integral and the Trapezoidal Rule</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Evaluate integrals by definition and by geometry, use the properties, and work trapezoid problems, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 27 Quiz: The Definite Integral and the Trapezoidal Rule</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material. Lesson 13.04 comes first, so finish it before the quiz.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">The definite integral \(\int_a^b f(x)\,dx\) is the limit of Riemann sums, and it counts area above the axis as positive and area below as negative. It obeys the rules of sums, it is guaranteed to exist for a continuous function, and it can fail to exist when the function is unbounded. Lesson 13.04 turns from exact values to practical ones: when a function is given only by a table of data, or has no simple area formula, you can still approximate its integral well, and the Trapezoidal Rule is the tool.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 13.03 &middot; The Definite Integral</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

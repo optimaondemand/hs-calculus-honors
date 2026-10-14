@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 12.03</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 12</div>
+        <div style="font-size: 12px; color: #666;">Optimization, Motion, and Related Rates</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 12.03</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Motion Along a Line</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Optimization, Motion, and Related Rates</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 12.03</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Motion Along a Line</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Two cars can end a trip in the same place after one drove 20 miles and the other drove 28. Calculus has to be able to tell them apart.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 8.02 gave you the vocabulary of motion: position, velocity, and acceleration. Today you turn it into a method. A sign chart for velocity tells you which way a particle is moving and exactly when it turns around. Comparing the signs of velocity and acceleration tells you whether it is speeding up or slowing down. Splitting a trip at its turnarounds tells you the distance actually traveled, which can be very different from the displacement. You will finish with the most famous motion in the history of science, a body in free fall, and with a habit that matters in every applied problem: stating the assumptions of your model and checking your answer against the story.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> use a sign chart of \(v\) and the signs of \(v\) and \(a\) to describe when a particle moves forward or backward and when it speeds up or slows down.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> find displacement and total distance for a particle that changes direction, by splitting the interval at every time \(v=0\).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> solve a free-fall problem from \(s(t)=-4.9t^2+v_0t+s_0\): the peak, the landing time, the impact velocity, and the distance traveled, and state the model's assumptions.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus your notes on position, velocity, and acceleration from Lesson 8.02.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A calculator for arithmetic only. Every derivative and sign chart in this lesson is meant to be done by hand.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; DIRECTION, SPEED, AND THE SIGN CHART</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A particle moves along a line. At one moment its velocity is \(-3\) ft/s. Which statement do you expect is true at that moment?</div>
+          <div class="widget-options">
+            <button data-response="Right. The sign of velocity is direction and the size of velocity is speed. Today the whole lesson is built on that split: a sign chart for direction, absolute value for speed.">It is moving in the negative direction, and its speed is 3 ft/s.</button>
+            <button data-response="That is the most common mix-up. A negative velocity only says which way the particle is moving. Whether it is slowing down depends on the acceleration as well. You will build the exact rule below.">It is slowing down, because the velocity is negative.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 8.02 introduced position \(s(t)\), velocity \(v(t)=s'(t)\), and acceleration \(a(t)=v'(t)=s''(t)\) for a particle on a line, and you found that a particle can turn around and end up far from where it has traveled. Today you turn that into a method precise enough to answer any question about a motion. Three questions cover almost everything: Which way is it moving? Is it speeding up or slowing down? How far has it really gone?</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The vocabulary of motion on a line</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;"><strong>Velocity</strong> \(v(t)=s'(t)\) carries a sign: positive means moving in the positive direction, negative the other way, zero means momentarily at rest.<br><strong>Speed</strong> is \(|v(t)|\), the size of the velocity, never negative.<br><strong>Acceleration</strong> \(a(t)=v'(t)\) is the rate of change of velocity.<br><strong>Speeding up</strong> when \(v\) and \(a\) have the <em>same</em> sign; <strong>slowing down</strong> when they have <em>opposite</em> signs.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Why the sign rule is true.</strong> Speed is \(|v|\). If \(v>0\), then \(|v|=v\), and the speed changes at the rate \(v'=a\): speeding up exactly when \(a>0\). If \(v<0\), then \(|v|=-v\), and the speed changes at the rate \(-v'=-a\): speeding up exactly when \(a<0\). In both cases speeding up means \(a\) and \(v\) agree in sign. At the instant \(v=0\) the particle is at rest, so it is neither.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1.</strong> A particle moves along a line with position \(s(t)=t^3-9t^2+24t\) feet, \(t\) in seconds, for \(0\le t\le5\). Find velocity and acceleration and factor them:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ v(t)=3t^2-18t+24=3(t-2)(t-4),\qquad a(t)=6t-18=6(t-3). \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The particle is at rest at \(t=2\) and \(t=4\), the only times \(v=0\). Test a value in each interval to build the sign chart for \(v\), and mark where \(a\) changes sign, at \(t=3\):</p>
+        <div style="overflow-x: auto; margin: 10px 0 14px 0;">
+        <table style="border-collapse: collapse; width: 100%; font-size: 16px; color: #1a2340;">
+            <tr style="background: #EEF1F8;"><th style="border: 1px solid #D0D9E8; padding: 8px;">Interval</th><th style="border: 1px solid #D0D9E8; padding: 8px;">Sign of \(v\)</th><th style="border: 1px solid #D0D9E8; padding: 8px;">Sign of \(a\)</th><th style="border: 1px solid #D0D9E8; padding: 8px;">Motion</th></tr>
+            <tr><td style="border: 1px solid #D0D9E8; padding: 8px;">\(0<t<2\)</td><td style="border: 1px solid #D0D9E8; padding: 8px;">\(+\) (\(v(1)=9\))</td><td style="border: 1px solid #D0D9E8; padding: 8px;">\(-\)</td><td style="border: 1px solid #D0D9E8; padding: 8px;">forward, slowing down</td></tr>
+            <tr><td style="border: 1px solid #D0D9E8; padding: 8px;">\(2<t<3\)</td><td style="border: 1px solid #D0D9E8; padding: 8px;">\(-\) (\(v(2.5)=-\tfrac94\))</td><td style="border: 1px solid #D0D9E8; padding: 8px;">\(-\)</td><td style="border: 1px solid #D0D9E8; padding: 8px;">backward, speeding up</td></tr>
+            <tr><td style="border: 1px solid #D0D9E8; padding: 8px;">\(3<t<4\)</td><td style="border: 1px solid #D0D9E8; padding: 8px;">\(-\) (\(v(3.5)=-\tfrac94\))</td><td style="border: 1px solid #D0D9E8; padding: 8px;">\(+\)</td><td style="border: 1px solid #D0D9E8; padding: 8px;">backward, slowing down</td></tr>
+            <tr><td style="border: 1px solid #D0D9E8; padding: 8px;">\(4<t<5\)</td><td style="border: 1px solid #D0D9E8; padding: 8px;">\(+\) (\(v(5)=9\))</td><td style="border: 1px solid #D0D9E8; padding: 8px;">\(+\)</td><td style="border: 1px solid #D0D9E8; padding: 8px;">forward, speeding up</td></tr>
+        </table>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Notice the particle's fastest backward moment: at \(t=3\) the acceleration is zero and the speed is \(|v(3)|=|3(1)(-1)|=3\) ft/s, the largest speed during the backward stretch. The position graph below shows the same story as the table: the curve climbs until the first turnaround, falls between the two, and climbs again.</p>
+<svg viewBox="0 0 520 260" role="img" aria-label="Position graph of s(t) = t cubed minus 9 t squared plus 24 t, rising to a high point at t = 2, falling to a low point at t = 4, then rising again" style="width:100%; max-width:520px; display:block; margin:10px auto; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:8px;"><line x1="56" y1="226" x2="500" y2="226" stroke="#6b7a99" stroke-width="1.5"/><line x1="56" y1="20" x2="56" y2="226" stroke="#6b7a99" stroke-width="1.5"/><line x1="56" y1="226" x2="56" y2="231" stroke="#6b7a99"/><text x="56" y="246" font-size="12" fill="#1a2340" text-anchor="middle">0</text><line x1="140" y1="226" x2="140" y2="231" stroke="#6b7a99"/><text x="140" y="246" font-size="12" fill="#1a2340" text-anchor="middle">1</text><line x1="224" y1="226" x2="224" y2="231" stroke="#6b7a99"/><text x="224" y="246" font-size="12" fill="#1a2340" text-anchor="middle">2</text><line x1="308" y1="226" x2="308" y2="231" stroke="#6b7a99"/><text x="308" y="246" font-size="12" fill="#1a2340" text-anchor="middle">3</text><line x1="392" y1="226" x2="392" y2="231" stroke="#6b7a99"/><text x="392" y="246" font-size="12" fill="#1a2340" text-anchor="middle">4</text><line x1="476" y1="226" x2="476" y2="231" stroke="#6b7a99"/><text x="476" y="246" font-size="12" fill="#1a2340" text-anchor="middle">5</text><line x1="51" y1="226" x2="56" y2="226" stroke="#6b7a99"/><text x="46" y="230" font-size="12" fill="#1a2340" text-anchor="end">0</text><line x1="51" y1="146" x2="56" y2="146" stroke="#6b7a99"/><text x="46" y="150" font-size="12" fill="#1a2340" text-anchor="end">10</text><line x1="51" y1="66" x2="56" y2="66" stroke="#6b7a99"/><text x="46" y="70" font-size="12" fill="#1a2340" text-anchor="end">20</text><polyline points="56.0,226.0 60.2,216.6 64.4,207.5 68.6,198.8 72.8,190.4 77.0,182.4 81.2,174.7 85.4,167.3 89.6,160.2 93.8,153.5 98.0,147.0 102.2,140.8 106.4,135.0 110.6,129.4 114.8,124.1 119.0,119.1 123.2,114.4 127.4,109.9 131.6,105.7 135.8,101.7 140.0,98.0 144.2,94.5 148.4,91.3 152.6,88.3 156.8,85.5 161.0,82.9 165.2,80.5 169.4,78.3 173.6,76.4 177.8,74.6 182.0,73.0 186.2,71.6 190.4,70.4 194.6,69.3 198.8,68.4 203.0,67.6 207.2,67.0 211.4,66.6 215.6,66.2 219.8,66.1 224.0,66.0 228.2,66.1 232.4,66.2 236.6,66.5 240.8,66.9 245.0,67.4 249.2,67.9 253.4,68.6 257.6,69.3 261.8,70.1 266.0,71.0 270.2,71.9 274.4,72.9 278.6,73.9 282.8,75.0 287.0,76.1 291.2,77.3 295.4,78.4 299.6,79.6 303.8,80.8 308.0,82.0 312.2,83.2 316.4,84.4 320.6,85.6 324.8,86.7 329.0,87.9 333.2,89.0 337.4,90.1 341.6,91.1 345.8,92.1 350.0,93.0 354.2,93.9 358.4,94.7 362.6,95.4 366.8,96.1 371.0,96.6 375.2,97.1 379.4,97.5 383.6,97.8 387.8,97.9 392.0,98.0 396.2,97.9 400.4,97.8 404.6,97.4 408.8,97.0 413.0,96.4 417.2,95.6 421.4,94.7 425.6,93.6 429.8,92.4 434.0,91.0 438.2,89.4 442.4,87.6 446.6,85.7 450.8,83.5 455.0,81.1 459.2,78.5 463.4,75.7 467.6,72.7 471.8,69.5 476.0,66.0" fill="none" stroke="#0E1C42" stroke-width="2.5"/><circle cx="224.0" cy="66.0" r="4" fill="#C7922C"/><circle cx="308.0" cy="82.0" r="4" fill="#C7922C"/><circle cx="392.0" cy="98.0" r="4" fill="#C7922C"/><circle cx="476.0" cy="66.0" r="4" fill="#C7922C"/><text x="224.0" y="56.0" font-size="12" fill="#8A5F12" text-anchor="middle">turns around (t = 2)</text><text x="392.0" y="120.0" font-size="12" fill="#8A5F12" text-anchor="middle">turns around (t = 4)</text><text x="496" y="240" font-size="12" fill="#1a2340" text-anchor="end">t (seconds)</text><text x="62" y="30" font-size="12" fill="#1a2340">s (feet)</text></svg>        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> the particle has a negative velocity at \(t=2.5\) and a negative acceleration there too. Is it slowing down? Use the sign rule, and say it in your own words, not only in symbols.</p>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; TOTAL DISTANCE VERSUS DISPLACEMENT</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now the question the sign chart was built to answer: how far did the particle actually travel? Displacement and distance are different quantities, and a motion that turns around makes the difference visible.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Displacement and total distance</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;"><strong>Displacement</strong> from \(t=a\) to \(t=b\) is \(s(b)-s(a)\), a signed number that only compares the end with the start.<br><strong>Total distance</strong> is the sum of the lengths of the legs between turnarounds: split \([a,b]\) at every time \(v=0\) (inside the interval), and add the absolute values \(|s(\text{end of leg})-s(\text{start of leg})|\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1, continued.</strong> Positions at the key times: \(s(0)=0\), \(s(2)=8-36+48=20\), \(s(4)=64-144+96=16\), \(s(5)=125-225+120=20\). The turnarounds are \(t=2\) and \(t=4\), so there are three legs on \([0,5]\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \text{displacement}=s(5)-s(0)=20-0=20\ \text{ft}, \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \text{total distance}=|20-0|+|16-20|+|20-16|=20+4+4=28\ \text{ft}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The particle ends 20 feet from where it started, yet it covered 28 feet of ground. The gap of 8 feet is the 4 feet it backed up and then had to cover again. If you had computed \(|s(5)-s(0)|=20\) and called it the distance, you would have been 8 feet short, which is exactly the error a sign chart prevents.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Do not find total distance by plugging only the two endpoints into \(|s(b)-s(a)|\), and do not integrate or add up \(v\) without checking its sign. Both methods treat the backward stretch as if it undid the forward stretch. The honest procedure is always the same: find every time \(v=0\), cut the interval there, and add the legs.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; DIRECTION, SPEEDING UP, SLOWING DOWN</div>
+          <div class="widget-question">For each moment, choose the description that matches the signs of velocity and acceleration.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. v and a are both positive, so they have the same sign. The particle moves forward, and its speed is increasing." data-hint="Compare the signs of v and a. If they agree, speed grows; if they disagree, speed shrinks.">
+            <div class="widget-row-prompt">1. \(v=4\) m/s and \(a=1.5\) m/s\(^2\).</div>
+            <div class="widget-options">
+              <button data-choice="0">Moving forward, slowing down</button>
+              <button data-choice="1">Moving backward, speeding up</button>
+              <button data-choice="2">Moving forward, speeding up</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. v is negative (backward) and a is positive, opposite signs, so the speed decreases: it is slowing down even though the acceleration number is positive." data-hint="The acceleration is positive but the velocity is negative. Do the signs agree or disagree?">
+            <div class="widget-row-prompt">2. \(v=-3\) m/s and \(a=2\) m/s\(^2\).</div>
+            <div class="widget-options">
+              <button data-choice="0">Moving backward, slowing down</button>
+              <button data-choice="1">Moving forward, slowing down</button>
+              <button data-choice="2">Moving backward, speeding up</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Both are negative, the same sign, so speed increases. The particle is moving backward and getting faster, like a ball falling faster and faster after you define up as positive." data-hint="Negative velocity means backward. Negative acceleration with negative velocity: do the signs agree?">
+            <div class="widget-row-prompt">3. \(v=-2\) m/s and \(a=-5\) m/s\(^2\).</div>
+            <div class="widget-options">
+              <button data-choice="0">Moving forward, speeding up</button>
+              <button data-choice="1">Moving backward, slowing down</button>
+              <button data-choice="2">Moving backward, speeding up</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. At v = 0 the particle is momentarily at rest; because a is negative, the velocity is about to become negative, so it turns around and heads backward." data-hint="Speed is zero at this instant. What does a negative acceleration do to a velocity of 0?">
+            <div class="widget-row-prompt">4. \(v=0\) m/s at the instant the position graph reaches a high point, and \(a=-6\) m/s\(^2\) there.</div>
+            <div class="widget-options">
+              <button data-choice="0">Momentarily at rest, about to move backward</button>
+              <button data-choice="1">Moving forward at constant speed</button>
+              <button data-choice="2">Moving backward, slowing down</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: a particle has position \(s(t)=\tfrac13t^3-3t^2+8t\) meters for \(0\le t\le5\). Find \(v\) and \(a\), when it is at rest, when it is speeding up, its displacement, and its total distance. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(v(t)=t^2-6t+8=(t-2)(t-4)\) and \(a(t)=2t-6\), so it is at rest at \(t=2\) and \(t=4\). Velocity is \(+\) on \((0,2)\), \(-\) on \((2,4)\), \(+\) on \((4,5)\); acceleration is \(-\) for \(t<3\) and \(+\) for \(t>3\). Speeding up (same signs): \((2,3)\) and \((4,5)\). Slowing down (opposite signs): \((0,2)\) and \((3,4)\). Positions: \(s(0)=0\), \(s(2)=\tfrac{20}{3}\), \(s(4)=\tfrac{16}{3}\), \(s(5)=\tfrac{20}{3}\). Displacement \(=\tfrac{20}{3}\) m. Total distance \(=\tfrac{20}{3}+\tfrac43+\tfrac43=\tfrac{28}{3}\) m, about 9.33 m.
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; FREE FALL: A MODEL WITH HONEST LIMITS</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The oldest, most famous motion problem in the history of calculus is a falling body. Galileo measured it and found that an object released from rest falls distances in the ratio 1 : 3 : 5 : 7 over successive equal time intervals; Newton explained why. Near Earth's surface, with position \(s(t)\) measured upward in meters, the model is</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ s(t)=-4.9t^2+v_0t+s_0,\qquad a(t)=-9.8\ \text{m/s}^2, \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">where \(v_0\) is the initial velocity and \(s_0\) the initial height. The acceleration is the same \(-9.8\) the whole time, going up <em>and</em> coming down. That one constant already explains everything about the flight.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2: a stone thrown from a bridge.</strong> A stone is thrown straight up from a bridge at \(14.7\) m/s, from a height of \(19.6\) m above the river:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ s(t)=-4.9t^2+14.7t+19.6,\qquad v(t)=-9.8t+14.7. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The peak.</strong> The stone is at rest at the top: \(v(t)=0\) gives \(t=1.5\) s, and \(s(1.5)=-11.025+22.05+19.6=30.625\) m. The stone rises \(30.625-19.6=11.025\) m above the bridge.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The splash.</strong> It hits the river when \(s(t)=0\): \(-4.9t^2+14.7t+19.6=0\). Divide by \(-4.9\): \(t^2-3t-4=0\), so \((t-4)(t+1)=0\). The root \(t=-1\) is before the throw, so the stone lands at \(t=4\) s, with velocity \(v(4)=-39.2+14.7=-24.5\) m/s. Its impact speed is \(24.5\) m/s, more than the \(14.7\) m/s with which it left your hand, because it fell the extra \(19.6\) m below the release point.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Displacement and distance.</strong> Displacement \(=s(4)-s(0)=0-19.6=-19.6\) m (it ends 19.6 m below where it started). Total distance: up \(11.025\) m, then down \(30.625\) m, a total of</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ 11.025+30.625=41.65\ \text{m}. \]
+        </p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Galileo's insight, in about 1604, was to ask what changes at a steady rate. Not the position, not the velocity, but the <em>velocity</em>: constant acceleration. In calculus language, \(s''(t)=-9.8\) is a constant, which forces \(s\) to be a quadratic. You proved a piece of this idea in Lesson 8.04: a function is determined by its derivative up to a constant. Module 15 will turn that into a tool that runs the model backward.</div>
+        </div>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A model is honest about its limits. The formula \(s(t)=-4.9t^2+14.7t+19.6\) ignores air resistance, so it is accurate for a dense stone over a short fall and wrong for a falling feather. When you answer a motion problem, state the assumption (here, constant acceleration \(-9.8\) m/s\(^2\)) and check that your answer makes sense in the context: a negative time means the question was asked about a moment before the story began.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; READ THE MOTION</div>
+          <div class="widget-question">A stone is thrown upward from a bridge, as in Example 2. Choose the correct statement.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Velocity is zero at the top, but gravity is still pulling: acceleration is -9.8 m/s^2 at every moment of the flight. At rest does not mean zero acceleration." data-hint="Is gravity switched off at the top? The acceleration is the same constant the whole flight.">
+            <div class="widget-row-prompt">1. At the peak, \(t=1.5\) s,</div>
+            <div class="widget-options">
+              <button data-choice="0">velocity is \(-9.8\) m/s</button>
+              <button data-choice="1">velocity is \(0\) and acceleration is \(-9.8\) m/s\(^2\)</button>
+              <button data-choice="2">acceleration is \(0\) because the stone is at rest</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. After the peak, v is negative and a is negative. Same signs means speeding up, which matches the impact speed 24.5 m/s being larger than the speed just after the peak." data-hint="Check the signs of v and a after t = 1.5 using the same-sign rule.">
+            <div class="widget-row-prompt">2. Between \(t=1.5\) and \(t=4\) s, the stone is</div>
+            <div class="widget-options">
+              <button data-choice="0">slowing down, because it is moving downward</button>
+              <button data-choice="1">speeding up, because \(v\) and \(a\) are both negative</button>
+              <button data-choice="2">moving at constant speed</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The stone goes up 11.025 m and then down 30.625 m: 41.65 m of travel for a displacement of only -19.6 m." data-hint="What happens at t = 1.5 that makes endpoints alone misleading?">
+            <div class="widget-row-prompt">3. The total distance the stone travels is not \(|s(4)-s(0)|=19.6\) m because</div>
+            <div class="widget-options">
+              <button data-choice="0">the stone changes direction at \(t=1.5\), so the legs must be added separately</button>
+              <button data-choice="1">the stone's speed is not constant</button>
+              <button data-choice="2">total distance always equals twice the displacement</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Next in Lesson 12.04, the same chain-rule thinking leaves the line and enters the plane: when several changing quantities are tied together by one equation, their rates of change are tied together too.</p>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 25 Problem Set: Motion and Related Rates</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Work every problem by hand, show your sign charts, and upload your completed pages as one PDF.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 25 Quiz: Motion and Related Rates</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Velocity's sign is direction and its absolute value is speed. A particle speeds up when velocity and acceleration agree in sign and slows down when they disagree. Displacement compares the end with the start; total distance adds the legs between turnarounds, and you find the turnarounds by solving \(v=0\). Free fall is the same machinery with one constant acceleration, \(-9.8\) m/s\(^2\), plus the honesty to say what the model leaves out. Next, Lesson 12.04 on related rates asks what happens when several changing quantities are tied together by a single equation: differentiate the equation with respect to time, and the rates become tied together too.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 12.03 &middot; Motion Along a Line</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

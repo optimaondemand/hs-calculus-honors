@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 9.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 9</div>
+        <div style="font-size: 12px; color: #666;">Tangent Lines and Linear Approximation</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 9.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Vertical Tangents and Cusps</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Tangent Lines and Linear Approximation</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 9.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Vertical Tangents and Cusps</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">The derivative of \(\sqrt[3]{x}\) does not exist at \(0\). Yet the graph has a perfectly good tangent line there. How can both be true?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 9.01 assumed every slope was a real number. But a curve can climb so steeply at a point that its slope is not a number at all, and the curve is still perfectly smooth there. Today is about that edge case. You will see that \(f'(a)\) failing to exist covers several different pictures: a corner, a vertical tangent, a cusp, a jump. You will learn the tests that tell them apart, and you will learn to look for them on purpose, in explicit functions and in implicit curves, because they are exactly the places a careless formula quietly breaks.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> define a vertical tangent line with the difference quotient, and decide whether a function has one at a given point.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> distinguish a vertical tangent, a cusp, a corner, and a smooth point by the one-sided slopes of a function.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> find the points where an explicit function or an implicit curve has a vertical tangent line, and write the line.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus the one-sided limits of Lesson 1.04 and the difference quotient of Lesson 4.02.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Fractional exponents and the extended power rule from Lesson 5.03, and implicit differentiation from Lesson 7.01.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; WHEN THE SLOPE IS INFINITE</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">The graph of \(y=\sqrt[3]{x}\) passes through the origin, rising so steeply there that it looks almost straight up and down. Before any algebra, what do you expect the tangent line to be at the origin?</div>
+          <div class="widget-options">
+            <button data-response="There is no wrong answer at a guess. Many people expect this because the curve flattens out near the x-axis for large x, but look closely at the origin itself: is the curve flat there, or steep? The rest of Part 1 settles it.">The horizontal line \(y=0\)</button>
+            <button data-response="There is no wrong answer at a guess. This is the picture the graph suggests, and you are about to see it is right, with a twist: the slope of that line is not a number, so the derivative does not exist as a real number.">The vertical line \(x=0\)</button>
+            <button data-response="There is no wrong answer at a guess. 'No derivative' and 'no tangent line' feel like the same sentence, and today's lesson is about the surprising case where they are not. Keep this guess and compare it with the end of Part 1.">There is no tangent line at all</button>
+            <button data-response="There is no wrong answer at a guess. A calculation is exactly what is needed, and it is a short one: the difference quotient from Lesson 4.02, taken seriously.">I cannot tell without a calculation</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In Lesson 4.02 you defined the derivative at a point as the limit of the difference quotient, and in Lesson 4.04 you learned that a function can fail to have a derivative even where it is continuous. The usual example was the corner of \(|x|\). Today there is a second, very different way for \(f'(a)\) to fail to exist, and it looks nothing like a corner. The difference quotient can run off to infinity.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Recall the secant slope through \((a,f(a))\) and \((a+h,f(a+h))\) is \(\dfrac{f(a+h)-f(a)}{h}\). As \(h\to0\) the secant lines usually settle toward a tangent line with a finite slope. But suppose the secant slopes grow without bound, getting steeper and steeper. Then the secant lines settle toward a <em>vertical</em> line instead.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Vertical tangent line</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">The graph of \(f\) has a <strong>vertical tangent line</strong> at \(x=a\) if \(f\) is continuous at \(a\) and the difference quotient goes to the same infinity from both sides: \[ \lim_{h\to0}\frac{f(a+h)-f(a)}{h}=+\infty\quad\text{or}\quad-\infty. \] The tangent line is the vertical line \(x=a\). At a left or right endpoint of the domain, the one-sided limit is enough.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Notice what this says about the derivative. A vertical line has no slope, so \(f'(a)\) <em>does not exist</em>, because the limit is not a real number. And yet the graph has a perfectly good tangent line there. Both statements are true at once, and keeping them straight is the discipline of this lesson.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 1: \(f(x)=\sqrt[3]{x}\) at \(x=0\)</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The function is continuous at \(0\) with \(f(0)=0\). The difference quotient is \(\dfrac{f(h)-f(0)}{h}=\dfrac{h^{1/3}}{h}=h^{-2/3}=\dfrac1{\sqrt[3]{h^2}}\). For every \(h\ne0\), \(h^2>0\), so this is positive, and as \(h\to0\) from <em>either</em> side it grows without bound. So the limit is \(+\infty\) from both sides, and the graph has a vertical tangent line \(x=0\) at the origin. This matches the formula from the extended power rule (Lesson 5.03): \(f'(x)=\tfrac13x^{-2/3}=\dfrac1{3\sqrt[3]{x^2}}\), which is undefined at \(0\) and grows without bound as \(x\to0\) from either side.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 2: a shifted cube root</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(f(x)=\sqrt[3]{x-2}+1\). Shifting the graph of \(\sqrt[3]{x}\) right \(2\) and up \(1\) moves the vertical tangent to the point \((2,1)\). Check: \(f'(x)=\dfrac1{3\sqrt[3]{(x-2)^2}}\), which grows without bound as \(x\to2\) from either side, and \(f\) is continuous at \(2\). The vertical tangent line is \(x=2\).</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 3: \(f(x)=\sqrt{x}\) at the endpoint \(x=0\)</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The domain is \(x\ge0\), so only \(h>0\) makes sense. The quotient is \(\dfrac{\sqrt h}{h}=\dfrac1{\sqrt h}\to+\infty\) as \(h\to0^+\). The graph has a vertical tangent line \(x=0\) at its left endpoint, which is the one-sided case the definition allows. You can see it in the graph: \(y=\sqrt x\) is the upper half of the parabola \(x=y^2\) turned on its side, and a parabola's tangent at its vertex is perpendicular to its axis.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">&ldquo;\(f'(a)\) does not exist&rdquo; does <em>not</em> mean &ldquo;vertical tangent.&rdquo; At the corner of \(|x|\) the derivative does not exist, and there is no tangent line at all. At a jump discontinuity the derivative does not exist, and again there is no tangent. A vertical tangent needs two things: <em>continuity</em> at the point and an <em>infinite</em> difference quotient with the same sign on both sides (or one side at an endpoint). Check both before you use the words.</div>
+        </div>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A vertical tangent line is not a vertical asymptote. A vertical asymptote (Lesson 2.02) is a line the curve approaches but never touches, because \(f\) blows up there. At a vertical tangent, \(f(a)\) is a perfectly ordinary finite number: the curve passes through the point and the tangent line touches it there. \(y=\dfrac1x\) has a vertical asymptote at \(0\) and no vertical tangent; \(y=\sqrt[3]{x}\) has a vertical tangent at \(0\) and no asymptote.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; VERTICAL TANGENTS, CUSPS, AND CORNERS</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now put the two ways of failing side by side. For a function continuous at \(a\), look at the two one-sided limits of the difference quotient (Lesson 1.04 treated one-sided limits; Lesson 4.04 applied them to \(|x|\)). For a function that is continuous at \(a\) and differentiable nearby, the one-sided limits of \(f'(x)\) as \(x\to a\) agree with them whenever those limits exist, so you can read the same information off the formula for the derivative. Four cases cover what you will meet:</p>
+        <table style="border-collapse: collapse; width: 100%; font-size: 15px; color: #1a2340; margin: 12px 0;">
+            <tr style="background:#EEF1F8;"><th style="text-align:left; padding:8px 10px; border:1px solid #D0D9E8;">Left-hand slope</th><th style="text-align:left; padding:8px 10px; border:1px solid #D0D9E8;">Right-hand slope</th><th style="text-align:left; padding:8px 10px; border:1px solid #D0D9E8;">What the graph does</th><th style="text-align:left; padding:8px 10px; border:1px solid #D0D9E8;">Example at 0</th></tr>
+            <tr><td style="padding:8px 10px; border:1px solid #D0D9E8;">finite, <em>L</em></td><td style="padding:8px 10px; border:1px solid #D0D9E8;">finite, same <em>L</em></td><td style="padding:8px 10px; border:1px solid #D0D9E8;">smooth point, ordinary tangent line</td><td style="padding:8px 10px; border:1px solid #D0D9E8;">\(x^{4/3}\) (slope 0)</td></tr>
+            <tr><td style="padding:8px 10px; border:1px solid #D0D9E8;">finite</td><td style="padding:8px 10px; border:1px solid #D0D9E8;">finite, different</td><td style="padding:8px 10px; border:1px solid #D0D9E8;"><strong>corner</strong>, no tangent line</td><td style="padding:8px 10px; border:1px solid #D0D9E8;">\(|x|\)</td></tr>
+            <tr><td style="padding:8px 10px; border:1px solid #D0D9E8;">\(+\infty\)</td><td style="padding:8px 10px; border:1px solid #D0D9E8;">\(+\infty\)  (or both \(-\infty\))</td><td style="padding:8px 10px; border:1px solid #D0D9E8;"><strong>vertical tangent</strong> line, curve passes through</td><td style="padding:8px 10px; border:1px solid #D0D9E8;">\(\sqrt[3]{x}\)</td></tr>
+            <tr><td style="padding:8px 10px; border:1px solid #D0D9E8;">\(-\infty\)</td><td style="padding:8px 10px; border:1px solid #D0D9E8;">\(+\infty\)  (or the reverse)</td><td style="padding:8px 10px; border:1px solid #D0D9E8;"><strong>cusp</strong>: the curve doubles back</td><td style="padding:8px 10px; border:1px solid #D0D9E8;">\(x^{2/3}\)</td></tr>
+        </table>
+        <div style="text-align:center; margin: 14px 0;">
+        <svg viewBox="0 0 640 190" width="100%" style="max-width:660px;" role="img" aria-label="Four graphs near the origin: cube root with a vertical tangent, x to the two-thirds with a cusp, absolute value with a corner, and x to the four-thirds that is smooth with a horizontal tangent">
+            <rect x="0" y="0" width="640" height="190" fill="#FFFFFF" stroke="#D0D9E8"/>
+            <text x="80" y="20" font-size="13" text-anchor="middle" fill="#0E1C42" font-family="Segoe UI,Arial,sans-serif">Vertical tangent</text>
+            <line x1="12" y1="110" x2="148" y2="110" stroke="#C9D2E6" stroke-width="1"/>
+            <line x1="80" y1="30" x2="80" y2="170" stroke="#C9D2E6" stroke-width="1"/>
+            <line x1="80" y1="32" x2="80" y2="168" stroke="#C7922C" stroke-width="2" stroke-dasharray="6 4"/>
+            <polyline points="21.5,159.1 23.0,158.7 24.4,158.3 25.9,157.9 27.4,157.4 28.8,157.0 30.3,156.5 31.7,156.1 33.2,155.6 34.7,155.1 36.1,154.6 37.6,154.1 39.0,153.6 40.5,153.1 42.0,152.5 43.4,152.0 44.9,151.4 46.4,150.8 47.8,150.2 49.3,149.6 50.8,149.0 52.2,148.3 53.7,147.6 55.1,146.9 56.6,146.2 58.1,145.4 59.5,144.6 61.0,143.8 62.4,142.9 63.9,141.9 65.4,140.9 66.8,139.9 68.3,138.7 69.8,137.5 71.2,136.1 72.7,134.6 74.2,132.8 75.6,130.7 77.1,128.1 78.5,124.4 80.0,110.0 81.5,95.6 82.9,91.9 84.4,89.3 85.9,87.2 87.3,85.4 88.8,83.9 90.2,82.5 91.7,81.3 93.2,80.1 94.6,79.1 96.1,78.1 97.6,77.1 99.0,76.2 100.5,75.4 101.9,74.6 103.4,73.8 104.9,73.1 106.3,72.4 107.8,71.7 109.2,71.0 110.7,70.4 112.2,69.8 113.6,69.2 115.1,68.6 116.6,68.0 118.0,67.5 119.5,66.9 120.9,66.4 122.4,65.9 123.9,65.4 125.3,64.9 126.8,64.4 128.3,63.9 129.7,63.5 131.2,63.0 132.6,62.6 134.1,62.1 135.6,61.7 137.0,61.3 138.5,60.9" fill="none" stroke="#0E1C42" stroke-width="2.5"/>
+            <circle cx="80" cy="110" r="3.5" fill="#C0392B"/>
+            <text x="80" y="184" font-size="12" text-anchor="middle" fill="#555" font-family="Segoe UI,Arial,sans-serif">y = x<tspan baseline-shift="super" font-size="9">1/3</tspan></text>
+            <text x="240" y="20" font-size="13" text-anchor="middle" fill="#0E1C42" font-family="Segoe UI,Arial,sans-serif">Cusp</text>
+            <line x1="172" y1="110" x2="308" y2="110" stroke="#C9D2E6" stroke-width="1"/>
+            <line x1="240" y1="30" x2="240" y2="170" stroke="#C9D2E6" stroke-width="1"/>
+            <polyline points="181.5,56.4 183.0,57.3 184.4,58.2 185.9,59.1 187.3,60.0 188.8,61.0 190.3,61.9 191.7,62.9 193.2,63.8 194.7,64.8 196.1,65.8 197.6,66.7 199.1,67.7 200.5,68.8 202.0,69.8 203.4,70.8 204.9,71.9 206.4,72.9 207.8,74.0 209.3,75.1 210.8,76.2 212.2,77.4 213.7,78.5 215.1,79.7 216.6,80.9 218.1,82.1 219.5,83.4 221.0,84.7 222.4,86.0 223.9,87.3 225.4,88.7 226.8,90.2 228.3,91.7 229.8,93.2 231.2,94.9 232.7,96.6 234.2,98.5 235.6,100.5 237.1,102.7 238.5,105.4 240.0,110.0 241.5,105.4 242.9,102.7 244.4,100.5 245.8,98.5 247.3,96.6 248.8,94.9 250.2,93.2 251.7,91.7 253.2,90.2 254.6,88.7 256.1,87.3 257.6,86.0 259.0,84.7 260.5,83.4 261.9,82.1 263.4,80.9 264.9,79.7 266.3,78.5 267.8,77.4 269.2,76.2 270.7,75.1 272.2,74.0 273.6,72.9 275.1,71.9 276.6,70.8 278.0,69.8 279.5,68.8 280.9,67.7 282.4,66.7 283.9,65.8 285.3,64.8 286.8,63.8 288.3,62.9 289.7,61.9 291.2,61.0 292.6,60.0 294.1,59.1 295.6,58.2 297.0,57.3 298.5,56.4" fill="none" stroke="#0E1C42" stroke-width="2.5"/>
+            <circle cx="240" cy="110" r="3.5" fill="#C0392B"/>
+            <text x="240" y="184" font-size="12" text-anchor="middle" fill="#555" font-family="Segoe UI,Arial,sans-serif">y = x<tspan baseline-shift="super" font-size="9">2/3</tspan></text>
+            <text x="400" y="20" font-size="13" text-anchor="middle" fill="#0E1C42" font-family="Segoe UI,Arial,sans-serif">Corner</text>
+            <line x1="332" y1="110" x2="468" y2="110" stroke="#C9D2E6" stroke-width="1"/>
+            <line x1="400" y1="30" x2="400" y2="170" stroke="#C9D2E6" stroke-width="1"/>
+            <polyline points="341.5,51.5 343.0,53.0 344.4,54.4 345.9,55.9 347.4,57.4 348.8,58.8 350.3,60.3 351.7,61.7 353.2,63.2 354.7,64.7 356.1,66.1 357.6,67.6 359.1,69.0 360.5,70.5 362.0,72.0 363.4,73.4 364.9,74.9 366.4,76.4 367.8,77.8 369.3,79.3 370.8,80.8 372.2,82.2 373.7,83.7 375.1,85.1 376.6,86.6 378.1,88.1 379.5,89.5 381.0,91.0 382.4,92.4 383.9,93.9 385.4,95.4 386.8,96.8 388.3,98.3 389.8,99.8 391.2,101.2 392.7,102.7 394.1,104.2 395.6,105.6 397.1,107.1 398.5,108.5 400.0,110.0 401.5,108.5 402.9,107.1 404.4,105.6 405.9,104.1 407.3,102.7 408.8,101.2 410.2,99.8 411.7,98.3 413.2,96.8 414.6,95.4 416.1,93.9 417.6,92.4 419.0,91.0 420.5,89.5 421.9,88.1 423.4,86.6 424.9,85.1 426.3,83.7 427.8,82.2 429.2,80.8 430.7,79.3 432.2,77.8 433.6,76.4 435.1,74.9 436.6,73.4 438.0,72.0 439.5,70.5 440.9,69.1 442.4,67.6 443.9,66.1 445.3,64.7 446.8,63.2 448.3,61.7 449.7,60.3 451.2,58.8 452.6,57.4 454.1,55.9 455.6,54.4 457.0,53.0 458.5,51.5" fill="none" stroke="#0E1C42" stroke-width="2.5"/>
+            <circle cx="400" cy="110" r="3.5" fill="#C0392B"/>
+            <text x="400" y="184" font-size="12" text-anchor="middle" fill="#555" font-family="Segoe UI,Arial,sans-serif">y = |x|</text>
+            <text x="560" y="20" font-size="13" text-anchor="middle" fill="#0E1C42" font-family="Segoe UI,Arial,sans-serif">Smooth point</text>
+            <line x1="492" y1="110" x2="628" y2="110" stroke="#C9D2E6" stroke-width="1"/>
+            <line x1="560" y1="30" x2="560" y2="170" stroke="#C9D2E6" stroke-width="1"/>
+            <line x1="492" y1="110" x2="628" y2="110" stroke="#C7922C" stroke-width="2" stroke-dasharray="6 4"/>
+            <polyline points="501.5,46.2 503.0,48.3 504.4,50.4 505.9,52.5 507.4,54.5 508.8,56.6 510.3,58.6 511.7,60.6 513.2,62.6 514.7,64.5 516.1,66.5 517.6,68.4 519.0,70.3 520.5,72.2 522.0,74.1 523.4,75.9 524.9,77.7 526.4,79.5 527.8,81.2 529.3,83.0 530.8,84.7 532.2,86.3 533.7,88.0 535.1,89.6 536.6,91.2 538.1,92.7 539.5,94.3 541.0,95.7 542.5,97.2 543.9,98.6 545.4,99.9 546.8,101.3 548.3,102.5 549.8,103.8 551.2,104.9 552.7,106.0 554.1,107.0 555.6,108.0 557.1,108.8 558.5,109.5 560.0,110.0 561.5,109.5 562.9,108.8 564.4,108.0 565.9,107.0 567.3,106.0 568.8,104.9 570.2,103.8 571.7,102.5 573.2,101.3 574.6,99.9 576.1,98.6 577.5,97.2 579.0,95.7 580.5,94.3 581.9,92.7 583.4,91.2 584.9,89.6 586.3,88.0 587.8,86.3 589.2,84.7 590.7,83.0 592.2,81.2 593.6,79.5 595.1,77.7 596.6,75.9 598.0,74.1 599.5,72.2 601.0,70.3 602.4,68.4 603.9,66.5 605.3,64.5 606.8,62.6 608.3,60.6 609.7,58.6 611.2,56.6 612.6,54.5 614.1,52.5 615.6,50.4 617.0,48.3 618.5,46.2" fill="none" stroke="#0E1C42" stroke-width="2.5"/>
+            <circle cx="560" cy="110" r="3.5" fill="#C0392B"/>
+            <text x="560" y="184" font-size="12" text-anchor="middle" fill="#555" font-family="Segoe UI,Arial,sans-serif">y = x<tspan baseline-shift="super" font-size="9">4/3</tspan></text>
+        </svg>
+        <div style="font-size: 14px; color: #666; margin-top: 4px;">Four ways a derivative can fail to be an ordinary number (or not fail at all) at the origin. The dashed gold line is the tangent line where one exists.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Anything else, for example a finite slope on one side and an infinite slope on the other, is a corner-type break with no single tangent line. The table is the whole classification for the functions in this course.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 4: a cusp, \(f(x)=x^{2/3}\)</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The quotient at \(0\) is \(\dfrac{h^{2/3}}{h}=h^{-1/3}\). For \(h>0\) this is positive and grows without bound: \(+\infty\). For \(h<0\), \(h^{2/3}=(h^2)^{1/3}>0\) but \(h<0\), so the quotient is negative and grows without bound in size: \(-\infty\). The slopes are \(-\infty\) on the left and \(+\infty\) on the right, so the graph has a <strong>cusp</strong>. The formula agrees: \(f'(x)=\dfrac{2}{3\sqrt[3]{x}}\), which is negative for \(x<0\) and positive for \(x>0\). Both branches leave the origin heading straight up, one to each side, so the graph comes to a point like a beak. Because the curve reverses direction there, we say \(f\) has a cusp at \(0\), not a vertical tangent, even though the direction there is vertical.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 5: a cusp on top, \(f(x)=2-(x-1)^{2/3}\)</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here \(f'(x)=-\dfrac{2}{3\sqrt[3]{x-1}}\). For \(x\) just left of \(1\) the cube root is negative, so \(f'\to+\infty\); just right of \(1\) it is positive, so \(f'\to-\infty\). Opposite infinite slopes: a cusp at \((1,2)\), pointing up, and it is the highest point on the graph. Fermat's fact from Lesson 8.03 needed the derivative to <em>exist</em> at an extreme point; here it does not, and that is why a maximum can occur with no horizontal tangent. Module 10 will name such points <em>critical points</em>.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 6: the exponent alone does not decide, \(f(x)=x^{4/3}\)</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The quotient is \(\dfrac{h^{4/3}}{h}=h^{1/3}\to0\) from both sides. So \(f'(0)=0\), the graph is smooth, and the tangent line is horizontal. For the family \(f(x)=x^{p}\) at \(0\) the quotient is \(h^{p-1}\), and everything depends on the sign of \(p-1\): for \(0<p<1\) the quotient blows up, for \(p>1\) it goes to \(0\). That is why \(x^{1/3}\) and \(x^{2/3}\) both fail and \(x^{4/3}\) does not.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; CLASSIFY THE POINT AT x = 0</div>
+          <div class="widget-question">For each function, decide what its graph does at the origin. Use the difference quotient, not the picture.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The one-sided slopes are -1 and +1: both finite, but different. That is a corner, and there is no tangent line." data-hint="Compute the slope on each side. Are the one-sided slopes finite? Are they equal?">
+            <div class="widget-row-prompt">1. \(f(x)=|x|\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Smooth point</button>
+              <button data-choice="1">Corner</button>
+              <button data-choice="2">Vertical tangent</button>
+              <button data-choice="3">Cusp</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. The difference quotient is h^(-2/3), which goes to +infinity from both sides: the same infinity on both sides, so the curve passes through a vertical tangent line." data-hint="The quotient is h^(1/3)/h. Is it positive on both sides of 0? Does it blow up?">
+            <div class="widget-row-prompt">2. \(f(x)=\sqrt[3]{x}\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Corner</button>
+              <button data-choice="1">Cusp</button>
+              <button data-choice="2">Smooth point</button>
+              <button data-choice="3">Vertical tangent</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The quotient is h^(-1/3): +infinity from the right and -infinity from the left. Opposite infinite slopes make a cusp." data-hint="Check the sign of h^(-1/3) when h is negative. Do the two sides agree?">
+            <div class="widget-row-prompt">3. \(f(x)=x^{2/3}\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Vertical tangent</button>
+              <button data-choice="1">Smooth point</button>
+              <button data-choice="2">Cusp</button>
+              <button data-choice="3">Corner</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The quotient is h^(1/3), which goes to 0 from both sides. The derivative exists and equals 0." data-hint="The quotient is h^(4/3)/h. What does it approach as h goes to 0?">
+            <div class="widget-row-prompt">4. \(f(x)=x^{4/3}\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Smooth, with a horizontal tangent</button>
+              <button data-choice="1">Cusp</button>
+              <button data-choice="2">Vertical tangent</button>
+              <button data-choice="3">Corner</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; FINDING VERTICAL TANGENTS FROM A FORMULA</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">How do you <em>find</em> vertical tangents when a problem does not hand you the point? The same way you found horizontal ones in Lesson 9.01, but looking at the other half of a fraction. Write \(f'(x)\) as a single fraction. A horizontal tangent comes from a numerator of \(0\). A candidate for a vertical tangent (or a cusp) comes from a denominator of \(0\) where the numerator is not \(0\), at a point where \(f\) itself is defined and continuous. Then check the sign of \(f'\) on each side to decide between vertical tangent and cusp. Finally, look at the endpoints of the domain, where a square root often vanishes.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 7: \(f(x)=x\sqrt{4-x}\)</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The domain is \(x\le4\). By the Product Rule and the Chain Rule, \(f'(x)=\sqrt{4-x}+x\cdot\dfrac{-1}{2\sqrt{4-x}}=\dfrac{2(4-x)-x}{2\sqrt{4-x}}=\dfrac{8-3x}{2\sqrt{4-x}}\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Horizontal tangent:</strong> the numerator is \(0\) at \(x=\tfrac83\), and \(f\left(\tfrac83\right)=\tfrac83\sqrt{\tfrac43}=\dfrac{16\sqrt3}{9}\approx3.08\). The horizontal tangent line is \(y=\dfrac{16\sqrt3}{9}\). <strong>Vertical tangent:</strong> the denominator is \(0\) at \(x=4\), where the numerator is \(8-12=-4\ne0\). Here \(f(4)=0\), \(f\) is continuous from the left, and as \(x\to4^-\) we have \(f'(x)\to-\infty\). This is the right-hand endpoint of the domain, so the one-sided limit is enough: the graph has a vertical tangent line \(x=4\) at \((4,0)\).</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it first: classify the point on \(f(x)=(x+3)^{2/3}-1\) where the derivative fails to exist. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f'(x)=\dfrac{2}{3\sqrt[3]{x+3}}\) is undefined at \(x=-3\), where \(f(-3)=-1\). For \(x\) just left of \(-3\), the cube root is negative so \(f'\to-\infty\); just right of \(-3\), \(f'\to+\infty\). Opposite infinite slopes: a <strong>cusp</strong> at \((-3,-1)\), pointing down (it is the lowest point on the graph). It is the graph of \(x^{2/3}\) shifted left \(3\) and down \(1\).
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 4 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; VERTICAL TANGENTS ON IMPLICIT CURVES</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Implicit curves (Lesson 7.01) are where vertical tangents appear most naturally, because a circle has vertical tangents at its leftmost and rightmost points, and no function \(y=f(x)\) can describe a circle there. The recipe is the mirror image of Lesson 9.01: solve for \(\dfrac{dy}{dx}\) as a fraction and look at where the <em>denominator</em> is \(0\) and the numerator is not.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 8: a circle</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">On \(x^2+y^2=25\), \(\dfrac{dy}{dx}=-\dfrac xy\). The denominator is \(0\) when \(y=0\), which gives the points \((5,0)\) and \((-5,0)\), where the numerator \(-x=\mp5\) is not \(0\). The tangent lines there are the vertical lines \(x=5\) and \(x=-5\), exactly as the picture of a circle suggests.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 9: the tilted ellipse from Lesson 9.01</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">On \(x^2+xy+y^2=7\), you found \(\dfrac{dy}{dx}=-\dfrac{2x+y}{x+2y}\). A vertical tangent needs \(x+2y=0\), that is, \(x=-2y\), with \(2x+y\ne0\). Substituting into the curve: \(4y^2-2y^2+y^2=3y^2=7\), so \(y=\pm\dfrac{\sqrt{21}}3\) and \(x=\mp\dfrac{2\sqrt{21}}3\). The two points are \(\left(-\dfrac{2\sqrt{21}}3,\dfrac{\sqrt{21}}3\right)\approx(-3.06,1.53)\) and \(\left(\dfrac{2\sqrt{21}}3,-\dfrac{\sqrt{21}}3\right)\approx(3.06,-1.53)\). At each, the numerator is \(2x+y=\pm\sqrt{21}\ne0\), so the slope is truly infinite. The vertical tangent lines are \(x=-\dfrac{2\sqrt{21}}3\) and \(x=\dfrac{2\sqrt{21}}3\). In Lesson 9.01 the <em>numerator</em> zero gave the horizontal tangents at \(x=\pm\sqrt{21}/3\); today the <em>denominator</em> zero gives the vertical ones. One curve, two questions, and now you can answer both.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">When both numerator and denominator are \(0\) at a point, the formula is silent: it says \(\tfrac00\) and decides nothing. For the curve \(y^2=x^3\), implicit differentiation gives \(\dfrac{dy}{dx}=\dfrac{3x^2}{2y}\), which is \(\tfrac00\) at the origin, and the origin turns out to be a cusp of a different kind (the two branches \(y=\pm x^{3/2}\) both run off to the right along the \(x\)-axis). When the formula gives \(\tfrac00\), say so, and use the difference-quotient definition or the explicit branches to decide. Do not guess.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it first: find every vertical tangent line to the circle \((x-1)^2+y^2=9\). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Differentiate: \(2(x-1)+2y\,y'=0\), so \(y'=-\dfrac{x-1}{y}\). The denominator is \(0\) when \(y=0\), which gives \((x-1)^2=9\), so \(x=4\) or \(x=-2\). The numerator \(-(x-1)\) is \(-3\) and \(3\) there, not \(0\). The vertical tangent lines are \(x=4\) and \(x=-2\), the rightmost and leftmost points of the circle with center \((1,0)\) and radius \(3\).
+            </div>
+        </details>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> in your own words, why does \(f'(0)\) &ldquo;does not exist&rdquo; cover four quite different pictures (corner, vertical tangent, cusp, and a jump)? What extra information tells them apart?</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Graphing tools can mislead on exactly these functions. Some calculators evaluate \(x^{1/3}\) for negative \(x\) as a complex number, or not at all, so the graph of \(\sqrt[3]{x}\) shows only its right half, and \(x^{2/3}\) looks like half a curve instead of a cusp. If you graph these, use the real cube root (often written <em>cbrt</em> or <em>surd</em>) or check the left side by hand. A tool can show you a picture; only the one-sided limits can tell you what the picture means.</div>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 18 Problem Set: Tangent Lines, Normals, and Vertical Tangents</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Work every problem by hand on paper, including the vertical-tangent and cusp problems from today, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 18 Quiz: Tangent Lines, Normals, and Vertical Tangents</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material from Lessons 9.01 and 9.02.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A vertical tangent line at \(x=a\) needs continuity at \(a\) and a difference quotient that goes to the same infinity on both sides. A cusp has opposite infinite slopes, a corner has finite slopes that disagree, and a smooth point has equal finite slopes. &ldquo;The derivative does not exist&rdquo; is true of the first three, and it is never the whole story. Next week the tangent line stops being a curiosity and becomes a tool. Lesson 9.03 uses the tangent line at a point where the derivative <em>does</em> exist as a stand-in for the curve itself, to estimate values you could not easily compute.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 9.02 &middot; Vertical Tangents and Cusps</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

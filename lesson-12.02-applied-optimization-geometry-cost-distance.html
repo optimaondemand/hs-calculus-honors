@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 12.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 12</div>
+        <div style="font-size: 12px; color: #666;">Optimization, Motion, and Related Rates</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 12.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Applied Optimization: Geometry, Cost, and Distance</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Optimization, Motion, and Related Rates</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 12.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Applied Optimization: Geometry, Cost, and Distance</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Why isn't the point on a parabola nearest to a given point the one you would guess?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Last lesson gave you the six-move routine. Today you use it on three new kinds of question. A point is closest to a curve; a can uses the least metal for a given volume; a pen costs the least to build. In each, the story supplies a constraint, calculus supplies the critical points, and the <em>domain</em> decides how to justify the answer. Johannes Kepler noticed the idea behind all of them in 1615, when he studied the volumes of wine barrels: near the best shape, small changes in shape barely change the volume. A zero derivative is the mathematics of that observation. Today you will also meet two honest complications. The best answer can sit at an endpoint of the domain, where the derivative is not zero at all. And a model can have a perfectly correct optimum that is the best for its own assumptions only. Both are lessons in saying exactly what you have shown.</div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> find the point on a curve closest to a given point by minimizing the squared distance, and justify the minimum with a sign chart.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> model and solve surface-area, cost, and revenue optimization problems, including problems whose real-world limits put the best answer at an endpoint of the domain.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> check each answer against the original story and report it in context, with units and with the assumptions of the model stated.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus the six-move routine from Lesson 12.01, the Closed Interval Method (Lesson 10.03), and the sign-chart and second-derivative tests (Lessons 10.02 and 11.02).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A calculator or graphing tool is optional and may be used only to check work you have already done by hand.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE POINT NEAREST A CURVE</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">On the parabola \(y=x^2\), which point is closest to the point \((0,3)\) on the \(y\)-axis? Predict before you compute.</div>
+          <div class="widget-options">
+            <button data-response="A natural guess, and it turns out to be the wrong one in an interesting way. The vertex is exactly \(3\) units from \((0,3)\), but there are points on each side of the vertex that are closer. Part 1 shows you how to find them, and why the vertex is actually the &lt;em&gt;farthest&lt;/em&gt; point nearby.">The vertex \((0,0)\), because it is the lowest point of the curve and sits right under \((0,3)\).</button>
+            <button data-response="Yes, good instinct: the curve bends up toward \((0,3)\), so points on the arms get closer. Part 1 finds exactly where, and the answer comes in a matched pair.">Some other point up the side of the parabola, not on the \(y\)-axis.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Distance problems ask for the point on a curve nearest to (or farthest from) a given point. The objective is the distance formula. The constraint is that the point must lie on the curve. A point on \(y=x^2\) has the form \((x,x^2)\), so the constraint is built in, and the distance to \((0,3)\) is</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ D(x)=\sqrt{(x-0)^2+(x^2-3)^2} \]
+</p>
+<div style="text-align:center; margin: 10px 0 14px 0;"><svg viewBox="0 0 320 205" width="320" height="205" role="img" aria-label="The parabola y equals x squared and the point (0,3); the two closest points on the parabola are at height 2.5">
+<line x1="20" y1="190" x2="300" y2="190" stroke="#9aa6c0" stroke-width="1"/>
+<line x1="160" y1="8" x2="160" y2="192" stroke="#9aa6c0" stroke-width="1"/>
+<polyline points="39.0,6.1 41.8,14.3 44.5,22.4 47.3,30.3 50.0,38.0 52.8,45.5 55.5,52.8 58.2,59.9 61.0,66.9 63.8,73.6 66.5,80.2 69.2,86.5 72.0,92.7 74.8,98.7 77.5,104.5 80.2,110.1 83.0,115.5 85.8,120.7 88.5,125.8 91.2,130.6 94.0,135.3 96.8,139.7 99.5,144.0 102.2,148.1 105.0,152.0 107.8,155.7 110.5,159.2 113.2,162.5 116.0,165.7 118.8,168.6 121.5,171.4 124.2,173.9 127.0,176.3 129.8,178.5 132.5,180.5 135.2,182.3 138.0,183.9 140.8,185.3 143.5,186.6 146.2,187.6 149.0,188.5 151.8,189.1 154.5,189.6 157.2,189.9 160.0,190.0 162.8,189.9 165.5,189.6 168.2,189.1 171.0,188.5 173.8,187.6 176.5,186.6 179.2,185.3 182.0,183.9 184.8,182.3 187.5,180.5 190.2,178.5 193.0,176.3 195.8,173.9 198.5,171.4 201.2,168.6 204.0,165.7 206.8,162.5 209.5,159.2 212.2,155.7 215.0,152.0 217.8,148.1 220.5,144.0 223.2,139.7 226.0,135.3 228.8,130.6 231.5,125.8 234.2,120.7 237.0,115.5 239.8,110.1 242.5,104.5 245.2,98.7 248.0,92.7 250.8,86.5 253.5,80.2 256.2,73.6 259.0,66.9 261.8,59.9 264.5,52.8 267.2,45.5 270.0,38.0 272.8,30.3 275.5,22.4 278.2,14.3 281.0,6.1" fill="none" stroke="#0E1C42" stroke-width="2.5"/>
+<line x1="160.0" y1="76.0" x2="247.0" y2="95.0" stroke="#2A9D5C" stroke-width="2.5"/>
+<line x1="160.0" y1="76.0" x2="73.0" y2="95.0" stroke="#2A9D5C" stroke-width="2.5"/>
+<line x1="160.0" y1="76.0" x2="160.0" y2="190.0" stroke="#C0392B" stroke-width="2" stroke-dasharray="5 4"/>
+<circle cx="160.0" cy="76.0" r="5" fill="#C7922C"/>
+<circle cx="247.0" cy="95.0" r="4" fill="#2A9D5C"/>
+<circle cx="73.0" cy="95.0" r="4" fill="#2A9D5C"/>
+<text x="168.0" y="70.0" font-size="13" fill="#8A5F12">(0, 3)</text>
+<text x="166.0" y="137.0" font-size="12" fill="#C0392B">distance 3</text>
+<text x="160" y="203" font-size="12" fill="#1A6B3D" text-anchor="middle">green points: distance &#8730;11/2 &#8776; 1.66</text>
+</svg><div style="font-size: 14px; color: #666; font-style: italic; margin-top: 4px;">The distance from (0, 3) to the curve, at the vertex and at two nearer points.</div></div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Differentiating a square root is messy, and there is a trick that removes the mess. Because the square root function is increasing and \(D\ge0\), the numbers \(D\) and \(D^2\) are smallest at exactly the same \(x\)-values. So minimize \(D^2\) instead, and take the square root only at the very end to report the distance.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 1: the closest point</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ D^2(x)=x^2+(x^2-3)^2=x^4-5x^2+9 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Domain.</strong> Every real \(x\) gives a point on the curve, so the domain is all of \((-\infty,\infty)\). Differentiate and factor:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ (D^2)'(x)=4x^3-10x=2x(2x^2-5) \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The critical points are \(x=0\) and \(x=\pm\sqrt{5/2}=\pm\dfrac{\sqrt{10}}{2}\approx\pm1.581\). Now justify with a sign chart for \((D^2)'\) (Lesson 10.02):</p>
+<ul style="font-size: 17px; color: #1a2340; line-height: 1.9; padding-left: 22px; margin: 0 0 10px 0;"><li>For \(x&lt;-\sqrt{5/2}\): \(2x&lt;0\) and \(2x^2-5>0\), so \((D^2)'&lt;0\). <strong>Decreasing.</strong></li><li>For \(-\sqrt{5/2}&lt;x&lt;0\): \(2x&lt;0\) and \(2x^2-5&lt;0\), so \((D^2)'>0\). <strong>Increasing.</strong></li><li>For \(0&lt;x&lt;\sqrt{5/2}\): \(2x>0\) and \(2x^2-5&lt;0\), so \((D^2)'&lt;0\). <strong>Decreasing.</strong></li><li>For \(x>\sqrt{5/2}\): both factors positive, so \((D^2)'>0\). <strong>Increasing.</strong></li></ul>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Decreasing then increasing at \(x=\pm\sqrt{5/2}\) gives local minima; increasing then decreasing at \(x=0\) gives a local <em>maximum</em>. The two minima are the only low points and \(D^2\to\infty\) as \(x\to\pm\infty\), so they are absolute minima. At \(x=\sqrt{5/2}\) we have \(y=x^2=\dfrac52\), and</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ D^2=\frac{25}{4}-\frac{25}{2}+9=\frac{11}{4}, \qquad D=\frac{\sqrt{11}}{2}\approx 1.658 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Answer.</strong> The points on the parabola closest to \((0,3)\) are \(\left(\pm\sqrt{5/2},\,\tfrac52\right)\approx(\pm1.581,\,2.5)\), each about \(1.658\) units away. The vertex, at distance \(3\), is a local <em>maximum</em> of the distance: the point you guessed first is the farthest point in its neighborhood. A critical point can be a maximum when you are hunting a minimum, which is exactly why the sign chart is not optional.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Two slips to avoid. First, after you minimize \(D^2\), remember that the question asks for the <em>distance</em>, so take the square root: \(D^2=\tfrac{11}{4}\) means \(D=\tfrac{\sqrt{11}}{2}\), not \(\tfrac{11}{4}\). Second, do not assume the answer is the \(x\)-value or the point alone. Read the question: the distance, the point, or both? Here the full answer gives both.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; DISTANCE PROBLEMS</div>
+          <div class="widget-question">Decide each answer before you click.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. An increasing function preserves the order of values, so the input that gives the smallest \(D^2\) gives the smallest \(D\)." data-hint="Think about what an increasing function (the square root) does to the order of nonnegative numbers.">
+            <div class="widget-row-prompt">1. Why is it legitimate to minimize \(D^2\) instead of \(D\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">Because \(D\) and \(D^2\) are always equal.</button>
+              <button data-choice="1">Because the square root is increasing and \(D\ge0\), so \(D\) and \(D^2\) are smallest at the same \(x\).</button>
+              <button data-choice="2">Because \(D\) has no minimum.</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The sign chart shows \((D^2)&#x27;\) going from positive to negative at \(x=0\), so the distance has a local maximum there." data-hint="Check the sign of (D^2)&#x27; just left and just right of 0 on the sign chart.">
+            <div class="widget-row-prompt">2. At \(x=0\), \((D^2)'=0\), yet \((0,0)\) is not the closest point. What is it?</div>
+            <div class="widget-options">
+              <button data-choice="0">A local maximum of the distance among nearby points.</button>
+              <button data-choice="1">An inflection point of the parabola.</button>
+              <button data-choice="2">The closest point after all.</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Here \(2x&gt;0\) but \(2x^2-5&lt;0\), so the product is negative and \(D^2\) falls toward the minimum." data-hint="Test x = 1: what are the signs of 2x and of 2x^2 - 5?">
+            <div class="widget-row-prompt">3. For \(x\) a little less than \(\sqrt{5/2}\), \((D^2)'=2x(2x^2-5)\) is&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">positive, so \(D^2\) is increasing there.</button>
+              <button data-choice="1">zero, so \(D^2\) is constant there.</button>
+              <button data-choice="2">negative, so \(D^2\) is still decreasing as it approaches the minimum.</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; A CAN OF LEAST SURFACE AREA</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Johannes Kepler turned a wedding into a mathematics problem. In 1613 he bought wine for his second marriage and was struck by how the merchant measured each barrel's volume with a single rod pushed through the bung. Did the rod really measure volume, whatever the barrel's shape? Kepler's study of the question, published in 1615, noticed something that every optimization problem confirms: near the shape of greatest volume, small changes in the shape change the volume very little. That is the geometric meaning of a derivative that equals zero.</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here is the modern form of a barrel question. A cylindrical can must hold exactly \(1000\ \text{cm}^3\) (one liter). What radius and height use the least metal, that is, give the least total surface area?</p>
+<div style="text-align:center; margin: 10px 0 14px 0;"><svg viewBox="0 0 260 220" width="260" height="220" role="img" aria-label="A closed cylinder with radius r and height h">
+<ellipse cx="130" cy="40" rx="60" ry="16" fill="#E8F6FB" stroke="#0E1C42" stroke-width="2.5"/>
+<path d="M70 40 L70 170 A60 16 0 0 0 190 170 L190 40" fill="#E8F6FB" stroke="#0E1C42" stroke-width="2.5"/>
+<line x1="130" y1="40" x2="190" y2="40" stroke="#C7922C" stroke-width="2"/>
+<text x="160" y="34" text-anchor="middle" font-size="14" fill="#8A5F12" font-style="italic">r</text>
+<line x1="206" y1="40" x2="206" y2="170" stroke="#0E1C42" stroke-width="1.5"/>
+<text x="222" y="110" font-size="15" fill="#0E1C42" font-style="italic">h</text>
+<text x="130" y="212" text-anchor="middle" font-size="13" fill="#1B6A94">V = &pi;r&sup2;h = 1000 cm&sup3;</text>
+</svg><div style="font-size: 14px; color: #666; font-style: italic; margin-top: 4px;">A closed can of radius r and height h.</div></div>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 2: the can of least surface area</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Objective.</strong> The surface area of a closed cylinder is two circular ends plus the side: \(S=2\pi r^2+2\pi r h\). <strong>Constraint.</strong> \(V=\pi r^2h=1000\), so \(h=\dfrac{1000}{\pi r^2}\). Substitute:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ S(r)=2\pi r^2+2\pi r\cdot\frac{1000}{\pi r^2}=2\pi r^2+\frac{2000}{r}, \qquad r>0 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Domain.</strong> A can has a positive radius, and nothing in the story bounds it above, so \(r>0\) (open and unbounded). <strong>Optimize.</strong></p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ S'(r)=4\pi r-\frac{2000}{r^2}=0 \;\Longrightarrow\; 4\pi r^3=2000 \;\Longrightarrow\; r^3=\frac{500}{\pi} \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">So \(r=\left(\dfrac{500}{\pi}\right)^{1/3}\approx5.419\) cm. Is it a minimum? \(S''(r)=4\pi+\dfrac{4000}{r^3}>0\) for every \(r>0\), so \(S\) is concave up everywhere on its domain and the single critical point is the absolute minimum (Lesson 11.02). Now the height. Since \(r^3=\dfrac{500}{\pi}\),</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ h=\frac{1000}{\pi r^2}=\frac{1000\,r}{\pi r^3}=\frac{1000\,r}{500}=2r \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Answer.</strong> The can of least surface area has radius about \(5.42\) cm and height about \(10.84\) cm, so its height equals its diameter, \(h=2r\). Its surface area is about \(553.6\ \text{cm}^2\). Notice the elegance: the specific volume \(1000\) never appears in the shape \(h=2r\). Change the volume and the can gets bigger, but its proportions stay the same.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Why do many real cans look taller and thinner than \(h=2r\)? Because surface area is not the only cost. Seams, rims, stacking, and the way a can fits a hand all enter the real design, and a model that ignores them gives a different optimum. A good mathematician states the model's assumptions and says what the answer is the best <em>for</em>. The calculus gave the best can for surface area; whether that is the best can is a question about the assumptions.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; COST, REVENUE, AND ENDPOINTS</div>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 3: minimizing cost</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A farmer builds a rectangular pen of area \(1800\ \text{m}^2\) along a straight river that needs no fence. The fence parallel to the river costs \(\$10\) per meter, and each of the two ends costs \(\$6\) per meter. What dimensions minimize the cost?</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let each end have length \(x\) and the side parallel to the river have length \(y\). <strong>Constraint.</strong> \(xy=1800\), so \(y=\dfrac{1800}{x}\). <strong>Objective.</strong> The cost is \(C=10y+6(2x)=10y+12x\), so</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ C(x)=12x+\frac{18000}{x}, \qquad x>0 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Then \(C'(x)=12-\dfrac{18000}{x^2}=0\) gives \(x^2=1500\), so \(x=10\sqrt{15}\approx38.73\) m (the negative root is outside the domain). Since \(C''(x)=\dfrac{36000}{x^3}>0\), this is the absolute minimum. The parallel side is \(y=\dfrac{1800}{10\sqrt{15}}=12\sqrt{15}\approx46.48\) m, and the cost is</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ C=12(10\sqrt{15})+\frac{18000}{10\sqrt{15}}=120\sqrt{15}+120\sqrt{15}=240\sqrt{15}\approx \$929.52 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Answer.</strong> The cheapest pen has ends of about \(38.7\) m and a river-side of about \(46.5\) m, costing about \(\$929.52\). Reasonableness check: \(38.73\times46.48\approx1800\ \text{m}^2\) &#10003;, and the costlier side is the shorter one, as you would expect when its fence is priced higher.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 4: when the best answer is at an endpoint</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A tour company sells \(400-8p\) tickets when the price is \(p\) dollars, but its bus holds only \(120\) riders. What price maximizes revenue? Revenue is price times riders:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ R(p)=p(400-8p)=400p-8p^2 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Ignoring the bus, \(R'(p)=400-16p=0\) gives \(p=25\), but then there would be \(400-8(25)=200\) riders, more than the bus holds. The story imposes a constraint: riders \(400-8p\le120\), so \(p\ge35\). Riders cannot be negative either, so \(400-8p\ge0\), giving \(p\le50\). The <strong>domain is the closed interval \([35,50]\)</strong>, and the critical point \(p=25\) lies <em>outside</em> it. By the Closed Interval Method, compare the endpoints:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ R(35)=35\cdot120=4200, \qquad R(50)=50\cdot0=0 \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Answer.</strong> The maximum revenue is \(\$4200\), at a price of \(\$35\), with a full bus. The calculus critical point was irrelevant, and the answer sits at an endpoint. If a problem has a real-world limit, the limit belongs in the domain, and an endpoint can be the honest answer.</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: if the bus held \(250\) riders instead of \(120\), what price maximizes revenue? Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Riders \(400-8p\le250\) gives \(p\ge18.75\), and \(400-8p\ge0\) gives \(p\le50\), so the domain is \([18.75,\,50]\). This time the critical point \(p=25\) <em>is</em> inside the domain, where riders \(=200\le250\). Compare \(R(18.75)=18.75\cdot250=4687.5\), \(R(25)=25\cdot200=5000\), and \(R(50)=0\). The maximum is \(\$5000\) at \(p=25\). Same revenue formula, different domain, different answer. The domain decides.
+            </div>
+        </details>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; CAN, COST, AND ENDPOINT</div>
+          <div class="widget-question">Three answers to decide before you click.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. From \(r^3=500/\pi\) and \(h=\dfrac{1000}{\pi r^2}\) we get \(h=2r\)." data-hint="Use r^3 = 500/pi in h = 1000/(pi r^2) and simplify.">
+            <div class="widget-row-prompt">1. For the can of least surface area, how do the height and radius compare?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(h=r\)</button>
+              <button data-choice="1">\(h=4r\)</button>
+              <button data-choice="2">\(h=2r\), so the height equals the diameter</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. At \(p=25\) there would be \(200\) riders, more than \(120\). The domain is \([35,50]\), so you compare the endpoints." data-hint="Compute the number of riders at p = 25 and compare it with the bus capacity.">
+            <div class="widget-row-prompt">2. In the ticket problem with a \(120\)-rider bus, the critical point \(p=25\) is not the answer because&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">it lies outside the domain \([35,50]\) forced by the bus capacity.</button>
+              <button data-choice="1">the second derivative is zero there.</button>
+              <button data-choice="2">revenue is zero at \(p=25\).</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Checking the answer against the original constraint catches setup and arithmetic errors that a positive cost cannot." data-hint="Which check goes back to the story&#x27;s own requirement?">
+            <div class="widget-row-prompt">3. A solution to a cost problem reports a minimum cost of \(\$929.52\) for a pen of dimensions \(38.73\) m by \(46.48\) m. Which quick check best tests whether the answer is reasonable?</div>
+            <div class="widget-options">
+              <button data-choice="0">Confirm that the cost is a positive number.</button>
+              <button data-choice="1">Confirm that \(C'(x)\) is positive.</button>
+              <button data-choice="2">Confirm that the rounded dimensions multiply to about \(1800\ \text{m}^2\), the required area.</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 24 Problem Set: Applied Optimization</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Work the problems by hand, show every step, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 0;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 24 Quiz: Applied Optimization</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Optimization is one routine in many costumes: a distance, a surface area, a cost, a revenue. Write the objective, use the constraint to reach one variable, state the domain, find the critical points, and justify the extremum with the right tool for the domain. Sometimes the best answer is at an endpoint, and a real-world limit belongs in the domain. Lesson 12.03, Motion Along a Line, turns the same derivative toward a particle moving on a line, asking when it speeds up, when it turns around, and how far it really travels.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 12.02 &middot; Applied Optimization: Geometry, Cost, and Distance</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

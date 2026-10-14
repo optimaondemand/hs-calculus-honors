@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 14.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 14</div>
+        <div style="font-size: 12px; color: #666;">The Fundamental Theorem of Calculus</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 14.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">The Fundamental Theorem of Calculus, Part 2</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">The Fundamental Theorem of Calculus</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 14.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">The Fundamental Theorem of Calculus, Part 2</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">In Module 13 you needed a page of sigma notation and a limit to find that the area under y = x² from 0 to 3 is 9. Part 1 of the Fundamental Theorem has handed you a shortcut. How short can it get?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Part 1 said that an accumulation function is an antiderivative of the function being accumulated. Today we turn that around. If you can find <em>any</em> antiderivative of \(f\), then a definite integral is just a subtraction: the antiderivative's value at the top minus its value at the bottom. This is Part 2, and it is the working half of the Fundamental Theorem. It changes integration from a limit of sums into a reversed derivative. As with every great theorem, we will also practice reading the fine print, because an integral computed carelessly can come out with the wrong sign, or can fail to exist at all.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> state the Fundamental Theorem of Calculus, Part 2, and prove it from Part 1 and the fact that functions with equal derivatives differ by a constant.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> evaluate definite integrals of powers, trigonometric functions, exponentials, and \(1/x\) by finding antiderivatives.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> distinguish signed area from unsigned area, and recognize when the theorem does not apply.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus the derivative formulas from Modules 5 through 7 (you will read each one backward).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The consequence of the Mean Value Theorem from Lesson 8.04 (equal derivatives differ by a constant) and Part 1 from Lesson 14.01.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A graphing tool or calculator, to check your reasoning but never to replace it.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; FROM ACCUMULATION TO EVALUATION</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">In Module 13 you found the exact value of \(\int_0^{3}x^2\,dx\) with a limit of Riemann sums, a long computation with a summation formula. Today's theorem will let you do it in one line. What do you expect \(\int_0^3 x^2\,dx\) to equal? (A sketch of \(y=x^2\) on \([0,3]\) fits inside a \(3\times9\) rectangle of area 27.)</div>
+          <div class="widget-options">
+            <button data-response="Good estimate, and as you will see it is exactly 9. The curve y = x^2 starts flat and bends upward, filling one third of the rectangle; the exact value comes from an antiderivative, not a limit.">About 9, which is one third of the 27 in the bounding rectangle.</button>
+            <button data-response="The curve is very low near x = 0 and only reaches height 9 at x = 3, so the region fills well under the whole 3-by-9 rectangle. The exact answer, which we will compute in one line, is 9.">About 27, nearly the whole rectangle.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Part 1 said that differentiating an accumulation function returns the integrand. That means the accumulation function \(F(x)=\int_a^x f(t)\,dt\) is an <strong>antiderivative</strong> of \(f\): a function whose derivative is \(f\). So to compute a definite integral you need only find <em>any</em> antiderivative. The reason any one will do is a fact from Lesson 8.04: two functions with the same derivative on an interval differ by a constant.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The Fundamental Theorem of Calculus, Part 2</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Suppose \(f\) is <strong>continuous on \([a,b]\)</strong>, and \(F\) is <em>any</em> antiderivative of \(f\) on \([a,b]\) (that is, \(F'=f\)). Then \[ \int_a^b f(x)\,dx=F(b)-F(a). \] We write \(F(b)-F(a)\) as \(\Bigl[F(x)\Bigr]_a^b\) or \(F(x)\Big|_a^b\).</div>
+        </div>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Why it is true</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(G(x)=\int_a^x f(t)\,dt\). By Part 1, \(G'=f\), so \(G\) is an antiderivative of \(f\). Our given \(F\) is also an antiderivative, so \(F\) and \(G\) have the same derivative on \([a,b]\); by Lesson 8.04, \(F(x)=G(x)+C\) for some constant \(C\). Then</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ F(b)-F(a)=\bigl[G(b)+C\bigr]-\bigl[G(a)+C\bigr]=G(b)-G(a)=\int_a^b f(t)\,dt-0=\int_a^b f(t)\,dt.\qquad\blacksquare \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Notice that the constant \(C\) cancels. That is why, when evaluating a definite integral, you do not write \(+C\): any antiderivative works, and they all give the same answer.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Part 1 and Part 2 are two sides of one theorem. Part 1 says <em>integrate, then differentiate</em> and you return to the start. Part 2 says <em>differentiate, then integrate</em> (find an antiderivative and subtract its endpoint values) and you also return to the start, adjusted by a constant. Together they say that differentiation and integration are inverse processes.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; A TOOLKIT OF ANTIDERIVATIVES</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">To use Part 2 you must be able to reverse derivatives. Every derivative formula you learned in Modules 5, 6 and 7 can be read backward. Here is a short table. Each entry is verified by differentiating the right-hand side, which you should be able to do aloud.</p>
+        <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 10px 14px; margin: 12px 0; overflow-x: auto;"><table style="border-collapse: collapse; font-size: 16px; color: #1a2340; width: 100%;"><tr style="background: #EEF1F8;"><th style="text-align:left; padding: 6px 10px;">Function \(f(x)\)</th><th style="text-align:left; padding: 6px 10px;">An antiderivative \(F(x)\)</th><th style="text-align:left; padding: 6px 10px;">Because&hellip;</th></tr><tr><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(x^n\), \(n\ne-1\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\dfrac{x^{n+1}}{n+1}\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">the Power Rule, run backward</td></tr><tr><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\dfrac1x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\ln|x|\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\dfrac{d}{dx}\ln x=\dfrac1x\) for \(x>0\), and the Chain Rule gives \(\dfrac{d}{dx}\ln(-x)=\dfrac1x\) for \(x<0\)</td></tr><tr><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(e^x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(e^x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(e^x\) is its own derivative</td></tr><tr><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\cos x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\sin x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\dfrac{d}{dx}\sin x=\cos x\)</td></tr><tr><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\sin x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(-\cos x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\dfrac{d}{dx}(-\cos x)=\sin x\)</td></tr><tr><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\sec^2x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\tan x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\dfrac{d}{dx}\tan x=\sec^2x\)</td></tr><tr><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\sec x\tan x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\sec x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\dfrac{d}{dx}\sec x=\sec x\tan x\)</td></tr><tr><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\csc^2x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(-\cot x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\dfrac{d}{dx}(-\cot x)=\csc^2x\)</td></tr><tr><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\dfrac{1}{\sqrt{1-x^2}}\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\arcsin x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">the derivative found in Lesson 6.04</td></tr><tr><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\dfrac{1}{1+x^2}\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">\(\arctan x\)</td><td style="padding: 6px 10px; border-top: 1px solid #EEF1F8;">the derivative found in Lesson 6.04</td></tr></table></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1.</strong> \(\displaystyle\int_0^3x^2\,dx=\Bigl[\tfrac{x^3}{3}\Bigr]_0^3=\tfrac{27}{3}-0=9\). One line, and it matches the estimate. The long Riemann-sum computation from Lesson 13.02 was a proof that the answer is 9; this is a method for getting it fast.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2.</strong> \(\displaystyle\int_1^4\sqrt x\,dx=\int_1^4x^{1/2}\,dx=\Bigl[\tfrac23x^{3/2}\Bigr]_1^4=\tfrac23(8)-\tfrac23(1)=\tfrac{14}{3}\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3.</strong> \(\displaystyle\int_0^\pi\sin x\,dx=\bigl[-\cos x\bigr]_0^\pi=-\cos\pi-(-\cos0)=1+1=2\). The area under one arch of the sine curve is exactly 2.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 4.</strong> \(\displaystyle\int_1^2\Bigl(3x^2-\dfrac{2}{x^2}\Bigr)dx\). Rewrite \(\dfrac2{x^2}=2x^{-2}\); an antiderivative of \(3x^2-2x^{-2}\) is \(x^3+2x^{-1}\) (check: its derivative is \(3x^2-2x^{-2}\)). Then \(\bigl[x^3+\tfrac2x\bigr]_1^2=(8+1)-(1+2)=6\).</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; EVALUATE THE INTEGRAL</div>
+          <div class="widget-question">Use an antiderivative and Part 2. Choose the value, and be ready to say what your antiderivative was.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. An antiderivative is x^3, so the value is 2^3 - 0^3 = 8." data-hint="An antiderivative of 3x^2 is x^3. Evaluate at 2 and at 0 and subtract.">
+            <div class="widget-row-prompt">1. \(\displaystyle\int_0^2 3x^2\,dx\)</div>
+            <div class="widget-options">
+              <button data-choice="0">6</button>
+              <button data-choice="1">8</button>
+              <button data-choice="2">12</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. An antiderivative is sin x, so the value is sin(pi/2) - sin 0 = 1." data-hint="The antiderivative of cos x is sin x. What is sin(pi/2)?">
+            <div class="widget-row-prompt">2. \(\displaystyle\int_0^{\pi/2}\cos x\,dx\)</div>
+            <div class="widget-options">
+              <button data-choice="0">0</button>
+              <button data-choice="1">1</button>
+              <button data-choice="2">\(\pi/2\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. An antiderivative is ln x, so the value is ln e - ln 1 = 1 - 0 = 1." data-hint="The antiderivative of 1/x is ln|x|. Evaluate at e and at 1.">
+            <div class="widget-row-prompt">3. \(\displaystyle\int_1^e\dfrac1x\,dx\)</div>
+            <div class="widget-options">
+              <button data-choice="0">1</button>
+              <button data-choice="1">\(e-1\)</button>
+              <button data-choice="2">\(e\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. An antiderivative is arctan x, so the value is arctan 1 - arctan 0 = pi/4." data-hint="Which function has derivative 1/(1+x^2)? See the table.">
+            <div class="widget-row-prompt">4. \(\displaystyle\int_0^1\dfrac{1}{1+x^2}\,dx\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\pi/4\)</button>
+              <button data-choice="1">\(\ln 2\)</button>
+              <button data-choice="2">1</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: evaluate \(\displaystyle\int_1^4\Bigl(2x+\dfrac{1}{\sqrt x}\Bigr)dx\). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Rewrite \(\dfrac1{\sqrt x}=x^{-1/2}\). An antiderivative of \(2x+x^{-1/2}\) is \(x^2+2x^{1/2}=x^2+2\sqrt x\). Then \(\bigl[x^2+2\sqrt x\bigr]_1^4=(16+4)-(1+2)=17\).
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; SIGNED AREA, UNSIGNED AREA, AND THE FINE PRINT</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Part 2 computes <em>signed</em> area, the quantity the integral has meant since Lesson 13.03. Area above the horizontal axis counts positive; area below counts negative. So an integral can be zero even when plenty of area is present. For example,</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \int_0^{2\pi}\sin x\,dx=\bigl[-\cos x\bigr]_0^{2\pi}=-1-(-1)=0, \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">because the arch above the axis and the arch below cancel. The actual (unsigned) area between the curve and the axis is \(2\int_0^\pi\sin x\,dx=4\). To find unsigned area you must split the interval wherever the function changes sign, integrate each piece, and add the absolute values.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>A worked example.</strong> Let \(f(x)=x^3-x=x(x-1)(x+1)\) on \([-1,2]\). The zeros at \(-1,0,1\) split the interval. An antiderivative is \(F(x)=\tfrac{x^4}{4}-\tfrac{x^2}{2}\).</p>
+        <div style="margin: 14px 0; text-align: center;"><svg viewBox="0 0 380 210" width="380" height="210" role="img" aria-label="Graph of f(x)=x^3-x from x=-1 to 2: positive on (-1,0), negative on (0,1), positive on (1,2)"><polygon points="40.0,170.0 40.0,170.0 41.7,169.3 43.4,168.7 45.1,168.1 46.8,167.6 48.5,167.0 50.2,166.5 51.9,166.1 53.6,165.6 55.3,165.2 56.9,164.8 58.6,164.5 60.3,164.2 62.0,163.9 63.7,163.6 65.4,163.4 67.1,163.2 68.8,163.0 70.5,162.8 72.2,162.7 73.9,162.6 75.6,162.5 77.3,162.4 79.0,162.3 80.7,162.3 82.4,162.3 84.1,162.3 85.8,162.3 87.5,162.4 89.2,162.5 90.8,162.5 92.5,162.6 94.2,162.8 95.9,162.9 97.6,163.0 99.3,163.2 101.0,163.4 102.7,163.6 104.4,163.8 106.1,164.0 107.8,164.2 109.5,164.5 111.2,164.7 112.9,165.0 114.6,165.2 116.3,165.5 118.0,165.8 119.7,166.1 121.4,166.4 123.1,166.7 124.7,167.0 126.4,167.3 128.1,167.7 129.8,168.0 131.5,168.3 133.2,168.7 134.9,169.0 136.6,169.3 138.3,169.7 140.0,170.0 140.0,170.0" fill="#55C8E8" fill-opacity="0.4"/><polygon points="140.0,170.0 140.0,170.0 141.7,170.3 143.4,170.7 145.1,171.0 146.8,171.3 148.5,171.7 150.2,172.0 151.9,172.3 153.6,172.7 155.3,173.0 156.9,173.3 158.6,173.6 160.3,173.9 162.0,174.2 163.7,174.5 165.4,174.8 167.1,175.0 168.8,175.3 170.5,175.5 172.2,175.8 173.9,176.0 175.6,176.2 177.3,176.4 179.0,176.6 180.7,176.8 182.4,177.0 184.1,177.1 185.8,177.2 187.5,177.4 189.2,177.5 190.8,177.5 192.5,177.6 194.2,177.7 195.9,177.7 197.6,177.7 199.3,177.7 201.0,177.7 202.7,177.6 204.4,177.5 206.1,177.4 207.8,177.3 209.5,177.2 211.2,177.0 212.9,176.8 214.6,176.6 216.3,176.4 218.0,176.1 219.7,175.8 221.4,175.5 223.1,175.2 224.7,174.8 226.4,174.4 228.1,173.9 229.8,173.5 231.5,173.0 233.2,172.4 234.9,171.9 236.6,171.3 238.3,170.7 240.0,170.0 240.0,170.0" fill="#E74C3C" fill-opacity="0.4"/><polygon points="240.0,170.0 240.0,170.0 241.7,169.3 243.4,168.6 245.1,167.8 246.8,167.0 248.5,166.2 250.2,165.3 251.9,164.4 253.6,163.4 255.3,162.4 256.9,161.4 258.6,160.3 260.3,159.2 262.0,158.1 263.7,156.9 265.4,155.6 267.1,154.3 268.8,153.0 270.5,151.6 272.2,150.2 273.9,148.8 275.6,147.3 277.3,145.7 279.0,144.1 280.7,142.5 282.4,140.8 284.1,139.0 285.8,137.2 287.5,135.4 289.2,133.5 290.8,131.5 292.5,129.5 294.2,127.5 295.9,125.4 297.6,123.2 299.3,121.0 301.0,118.7 302.7,116.4 304.4,114.0 306.1,111.6 307.8,109.1 309.5,106.5 311.2,103.9 312.9,101.2 314.6,98.5 316.3,95.7 318.0,92.9 319.7,89.9 321.4,87.0 323.1,83.9 324.7,80.8 326.4,77.7 328.1,74.4 329.8,71.2 331.5,67.8 333.2,64.4 334.9,60.9 336.6,57.3 338.3,53.7 340.0,50.0 340.0,170.0" fill="#55C8E8" fill-opacity="0.4"/><line x1="30" y1="170" x2="360" y2="170" stroke="#0E1C42" stroke-width="1.5"/><line x1="140" y1="30" x2="140" y2="190" stroke="#0E1C42" stroke-width="1.5"/><polyline points="40.0,170.0 42.5,169.0 45.0,168.1 47.6,167.3 50.1,166.6 52.6,165.9 55.1,165.3 57.6,164.7 60.2,164.2 62.7,163.8 65.2,163.4 67.7,163.1 70.3,162.8 72.8,162.6 75.3,162.5 77.8,162.4 80.3,162.3 82.9,162.3 85.4,162.3 87.9,162.4 90.4,162.5 92.9,162.7 95.5,162.9 98.0,163.1 100.5,163.3 103.0,163.6 105.5,163.9 108.1,164.3 110.6,164.6 113.1,165.0 115.6,165.4 118.2,165.8 120.7,166.3 123.2,166.7 125.7,167.2 128.2,167.7 130.8,168.2 133.3,168.7 135.8,169.2 138.3,169.7 140.8,170.2 143.4,170.7 145.9,171.2 148.4,171.7 150.9,172.2 153.4,172.6 156.0,173.1 158.5,173.6 161.0,174.0 163.5,174.4 166.1,174.9 168.6,175.2 171.1,175.6 173.6,176.0 176.1,176.3 178.7,176.6 181.2,176.8 183.7,177.1 186.2,177.3 188.7,177.4 191.3,177.6 193.8,177.6 196.3,177.7 198.8,177.7 201.3,177.7 203.9,177.6 206.4,177.4 208.9,177.2 211.4,177.0 213.9,176.7 216.5,176.4 219.0,175.9 221.5,175.5 224.0,174.9 226.6,174.3 229.1,173.7 231.6,172.9 234.1,172.1 236.6,171.3 239.2,170.3 241.7,169.3 244.2,168.2 246.7,167.0 249.2,165.8 251.8,164.4 254.3,163.0 256.8,161.5 259.3,159.9 261.8,158.2 264.4,156.4 266.9,154.5 269.4,152.5 271.9,150.5 274.5,148.3 277.0,146.0 279.5,143.6 282.0,141.1 284.5,138.5 287.1,135.8 289.6,133.0 292.1,130.0 294.6,127.0 297.1,123.8 299.7,120.5 302.2,117.1 304.7,113.6 307.2,109.9 309.7,106.1 312.3,102.2 314.8,98.2 317.3,94.0 319.8,89.7 322.4,85.2 324.9,80.6 327.4,75.9 329.9,71.0 332.4,66.0 335.0,60.8 337.5,55.5 340.0,50.0" fill="none" stroke="#0E1C42" stroke-width="2.5"/><g font-family="Segoe UI,Arial" font-size="12" fill="#1a2340" text-anchor="middle"><text x="40" y="186">-1</text><text x="240" y="186">1</text><text x="340" y="186">2</text><text x="90" y="204" fill="#0E1C42">area 1/4</text><text x="190" y="204" fill="#8A1F16">area 1/4</text><text x="290" y="204" fill="#0E1C42">area 9/4</text></g></svg><div style="font-size: 14px; color: #666; margin-top: 4px;">The graph of \(f(x)=x^3-x\). Blue regions lie above the axis and count positive; the red region lies below and counts negative.</div></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The three pieces: \(\int_{-1}^0=F(0)-F(-1)=0-(-\tfrac14)=\tfrac14\); \(\int_0^1=F(1)-F(0)=-\tfrac14-0=-\tfrac14\); \(\int_1^2=F(2)-F(1)=2-(-\tfrac14)=\tfrac94\). Add them with signs and you get the <strong>signed</strong> integral \(\tfrac14-\tfrac14+\tfrac94=\tfrac94\) (matching \(F(2)-F(-1)=2-(-\tfrac14)=\tfrac94\), a quick check on the arithmetic). Add the absolute values and you get the <strong>unsigned area</strong> \(\tfrac14+\tfrac14+\tfrac94=\tfrac{11}{4}\).</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The most dangerous misuse of Part 2 is applying it where its hypothesis fails. Try \(\displaystyle\int_{-1}^{1}\dfrac1{x^2}\,dx\). An antiderivative of \(x^{-2}\) is \(-\dfrac1x\), and a careless evaluation gives \(\bigl[-\tfrac1x\bigr]_{-1}^{1}=-1-1=-2\). But the integrand \(\dfrac1{x^2}\) is positive everywhere, so no integral of it can be negative! The error is that \(f(x)=\dfrac1{x^2}\) is not continuous on \([-1,1]\) (it blows up at \(x=0\)), so Part 2 does not apply. The honest answer is &ldquo;this theorem does not apply, and the integral needs more careful treatment.&rdquo; Always check continuity on the whole interval before you subtract.</div>
+        </div>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">An AI tool can evaluate a definite integral instantly, and it can be wrong on exactly the cases above, or give a correct number without telling you the theorem's hypothesis fails. When a tool gives you a value, check three things: Is the function continuous on the interval? Does the sign of the answer agree with the sign of the function? Does an antiderivative's derivative return the integrand? Use the tool to confirm your own work, never to replace it.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Check your understanding.</strong> Suppose \(\displaystyle\int_0^4f(x)\,dx=5\) and \(f\) is continuous. Does that tell you the area between the graph and the axis is 5? Not necessarily: it tells you the <em>signed</em> area is 5. If \(f\) dips below the axis somewhere on \([0,4]\), the unsigned area is larger than 5.</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find both the signed value and the unsigned area of \(\int_0^{2\pi}\cos x\,dx\), where \(\cos x\ge0\) on \([0,\pi/2]\), \(\le0\) on \([\pi/2,3\pi/2]\), and \(\ge0\) on \([3\pi/2,2\pi]\). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Signed: \(\bigl[\sin x\bigr]_0^{2\pi}=0-0=0\). Unsigned: \(\int_0^{\pi/2}\cos x\,dx=1\); \(\int_{\pi/2}^{3\pi/2}\cos x\,dx=\sin\tfrac{3\pi}2-\sin\tfrac\pi2=-1-1=-2\), contributing area 2; \(\int_{3\pi/2}^{2\pi}\cos x\,dx=0-(-1)=1\). Total unsigned area \(=1+2+1=4\).
+            </div>
+        </details>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 28 Problem Set: The Fundamental Theorem of Calculus</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Differentiate integrals and evaluate definite integrals with antiderivatives. Upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 28 Quiz: The Fundamental Theorem of Calculus</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">The Fundamental Theorem of Calculus, Part 2, says that if \(f\) is continuous on \([a,b]\) and \(F'=f\), then \(\int_a^bf(x)\,dx=F(b)-F(a)\). Any antiderivative works because two antiderivatives differ by a constant that cancels. The integral is signed area, so split at the zeros of \(f\) if you want the unsigned area, and check continuity before you subtract. Lesson 14.03 uses the theorem to measure net change: the integral of a rate is the total change in the quantity, and the graph of an antiderivative can be read from the graph of its derivative.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 14.02 &middot; The Fundamental Theorem of Calculus, Part 2</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

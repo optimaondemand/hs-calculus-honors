@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 10.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 10</div>
+        <div style="font-size: 12px; color: #666;">Increasing, Decreasing, and Extrema</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 10.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Critical Points and Local Extrema</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Increasing, Decreasing, and Extrema</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 10.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Critical Points and Local Extrema</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">At the very top of a smooth hill, what is the slope? And what about the top of a hill with a sharp point?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 8.03 gave you Fermat's observation: at an interior peak or valley, the derivative is zero if it exists. That sentence is quietly the most useful search rule in calculus. If you want the highest or lowest point of a function, you do not have to check every point of a graph, which is infinitely many. You only have to check the critical points, which are usually a handful. Today you learn what a local extremum is, define a critical point, and practice finding them. You will also learn the discipline that goes with the tool: a critical point is a <em>suspect</em>, not a <em>verdict</em>.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> define a local maximum, a local minimum, and a critical point, and state Fermat's Theorem for Local Extrema precisely.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> find all critical points of polynomial, rational, radical, and trigonometric functions, including points where the derivative does not exist.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain with examples why a critical point is only a candidate: some are extrema and some are not.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus the derivative rules from Modules 5 through 7.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Fermat's observation from Lesson 8.03, and the corner and cusp pictures from Lessons 4.04 and 9.02.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; LOCAL EXTREMA AND CRITICAL POINTS</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Picture a smooth hill. Walk to the very top and stop. If you laid a straight edge along the hill at exactly that point, how would it be tilted?</div>
+          <div class="widget-options">
+            <button data-response="Yes, and that is Fermat's observation from Lesson 8.03: at the top of a smooth hill the rate of change is zero, so the tangent line is horizontal. Today that observation becomes a search strategy.">Level, with no tilt at all.</button>
+            <button data-response="Close your eyes at the summit and ask which way is up. If the edge tilted uphill, you could climb a little further, so you would not yet be at the top; if it tilted downhill, the same is true in the other direction. At a smooth peak the tilt has nowhere to go but zero. That is the idea of today's lesson.">Tilted uphill or downhill, because the hill keeps going.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Every optimization question you will meet from here to the end of the course has the same shape: <em>where is a quantity as large, or as small, as it can be?</em> The tallest point of a graph, the cheapest design for a can, the time at which a ball is highest. The derivative is the instrument for finding them, because the derivative measures tilt. This module builds the whole method in four steps. Today we learn which points to <em>suspect</em>.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Local extrema</h3>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Local maximum and local minimum</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">A function \(f\) has a <strong>local maximum</strong> at \(c\) if \(f(c)\ge f(x)\) for every \(x\) in some open interval around \(c\) (every \(x\) <em>near</em> \(c\)). It has a <strong>local minimum</strong> at \(c\) if \(f(c)\le f(x)\) for every \(x\) near \(c\). Either is called a <strong>local extremum</strong>; the plural is <em>extrema</em>.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">&ldquo;Local&rdquo; is the honest word. The point only has to beat its <em>neighbors</em>, not the whole graph. A hilltop in Florida is a local maximum even though Everest is higher. Comparing a point against every other point of a domain is a different question, <em>absolute</em> extrema, and Lesson 10.03 answers it.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Where to look</h3>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Critical point</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">A number \(c\) in the domain of \(f\) is a <strong>critical point</strong> (or critical number) of \(f\) if either \(f'(c)=0\) or \(f'(c)\) <strong>does not exist</strong>.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Why these two cases and no others? Lesson 8.03 gave us Fermat's fact: if \(f\) has a local extremum at an interior point \(c\) and \(f'(c)\) exists, then \(f'(c)=0\). Read it as a search rule. A local extremum at \(c\) leaves only two possibilities, the derivative is zero there, or the derivative is not defined there. A critical point is any point that has not been ruled out.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Fermat's Theorem for Local Extrema (the search rule)</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(f\) has a local maximum or local minimum at \(c\) in the interior of its domain, then \(c\) is a critical point of \(f\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here is the picture of all three cases, which are the three you must know on sight.</p>
+        <div style="margin: 14px 0; text-align: center;">
+        <svg viewBox="0 0 660 190" width="100%" style="max-width: 660px;" role="img" aria-label="Three graphs, each with a point at x equals c: a smooth peak with a horizontal tangent, a V-shaped corner where the derivative does not exist, and an S-shaped curve with a horizontal tangent but no peak or valley.">
+            <g fill="none" stroke="#0E1C42" stroke-width="2.5">
+                <path d="M 20 150 Q 100 0 180 150"/>
+                <path d="M 240 40 L 320 150 L 400 40"/>
+                <path d="M 450 160 C 500 160 510 90 540 90 C 570 90 580 20 630 20"/>
+            </g>
+            <g stroke="#C7922C" stroke-width="2" stroke-dasharray="5 4">
+                <line x1="55" y1="75" x2="145" y2="75"/>
+                <line x1="505" y1="90" x2="575" y2="90"/>
+            </g>
+            <g fill="#C0392B">
+                <circle cx="100" cy="75" r="5"/>
+                <circle cx="320" cy="150" r="5"/>
+                <circle cx="540" cy="90" r="5"/>
+            </g>
+            <g font-family="Segoe UI, Arial, sans-serif" font-size="13" fill="#1a2340" text-anchor="middle">
+                <text x="100" y="175">f'(c) = 0, local maximum</text>
+                <text x="320" y="175">f'(c) does not exist, local minimum</text>
+                <text x="540" y="182">f'(c) = 0, no extremum</text>
+            </g>
+        </svg>
+        </div>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Fermat's Theorem runs in <em>one direction only</em>. Every local extremum is at a critical point. It does <em>not</em> say that every critical point is a local extremum. The right-hand graph above has a horizontal tangent at the marked point and yet is neither a peak nor a valley. A critical point is a <strong>suspect</strong>, not a verdict. Lesson 10.02 teaches the test that delivers the verdict.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; FINDING CRITICAL POINTS</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">To find the critical points of \(f\): differentiate, then do two separate jobs. First, solve \(f'(x)=0\). Second, look for any \(x\) <em>in the domain of \(f\)</em> where \(f'(x)\) fails to exist. Skipping the second job is the most common way to lose a critical point.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1 (a polynomial).</strong> Find the critical points of \(f(x)=x^3-3x^2-9x+5\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Narrate it: a polynomial is differentiable everywhere, so the only critical points are the zeros of \(f'\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ f'(x)=3x^2-6x-9=3(x^2-2x-3)=3(x-3)(x+1) \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Setting \(f'(x)=0\) gives \(x=3\) and \(x=-1\). Both are in the domain, so the critical points are \(x=-1\) and \(x=3\). The function values there are \(f(-1)=-1-3+9+5=10\) and \(f(3)=27-27-27+5=-22\), so the points on the graph are \((-1,10)\) and \((3,-22)\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2 (a rational function).</strong> Find the critical points of \(f(x)=\dfrac{x}{x^2+1}\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The denominator is never zero, so \(f\) is defined and differentiable everywhere. By the Quotient Rule,</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ f'(x)=\frac{(1)(x^2+1)-x(2x)}{(x^2+1)^2}=\frac{1-x^2}{(x^2+1)^2}=\frac{(1-x)(1+x)}{(x^2+1)^2} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The numerator is zero at \(x=1\) and \(x=-1\), and the denominator never vanishes, so these are the critical points. The values are \(f(1)=\tfrac12\) and \(f(-1)=-\tfrac12\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3 (where the derivative does not exist).</strong> Find the critical points of \(f(x)=x^{2/3}\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here \(f\) is defined for every real \(x\), but</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ f'(x)=\frac23x^{-1/3}=\frac{2}{3\sqrt[3]{x}} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">There is no \(x\) that makes this zero. But \(f'(0)\) does not exist, and \(0\) <em>is</em> in the domain of \(f\) (indeed \(f(0)=0\)). So \(x=0\) is a critical point, and it is the only one. The graph has a cusp there, the same shape you met in Lesson 9.02, where the tangent line turns vertical. And in this case the cusp is a local minimum: \(f(0)=0\) and every other value \(x^{2/3}\) is positive.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A critical point must be <em>in the domain of \(f\)</em>. Take \(f(x)=\dfrac1x\). Its derivative \(f'(x)=-\dfrac1{x^2}\) does not exist at \(x=0\), and \(f'(x)=0\) has no solution. Is \(0\) a critical point? No, because \(0\) is not in the domain of \(f\); the graph simply does not have a point there to suspect. This function has no critical points at all.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find all critical points of \(f(x)=x-2\sin x\) on the interval \((0,2\pi)\), and then give the function value at each. Commit to your answer, then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f'(x)=1-2\cos x\). Setting it to zero gives \(\cos x=\tfrac12\), so \(x=\tfrac{\pi}{3}\) and \(x=\tfrac{5\pi}{3}\), both inside \((0,2\pi)\). The derivative exists everywhere, so there are no others. The values are \(f(\tfrac{\pi}{3})=\tfrac{\pi}{3}-\sqrt3\approx-0.685\) and \(f(\tfrac{5\pi}{3})=\tfrac{5\pi}{3}+\sqrt3\approx6.969\). Which of these is a local minimum and which a local maximum? That is exactly the question Lesson 10.02 answers.
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; SUSPECTS, NOT VERDICTS</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now the honest accounting. Fermat's Theorem says local extrema occur <em>only</em> at critical points. It never promised the reverse. So each critical point must be examined, and there are three outcomes: a local maximum, a local minimum, or neither.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The standard example of &ldquo;neither&rdquo; is \(f(x)=x^3\). Its derivative \(f'(x)=3x^2\) is zero at \(x=0\), so \(0\) is a critical point. But \(f(x)&lt;f(0)\) for every \(x&lt;0\) and \(f(x)>f(0)\) for every \(x>0\), so the point is neither a peak nor a valley. The graph passes through a flat moment on its way up. This is the right-hand graph at the top of the lesson.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Mathematicians have a word for the discipline this teaches: <em>honesty</em>, in the specific sense of not claiming more than the evidence shows. A critical point shows only that an extremum is <em>possible</em> there. To say more, you need more evidence.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; CLASSIFY THE POINT AT \(x=0\)</div>
+          <div class="widget-question">For each function, decide what kind of point \(x=0\) is. Look at the domain first, then at the derivative.</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. f'(x) = 2x is 0 at x = 0, and f(0) = 0 is the lowest value near 0, so this is a local minimum." data-hint="Compute f'(0), then compare f(0) with values just left and right.">
+            <div class="widget-row-prompt">1. \(f(x)=x^2\)</div>
+            <div class="widget-options">
+              <button data-choice="0">A critical point, and a local extremum</button>
+              <button data-choice="1">A critical point, but not a local extremum</button>
+              <button data-choice="2">Not a critical point</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. 0 is not in the domain of 1/x, so it cannot be a critical point, even though the derivative does not exist there." data-hint="Is x = 0 even in the domain of f?">
+            <div class="widget-row-prompt">2. \(f(x)=\dfrac1x\)</div>
+            <div class="widget-options">
+              <button data-choice="0">A critical point, and a local extremum</button>
+              <button data-choice="1">A critical point, but not a local extremum</button>
+              <button data-choice="2">Not a critical point</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. f'(0) = 0, so 0 is critical, but f is negative to the left and positive to the right of 0, so there is no peak or valley." data-hint="f'(0) = 0, so it is critical. Now compare f(0) with nearby values on both sides.">
+            <div class="widget-row-prompt">3. \(f(x)=x^3\)</div>
+            <div class="widget-options">
+              <button data-choice="0">A critical point, and a local extremum</button>
+              <button data-choice="1">A critical point, but not a local extremum</button>
+              <button data-choice="2">Not a critical point</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. f'(0) does not exist (a corner, Lesson 4.04) and 0 is in the domain, so 0 is critical; f(0) = 0 is the smallest value, a local minimum." data-hint="Remember Lesson 4.04: what happens to the derivative of |x| at 0?">
+            <div class="widget-row-prompt">4. \(f(x)=|x|\)</div>
+            <div class="widget-options">
+              <button data-choice="0">A critical point, and a local extremum</button>
+              <button data-choice="1">A critical point, but not a local extremum</button>
+              <button data-choice="2">Not a critical point</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. f'(x) = 1/(3 x^(2/3)) does not exist at 0, and 0 is in the domain, so 0 is critical. But the cube root is increasing everywhere, so there is no extremum. It has a vertical tangent, the Lesson 9.02 case." data-hint="Find f'(x) and check x = 0. Then ask whether the cube root ever turns around.">
+            <div class="widget-row-prompt">5. \(f(x)=\sqrt[3]{x}\)</div>
+            <div class="widget-options">
+              <button data-choice="0">A critical point, and a local extremum</button>
+              <button data-choice="1">A critical point, but not a local extremum</button>
+              <button data-choice="2">Not a critical point</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> a friend says, &ldquo;The derivative is zero at \(x=0\) for \(f(x)=x^3\), so the function must have a peak or valley there.&rdquo; In two sentences, explain which half of Fermat's Theorem your friend has reversed, and use \(x^3\) as your evidence.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A computer algebra system can solve \(f'(x)=0\) in a fraction of a second, and that is a real convenience. But it is solving only the <em>first</em> of the two jobs. Ask it to solve \(f'(x)=0\) for \(f(x)=x^{2/3}\) and it will report no solution, while the true critical point, \(x=0\), comes from the second job. A tool answers the question you ask it. Knowing which question to ask, and which suspects exist outside the equation, is your part.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Looking ahead.</strong> You can now list the suspects. For \(f(x)=x^4-4x^3\), the derivative is \(f'(x)=4x^3-12x^2=4x^2(x-3)\), so the critical points are \(x=0\) and \(x=3\). One of them turns out to be a valley and the other to be neither, and you cannot tell which from \(f'(x)=0\) alone. In the next lesson we study the <em>sign</em> of \(f'\) to deliver the verdict.</p>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 20 Problem Set: Critical Points and the First Derivative Test</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Find critical points, justify each one, and write out your reasoning, then upload your completed pages. Finish Lesson 10.02 first, since the problem set uses both lessons.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 20 Quiz: Critical Points and the First Derivative Test</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material. Lesson 10.02 comes next, so finish it before the quiz.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A local extremum of a function can occur only at a critical point, meaning a point in the domain where the derivative is zero or does not exist. But the rule runs one way: a critical point is only a suspect. Some are peaks, some are valleys, and some, like \(x=0\) for \(x^3\), are neither. Lesson 10.02 shows how the sign of the derivative on either side of a critical point settles the question.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 10.01 &middot; Critical Points and Local Extrema</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

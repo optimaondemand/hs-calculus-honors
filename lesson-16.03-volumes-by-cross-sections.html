@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 16.03</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 16</div>
+        <div style="font-size: 12px; color: #666;">Area, Average Value, and Volume</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 16.03</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Volumes by Cross-Sections</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Area, Average Value, and Volume</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 16.03</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Volumes by Cross-Sections</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">If you know the area of every slice of a solid, you can find the volume of the whole thing, even when the solid has no name.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lessons 16.01 and 16.02 used the integral to measure area and average value. Today the integral measures something three-dimensional. The idea is Cavalieri's slicing principle: cut a solid into thin slabs, find the area of the face of each slab, and add up the volumes. The calculus is short, since it is the Riemann sum of Lesson 13.03 once more. The real skill is reading a base region and a cross-section description, and building the function \(A(x)\) from them. By the end you will have found volumes of solids made of squares, semicircles, and triangles standing on curved bases.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain why \(V=\int_a^b A(x)\,dx\) gives the volume of a solid with known cross-sections, using the idea of thin slabs.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> find the slice length \(s\) across a base region and write \(A\) for squares, semicircles, and triangles.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> set up and evaluate a volume integral with respect to either \(x\) or \(y\), and check the setup with a special case.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and room to sketch a base region and a typical slice.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The definite integral and the Riemann sums behind it from Lessons 13.01 through 13.03, and the area-between-curves setup from Lesson 16.01.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A willingness to draw first. Every setup in this lesson begins with a picture.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; SLICING A SOLID INTO KNOWN CROSS-SECTIONS</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A loaf of bread is sliced into thin, equal-thickness slices, and you know the area of the face of every slice. Which quantity would you add up to get the volume of the loaf?</div>
+          <div class="widget-options">
+            <button data-response="Yes. A slice is a very thin solid of volume (face area) \(\times\) (thickness), and the loaf is all the slices together. Today that sentence becomes an integral.">The areas of the faces, each multiplied by the thickness of its slice.</button>
+            <button data-response="Perimeters measure the length around a face, not the amount of bread in it. Volume needs the area of each face, since a slice is a face thickened by a tiny thickness. That is where today's integral comes from.">The perimeters of the faces, added up.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 16.01 turned an area into an integral by slicing a region into thin vertical strips, approximating each strip by a rectangle, and letting the number of strips grow without bound, exactly the Riemann-sum story of Lessons 13.01 through 13.03. Today we carry that same idea one dimension up. Instead of cutting a flat region into strips, we cut a <em>solid</em> into thin slabs.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Suppose a solid lies between \(x=a\) and \(x=b\), and suppose that for each \(x\) the slice cut by a plane perpendicular to the \(x\)-axis has area \(A(x)\). A slab of thickness \(\Delta x\) near \(x\) has volume about \(A(x)\,\Delta x\). Add the slabs, let \(\Delta x\to 0\), and you have a Riemann sum turning into an integral:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ V=\int_a^b A(x)\,dx. \]
+        </p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">This idea is older than calculus. In 1635 Bonaventura Cavalieri, a student of Galileo, published his <em>principle</em>: if two solids have equal cross-sectional area at every height, they have equal volume. Think of two stacks of coins, one straight and one leaning. The shape differs, but the stack holds the same amount of silver. The integral \(\int A(x)\,dx\) is Cavalieri's principle made exact. Archimedes had used the same slicing intuition nearly two thousand years earlier to find the volume of a sphere.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Notice what the formula asks of you. The hard part is never the integral. It is <strong>finding \(A(x)\)</strong> from a picture. That is a modeling skill, and it is worth learning as a routine:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>1.</strong> Sketch the base region and a typical slice, and decide which axis the slices are perpendicular to. <strong>2.</strong> Find the length \(s\) of the slice across the base, as a function of the variable. <strong>3.</strong> Write the area of the cross-section in terms of \(s\). <strong>4.</strong> Integrate between the limits where the slices begin and end.</p>
+<div style="text-align:center; margin: 12px 0;"><svg viewBox="0 0 520 250" width="520" height="250" role="img" aria-label="Base region under y equals x squared from 0 to 2 with thin vertical slices; one slice of length s equals x squared is pulled out as a square of side s" style="max-width:100%; height:auto; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:8px; font-family: Segoe UI, Arial, sans-serif;"><line x1="30.0" y1="208.4" x2="294.5" y2="208.4" stroke="#6b7a99" stroke-width="1.5"/><line x1="59.4" y1="226.0" x2="59.4" y2="14.4" stroke="#6b7a99" stroke-width="1.5"/><text x="290.5" y="224.4" font-size="13" fill="#6b7a99" font-style="italic">x</text><text x="65.4" y="24.4" font-size="13" fill="#6b7a99" font-style="italic">y</text><polygon points="59.4,208.4 62.7,208.3 65.9,208.2 69.2,207.9 72.4,207.6 75.7,207.1 79.0,206.6 82.2,206.0 85.5,205.2 88.8,204.4 92.0,203.5 95.3,202.4 98.6,201.3 101.8,200.1 105.1,198.8 108.4,197.3 111.6,195.8 114.9,194.2 118.2,192.5 121.4,190.7 124.7,188.8 128.0,186.8 131.2,184.7 134.5,182.5 137.8,180.2 141.0,177.8 144.3,175.3 147.6,172.7 150.8,170.0 154.1,167.2 157.3,164.3 160.6,161.3 163.9,158.2 167.1,155.0 170.4,151.7 173.7,148.4 176.9,144.9 180.2,141.3 183.5,137.6 186.7,133.9 190.0,130.0 193.3,126.0 196.5,122.0 199.8,117.8 203.1,113.5 206.3,109.2 209.6,104.7 212.9,100.2 216.1,95.5 219.4,90.8 222.7,85.9 225.9,81.0 229.2,75.9 232.4,70.8 235.7,65.5 239.0,60.2 242.2,54.8 245.5,49.2 248.8,43.6 252.0,37.9 255.3,32.0 255.3,208.4 252.0,208.4 248.8,208.4 245.5,208.4 242.2,208.4 239.0,208.4 235.7,208.4 232.4,208.4 229.2,208.4 225.9,208.4 222.7,208.4 219.4,208.4 216.1,208.4 212.9,208.4 209.6,208.4 206.3,208.4 203.1,208.4 199.8,208.4 196.5,208.4 193.3,208.4 190.0,208.4 186.7,208.4 183.5,208.4 180.2,208.4 176.9,208.4 173.7,208.4 170.4,208.4 167.1,208.4 163.9,208.4 160.6,208.4 157.3,208.4 154.1,208.4 150.8,208.4 147.6,208.4 144.3,208.4 141.0,208.4 137.8,208.4 134.5,208.4 131.2,208.4 128.0,208.4 124.7,208.4 121.4,208.4 118.2,208.4 114.9,208.4 111.6,208.4 108.4,208.4 105.1,208.4 101.8,208.4 98.6,208.4 95.3,208.4 92.0,208.4 88.8,208.4 85.5,208.4 82.2,208.4 79.0,208.4 75.7,208.4 72.4,208.4 69.2,208.4 65.9,208.4 62.7,208.4 59.4,208.4" fill="#55C8E8" fill-opacity="0.28" stroke="none"/><line x1="79.0" y1="208.4" x2="79.0" y2="206.6" stroke="#2196D0" stroke-width="1"/><line x1="98.6" y1="208.4" x2="98.6" y2="201.3" stroke="#2196D0" stroke-width="1"/><line x1="118.2" y1="208.4" x2="118.2" y2="192.5" stroke="#2196D0" stroke-width="1"/><line x1="137.8" y1="208.4" x2="137.8" y2="180.2" stroke="#2196D0" stroke-width="1"/><line x1="157.3" y1="208.4" x2="157.3" y2="164.3" stroke="#2196D0" stroke-width="1"/><line x1="176.9" y1="208.4" x2="176.9" y2="144.9" stroke="#2196D0" stroke-width="1"/><line x1="196.5" y1="208.4" x2="196.5" y2="122.0" stroke="#2196D0" stroke-width="1"/><line x1="216.1" y1="208.4" x2="216.1" y2="95.5" stroke="#2196D0" stroke-width="1"/><line x1="235.7" y1="208.4" x2="235.7" y2="65.5" stroke="#2196D0" stroke-width="1"/><polyline points="59.4,208.4 62.7,208.3 65.9,208.2 69.2,207.9 72.4,207.6 75.7,207.1 79.0,206.6 82.2,206.0 85.5,205.2 88.8,204.4 92.0,203.5 95.3,202.4 98.6,201.3 101.8,200.1 105.1,198.8 108.4,197.3 111.6,195.8 114.9,194.2 118.2,192.5 121.4,190.7 124.7,188.8 128.0,186.8 131.2,184.7 134.5,182.5 137.8,180.2 141.0,177.8 144.3,175.3 147.6,172.7 150.8,170.0 154.1,167.2 157.3,164.3 160.6,161.3 163.9,158.2 167.1,155.0 170.4,151.7 173.7,148.4 176.9,144.9 180.2,141.3 183.5,137.6 186.7,133.9 190.0,130.0 193.3,126.0 196.5,122.0 199.8,117.8 203.1,113.5 206.3,109.2 209.6,104.7 212.9,100.2 216.1,95.5 219.4,90.8 222.7,85.9 225.9,81.0 229.2,75.9 232.4,70.8 235.7,65.5 239.0,60.2 242.2,54.8 245.5,49.2 248.8,43.6 252.0,37.9 255.3,32.0" fill="none" stroke="#0E1C42" stroke-width="2.2"/><line x1="196.5" y1="208.4" x2="196.5" y2="122.0" stroke="#C7922C" stroke-width="3.5"/><text x="203.4" y="170.9" font-size="14" fill="#8A5F12" text-anchor="start" >s = x&#178;</text><text x="93.7" y="62.9" font-size="13" fill="#1B6A94" text-anchor="start" >base region</text><text x="93.7" y="78.3" font-size="13" fill="#1B6A94" text-anchor="start" >y = x&#178;, 0 &le; x &le; 2</text><rect x="353.3" y="113.2" width="86.4" height="86.4" fill="#C7922C" fill-opacity="0.25" stroke="#C7922C" stroke-width="2"/><text x="396.5" y="97.3" font-size="12" fill="#8A5F12" text-anchor="middle" >one slice, face-on</text><text x="396.5" y="150.6" font-size="16" fill="#8A5F12" text-anchor="middle" >A = s&#178;</text></svg></div>
+        <p style="font-size: 14px; color: #666; line-height: 1.5; margin: -4px 0 12px 0; text-align:center;">The base region lies in the \(xy\)-plane. Each blue line is the base of one slab; the gold segment, length \(s=x^2\), is the side of a square standing straight up out of the plane.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 1: squares</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The base of a solid is the region between \(y=x^2\) and the \(x\)-axis, for \(0\le x\le 2\). Cross-sections perpendicular to the \(x\)-axis are squares. Find the volume.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>Say it aloud:</em> at position \(x\), the slice across the base runs from \(y=0\) up to \(y=x^2\), so its length is \(s=x^2\). A square with side \(s\) has area \(s^2\). So \(A(x)=(x^2)^2=x^4\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\int_0^2 x^4\,dx=\left[\frac{x^5}{5}\right]_0^2=\frac{32}{5}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The volume is \(\dfrac{32}{5}\) cubic units. Notice that the integrand is an <em>area</em>, in square units, and the integration adds a length, \(dx\), so the units come out cubic. Checking units this way catches many setup errors.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 2: semicircles</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The base is the region between \(y=x\) and \(y=x^2\) for \(0\le x\le 1\). Cross-sections perpendicular to the \(x\)-axis are semicircles whose diameter lies in the base. Find the volume.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The line is above the parabola on \([0,1]\), so the slice across the base has length \(s=x-x^2\), and this is the <em>diameter</em> of the semicircle. The radius is therefore \(s/2\), and the area of a semicircle is half of \(\pi r^2\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ A(x)=\frac12\pi\left(\frac{s}{2}\right)^2=\frac{\pi}{8}\,s^2=\frac{\pi}{8}(x-x^2)^2. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\frac{\pi}{8}\int_0^1 (x^2-2x^3+x^4)\,dx=\frac{\pi}{8}\left(\frac13-\frac12+\frac15\right)=\frac{\pi}{8}\cdot\frac1{30}=\frac{\pi}{240}. \]
+        </p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">In the semicircle example, students often write the area as \(\tfrac12\pi s^2\), treating the slice length \(s\) as the radius. Ask what the slice <em>is</em>. Here the slice across the base is the <strong>diameter</strong>, so the radius is \(s/2\). Always decide whether the base length is a side, a diameter, or a radius <em>before</em> you write \(A\).</div>
+        </div>
+<div style="text-align:center; margin: 12px 0;"><svg viewBox="0 0 520 250" width="520" height="250" role="img" aria-label="Circular base of radius 2 with a vertical chord of length s; the chord is the side of an equilateral triangle shown face-on to the right" style="max-width:100%; height:auto; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:8px; font-family: Segoe UI, Arial, sans-serif;"><polygon points="46.6,123.0 50.7,99.0 54.7,89.4 58.8,82.2 62.8,76.3 66.9,71.3 71.0,66.8 75.0,62.9 79.1,59.4 83.2,56.2 87.2,53.2 91.3,50.6 95.4,48.1 99.4,45.9 103.5,43.8 107.6,41.9 111.6,40.2 115.7,38.6 119.8,37.2 123.8,35.9 127.9,34.8 132.0,33.7 136.0,32.8 140.1,32.0 144.1,31.3 148.2,30.7 152.3,30.2 156.3,29.9 160.4,29.6 164.5,29.5 168.5,29.4 172.6,29.5 176.7,29.6 180.7,29.9 184.8,30.2 188.9,30.7 192.9,31.3 197.0,32.0 201.1,32.8 205.1,33.7 209.2,34.8 213.3,35.9 217.3,37.2 221.4,38.6 225.4,40.2 229.5,41.9 233.6,43.8 237.6,45.9 241.7,48.1 245.8,50.6 249.8,53.2 253.9,56.2 258.0,59.4 262.0,62.9 266.1,66.8 270.2,71.3 274.2,76.3 278.3,82.2 282.4,89.4 286.4,99.0 290.5,123.0 290.5,123.0 286.4,147.0 282.4,156.6 278.3,163.8 274.2,169.7 270.2,174.7 266.1,179.2 262.0,183.1 258.0,186.6 253.9,189.8 249.8,192.8 245.8,195.4 241.7,197.9 237.6,200.1 233.6,202.2 229.5,204.1 225.4,205.8 221.4,207.4 217.3,208.8 213.3,210.1 209.2,211.2 205.1,212.3 201.1,213.2 197.0,214.0 192.9,214.7 188.9,215.3 184.8,215.8 180.7,216.1 176.7,216.4 172.6,216.5 168.5,216.6 164.5,216.5 160.4,216.4 156.3,216.1 152.3,215.8 148.2,215.3 144.1,214.7 140.1,214.0 136.0,213.2 132.0,212.3 127.9,211.2 123.8,210.1 119.8,208.8 115.7,207.4 111.6,205.8 107.6,204.1 103.5,202.2 99.4,200.1 95.4,197.9 91.3,195.4 87.2,192.8 83.2,189.8 79.1,186.6 75.0,183.1 71.0,179.2 66.9,174.7 62.8,169.7 58.8,163.8 54.7,156.6 50.7,147.0 46.6,123.0" fill="#55C8E8" fill-opacity="0.28" stroke="none"/><polyline points="46.6,123.0 50.7,99.0 54.7,89.4 58.8,82.2 62.8,76.3 66.9,71.3 71.0,66.8 75.0,62.9 79.1,59.4 83.2,56.2 87.2,53.2 91.3,50.6 95.4,48.1 99.4,45.9 103.5,43.8 107.6,41.9 111.6,40.2 115.7,38.6 119.8,37.2 123.8,35.9 127.9,34.8 132.0,33.7 136.0,32.8 140.1,32.0 144.1,31.3 148.2,30.7 152.3,30.2 156.3,29.9 160.4,29.6 164.5,29.5 168.5,29.4 172.6,29.5 176.7,29.6 180.7,29.9 184.8,30.2 188.9,30.7 192.9,31.3 197.0,32.0 201.1,32.8 205.1,33.7 209.2,34.8 213.3,35.9 217.3,37.2 221.4,38.6 225.4,40.2 229.5,41.9 233.6,43.8 237.6,45.9 241.7,48.1 245.8,50.6 249.8,53.2 253.9,56.2 258.0,59.4 262.0,62.9 266.1,66.8 270.2,71.3 274.2,76.3 278.3,82.2 282.4,89.4 286.4,99.0 290.5,123.0" fill="none" stroke="#0E1C42" stroke-width="2.2"/><polyline points="46.6,123.0 50.7,147.0 54.7,156.6 58.8,163.8 62.8,169.7 66.9,174.7 71.0,179.2 75.0,183.1 79.1,186.6 83.2,189.8 87.2,192.8 91.3,195.4 95.4,197.9 99.4,200.1 103.5,202.2 107.6,204.1 111.6,205.8 115.7,207.4 119.8,208.8 123.8,210.1 127.9,211.2 132.0,212.3 136.0,213.2 140.1,214.0 144.1,214.7 148.2,215.3 152.3,215.8 156.3,216.1 160.4,216.4 164.5,216.5 168.5,216.6 172.6,216.5 176.7,216.4 180.7,216.1 184.8,215.8 188.9,215.3 192.9,214.7 197.0,214.0 201.1,213.2 205.1,212.3 209.2,211.2 213.3,210.1 217.3,208.8 221.4,207.4 225.4,205.8 229.5,204.1 233.6,202.2 237.6,200.1 241.7,197.9 245.8,195.4 249.8,192.8 253.9,189.8 258.0,186.6 262.0,183.1 266.1,179.2 270.2,174.7 274.2,169.7 278.3,163.8 282.4,156.6 286.4,147.0 290.5,123.0" fill="none" stroke="#0E1C42" stroke-width="2.2"/><line x1="61.8" y1="168.3" x2="61.8" y2="77.7" stroke="#2196D0" stroke-width="0.8"/><line x1="77.1" y1="184.9" x2="77.1" y2="61.1" stroke="#2196D0" stroke-width="0.8"/><line x1="92.3" y1="196.1" x2="92.3" y2="49.9" stroke="#2196D0" stroke-width="0.8"/><line x1="107.6" y1="204.1" x2="107.6" y2="41.9" stroke="#2196D0" stroke-width="0.8"/><line x1="122.8" y1="209.8" x2="122.8" y2="36.2" stroke="#2196D0" stroke-width="0.8"/><line x1="138.0" y1="213.6" x2="138.0" y2="32.4" stroke="#2196D0" stroke-width="0.8"/><line x1="153.3" y1="215.9" x2="153.3" y2="30.1" stroke="#2196D0" stroke-width="0.8"/><line x1="168.5" y1="216.6" x2="168.5" y2="29.4" stroke="#2196D0" stroke-width="0.8"/><line x1="183.8" y1="215.9" x2="183.8" y2="30.1" stroke="#2196D0" stroke-width="0.8"/><line x1="199.0" y1="213.6" x2="199.0" y2="32.4" stroke="#2196D0" stroke-width="0.8"/><line x1="214.3" y1="209.8" x2="214.3" y2="36.2" stroke="#2196D0" stroke-width="0.8"/><line x1="229.5" y1="204.1" x2="229.5" y2="41.9" stroke="#2196D0" stroke-width="0.8"/><line x1="244.8" y1="196.1" x2="244.8" y2="49.9" stroke="#2196D0" stroke-width="0.8"/><line x1="260.0" y1="184.9" x2="260.0" y2="61.1" stroke="#2196D0" stroke-width="0.8"/><line x1="275.2" y1="168.3" x2="275.2" y2="77.7" stroke="#2196D0" stroke-width="0.8"/><line x1="217.3" y1="208.8" x2="217.3" y2="37.2" stroke="#C7922C" stroke-width="3.5"/><text x="221.6" y="118.3" font-size="13" fill="#8A5F12" text-anchor="start" >s = 2&#8730;(4 &minus; x&#178;)</text><polygon points="351.5,208.8 351.5,37.2 545.1,123.0" fill="#C7922C" fill-opacity="0.25" stroke="#C7922C" stroke-width="2"/><text x="363.7" y="222.8" font-size="12" fill="#8A5F12" text-anchor="start" >one slice, face-on:</text><text x="363.7" y="237.8" font-size="14" fill="#8A5F12" text-anchor="start" >A = (&#8730;3/4) s&#178;</text><text x="22.2" y="20.0" font-size="13" fill="#1B6A94" text-anchor="start" >base: x&#178; + y&#178; &le; 4</text></svg></div>
+        <p style="font-size: 14px; color: #666; line-height: 1.5; margin: -4px 0 12px 0; text-align:center;">A circular base. The vertical chord at position \(x\) has length \(s=2\sqrt{4-x^2}\); this chord is one side of an equilateral triangle that stands up out of the plane.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 3: equilateral triangles on a circle</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The base is the disk \(x^2+y^2\le 4\). Cross-sections perpendicular to the \(x\)-axis are equilateral triangles with one side in the base. Find the volume.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">At position \(x\), the chord across the circle runs from \(y=-\sqrt{4-x^2}\) to \(y=\sqrt{4-x^2}\), so \(s=2\sqrt{4-x^2}\). An equilateral triangle with side \(s\) has area \(\tfrac{\sqrt3}{4}s^2\), so</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ A(x)=\frac{\sqrt3}{4}\cdot 4(4-x^2)=\sqrt3\,(4-x^2). \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\sqrt3\int_{-2}^{2}(4-x^2)\,dx=\sqrt3\left[4x-\frac{x^3}{3}\right]_{-2}^{2}=\sqrt3\cdot\frac{32}{3}=\frac{32\sqrt3}{3}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>A sanity check worth making.</strong> Keep the same circular base, but make every cross-section a <em>disk</em> whose diameter is the chord, so \(A(x)=\pi\,(4-x^2)\). Then \(V=\pi\int_{-2}^{2}(4-x^2)\,dx=\dfrac{32\pi}{3}\), which is exactly the volume \(\tfrac43\pi r^3\) of a sphere of radius 2. The method recovers a result Archimedes was proud of. Lesson 16.04 builds on this observation.</p>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; SLICING IN OTHER DIRECTIONS, AND CHECKING YOURSELF</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Slices do not have to be perpendicular to the \(x\)-axis. When the base region is described more naturally as \(x\) in terms of \(y\), slice perpendicular to the \(y\)-axis and integrate \(A(y)\,dy\). The routine is identical; only the variable changes. Lesson 16.01 made the same move when it integrated with respect to \(y\) to find an area.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Worked example 4.</strong> The base is the region bounded by \(y=x^2\), the \(y\)-axis, and the line \(y=4\) (in the first quadrant). Cross-sections perpendicular to the \(y\)-axis are squares with one side in the base. Find the volume.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Slicing at height \(y\) cuts the base from \(x=0\) out to the parabola, where \(x=\sqrt y\). So \(s=\sqrt y\), \(A(y)=s^2=y\), and \(y\) runs from 0 to 4:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\int_0^4 y\,dy=\left[\frac{y^2}{2}\right]_0^4=8. \]
+        </p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Compare Example 1 and Example 4. They use two different base regions, and by coincidence the second volume is a whole number. The coincidence is not the point. The point is that the slice direction told us which variable to use, and the limits then came from the <em>range of that variable</em>, 0 to 4 for \(y\) here. A typical error is to integrate \(A(y)\) from the \(x\)-limits.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; CHOOSE THE CROSS-SECTION AREA</div>
+          <div class="widget-question">In each row the base has a slice of length \(s\) across it. Pick the cross-section area \(A\) in terms of \(s\).</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The area of a square is the side squared." data-hint="A square with side \(s\) has area \(s\times s\).">
+            <div class="widget-row-prompt">1. Squares with side \(s\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(A=s^2\)</button>
+              <button data-choice="1">\(A=2s\)</button>
+              <button data-choice="2">\(A=\dfrac{s^2}{2}\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Radius \(s/2\), so \(\tfrac12\pi(s/2)^2=\tfrac{\pi}{8}s^2\)." data-hint="The radius is half the diameter. Half of \(\pi r^2\) with \(r=s/2\).">
+            <div class="widget-row-prompt">2. Semicircles whose <em>diameter</em> is \(s\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(A=\dfrac{\pi}{2}s^2\)</button>
+              <button data-choice="1">\(A=\dfrac{\pi}{8}s^2\)</button>
+              <button data-choice="2">\(A=\pi s^2\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. A right triangle with both legs \(s\) has area \(\tfrac12 s\cdot s\)." data-hint="Half of base times height, with base and height both \(s\).">
+            <div class="widget-row-prompt">3. Isosceles right triangles whose <em>legs</em> are both \(s\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(A=s^2\)</button>
+              <button data-choice="1">\(A=\dfrac{s^2}{2}\)</button>
+              <button data-choice="2">\(A=\dfrac{\sqrt3}{4}s^2\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The height of the triangle is \(\tfrac{\sqrt3}{2}s\), so \(\tfrac12 s\cdot\tfrac{\sqrt3}{2}s=\tfrac{\sqrt3}{4}s^2\)." data-hint="The height is \(\tfrac{\sqrt3}{2}s\). Then take half of base times height.">
+            <div class="widget-row-prompt">4. Equilateral triangles with side \(s\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(A=\dfrac{s^2}{2}\)</button>
+              <button data-choice="1">\(A=\dfrac{\sqrt3}{4}s^2\)</button>
+              <button data-choice="2">\(A=\dfrac{\sqrt3}{2}s^2\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: the base is the region between \(y=x^2\) and \(y=2x\). Cross-sections perpendicular to the \(x\)-axis are squares. Find the volume. Then change the squares to isosceles right triangles with a leg in the base, and predict the new volume before computing.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                The curves meet where \(x^2=2x\), at \(x=0\) and \(x=2\), and the line is above the parabola in between. So \(s=2x-x^2\). <strong>Squares:</strong> \(V=\int_0^2(2x-x^2)^2\,dx=\int_0^2(4x^2-4x^3+x^4)\,dx=\dfrac{32}{3}-16+\dfrac{32}{5}=\dfrac{16}{15}\). <strong>Triangles with legs \(s\):</strong> each area is \(s^2/2\), exactly half the square, so \(V=\dfrac12\cdot\dfrac{16}{15}=\dfrac{8}{15}\). The prediction needs no calculation at all once you see that \(A\) is halved everywhere.
+            </div>
+        </details>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> Two solids have the same base. Every cross-section of the first is a square with side \(s\), and every cross-section of the second is a semicircle with diameter \(s\). Which solid has more volume? Explain using only the ratio of the two cross-section areas, with no integration.</p>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; WHERE THE THINKING LIVES</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Tools such as graphing software and computer algebra systems can integrate \(A(x)\) in a moment, and they can even draw the solid. They cannot decide whether the slice length is a side, a diameter, or a radius, because that decision lives in the wording of the problem. A tool that is handed the wrong \(A(x)\) will integrate it flawlessly and return a confident, wrong volume.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">If an AI assistant or a calculator gives you a volume, treat it as a claim to be checked. Ask for the setup, not only the answer: what is \(s\), what is \(A\), what are the limits? Then test the setup yourself with a special case. Replace the base by a shape whose volume you already know and see whether the method reproduces it, as we did with the sphere above. A setup that survives a test is a setup you can trust.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The discipline of this lesson, to sketch first, name \(s\), write \(A\), then integrate, is the same discipline you used when you set up optimization and related-rates problems in Module 12. In both cases the calculus is the easy part. The honest work is turning a picture or a sentence into a function.</p>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 33 Problem Set: Volumes</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Set up and evaluate volumes with several cross-section shapes, then upload your completed pages as a PDF or image.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 33 Quiz: Volumes</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Lesson 16.04: Volumes of Revolution: Disks and Washers</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Next, spin a region around an axis. Every slice is then a disk or a washer, and the same formula \(V=\int A\,dx\) takes over.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A volume is a stack of thin slabs. If you can write the area \(A\) of a typical cross-section as a function of position, then \(V=\int_a^b A\,dx\) (or \(\int A\,dy\)), and everything difficult lies in reading the picture: which length is the side, the diameter, or the radius, and where the slices begin and end. Lesson 16.04 notices that when you <em>rotate</em> a region around an axis, every cross-section is automatically a circle or a ring, so \(A\) is \(\pi\) times a radius squared, and the whole method applies at once.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 16.03 &middot; Volumes by Cross-Sections</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

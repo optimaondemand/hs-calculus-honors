@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 14.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 14</div>
+        <div style="font-size: 12px; color: #666;">The Fundamental Theorem of Calculus</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 14.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">The Fundamental Theorem of Calculus, Part 1</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">The Fundamental Theorem of Calculus</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 14.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">The Fundamental Theorem of Calculus, Part 1</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">A tank fills at a changing rate. If you know the rate at every moment, you can find how much water is in the tank. If you know how much is in it, you can find the rate. Are those two facts really one fact?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">All year you have worked with two ideas that seem to live in different worlds. The derivative asks how fast something is changing at one instant. The definite integral asks how much has piled up over an interval. Each was built from limits, and each took real work to compute. Today a single theorem shows they are inverses of each other. The theorem is called fundamental because without it integration would be a slow limit of sums for every problem, and with it integration becomes one of the most powerful computational ideas in mathematics. Like every theorem in this course, it comes with hypotheses, and part of today's work is saying exactly where they are used.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> define an accumulation function \(F(x)=\int_a^x f(t)\,dt\), find its values from the graph of \(f\), and read where it increases, decreases and bends.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> state the Fundamental Theorem of Calculus, Part 1, including its hypothesis, and explain why \(F'(x)=f(x)\).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> differentiate functions defined by integrals, including those with a variable upper or lower limit, using the Chain Rule.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus the definite integral and its properties from Lesson 13.03.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The Squeeze Theorem (Lesson 2.03), the Extreme Value Theorem (Lesson 3.04) and the Chain Rule (Lesson 6.03), all of which appear in today's proof or examples.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A graphing tool or calculator, to check your reasoning but never to replace it.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; ACCUMULATION FUNCTIONS</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A tank fills from a hose whose flow rate is a constant 2 liters per minute, starting from empty at \(t=0\). Let \(A(x)\) be the amount of water in the tank after \(x\) minutes. What is \(A'(x)\), the rate at which the amount is changing?</div>
+          <div class="widget-options">
+            <button data-response="Yes. The amount is \(A(x)=2x\), and its rate of change is the flow rate itself. Keep this in mind: the thing being accumulated and the rate of accumulation turn out to be linked by the derivative, and today that link becomes a theorem.">It is 2, the flow rate, at every moment.</button>
+            <button data-response="That is the amount \(A(x)\), not its rate. The amount is \(2x\) liters, but each extra minute adds the same 2 liters, so the rate of change of the amount is 2. The rate of the accumulation is the flow rate. Today you will see this is no coincidence.">It is \(2x\), the amount in the tank.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Module 13 gave you the definite integral as a limit of Riemann sums, and it gave you its meaning: the signed area between a curve and the horizontal axis. Now we ask a new kind of question. Instead of asking for the area up to one fixed endpoint, let the endpoint move. Fix a starting point \(a\), and for each \(x\) let</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ F(x)=\int_a^{x} f(t)\,dt \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">be the signed area under the graph of \(f\) from \(a\) out to \(x\). This is an <strong>accumulation function</strong>: for each input \(x\) it reports how much has piled up so far. Notice that \(t\) is a <em>dummy variable</em>. It is the variable the integral runs through, and it disappears when the integral is finished, so \(x\) is free to be the upper limit. Writing \(\int_a^x f(x)\,dx\) would use \(x\) for two different jobs at once, which is why we use \(t\) inside.</p>
+        <div style="margin: 14px 0; text-align: center;"><svg viewBox="0 0 380 200" width="380" height="200" role="img" aria-label="Graph of f: starts at 1, rises linearly to 3 at t=2, stays at 3 until t=4, then falls linearly to 0 at t=6"><polygon points="40,170 40,130 140,50 240,50 340,170 340,170" fill="#55C8E8" fill-opacity="0.35" stroke="none"/><line x1="30" y1="170" x2="360" y2="170" stroke="#0E1C42" stroke-width="1.5"/><line x1="40" y1="20" x2="40" y2="175" stroke="#0E1C42" stroke-width="1.5"/><polyline points="40,130 140,50 240,50 340,170" fill="none" stroke="#0E1C42" stroke-width="2.5"/><g font-family="Segoe UI,Arial" font-size="12" fill="#1a2340" text-anchor="middle"><text x="140" y="188">2</text><text x="240" y="188">4</text><text x="340" y="188">6</text><text x="355" y="188">t</text><text x="28" y="134" text-anchor="end">1</text><text x="28" y="54" text-anchor="end">3</text><text x="55" y="22">f(t)</text></g></svg><div style="font-size: 14px; color: #666; margin-top: 4px;">The graph of \(f\): a rate that rises, holds steady, then falls to zero. The shaded region is the area accumulated from \(t=0\) to \(t=6\).</div></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Use the graph, with \(a=0\), and areas of triangles, rectangles and trapezoids to fill in \(F\) at several inputs. From \(0\) to \(2\) the region is a trapezoid with parallel sides \(1\) and \(3\) and width \(2\), so \(F(2)=\tfrac{1+3}{2}\cdot2=4\). From \(2\) to \(4\) it is a \(2\times3\) rectangle, so \(F(4)=4+6=10\). From \(4\) to \(6\) it is a triangle of base \(2\) and height \(3\), so \(F(6)=10+3=13\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Look at how \(F\) behaves, not just its values. Between \(t=2\) and \(t=4\), the graph of \(f\) sits at height \(3\), and \(F\) climbs by \(3\) for each unit step. Between \(t=4\) and \(t=6\), \(f\) is positive but shrinking, so \(F\) still climbs, but more and more slowly. Does \(F\) grow at a rate that equals the <em>height of \(f\)</em>? On \(0\le x\le2\), \(f(t)=1+t\), and a direct computation gives \(F(x)=x+\tfrac{x^2}{2}\), so</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ F'(x)=1+x=f(x). \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The derivative of the accumulated area is the height of the graph. That is not an accident of this one example.</p>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; THE FUNDAMENTAL THEOREM, PART 1</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">This is one of the great theorems of mathematics, and it is called, without exaggeration, the Fundamental Theorem of Calculus. Part 1 is the statement we have just noticed.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The Fundamental Theorem of Calculus, Part 1</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Suppose \(f\) is <strong>continuous on \([a,b]\)</strong>, and define \(F(x)=\displaystyle\int_a^x f(t)\,dt\) for \(x\) in \([a,b]\). Then \(F\) is continuous on \([a,b]\), differentiable on \((a,b)\), and \[ F'(x)=f(x). \] In Leibniz notation: \(\dfrac{d}{dx}\displaystyle\int_a^x f(t)\,dt=f(x)\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Said in words: <em>accumulating and then differentiating gets you back where you started.</em> Differentiation undoes integration, which is why slope and area, two ideas that began as separate problems, are the same subject.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Why it is true</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Fix \(x\) and take a small \(h>0\). The difference quotient of \(F\) is</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \frac{F(x+h)-F(x)}{h}=\frac1h\int_x^{x+h} f(t)\,dt, \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">because the integral from \(a\) to \(x+h\) minus the integral from \(a\) to \(x\) is the integral over the sliver from \(x\) to \(x+h\) (the additivity property from Lesson 13.03). That sliver sits over the interval \([x,x+h]\). Because \(f\) is continuous there, the Extreme Value Theorem (Lesson 3.04) says \(f\) has a minimum value \(m_h\) and a maximum value \(M_h\) on that interval. The area of the sliver is trapped between the rectangle of height \(m_h\) and the rectangle of height \(M_h\), both of width \(h\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ m_h\cdot h\;\le\;\int_x^{x+h} f(t)\,dt\;\le\;M_h\cdot h\quad\Longrightarrow\quad m_h\;\le\;\frac{F(x+h)-F(x)}{h}\;\le\;M_h. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now let \(h\to0^+\). The interval \([x,x+h]\) shrinks to the single point \(x\), and since \(f\) is continuous at \(x\), both \(m_h\) and \(M_h\) are squeezed to \(f(x)\). By the Squeeze Theorem (Lesson 2.03), the difference quotient has right-hand limit \(f(x)\). The case \(h<0\) is the mirror image, so \(F'(x)=f(x)\). \(\blacksquare\)</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Be honest about what this argument leaned on. It used two facts about integrals, the additivity and the comparison property, that Lesson 13.03 stated and used. It also assumed that the integral of a continuous function exists in the first place. Those facts are true and are proved in a full real-analysis course; here we rely on them openly rather than pretend they cost nothing. Notice, too, exactly where continuity of \(f\) was used: it is what forces \(m_h\) and \(M_h\) to close in on \(f(x)\).</div>
+        </div>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Isaac Barrow, Newton's teacher at Cambridge, proved a geometric version of this theorem in the 1660s. Newton and Leibniz, working independently, recognized that it let them compute areas by reversing derivatives, and that recognition, more than any single formula, is what we call the invention of calculus. Lesson 16.02's Mean Value Theorem for Integrals gives another route to the same proof.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; DIFFERENTIATING A FUNCTION DEFINED BY AN INTEGRAL</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Part 1 lets you differentiate a function that is <em>defined by an integral</em>, even when you cannot find a formula for the integral. For instance, \(F(x)=\int_1^x\sqrt{1+t^3}\,dt\) has no tidy closed form, yet the theorem says at once that \(F'(x)=\sqrt{1+x^3}\). Plug in \(x=2\): \(F'(2)=\sqrt{9}=3\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Often the upper limit is not plain \(x\) but a function of \(x\). Then \(F(x)=\int_a^{g(x)} f(t)\,dt\) is a composition: the outer function is \(u\mapsto\int_a^u f(t)\,dt\) and the inner function is \(u=g(x)\). Differentiate by the Chain Rule from Lesson 6.03.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Part 1 with a variable upper limit</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(f\) is continuous and \(g\) is differentiable, then \[ \frac{d}{dx}\int_a^{g(x)} f(t)\,dt=f\bigl(g(x)\bigr)\cdot g'(x). \]</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1.</strong> \(\dfrac{d}{dx}\displaystyle\int_0^{x^2}\cos t\,dt=\cos(x^2)\cdot 2x\). Swap \(t\) for the upper limit \(x^2\), then multiply by the derivative of the upper limit.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2 (variable lower limit).</strong> \(\dfrac{d}{dx}\displaystyle\int_x^5 t^2\,dt\). Reversing the limits flips the sign of an integral, so this equals \(\dfrac{d}{dx}\Bigl[-\displaystyle\int_5^x t^2\,dt\Bigr]=-x^2\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3.</strong> \(\dfrac{d}{dx}\displaystyle\int_0^{3x}e^{-t^2}\,dt=e^{-(3x)^2}\cdot 3=3e^{-9x^2}\).</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; DIFFERENTIATING AN INTEGRAL</div>
+          <div class="widget-question">For each function defined by an integral, choose its derivative. Decide first which Chain Rule factor, if any, you owe.</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The upper limit is plain x, so there is no Chain Rule factor: the derivative is the integrand with t replaced by x. The constant lower limit does not matter." data-hint="The upper limit is exactly x. Part 1 says to replace t by x in the integrand and do nothing else.">
+            <div class="widget-row-prompt">1. \(\dfrac{d}{dx}\displaystyle\int_1^x\sqrt{1+t^3}\,dt\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\sqrt{1+x^3}\)</button>
+              <button data-choice="1">\(\sqrt{1+x^3}-\sqrt2\)</button>
+              <button data-choice="2">\(\dfrac{3x^2}{2\sqrt{1+x^3}}\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Put the upper limit x^2 into cos, then multiply by the derivative of the upper limit, 2x." data-hint="The upper limit is x^2, not x. Replace t by x^2, and then ask what the Chain Rule still owes you.">
+            <div class="widget-row-prompt">2. \(\dfrac{d}{dx}\displaystyle\int_0^{x^2}\cos t\,dt\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\cos x\)</button>
+              <button data-choice="1">\(\cos(x^2)\)</button>
+              <button data-choice="2">\(2x\cos(x^2)\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The variable is on the bottom, so flip the limits first, which costs a minus sign: -integral from 5 to x, whose derivative is -x^2." data-hint="The variable is the lower limit. What does reversing the limits of integration do to the sign?">
+            <div class="widget-row-prompt">3. \(\dfrac{d}{dx}\displaystyle\int_x^5 t^2\,dt\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(x^2\)</button>
+              <button data-choice="1">\(-x^2\)</button>
+              <button data-choice="2">\(x^2-25\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Substitute 3x for t to get e^(-9x^2), then multiply by the derivative of the upper limit, 3." data-hint="Substitute the upper limit 3x into the integrand, then multiply by the derivative of the upper limit.">
+            <div class="widget-row-prompt">4. \(\dfrac{d}{dx}\displaystyle\int_0^{3x}e^{-t^2}\,dt\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(e^{-t^2}\)</button>
+              <button data-choice="1">\(e^{-9x^2}\)</button>
+              <button data-choice="2">\(3e^{-9x^2}\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: let \(G(x)=\displaystyle\int_1^{x^3}\ln t\,dt\). Find \(G'(x)\) and then \(G'(2)\). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                The integrand is \(\ln t\) and the upper limit is \(g(x)=x^3\), with \(g'(x)=3x^2\). So \(G'(x)=\ln(x^3)\cdot3x^2=9x^2\ln x\) (using \(\ln x^3=3\ln x\)). At \(x=2\): \(G'(2)=9\cdot4\cdot\ln2=36\ln2\approx24.95\). Notice we never needed a formula for \(G\) itself.
+            </div>
+        </details>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A common slip is to forget the Chain Rule factor when the upper limit is not plain \(x\). Another is to write the answer in terms of \(t\) (the dummy variable) instead of \(x\). The derivative of an integral from \(a\) to \(g(x)\) is a function of \(x\) only; \(t\) never survives.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 4 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; READING F FROM THE GRAPH OF f, AND THE FINE PRINT</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Part 1 also tells you what an accumulation function <em>looks like</em>, using only the graph of \(f\). Since \(F'=f\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">&#9654;&nbsp; Where \(f>0\), \(F\) is increasing; where \(f<0\), \(F\) is decreasing.<br/>&#9654;&nbsp; Where \(f\) changes from positive to negative, \(F\) has a local maximum; from negative to positive, a local minimum (the First Derivative Test, Lesson 10.02, applied to \(F\)).<br/>&#9654;&nbsp; Because \(F''=f'\), \(F\) is concave up where \(f\) is increasing and concave down where \(f\) is decreasing.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In the graph of this lesson, \(f\) is positive everywhere on \((0,6)\), so \(F\) only climbs. \(f\) is increasing on \((0,2)\), so \(F\) bends upward there; \(f\) is constant on \((2,4)\), so \(F\) is a straight line of slope \(3\); and \(f\) is decreasing on \((4,6)\), so \(F\) bends downward and levels off as \(f\) reaches \(0\). That matches the values \(0,4,10,13\) from Part 1.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The fine print.</strong> The theorem asks that \(f\) be continuous, and the hypothesis matters. Let \(f(t)=0\) for \(t<1\) and \(f(t)=1\) for \(t\ge1\), a step with a jump at \(t=1\). Its accumulation function from \(0\) is \(F(x)=0\) for \(x\le1\) and \(F(x)=x-1\) for \(x\ge1\). The function \(F\) is continuous, but at \(x=1\) it has a corner: slope \(0\) from the left and slope \(1\) from the right (Lesson 4.04). So \(F'(1)\) does not exist, even though \(F\) is perfectly well defined. Where \(f\) is continuous, \(F'=f\); at the jump, the theorem makes no promise, and in fact the promise fails.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A computer algebra system or an AI tutor will happily differentiate \(\int_1^x\sqrt{1+t^3}\,dt\) and hand you \(\sqrt{1+x^3}\). That is correct, and a good check. But if a tool gives you an answer for a problem with a variable limit and you cannot say where the Chain Rule factor came from, you have not yet learned the theorem. Do the work, then use the tool to confirm it.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; READING F FROM THE GRAPH OF f</div>
+          <div class="widget-question">Let \(F(x)=\displaystyle\int_0^x f(t)\,dt\), where \(f(t)=t^2-4\). Decide what the sign of \(f\) says about \(F\).</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. F' = f is negative on (0,2), so F is decreasing: the signed area is piling up on the negative side of the axis." data-hint="F' = f. What is the sign of f on (0,2)?">
+            <div class="widget-row-prompt">1. On \((0,2)\), \(f(t)=t^2-4<0\). What does \(F\) do there?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(F\) is increasing</button>
+              <button data-choice="1">\(F\) is decreasing</button>
+              <button data-choice="2">\(F\) is constant</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. F' changes from negative to positive at x = 2, so by the First Derivative Test F has a local minimum there." data-hint="Think about the First Derivative Test: F' goes from negative to positive.">
+            <div class="widget-row-prompt">2. At \(x=2\), \(f\) changes from negative to positive. What does \(F\) have at \(x=2\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">A local maximum</button>
+              <button data-choice="1">A local minimum</button>
+              <button data-choice="2">Neither</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. F'' = f' > 0 there, so F is concave up." data-hint="F'' = f'. What does a positive second derivative mean for concavity?">
+            <div class="widget-row-prompt">3. On \((2,\infty)\), \(f'(t)=2t>0\). What does this say about \(F\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(F\) is concave down</button>
+              <button data-choice="1">\(F\) is concave up</button>
+              <button data-choice="2">Nothing</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 28 Problem Set: The Fundamental Theorem of Calculus</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Differentiate integrals, read accumulation functions from graphs, and evaluate definite integrals. Upload your completed pages. Finish Lesson 14.02 first.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 28 Quiz: The Fundamental Theorem of Calculus</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">The Fundamental Theorem of Calculus, Part 1, says that if \(f\) is continuous, then the accumulation function \(F(x)=\int_a^x f(t)\,dt\) satisfies \(F'(x)=f(x)\). Accumulating and then differentiating returns the original function, and with a variable upper limit \(g(x)\) the Chain Rule adds the factor \(g'(x)\). Lesson 14.02 turns this around to give Part 2: because differentiation undoes integration, a definite integral can be computed from any antiderivative, with no limit of sums at all.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 14.01 &middot; The Fundamental Theorem of Calculus, Part 1</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 9.03</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 9</div>
+        <div style="font-size: 12px; color: #666;">Tangent Lines and Linear Approximation</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 9.03</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Linear Approximation</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Tangent Lines and Linear Approximation</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 9.03</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Linear Approximation</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Zoom in far enough on a smooth curve and it stops looking like a curve. That one fact lets you estimate hard numbers with easy ones.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 9.01 gave you the equation of a tangent line, and Lesson 9.02 showed where the idea breaks down. Today the tangent line becomes a tool. You will use it to estimate values like \(\sqrt{4.1}\) by hand, decide whether each estimate is too high or too low, and discover what &ldquo;differentiable&rdquo; really means: a function that looks like a straight line when you zoom in far enough.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> write the linearization \(L(x)=f(a)+f'(a)(x-a)\) of a differentiable function and use it to estimate nearby values.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> use the bending of the graph (the sign of \(f''\)) to say whether a linear estimate is too high or too low, and judge how far from \(a\) it can be trusted.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain differentiability as local linearity, including why a corner such as \(|x|\) at \(0\) has no linear approximation.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and a calculator for <em>checking</em> decimals only. The estimates are yours to make by hand.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The tangent-line equation from Lesson 9.01 and the derivative rules from Modules 5 through 7.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE TANGENT LINE AS AN ESTIMATOR</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Without a calculator, what would you guess \(\sqrt{4.1}\) is close to? Pick the line of thinking that feels closest to yours.</div>
+          <div class="widget-options">
+            <button data-response="Good instinct, and it is exactly the kind of reasoning this lesson makes precise. A tangent line will turn &ldquo;a little more than 2&rdquo; into a number you can defend, and tell you which way it errs.">About \(2.025\): it is a little more than \(\sqrt4=2\), and square roots climb slowly.</button>
+            <button data-response="Natural guess, but square roots climb more slowly than that: the square root of \(4.2\) is nowhere near \(2.2\). The tangent line fixes the rate. At \(x=4\) the root rises about \(\frac14\) as fast as \(x\), not as fast as \(x\) itself.">About \(2.1\): \(4.1\) is \(0.1\) more than \(4\), so the root should go up by \(0.1\) too.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 9.01 taught you to write the equation of a tangent line, and Lesson 9.02 showed you where a tangent line fails to exist as a normal line. Today the tangent line gets a job: standing in for a function that is hard to compute, near one point where it is easy.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here is the picture. Zoom in on a smooth curve at a point, and then zoom in again. The curve flattens toward a straight line, and that line is the tangent line. So, close to the point, the tangent line is a very good copy of the curve, and a line is easy to evaluate.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The linearization of \(f\) at \(a\)</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(f\) is differentiable at \(a\), the <strong>linearization</strong> of \(f\) at \(a\) is the function \[ L(x)=f(a)+f'(a)(x-a). \] It is the tangent line at \((a,f(a))\), written as a function. For \(x\) near \(a\), \(f(x)\approx L(x)\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1: \(\sqrt{4.1}\).</strong> Let \(f(x)=\sqrt x\). The point \(a=4\) is the right choice because \(f(4)=2\) is known exactly and \(4.1\) is close. Differentiate: \(f'(x)=\dfrac{1}{2\sqrt x}\), so \(f'(4)=\dfrac14\). Then</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ L(x)=2+\tfrac14(x-4)=1+\tfrac{x}{4}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">So \(\sqrt{4.1}\approx L(4.1)=2+\tfrac14(0.1)=2.025\). A calculator gives \(\sqrt{4.1}=2.02485\ldots\), so the estimate is off by about \(0.00015\). The skill is not the arithmetic. It is <em>choosing \(a\)</em>: pick a point near \(x\) where \(f(a)\) and \(f'(a)\) are both easy to compute.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now watch what happens to the quality of the estimate as \(x\) moves away from \(a=4\):</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;"><table style="border-collapse:collapse; width:100%; min-width:420px;"><tr><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(x\)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(L(x)=1+x/4\)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(\sqrt x\) (calculator)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(L(x)-\sqrt x\)</th></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">4.01</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">2.0025</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">2.0024984</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.0000016</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">4.1</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">2.025</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">2.0248457</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.00015</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">4.5</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">2.125</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">2.1213203</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.0037</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">5</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">2.25</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">2.2360680</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.014</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">9</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">3.25</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">3</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.25</td></tr></table></div>
+        <div style="margin: 14px 0; text-align:center;"><svg viewBox="0 0 520 290" width="100%" style="max-width:520px; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:8px;" role="img" aria-label="Near x = 4 the curve and its tangent line are almost the same line; by x = 9 they have drifted apart (the tangent lies above the curve)." xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif"><line x1="50" y1="260" x2="487" y2="260" stroke="#9AA6BF" stroke-width="1.5"/><line x1="50" y1="260" x2="50" y2="15" stroke="#9AA6BF" stroke-width="1.5"/><polyline points="50.0,260.0 52.3,244.3 54.6,237.9 56.9,232.9 59.2,228.7 61.5,225.0 63.8,221.7 66.1,218.6 68.4,215.7 70.7,213.0 73.0,210.5 75.3,208.1 77.6,205.8 79.9,203.6 82.2,201.4 84.5,199.4 86.8,197.4 89.1,195.5 91.4,193.6 93.7,191.8 96.0,190.0 98.3,188.3 100.6,186.6 102.9,184.9 105.2,183.3 107.5,181.7 109.8,180.2 112.1,178.7 114.4,177.2 116.7,175.7 119.0,174.3 121.3,172.9 123.6,171.5 125.9,170.1 128.2,168.7 130.5,167.4 132.8,166.1 135.1,164.8 137.4,163.5 139.7,162.3 142.0,161.0 144.3,159.8 146.6,158.6 148.9,157.4 151.2,156.2 153.5,155.0 155.8,153.8 158.1,152.7 160.4,151.6 162.7,150.4 165.0,149.3 167.3,148.2 169.6,147.1 171.9,146.0 174.2,145.0 176.5,143.9 178.8,142.9 181.1,141.8 183.4,140.8 185.7,139.8 188.0,138.8 190.3,137.8 192.6,136.8 194.9,135.8 197.2,134.8 199.5,133.8 201.8,132.8 204.1,131.9 206.4,130.9 208.7,130.0 211.0,129.0 213.3,128.1 215.6,127.2 217.9,126.3 220.2,125.4 222.5,124.4 224.8,123.5 227.1,122.7 229.4,121.8 231.7,120.9 234.0,120.0 236.3,119.1 238.6,118.3 240.9,117.4 243.2,116.5 245.5,115.7 247.8,114.8 250.1,114.0 252.4,113.2 254.7,112.3 257.0,111.5 259.3,110.7 261.6,109.9 263.9,109.1 266.2,108.2 268.5,107.4 270.8,106.6 273.1,105.8 275.4,105.0 277.7,104.3 280.0,103.5 282.3,102.7 284.6,101.9 286.9,101.1 289.2,100.4 291.5,99.6 293.8,98.8 296.1,98.1 298.4,97.3 300.7,96.6 303.0,95.8 305.3,95.1 307.6,94.3 309.9,93.6 312.2,92.9 314.5,92.1 316.8,91.4 319.1,90.7 321.4,90.0 323.7,89.3 326.0,88.5 328.3,87.8 330.6,87.1 332.9,86.4 335.2,85.7 337.5,85.0 339.8,84.3 342.1,83.6 344.4,82.9 346.7,82.2 349.0,81.5 351.3,80.8 353.6,80.2 355.9,79.5 358.2,78.8 360.5,78.1 362.8,77.5 365.1,76.8 367.4,76.1 369.7,75.5 372.0,74.8 374.3,74.1 376.6,73.5 378.9,72.8 381.2,72.2 383.5,71.5 385.8,70.9 388.1,70.2 390.4,69.6 392.7,68.9 395.0,68.3 397.3,67.7 399.6,67.0 401.9,66.4 404.2,65.8 406.5,65.1 408.8,64.5 411.1,63.9 413.4,63.3 415.7,62.6 418.0,62.0 420.3,61.4 422.6,60.8 424.9,60.2 427.2,59.6 429.5,58.9 431.8,58.3 434.1,57.7 436.4,57.1 438.7,56.5 441.0,55.9 443.3,55.3 445.6,54.7 447.9,54.1 450.2,53.5 452.5,52.9 454.8,52.3 457.1,51.8 459.4,51.2 461.7,50.6 464.0,50.0" fill="none" stroke="#0E1C42" stroke-width="3"/><polyline points="50.0,190.0 473.2,29.0" fill="none" stroke="#C7922C" stroke-width="2.5" stroke-dasharray="7 4"/><circle cx="234.0" cy="120.0" r="5" fill="#C0392B"/><line x1="464.0" y1="50.0" x2="464.0" y2="32.5" stroke="#2196D0" stroke-width="2"/><text x="385.8" y="111.5" font-size="13" fill="#0E1C42">y = &#8730;x</text><text x="252.4" y="183.0" font-size="13" fill="#8A5F12">tangent at x = 4: L(x) = 1 + x/4</text><text x="238.6" y="142.0" font-size="13" fill="#C0392B">(4, 2)</text><text x="352.0" y="24.5" font-size="12" fill="#1B6A94">gap 0.25 at x = 9</text><text x="483" y="276" font-size="12" fill="#666">x</text><text x="36" y="21" font-size="12" fill="#666">y</text></svg><div style="font-size:14px; color:#666; margin-top:6px; font-style:italic;">Near x = 4 the curve and its tangent line are almost the same line; by x = 9 they have drifted apart (the tangent lies above the curve).</div></div>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Look at the last row. Using the linearization at \(a=4\) to estimate \(\sqrt9\) gives \(3.25\), which is wrong by \(0.25\), about \(8\%\). Nothing is broken: the tangent line is a <em>local</em> tool. The farther \(x\) is from \(a\), the less the line resembles the curve. A linear estimate is only as good as the answer to the question &ldquo;how close is \(x\) to \(a\)?&rdquo;</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; TOO HIGH OR TOO LOW?</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A useful estimate does not stop at a number. It also says <em>which way it errs</em>. In the table every error is positive: \(L(x)\) is always <em>bigger</em> than \(\sqrt x\). In the figure, the dashed tangent line sits above the curve everywhere except at the point of tangency.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">That is not an accident of square roots. It depends on how the curve bends away from its tangent line. A curve that bends <em>downward</em> (like a frown) falls below its tangent line, so the linearization overestimates. A curve that bends <em>upward</em> (like a smile) rises above its tangent line, so the linearization underestimates. The measure of bending is the second derivative \(f''\), the derivative of \(f'\) from Lesson 8.01. Module 11 develops it fully; for now, use it as a check on every estimate you make.</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;"><table style="border-collapse:collapse; width:100%; min-width:420px;"><tr><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">function, point</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">linearization</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(f''(a)\)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">estimate</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">true value</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">estimate is&hellip;</th></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(\sqrt x\), \(a=4\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(1+x/4\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(-\tfrac1{32}<0\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(\sqrt{4.1}\approx2.025\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">2.02485</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">too high</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(e^x\), \(a=0\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(1+x\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(1>0\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(e^{0.1}\approx1.1\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">1.10517</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">too low</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(1/x\), \(a=1\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(2-x\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(2>0\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(1/1.1\approx0.9\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.90909</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">too low</td></tr></table></div>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">This is the first of several times that the second derivative will turn out to control how <em>far off</em> a first-derivative estimate is. For \(\sqrt x\) near \(4\), the error is about \(-\tfrac1{64}(x-4)^2\) (a pattern the numbers in this lesson will confirm, not something proved today). Because the error depends on \((x-4)^2\), halving the distance from \(a\) cuts the error to about a quarter.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; LINEAR ESTIMATES AND THEIR DIRECTION</div>
+          <div class="widget-question">Use a linearization, then say what you can honestly say about the estimate.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. L(2.01) = 12(2.01) - 16 = 24.12 - 16 = 8.12. The true value is 8.120601, so the estimate is excellent (and slightly low, because x^3 bends upward at 2)." data-hint="Substitute x = 2.01 into 12x - 16. Check that your answer is a little more than 8, since 2.01 is a little more than 2.">
+            <div class="widget-row-prompt">1. The linearization of \(f(x)=x^3\) at \(a=2\) is \(L(x)=12x-16\). Use it to estimate \(2.01^3\).</div>
+            <div class="widget-options">
+              <button data-choice="0">8.01</button>
+              <button data-choice="1">8.6</button>
+              <button data-choice="2">8.12</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. f''(x) = 2/x^3 is positive at 1, so the curve smiles, and sits above its tangent line. The linearization underestimates." data-hint="Which way does the curve bend at x = 1? Compare L(1.1) = 0.9 with 1/1.1 = 0.909. Which number is bigger?">
+            <div class="widget-row-prompt">2. For \(f(x)=\dfrac1x\) at \(a=1\), \(L(x)=2-x\), so \(L(1.1)=0.9\) while \(\dfrac1{1.1}=0.90909\ldots\). Why is the estimate too low?</div>
+            <div class="widget-options">
+              <button data-choice="0">Because 1.1 is close to 1, so L is exact</button>
+              <button data-choice="1">Because f''(1) = 2 is positive: the curve bends upward and lies above its tangent line</button>
+              <button data-choice="2">Because L(1.1) is bigger than f(1.1)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The point of tangency is x = 4, and 9 is far away. The error grows with the distance from a. For an estimate at 9, choose a = 9 (or a nearby perfect square)." data-hint="Was L computed correctly? It was. Ask instead how far 9 is from the point of tangency, 4.">
+            <div class="widget-row-prompt">3. We used \(L(x)=1+\tfrac x4\) to estimate \(\sqrt9\) and got \(3.25\), but \(\sqrt9=3\). What does that tell you?</div>
+            <div class="widget-options">
+              <button data-choice="0">The linearization was used too far from a = 4: it is a local tool</button>
+              <button data-choice="1">The linearization of the square root function is incorrect</button>
+              <button data-choice="2">Calculus cannot be used to estimate square roots</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: linearize \(f(x)=\sqrt[3]{x}\) at \(a=8\), estimate \(\sqrt[3]{8.3}\), and decide whether your estimate is too high or too low. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f'(x)=\dfrac{1}{3x^{2/3}}\), so \(f'(8)=\dfrac{1}{3\cdot4}=\dfrac1{12}\) and \(L(x)=2+\dfrac{x-8}{12}\). Then \(\sqrt[3]{8.3}\approx L(8.3)=2+\dfrac{0.3}{12}=2.025\). The true value is \(2.02469\ldots\), so the estimate is slightly <em>high</em>. That matches the second derivative: \(f''(x)=-\dfrac{2}{9}x^{-5/3}<0\), so the curve bends down and lies below its tangent line.
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; LOCAL LINEARITY: WHAT DIFFERENTIABLE REALLY MEANS</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Why does the tangent line work so well near \(a\)? Because the error shrinks faster than the distance does. Define the error \(E(x)=f(x)-L(x)\). For \(\sqrt x\) near \(4\), compare \(E\) with the distance \(h=x-4\):</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;"><table style="border-collapse:collapse; width:100%; min-width:420px;"><tr><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(h=x-4\)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(E=\sqrt{4+h}-L(4+h)\)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(E/h\)</th></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.1</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(-0.000154\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(-0.00154\)</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.01</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(-0.0000016\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(-0.000156\)</td></tr></table></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">When \(h\) shrinks by a factor of 10, the error shrinks by a factor of about 100, so the ratio \(E/h\) shrinks too. That is not luck. It is what differentiability <em>means</em>:</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Differentiable means locally linear</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">\(f\) is differentiable at \(a\) exactly when \[ \lim_{x\to a}\frac{f(x)-L(x)}{x-a}=0. \] The error in the tangent-line estimate is small even compared to the tiny distance \(x-a\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Why.</strong> By the definition of the derivative, \(\displaystyle\lim_{x\to a}\frac{f(x)-f(a)}{x-a}=f'(a)\). Subtract \(f'(a)\) from the quotient:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \frac{f(x)-f(a)}{x-a}-f'(a)=\frac{f(x)-f(a)-f'(a)(x-a)}{x-a}=\frac{f(x)-L(x)}{x-a}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The left side tends to \(f'(a)-f'(a)=0\), so the right side does too. \(\blacksquare\) (If the first limit did not exist, the whole chain would fail. That is the corner case.)</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>A corner has no linearization.</strong> Take \(f(x)=|x|\) at \(a=0\) (Lesson 4.04). Suppose some line \(mx\) were a good approximation. Then \(\dfrac{|x|-mx}{x}\) would have to tend to \(0\). But for \(x>0\) it equals \(1-m\), and for \(x<0\) it equals \(-1-m\), and no single \(m\) makes both zero. However far you zoom in, the corner stays a corner. This is the one-sided-limit argument of Lesson 1.04, in a new role.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A linear estimate without a statement of how far you strayed from \(a\), and which way the curve bends, is a guess wearing a number. Honest approximation says three things: the estimate, its likely direction of error, and how close \(x\) was to \(a\). Scientists call this reporting your uncertainty, and it is the habit of truthfulness applied to arithmetic.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; LOCAL LINEARITY</div>
+          <div class="widget-question">Choose the statement that is true.</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. |x| has no derivative at 0, so it has no tangent line to use. x^3 has f'(0) = 0 and L(x) = 0, which is a perfectly good (flat) linearization." data-hint="A linearization needs a derivative at the point. Which function has a corner at x = 0 (Lesson 4.04)?">
+            <div class="widget-row-prompt">1. Which function has <em>no</em> linearization at \(x=0\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(|x|\), because of its corner at 0</button>
+              <button data-choice="1">\(x^3\), because its derivative at 0 is 0</button>
+              <button data-choice="2">\(\cos x\), because it is not a straight line</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. f'(0) = cos 0 = 1, so L(x) = x. The estimate is 0.2, a bit high because sin bends downward for small positive x." data-hint="f(0) = 0 and f'(0) = cos 0 = 1. Put those in L(x) = f(a) + f'(a)(x - a).">
+            <div class="widget-row-prompt">2. The linearization of \(f(x)=\sin x\) at \(a=0\) is \(L(x)=x\). Use it to estimate \(\sin 0.2\).</div>
+            <div class="widget-options">
+              <button data-choice="0">0.1</button>
+              <button data-choice="1">0.2 exactly, with no error</button>
+              <button data-choice="2">0.2 (true value 0.19867, off by about 0.0013)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The error behaves like h^2, so dividing h by 10 divides the error by about 100." data-hint="Check the table above: the error at h = 0.01 was 0.0000016.">
+            <div class="widget-row-prompt">3. For \(\sqrt x\) near \(4\), the error at \(h=0.1\) is about \(1.5\times10^{-4}\). If you cut the distance to \(h=0.01\), the error becomes about&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">the same, about 1.5 x 10^-4</button>
+              <button data-choice="1">1.5 x 10^-6, roughly 100 times smaller</button>
+              <button data-choice="2">1.5 x 10^-5, 10 times smaller</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: use the linearization of \(f(x)=e^x\) at \(a=0\) to estimate \(e^{-0.05}\), and say whether your estimate is too high or too low. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f'(x)=e^x\), so \(f(0)=f'(0)=1\) and \(L(x)=1+x\). Then \(e^{-0.05}\approx1-0.05=0.95\). The true value is \(0.95123\ldots\), so the estimate is slightly <em>low</em>, as predicted by \(f''(x)=e^x>0\) (the curve smiles, above its tangent line). The same sign rule holds on both sides of \(a\).
+            </div>
+        </details>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">An AI tool can give you the linearization of a function in a second, and it will usually be right. What it often leaves out is the part you now know to ask for: which direction the estimate errs, and how far from \(a\) the estimate stops being trustworthy. Make the tool, or yourself, finish the sentence.</div>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 19 Problem Set: Linear Approximation and Differentials</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Linearize functions, estimate values, and judge the direction of each error. Upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 19 Quiz: Linear Approximation and Differentials</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Near a point, a differentiable function is its tangent line plus an error that shrinks faster than the distance from the point. That makes the tangent line a trustworthy estimator, close to \(a\) and honest about its limits. Lesson 9.04 puts a number on that error: it turns the tangent line's prediction into <em>differentials</em>, and uses them to answer the question every measurement raises, &ldquo;how wrong could my answer be?&rdquo;</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 9.03 &middot; Linear Approximation</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

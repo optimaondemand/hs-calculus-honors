@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 16.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 16</div>
+        <div style="font-size: 12px; color: #666;">Area, Average Value, and Volume</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 16.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Area Between Curves</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Area, Average Value, and Volume</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 16.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Area Between Curves</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">You can find the area under one curve. What if a region is trapped between two?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">The integral was born as an area, and for a century that was all it was. Lesson 13.03 measured the area between a single curve and the axis. Today the second curve arrives. The idea is nothing more than subtraction: the area between two curves is the area under the top one minus the area under the bottom one. What takes care is the setup. You will need to decide which curve is on top, where the curves cross, and whether the region needs one integral or several. All of that comes from a sketch, which is why the sketch is the first line of every solution.</div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> set up and evaluate \(\int_a^b[f(x)-g(x)]\,dx\) for the region between two curves, finding the limits from the points where the curves intersect.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> sketch a region first and use the sketch to decide which curve is on top, and when a region needs to be split into pieces because the curves cross.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> choose between integrating in \(x\) (top minus bottom) and integrating in \(y\) (right minus left), and explain why one integral can be easier than two.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil. A sketch is part of every problem today, so keep scratch paper handy. Recall the definite integral (Lesson 13.03) and the Fundamental Theorem (Lesson 14.02).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A willingness to draw before you compute. In this lesson the picture does the deciding, and the algebra only finishes the job.</div>
+        </div>
+    </div>
+
+    <!-- PART -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; TOP MINUS BOTTOM</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Lesson 13.03 defined \(\displaystyle\int_a^b f(x)\,dx\) as the signed area between a curve and the \(x\)-axis. Now two curves enclose a region, like the one between \(y=\sqrt x\) and \(y=x^2\) from \(x=0\) to \(x=1\). Before reading on, how would you find its area?</div>
+          <div class="widget-options">
+            <button data-response="That is exactly right, and it is the whole idea. Two areas under curves, one subtracted from the other. Today you will see why the two integrals collapse into a single one, and how to set it up reliably from a sketch.">Find the area under \(\sqrt x\), find the area under \(x^2\), and subtract one from the other.</button>
+            <button data-response="You do not need a new formula. The region is the big area under the upper curve with the area under the lower curve cut away, and you already know how to compute both with the Fundamental Theorem. Today turns that observation into a method.">Treat the region as a new kind of shape and invent a new formula.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here is the region from the question, with the curves labelled. On \([0,1]\) the curve \(y=\sqrt x\) lies on top of \(y=x^2\) (check at \(x=\tfrac14\): \(\sqrt{1/4}=\tfrac12\) and \((\tfrac14)^2=\tfrac1{16}\)).</p>
+        <svg viewBox="0 0 330 230" width="100%" style="max-width: 330px; display:block; margin: 12px auto;" role="img" aria-label="The region between y equals square root of x on top and y equals x squared below, from x equals 0 to x equals 1, shaded, with one thin vertical strip marked.">
+            <line x1="34.0" y1="196.5" x2="296.0" y2="196.5" stroke="#6b7a99" stroke-width="1.2"/>
+            <line x1="34.0" y1="212.0" x2="34.0" y2="18.0" stroke="#6b7a99" stroke-width="1.2"/>
+            <polygon points="34.0,196.5 37.6,176.4 41.3,168.1 44.9,161.8 48.6,156.4 52.2,151.7 55.8,147.4 59.5,143.5 63.1,139.8 66.8,136.4 70.4,133.1 74.0,130.0 77.7,127.1 81.3,124.2 84.9,121.5 88.6,118.9 92.2,116.3 95.9,113.9 99.5,111.5 103.1,109.1 106.8,106.9 110.4,104.7 114.1,102.5 117.7,100.4 121.3,98.3 125.0,96.3 128.6,94.3 132.2,92.4 135.9,90.5 139.5,88.6 143.2,86.7 146.8,84.9 150.4,83.1 154.1,81.4 157.7,79.6 161.4,77.9 165.0,76.3 168.6,74.6 172.3,73.0 175.9,71.4 179.6,69.8 183.2,68.2 186.8,66.6 190.5,65.1 194.1,63.6 197.8,62.1 201.4,60.6 205.0,59.1 208.7,57.7 212.3,56.2 215.9,54.8 219.6,53.4 223.2,52.0 226.9,50.6 230.5,49.2 234.1,47.9 237.8,46.5 241.4,45.2 245.1,43.9 248.7,42.6 252.3,41.3 252.3,41.3 248.7,46.4 245.1,51.5 241.4,56.4 237.8,61.3 234.1,66.1 230.5,70.8 226.9,75.4 223.2,79.9 219.6,84.3 215.9,88.7 212.3,93.0 208.7,97.2 205.0,101.2 201.4,105.3 197.8,109.2 194.1,113.0 190.5,116.8 186.8,120.4 183.2,124.0 179.6,127.5 175.9,130.9 172.3,134.2 168.6,137.5 165.0,140.6 161.4,143.7 157.7,146.6 154.1,149.5 150.4,152.3 146.8,155.1 143.2,157.7 139.5,160.2 135.9,162.7 132.2,165.1 128.6,167.3 125.0,169.5 121.3,171.6 117.7,173.7 114.1,175.6 110.4,177.5 106.8,179.2 103.1,180.9 99.5,182.5 95.9,184.0 92.2,185.4 88.6,186.8 84.9,188.0 81.3,189.2 77.7,190.3 74.0,191.3 70.4,192.2 66.8,193.0 63.1,193.7 59.5,194.4 55.8,194.9 52.2,195.4 48.6,195.8 44.9,196.1 41.3,196.3 37.6,196.4 34.0,196.5" fill="#55C8E8" fill-opacity="0.35" stroke="none"/>
+            <polyline points="34.0,196.5 38.2,175.0 42.4,166.1 46.6,159.3 50.7,153.5 54.9,148.4 59.1,143.8 63.3,139.6 67.5,135.7 71.7,132.0 75.8,128.5 80.0,125.2 84.2,122.0 88.4,119.0 92.6,116.1 96.8,113.3 101.0,110.5 105.1,107.9 109.3,105.3 113.5,102.8 117.7,100.4 121.9,98.0 126.1,95.7 130.2,93.4 134.4,91.2 138.6,89.0 142.8,86.9 147.0,84.8 151.2,82.8 155.4,80.8 159.5,78.8 163.7,76.8 167.9,74.9 172.1,73.0 176.3,71.2 180.5,69.4 184.6,67.6 188.8,65.8 193.0,64.0 197.2,62.3 201.4,60.6 205.6,58.9 209.8,57.2 213.9,55.6 218.1,54.0 222.3,52.3 226.5,50.8 230.7,49.2 234.9,47.6 239.1,46.1 243.2,44.5 247.4,43.0 251.6,41.5 255.8,40.1 260.0,38.6 264.2,37.1 268.3,35.7 272.5,34.3 276.7,32.8 280.9,31.4 285.1,30.0" fill="none" stroke="#0E1C42" stroke-width="2.2"/>
+            <polyline points="34.0,196.5 37.8,196.4 41.6,196.3 45.5,196.1 49.3,195.7 53.1,195.3 56.9,194.8 60.7,194.2 64.6,193.4 68.4,192.6 72.2,191.7 76.0,190.7 79.8,189.6 83.7,188.4 87.5,187.2 91.3,185.8 95.1,184.3 99.0,182.7 102.8,181.1 106.6,179.3 110.4,177.5 114.2,175.5 118.1,173.5 121.9,171.3 125.7,169.1 129.5,166.8 133.3,164.3 137.2,161.8 141.0,159.2 144.8,156.5 148.6,153.7 152.4,150.8 156.3,147.8 160.1,144.7 163.9,141.5 167.7,138.3 171.6,134.9 175.4,131.4 179.2,127.8 183.0,124.2 186.8,120.4 190.7,116.6 194.5,112.6 198.3,108.6 202.1,104.5 205.9,100.2 209.8,95.9 213.6,91.5 217.4,87.0 221.2,82.4 225.0,77.7 228.9,72.9 232.7,68.0 236.5,63.0 240.3,57.9 244.1,52.7 248.0,47.4 251.8,42.1 255.6,36.6 259.4,31.0 263.2,25.4" fill="none" stroke="#C7922C" stroke-width="2.2"/>
+            <circle cx="34.0" cy="196.5" r="3.5" fill="#C7922C"/>
+            <circle cx="252.3" cy="41.3" r="3.5" fill="#C7922C"/>
+            <text x="154.1" y="52.1" font-size="13" fill="#0E1C42" text-anchor="start" font-style="italic">y = &#8730;x</text>
+            <text x="204.3" y="126.6" font-size="13" fill="#8A6420" text-anchor="start" font-style="italic">y = x&#178;</text>
+            <text x="127.9" y="131.3" font-size="13" fill="#1B6A94" text-anchor="start" font-style="italic">region</text>
+            <line x1="112.6" y1="103.4" x2="112.6" y2="176.4" stroke="#2196D0" stroke-width="1.6" stroke-dasharray="4 3"/>
+            <text x="117.0" y="137.5" font-size="11" fill="#1B6A94" text-anchor="start" font-style="italic">&#8730;x &#8722; x&#178;</text>
+        </svg>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Slice the region into thin vertical strips, as you did in Lesson 13.01. The strip at \(x\) has height \(\sqrt x-x^2\), the top curve minus the bottom curve, and width \(dx\). Adding up all the strips is a definite integral, and the Fundamental Theorem (Lesson 14.02) finishes the job.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Area Between Two Curves</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(f\) and \(g\) are continuous on \([a,b]\) and \(f(x)\ge g(x)\) for every \(x\) in \([a,b]\), the area of the region between the curves from \(x=a\) to \(x=b\) is \[ A=\int_a^b \bigl[f(x)-g(x)\bigr]\,dx. \] The rule in words: <strong>top minus bottom</strong>.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Why does this agree with &ldquo;area under the top, minus area under the bottom&rdquo;? Because the integral of a difference is the difference of the integrals (the linearity property from Lesson 13.03): \(\int_a^b (f-g)\,dx=\int_a^b f\,dx-\int_a^b g\,dx\). Here is that computation for the region in the figure.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1.</strong> Find the area between \(y=\sqrt x\) and \(y=x^2\) from \(x=0\) to \(x=1\). Top minus bottom is \(\sqrt x-x^2\), so</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ A=\int_0^1\left(x^{1/2}-x^2\right)dx=\left[\tfrac23x^{3/2}-\tfrac13x^3\right]_0^1=\tfrac23-\tfrac13=\tfrac13. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Check it as a difference of two areas: the area under \(\sqrt x\) on \([0,1]\) is \(\tfrac23\), the area under \(x^2\) is \(\tfrac13\), and \(\tfrac23-\tfrac13=\tfrac13\). The two routes agree.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The formula needs the curves in the right order, but it does <em>not</em> need either curve to be above the \(x\)-axis. Shift both curves up or down by the same amount and every strip keeps the same height, so the area does not change. That is why top minus bottom works even when the region dips below the axis. The only thing that matters is which curve is higher.</div>
+        </div>
+    </div>
+
+    <!-- PART -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; FINDING THE LIMITS, AND SKETCHING FIRST</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In Example 1 the problem handed you the limits \(x=0\) and \(x=1\). More often a problem says only &ldquo;the region enclosed by these curves,&rdquo; and the limits are for you to find. They are the \(x\)-values where the curves cross. The method has three steps, and the first one is a drawing.</p>
+        <ol style="font-size: 17px; color: #1a2340; line-height: 1.8; padding-left: 24px; margin: 0 0 12px 0;">
+            <li><strong>Sketch</strong> both curves, even roughly, and shade the region. The sketch tells you which curve is on top.</li>
+            <li><strong>Find the intersections</strong> by setting the two expressions equal and solving. These are your limits.</li>
+            <li><strong>Integrate top minus bottom</strong> between the limits, and evaluate.</li>
+        </ol>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2.</strong> Find the area of the region enclosed by \(y=x^2\) and \(y=x+2\).</p>
+        <svg viewBox="0 0 330 240" width="100%" style="max-width: 330px; display:block; margin: 12px auto;" role="img" aria-label="The parabola y equals x squared and the line y equals x plus 2 meet at the points (-1, 1) and (2, 4); the region between them is shaded.">
+            <line x1="34.0" y1="206.9" x2="296.0" y2="206.9" stroke="#6b7a99" stroke-width="1.2"/>
+            <line x1="129.9" y1="222.0" x2="129.9" y2="18.0" stroke="#6b7a99" stroke-width="1.2"/>
+            <polygon points="66.0,169.1 69.1,167.2 72.3,165.3 75.5,163.4 78.7,161.6 81.9,159.7 85.1,157.8 88.3,155.9 91.5,154.0 94.7,152.1 97.9,150.2 101.1,148.3 104.3,146.4 107.5,144.6 110.7,142.7 113.9,140.8 117.1,138.9 120.3,137.0 123.5,135.1 126.7,133.2 129.9,131.3 133.0,129.4 136.2,127.6 139.4,125.7 142.6,123.8 145.8,121.9 149.0,120.0 152.2,118.1 155.4,116.2 158.6,114.3 161.8,112.4 165.0,110.6 168.2,108.7 171.4,106.8 174.6,104.9 177.8,103.0 181.0,101.1 184.2,99.2 187.4,97.3 190.6,95.4 193.8,93.6 197.0,91.7 200.1,89.8 203.3,87.9 206.5,86.0 209.7,84.1 212.9,82.2 216.1,80.3 219.3,78.4 222.5,76.6 225.7,74.7 228.9,72.8 232.1,70.9 235.3,69.0 238.5,67.1 241.7,65.2 244.9,63.3 248.1,61.4 251.3,59.6 254.5,57.7 257.7,55.8 257.7,55.8 254.5,63.2 251.3,70.5 248.1,77.6 244.9,84.5 241.7,91.2 238.5,97.7 235.3,104.0 232.1,110.2 228.9,116.1 225.7,121.9 222.5,127.5 219.3,132.8 216.1,138.0 212.9,143.0 209.7,147.9 206.5,152.5 203.3,156.9 200.1,161.2 197.0,165.2 193.8,169.1 190.6,172.8 187.4,176.3 184.2,179.6 181.0,182.7 177.8,185.6 174.6,188.4 171.4,190.9 168.2,193.3 165.0,195.5 161.8,197.4 158.6,199.2 155.4,200.8 152.2,202.3 149.0,203.5 145.8,204.5 142.6,205.4 139.4,206.0 136.2,206.5 133.0,206.8 129.9,206.9 126.7,206.8 123.5,206.5 120.3,206.0 117.1,205.4 113.9,204.5 110.7,203.5 107.5,202.3 104.3,200.8 101.1,199.2 97.9,197.4 94.7,195.5 91.5,193.3 88.3,190.9 85.1,188.4 81.9,185.6 78.7,182.7 75.5,179.6 72.3,176.3 69.1,172.8 66.0,169.1" fill="#55C8E8" fill-opacity="0.35" stroke="none"/>
+            <polyline points="34.0,121.9 37.9,128.7 41.9,135.3 45.8,141.6 49.8,147.5 53.7,153.2 57.6,158.7 61.6,163.8 65.5,168.6 69.5,173.2 73.4,177.4 77.3,181.4 81.3,185.1 85.2,188.5 89.2,191.6 93.1,194.4 97.1,196.9 101.0,199.2 104.9,201.1 108.9,202.8 112.8,204.2 116.8,205.3 120.7,206.1 124.6,206.6 128.6,206.9 132.5,206.8 136.5,206.5 140.4,205.9 144.3,204.9 148.3,203.7 152.2,202.3 156.2,200.5 160.1,198.4 164.0,196.1 168.0,193.4 171.9,190.5 175.9,187.3 179.8,183.8 183.7,180.0 187.7,175.9 191.6,171.6 195.6,166.9 199.5,162.0 203.4,156.8 207.4,151.3 211.3,145.5 215.3,139.4 219.2,133.0 223.2,126.4 227.1,119.4 231.0,112.2 235.0,104.7 238.9,96.9 242.9,88.8 246.8,80.4 250.7,71.7 254.7,62.7 258.6,53.5 262.6,44.0 266.5,34.2 270.4,24.0" fill="none" stroke="#C7922C" stroke-width="2.2"/>
+            <polyline points="34.0,188.0 60.2,172.5 86.4,157.0 112.6,141.5 138.8,126.0 165.0,110.6 191.2,95.1 217.4,79.6 243.6,64.1 269.8,48.6 296.0,33.1" fill="none" stroke="#0E1C42" stroke-width="2.2"/>
+            <circle cx="66.0" cy="169.1" r="3.5" fill="#C7922C"/>
+            <circle cx="257.7" cy="55.8" r="3.5" fill="#C7922C"/>
+            <text x="37.2" y="165.3" font-size="11" fill="#0E1C42" text-anchor="start" font-style="italic">(&#8722;1, 1)</text>
+            <text x="260.9" y="48.2" font-size="11" fill="#0E1C42" text-anchor="start" font-style="italic">(2, 4)</text>
+            <text x="117.1" y="89.8" font-size="13" fill="#0E1C42" text-anchor="start" font-style="italic">y = x + 2</text>
+            <text x="219.3" y="161.6" font-size="13" fill="#8A6420" text-anchor="start" font-style="italic">y = x&#178;</text>
+        </svg>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>Intersections.</em> Solve \(x^2=x+2\), so \(x^2-x-2=0\), so \((x-2)(x+1)=0\), giving \(x=-1\) and \(x=2\). <em>Which is on top?</em> At \(x=0\), the line gives \(2\) and the parabola gives \(0\), so the line is on top throughout \((-1,2)\). <em>Integrate.</em></p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ A=\int_{-1}^{2}\left(x+2-x^2\right)dx=\left[\tfrac{x^2}{2}+2x-\tfrac{x^3}{3}\right]_{-1}^{2}=\left(2+4-\tfrac83\right)-\left(\tfrac12-2+\tfrac13\right)=\tfrac{10}{3}+\tfrac76=\tfrac92. \]
+        </p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Around 250 BCE, Archimedes found the area of a parabolic segment with no calculus at all. He proved it equals \(\tfrac43\) of the area of the largest triangle that fits inside it. Test his claim on Example 2. The chord runs from \((-1,1)\) to \((2,4)\) and has slope \(1\). The triangle&rsquo;s third vertex is the point of the parabola where the tangent has that same slope, \(2x=1\), at \((\tfrac12,\tfrac14)\). That is a Mean Value Theorem point (Lesson 8.03). The triangle has area \(\tfrac{27}{8}\), and \(\tfrac43\cdot\tfrac{27}{8}=\tfrac92\). Two thousand years apart, the same answer.</div>
+        </div>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">When the top curve switches</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Sometimes the curves cross <em>inside</em> the interval you want, and the roles of top and bottom swap. Then one integral of &ldquo;top minus bottom&rdquo; is wrong, because the integrand changes sign and positive and negative pieces cancel. You must split at each crossing and use the correct order on each piece.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3.</strong> Find the total area enclosed between \(y=x\) and \(y=x^3\). Setting \(x^3=x\) gives \(x(x-1)(x+1)=0\), so the curves cross at \(x=-1,\,0,\,1\). On \((0,1)\) the line is on top, because \(x>x^3\) there (try \(x=\tfrac12\)). On \((-1,0)\) the cubic is on top (try \(x=-\tfrac12\): \(x^3=-\tfrac18>-\tfrac12=x\)). The two lobes are mirror images, so</p>
+        <svg viewBox="0 0 330 240" width="100%" style="max-width: 330px; display:block; margin: 12px auto;" role="img" aria-label="The line y equals x and the cubic y equals x cubed cross at x equals -1, 0 and 1, forming two shaded lobes.">
+            <line x1="34.0" y1="120.0" x2="296.0" y2="120.0" stroke="#6b7a99" stroke-width="1.2"/>
+            <line x1="165.0" y1="222.0" x2="165.0" y2="18.0" stroke="#6b7a99" stroke-width="1.2"/>
+            <polygon points="55.8,205.0 57.7,200.8 59.5,196.8 61.3,192.9 63.1,189.1 64.9,185.5 66.8,182.0 68.6,178.6 70.4,175.3 72.2,172.2 74.0,169.2 75.8,166.3 77.7,163.5 79.5,160.9 81.3,158.3 83.1,155.9 84.9,153.5 86.8,151.3 88.6,149.2 90.4,147.1 92.2,145.2 94.0,143.3 95.9,141.6 97.7,139.9 99.5,138.4 101.3,136.9 103.1,135.5 105.0,134.1 106.8,132.9 108.6,131.7 110.4,130.6 112.2,129.6 114.1,128.6 115.9,127.7 117.7,126.9 119.5,126.1 121.3,125.4 123.2,124.8 125.0,124.2 126.8,123.6 128.6,123.1 130.4,122.7 132.2,122.3 134.1,121.9 135.9,121.6 137.7,121.3 139.5,121.1 141.3,120.9 143.2,120.7 145.0,120.5 146.8,120.4 148.6,120.3 150.4,120.2 152.3,120.1 154.1,120.1 155.9,120.0 157.7,120.0 159.5,120.0 161.4,120.0 163.2,120.0 165.0,120.0 166.8,118.6 168.6,117.2 170.5,115.7 172.3,114.3 174.1,112.9 175.9,111.5 177.7,110.1 179.6,108.7 181.4,107.2 183.2,105.8 185.0,104.4 186.8,103.0 188.7,101.6 190.5,100.2 192.3,98.8 194.1,97.3 195.9,95.9 197.8,94.5 199.6,93.1 201.4,91.7 203.2,90.2 205.0,88.8 206.8,87.4 208.7,86.0 210.5,84.6 212.3,83.2 214.1,81.8 215.9,80.3 217.8,78.9 219.6,77.5 221.4,76.1 223.2,74.7 225.0,73.2 226.9,71.8 228.7,70.4 230.5,69.0 232.3,67.6 234.1,66.2 236.0,64.8 237.8,63.3 239.6,61.9 241.4,60.5 243.2,59.1 245.1,57.7 246.9,56.2 248.7,54.8 250.5,53.4 252.3,52.0 254.2,50.6 256.0,49.2 257.8,47.8 259.6,46.3 261.4,44.9 263.2,43.5 265.1,42.1 266.9,40.7 268.7,39.2 270.5,37.8 272.3,36.4 274.2,35.0 274.2,35.0 272.3,39.2 270.5,43.2 268.7,47.1 266.9,50.9 265.1,54.5 263.2,58.0 261.4,61.4 259.6,64.7 257.8,67.8 256.0,70.8 254.2,73.7 252.3,76.5 250.5,79.1 248.7,81.7 246.9,84.1 245.1,86.5 243.2,88.7 241.4,90.8 239.6,92.9 237.8,94.8 236.0,96.7 234.1,98.4 232.3,100.1 230.5,101.6 228.7,103.1 226.9,104.5 225.0,105.9 223.2,107.1 221.4,108.3 219.6,109.4 217.8,110.4 215.9,111.4 214.1,112.3 212.3,113.1 210.5,113.9 208.7,114.6 206.8,115.2 205.0,115.8 203.2,116.4 201.4,116.9 199.6,117.3 197.8,117.7 195.9,118.1 194.1,118.4 192.3,118.7 190.5,118.9 188.7,119.1 186.8,119.3 185.0,119.5 183.2,119.6 181.4,119.7 179.6,119.8 177.7,119.9 175.9,119.9 174.1,120.0 172.3,120.0 170.5,120.0 168.6,120.0 166.8,120.0 165.0,120.0 163.2,121.4 161.4,122.8 159.5,124.3 157.7,125.7 155.9,127.1 154.1,128.5 152.3,129.9 150.4,131.3 148.6,132.8 146.8,134.2 145.0,135.6 143.2,137.0 141.3,138.4 139.5,139.8 137.7,141.2 135.9,142.7 134.1,144.1 132.2,145.5 130.4,146.9 128.6,148.3 126.8,149.8 125.0,151.2 123.2,152.6 121.3,154.0 119.5,155.4 117.7,156.8 115.9,158.2 114.1,159.7 112.2,161.1 110.4,162.5 108.6,163.9 106.8,165.3 105.0,166.8 103.1,168.2 101.3,169.6 99.5,171.0 97.7,172.4 95.9,173.8 94.0,175.2 92.2,176.7 90.4,178.1 88.6,179.5 86.8,180.9 84.9,182.3 83.1,183.8 81.3,185.2 79.5,186.6 77.7,188.0 75.8,189.4 74.0,190.8 72.2,192.2 70.4,193.7 68.6,195.1 66.8,196.5 64.9,197.9 63.1,199.3 61.3,200.8 59.5,202.2 57.7,203.6 55.8,205.0" fill="#55C8E8" fill-opacity="0.35" stroke="none"/>
+            <polyline points="50.4,218.4 54.2,208.9 58.0,200.0 61.8,191.7 65.7,184.1 69.5,176.9 73.3,170.4 77.1,164.3 80.9,158.8 84.8,153.8 88.6,149.2 92.4,145.0 96.2,141.3 100.0,137.9 103.9,134.9 107.7,132.3 111.5,130.0 115.3,128.0 119.2,126.3 123.0,124.9 126.8,123.6 130.6,122.7 134.4,121.9 138.3,121.3 142.1,120.8 145.9,120.5 149.7,120.2 153.5,120.1 157.4,120.0 161.2,120.0 165.0,120.0 168.8,120.0 172.6,120.0 176.5,119.9 180.3,119.8 184.1,119.5 187.9,119.2 191.7,118.7 195.6,118.1 199.4,117.3 203.2,116.4 207.0,115.1 210.8,113.7 214.7,112.0 218.5,110.0 222.3,107.7 226.1,105.1 230.0,102.1 233.8,98.7 237.6,95.0 241.4,90.8 245.2,86.2 249.1,81.2 252.9,75.7 256.7,69.6 260.5,63.1 264.3,55.9 268.2,48.3 272.0,40.0 275.8,31.1 279.6,21.6" fill="none" stroke="#C7922C" stroke-width="2.2"/>
+            <polyline points="50.4,209.2 73.3,191.4 96.2,173.6 119.2,155.7 142.1,137.8 165.0,120.0 187.9,102.1 210.9,84.3 233.8,66.4 256.7,48.6 279.6,30.8" fill="none" stroke="#0E1C42" stroke-width="2.2"/>
+            <text x="232.7" y="36.7" font-size="13" fill="#0E1C42" text-anchor="start" font-style="italic">y = x</text>
+            <text x="239.2" y="132.8" font-size="13" fill="#8A6420" text-anchor="start" font-style="italic">y = x&#179;</text>
+            <text x="61.3" y="198.2" font-size="11" fill="#0E1C42" text-anchor="start" font-style="italic">y = x</text>
+            <text x="39.5" y="50.3" font-size="11" fill="#8A6420" text-anchor="start" font-style="italic">y = x&#179;</text>
+        </svg>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ A=\int_{-1}^{0}\left(x^3-x\right)dx+\int_{0}^{1}\left(x-x^3\right)dx=\tfrac14+\tfrac14=\tfrac12. \]
+        </p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Integrating \(\int_{-1}^{1}(x-x^3)\,dx\) in one go gives \(0\), because \(x-x^3\) is an odd function and the two lobes cancel. A region with area \(\tfrac12\) does not have area \(0\). Whenever two curves cross inside your interval, find every intersection first and split the integral there. The sketch is what warns you.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find the area of the region between \(y=\sqrt x\) and \(y=\tfrac x2\) (a line through the origin). Sketch it, find the limits, decide who is on top, and evaluate. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Setting \(\sqrt x=\tfrac x2\) gives \(x=0\) or \(\sqrt x=2\), so \(x=4\). At \(x=1\), \(\sqrt1=1>\tfrac12\), so the curve is on top. \[A=\int_0^4\left(\sqrt x-\tfrac x2\right)dx=\left[\tfrac23x^{3/2}-\tfrac{x^2}{4}\right]_0^4=\tfrac{16}{3}-4=\tfrac43.\] If you got a negative number, you subtracted in the wrong order; an area is never negative, so that is your signal to swap.
+            </div>
+        </details>
+    </div>
+
+    <!-- PART -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; WHEN \(y\) IS THE BETTER VARIABLE</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Everything so far sliced the region into <em>vertical</em> strips and integrated in \(x\). Some regions are easier to slice into <em>horizontal</em> strips. If the region is described by curves written as \(x=\) something in \(y\), or if the top or bottom boundary changes formula partway across, horizontal strips may need one integral where vertical strips need two. The rule is the same with the roles turned a quarter turn: <strong>right minus left</strong>, integrated with respect to \(y\).</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Area Between Curves, Integrating in \(y\)</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(x=u(y)\) and \(x=v(y)\) are continuous on \([c,d]\) and \(u(y)\ge v(y)\) on that interval, the area between them from \(y=c\) to \(y=d\) is \[ A=\int_c^d \bigl[u(y)-v(y)\bigr]\,dy. \] In words: <strong>right minus left</strong>.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 4.</strong> Find the area of the region above the \(x\)-axis, bounded above by \(y=\sqrt x\), on the right by the line \(y=x-2\), and below by the \(x\)-axis. The curves meet where \(\sqrt x=x-2\); squaring gives \(x=x^2-4x+4\), so \(x^2-5x+4=0\), so \(x=1\) or \(x=4\). Check each in the original equation: \(x=1\) gives \(1=-1\), which is false (an extraneous root from squaring), and \(x=4\) gives \(2=2\), true. So the curves meet only at \((4,2)\).</p>
+        <svg viewBox="0 0 330 230" width="100%" style="max-width: 330px; display:block; margin: 12px auto;" role="img" aria-label="The region above the x axis between the curve y equals square root of x and the line y equals x minus 2, meeting at (4, 2), with a horizontal strip marked.">
+            <line x1="34.0" y1="185.2" x2="296.0" y2="185.2" stroke="#6b7a99" stroke-width="1.2"/>
+            <line x1="50.0" y1="212.0" x2="50.0" y2="18.0" stroke="#6b7a99" stroke-width="1.2"/>
+            <polygon points="50.0,185.2 50.1,182.6 50.4,179.9 50.8,177.2 51.4,174.5 52.2,171.9 53.1,169.2 54.2,166.5 55.5,163.8 57.0,161.2 58.6,158.5 60.4,155.8 62.4,153.1 64.5,150.5 66.8,147.8 69.3,145.1 71.9,142.4 74.8,139.8 77.8,137.1 80.9,134.4 84.3,131.7 87.8,129.0 91.4,126.4 95.3,123.7 99.3,121.0 103.5,118.3 107.9,115.7 112.4,113.0 117.1,110.3 122.0,107.6 127.0,105.0 132.3,102.3 137.6,99.6 143.2,96.9 148.9,94.3 154.8,91.6 160.9,88.9 167.2,86.2 173.6,83.6 180.2,80.9 186.9,78.2 193.9,75.5 201.0,72.9 208.2,70.2 215.7,67.5 223.3,64.8 231.1,62.2 239.0,59.5 247.2,56.8 255.4,54.1 263.9,51.4 263.9,51.4 261.8,54.1 259.6,56.8 257.5,59.5 255.4,62.2 253.2,64.8 251.1,67.5 248.9,70.2 246.8,72.9 244.7,75.5 242.5,78.2 240.4,80.9 238.3,83.6 236.1,86.2 234.0,88.9 231.8,91.6 229.7,94.3 227.6,96.9 225.4,99.6 223.3,102.3 221.1,105.0 219.0,107.6 216.9,110.3 214.7,113.0 212.6,115.7 210.4,118.3 208.3,121.0 206.2,123.7 204.0,126.4 201.9,129.0 199.8,131.7 197.6,134.4 195.5,137.1 193.3,139.8 191.2,142.4 189.1,145.1 186.9,147.8 184.8,150.5 182.6,153.1 180.5,155.8 178.4,158.5 176.2,161.2 174.1,163.8 172.0,166.5 169.8,169.2 167.7,171.9 165.5,174.5 163.4,177.2 161.3,179.9 159.1,182.6 157.0,185.2" fill="#55C8E8" fill-opacity="0.35" stroke="none"/>
+            <polyline points="50.0,185.2 53.9,167.3 57.7,159.9 61.5,154.2 65.4,149.4 69.2,145.2 73.0,141.4 76.9,137.9 80.7,134.6 84.5,131.5 88.4,128.6 92.2,125.8 96.0,123.2 99.9,120.7 103.7,118.2 107.5,115.9 111.4,113.6 115.2,111.4 119.0,109.3 122.8,107.2 126.7,105.2 130.5,103.2 134.3,101.2 138.2,99.4 142.0,97.5 145.8,95.7 149.7,93.9 153.5,92.2 157.3,90.5 161.2,88.8 165.0,87.2 168.8,85.5 172.7,83.9 176.5,82.4 180.3,80.8 184.2,79.3 188.0,77.8 191.8,76.3 195.7,74.8 199.5,73.4 203.3,72.0 207.2,70.6 211.0,69.2 214.8,67.8 218.6,66.4 222.5,65.1 226.3,63.8 230.1,62.5 234.0,61.2 237.8,59.9 241.6,58.6 245.5,57.3 249.3,56.1 253.1,54.9 257.0,53.6 260.8,52.4 264.6,51.2 268.5,50.0 272.3,48.9 276.1,47.7 280.0,46.5" fill="none" stroke="#0E1C42" stroke-width="2.2"/>
+            <polyline points="157.0,185.2 170.3,168.5 183.7,151.8 197.1,135.1 210.4,118.3 223.8,101.6 237.2,84.9 250.6,68.2 263.9,51.4 277.3,34.7 290.7,18.0" fill="none" stroke="#C7922C" stroke-width="2.2"/>
+            <circle cx="263.9" cy="51.4" r="3.5" fill="#C7922C"/>
+            <circle cx="50.0" cy="185.2" r="3.5" fill="#C7922C"/>
+            <circle cx="157.0" cy="185.2" r="3.5" fill="#C7922C"/>
+            <text x="108.9" y="81.6" font-size="13" fill="#0E1C42" text-anchor="start" font-style="italic">y = &#8730;x</text>
+            <text x="237.2" y="151.8" font-size="13" fill="#8A6420" text-anchor="start" font-style="italic">y = x &#8722; 2</text>
+            <text x="266.6" y="43.4" font-size="11" fill="#0E1C42" text-anchor="start" font-style="italic">(4, 2)</text>
+            <line x1="103.5" y1="118.3" x2="210.4" y2="118.3" stroke="#2196D0" stroke-width="1.6" stroke-dasharray="4 3"/>
+            <text x="132.9" y="128.4" font-size="11" fill="#1B6A94" text-anchor="start" font-style="italic">one thin strip, left to right</text>
+        </svg>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>With vertical strips,</em> the bottom boundary is the \(x\)-axis for \(0\le x\le2\) and the line for \(2\le x\le4\), so you need two integrals:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ A=\int_0^2\sqrt x\,dx+\int_2^4\left(\sqrt x-(x-2)\right)dx=\tfrac{10}{3}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>With horizontal strips,</em> solve each curve for \(x\): \(y=\sqrt x\) becomes \(x=y^2\) (the left boundary), and \(y=x-2\) becomes \(x=y+2\) (the right boundary). The region runs from \(y=0\) up to \(y=2\), and a single integral does it:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ A=\int_0^2\left[(y+2)-y^2\right]dy=\left[\tfrac{y^2}{2}+2y-\tfrac{y^3}{3}\right]_0^2=2+4-\tfrac83=\tfrac{10}{3}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Same area, one integral instead of two. Choosing the direction is a matter of looking at the sketch and asking where the boundary curves change.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E8B965; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A6420; margin-bottom: 8px;">&#129302; AI-AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A graphing tool will shade the region and evaluate the integral in a moment. It will not tell you which curve is on top, whether the curves cross inside your interval, or whether you needed two integrals. Those are the decisions that make the answer correct. Use a tool to check an answer you have already set up by hand, never to decide the setup.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; SET UP THE INTEGRAL</div>
+          <div class="widget-question">For each region, choose the correct way to find its area. You are choosing the setup only.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The top curve minus the bottom curve is (4 - x^2) - (x^2 - 4) = 8 - 2x^2, integrated from -2 to 2. Part of the region lies below the x-axis, and top minus bottom handles that automatically." data-hint="Which curve is higher at x = 0? Subtract the lower curve from the higher one.">
+            <div class="widget-row-prompt">1. The region between \(y=4-x^2\) (on top) and \(y=x^2-4\) (below), which cross at \(x=\pm2\).</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\displaystyle\int_{-2}^{2}\left[(x^2-4)-(4-x^2)\right]dx\)</button>
+              <button data-choice="1">\(\displaystyle\int_{-2}^{2}\left[(4-x^2)-(x^2-4)\right]dx\)</button>
+              <button data-choice="2">\(\displaystyle\int_{-2}^{2}(4-x^2)\,dx\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The curves swap order at x = 0, so you split there and use the correct order on each piece. A single top-minus-bottom integral would give 0." data-hint="Do the curves cross inside the interval? If so, what must you do before integrating?">
+            <div class="widget-row-prompt">2. The region between \(y=x\) and \(y=x^3\) over \([-1,1]\) (the two lobes from Example 3).</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\displaystyle\int_{-1}^{1}(x-x^3)\,dx\) as one integral</button>
+              <button data-choice="1">\(\displaystyle 2\int_{-1}^{1}x^3\,dx\)</button>
+              <button data-choice="2">Split at \(x=0\): integrate \(x^3-x\) on \([-1,0]\) and \(x-x^3\) on \([0,1]\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Between the crossings the line x = y + 2 is on the right, so right minus left is (y + 2) - y^2, integrated in y from -1 to 2. The area is 9/2." data-hint="These curves are given as x in terms of y, so slice horizontally. Which curve is farther right?">
+            <div class="widget-row-prompt">3. The region between \(x=y^2\) and \(x=y+2\), which cross at \(y=-1\) and \(y=2\).</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\displaystyle\int_{-1}^{2}\left[(y+2)-y^2\right]dy\)</button>
+              <button data-choice="1">\(\displaystyle\int_{-1}^{2}\left[y^2-(y+2)\right]dy\)</button>
+              <button data-choice="2">\(\displaystyle\int_{-1}^{2}\left[(y+2)-y^2\right]dx\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 32 Problem Set: Area and Average Value</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Set up and evaluate area and average-value integrals from sketches, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 32 Quiz: Area and Average Value</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material. Finish both Lesson 16.01 and Lesson 16.02 before the quiz.</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">The area between two curves is the integral of top minus bottom (or right minus left), taken between the points where the curves cross. A sketch tells you who is on top; solving for the intersections gives the limits; and when the curves swap order inside the interval, you split the integral there, or you slice in the other direction and let one integral do the work of two. Lesson 16.02 turns the same integral toward a different question: if a quantity changes over an interval, what is its <em>average</em> value?</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 16.01 &middot; Area Between Curves</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

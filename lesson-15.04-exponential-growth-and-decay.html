@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 15.04</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 15</div>
+        <div style="font-size: 12px; color: #666;">Antiderivatives and Differential Equations</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 15.04</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Exponential Growth and Decay</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Antiderivatives and Differential Equations</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 15.04</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Exponential Growth and Decay</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">What do populations, radioactive atoms, and a savings account have in common?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">All three change at a rate proportional to how much of them there is: \(\dfrac{dy}{dt}=ky\). That single differential equation, solved by the separation method from Lesson 15.03, gives the formula \(y=y_0e^{kt}\) and explains why exponential functions show up wherever growth feeds on itself. Today you derive the formula, define doubling time and half-life, fit the model to data, and then ask the question a careful mathematician always asks: where does this model stop being true? This closes the new content of Module 15, in Week 31 of the course.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> derive the solution \(y=y_0e^{kt}\) of \(\dfrac{dy}{dt}=ky\) by separation of variables, and interpret the sign and size of \(k\).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> compute doubling times and half-lives, and use two data points to find \(k\) and make a prediction.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> state the assumptions behind an exponential model and say where it fails to describe reality.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook, a pencil, and a calculator for evaluating exponentials and logarithms.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Separation of variables from Lesson 15.03 and the derivative of \(e^x\) from Lesson 7.03.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE EQUATION dy/dt = ky</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A town has 1000 residents and its population grows at a rate proportional to its current size, so a larger town grows faster in absolute terms. Which graph shape do you expect?</div>
+          <div class="widget-options">
+            <button data-response="Yes. If the rate of growth is proportional to the size, then as the population grows its growth rate grows too, so the curve steepens. That upward bend is exponential growth, and today you will derive its formula from the proportionality statement alone.">A curve that bends upward, getting steeper and steeper.</button>
+            <button data-response="A fixed <em>percentage</em> of a growing quantity is a growing <em>amount</em>, so the slope is not constant. A straight line would be growth by a fixed amount per year. Percentage growth makes the curve bend upward, and you will see why in the derivation.">A straight line, because the rate is a fixed percentage.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Many quantities change at a rate proportional to how much of them there is. A population has more births when it is larger. A radioactive sample has more atoms decaying per second when there are more atoms. A bank balance earning continuous interest earns more per day when the balance is larger. In symbols, with \(y(t)\) the quantity at time \(t\) and \(k\) the constant of proportionality:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \frac{dy}{dt}=k\,y. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">This is separable, with \(g(t)=k\) and \(h(y)=y\). Separate: \(\dfrac{dy}{y}=k\,dt\). Integrate: \(\ln|y|=kt+C\). Exponentiate: \(|y|=e^{C}e^{kt}\), so \(y=Ae^{kt}\) for a constant \(A\). At \(t=0\), \(y(0)=A\), so \(A\) is the starting amount \(y_0\).</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Exponential growth and decay</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(\dfrac{dy}{dt}=ky\) and \(y(0)=y_0\), then \(y=y_0e^{kt}\). If \(k>0\) the quantity grows exponentially; if \(k<0\) it decays exponentially. The constant solution \(y=0\) is the case \(y_0=0\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Check it: \(\dfrac{d}{dt}\bigl[y_0e^{kt}\bigr]=y_0\,k\,e^{kt}=k\,y\) &#10003;. This is Lesson 7.03's result, \(\dfrac{d}{dx}e^{x}=e^{x}\), with the Chain Rule bringing down the factor \(k\). Notice the logic runs in both directions now: Lesson 7.03 showed that \(e^{kt}\) satisfies the equation, and today's derivation shows that nothing else does.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Why is \(e\) the natural base? Because with base \(e\), the constant \(k\) is exactly the <em>relative</em> rate of change: \(\dfrac{1}{y}\dfrac{dy}{dt}=k\). If \(k=0.03\), the quantity is changing at 3% of its current value per unit time, at every instant. That is the meaning of &ldquo;continuous&rdquo; growth, and it is why \(e\) appears in compound interest, populations, and decay alike.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1: doubling time.</strong> A bacterial culture starts at 1000 cells and doubles every 3 hours. Find \(y(t)\), then the population after 10 hours.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Set \(y=1000e^{kt}\). Doubling at \(t=3\) gives \(2000=1000e^{3k}\), so \(e^{3k}=2\), \(3k=\ln2\), and \(k=\dfrac{\ln2}{3}\approx0.231\) per hour. So \(y(t)=1000e^{(\ln2/3)t}=1000\cdot2^{t/3}\). At \(t=10\): \(y(10)=1000\cdot2^{10/3}\approx10{,}079\) cells. The picture shows the pattern: every equal time step of 3 hours multiplies the population by the same factor, 2.</p>
+        <div style="margin: 14px 0; text-align: center;">
+        <svg viewBox="0 0 420 300" width="100%" style="max-width: 420px; background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px;" role="img" aria-label="A population that doubles every 3 hours: 1000, 2000, 4000, 8000, 16000. Equal time steps multiply the quantity by equal factors.">
+          <line x1="50" y1="260" x2="410" y2="260" stroke="#999"/>
+          <line x1="50" y1="10" x2="50" y2="260" stroke="#999"/>
+          <polyline fill="none" stroke="#0E1C42" stroke-width="2.5" points="50.0,246.0 53.0,245.7 56.0,245.3 59.0,245.0 62.0,244.6 65.0,244.3 68.0,243.9 71.0,243.5 74.0,243.2 77.0,242.8 80.0,242.4 83.0,241.9 86.0,241.5 89.0,241.1 92.0,240.7 95.0,240.2 98.0,239.7 101.0,239.3 104.0,238.8 107.0,238.3 110.0,237.8 113.0,237.3 116.0,236.7 119.0,236.2 122.0,235.6 125.0,235.1 128.0,234.5 131.0,233.9 134.0,233.3 137.0,232.6 140.0,232.0 143.0,231.3 146.0,230.7 149.0,230.0 152.0,229.3 155.0,228.6 158.0,227.8 161.0,227.1 164.0,226.3 167.0,225.5 170.0,224.7 173.0,223.9 176.0,223.1 179.0,222.2 182.0,221.3 185.0,220.4 188.0,219.5 191.0,218.5 194.0,217.6 197.0,216.6 200.0,215.6 203.0,214.5 206.0,213.5 209.0,212.4 212.0,211.2 215.0,210.1 218.0,208.9 221.0,207.8 224.0,206.5 227.0,205.3 230.0,204.0 233.0,202.7 236.0,201.4 239.0,200.0 242.0,198.6 245.0,197.1 248.0,195.7 251.0,194.2 254.0,192.6 257.0,191.1 260.0,189.4 263.0,187.8 266.0,186.1 269.0,184.4 272.0,182.6 275.0,180.8 278.0,179.0 281.0,177.1 284.0,175.1 287.0,173.1 290.0,171.1 293.0,169.0 296.0,166.9 299.0,164.7 302.0,162.5 305.0,160.2 308.0,157.9 311.0,155.5 314.0,153.1 317.0,150.6 320.0,148.0 323.0,145.4 326.0,142.7 329.0,140.0 332.0,137.2 335.0,134.3 338.0,131.3 341.0,128.3 344.0,125.3 347.0,122.1 350.0,118.9 353.0,115.6 356.0,112.2 359.0,108.8 362.0,105.2 365.0,101.6 368.0,97.9 371.0,94.1 374.0,90.2 377.0,86.3 380.0,82.2 383.0,78.1 386.0,73.8 389.0,69.5 392.0,65.0 395.0,60.4 398.0,55.8 401.0,51.0 404.0,46.1 407.0,41.1 410.0,36.0"/>
+          <circle cx="50.0" cy="246.0" r="4" fill="#C7922C"/>
+          <text x="50.0" y="274.0" font-size="11" fill="#1a2340" text-anchor="middle">0</text>
+          <text x="56.0" y="241.0" font-size="11" fill="#8A5F12">1000</text>
+          <circle cx="140.0" cy="232.0" r="4" fill="#C7922C"/>
+          <text x="140.0" y="274.0" font-size="11" fill="#1a2340" text-anchor="middle">3</text>
+          <text x="146.0" y="227.0" font-size="11" fill="#8A5F12">2000</text>
+          <circle cx="230.0" cy="204.0" r="4" fill="#C7922C"/>
+          <text x="230.0" y="274.0" font-size="11" fill="#1a2340" text-anchor="middle">6</text>
+          <text x="236.0" y="199.0" font-size="11" fill="#8A5F12">4000</text>
+          <circle cx="320.0" cy="148.0" r="4" fill="#C7922C"/>
+          <text x="320.0" y="274.0" font-size="11" fill="#1a2340" text-anchor="middle">9</text>
+          <text x="326.0" y="143.0" font-size="11" fill="#8A5F12">8000</text>
+          <circle cx="410.0" cy="36.0" r="4" fill="#C7922C"/>
+          <text x="410.0" y="274.0" font-size="11" fill="#1a2340" text-anchor="middle">12</text>
+          <text x="416.0" y="31.0" font-size="11" fill="#8A5F12">16000</text>
+          <text x="230.0" y="294" font-size="11" fill="#666" text-anchor="middle">hours</text>
+        </svg>
+        <div style="font-size: 14px; color: #666; margin-top: 4px;">A population that doubles every 3 hours: 1000, 2000, 4000, 8000, 16000. Equal time steps multiply the quantity by equal factors.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In general, the <strong>doubling time</strong> of \(y=y_0e^{kt}\) with \(k>0\) is found from \(e^{kT}=2\), so \(T=\dfrac{\ln2}{k}\). It does not depend on \(y_0\): a culture of 1000 and a culture of one million double in the same time. For decay (\(k<0\)), the <strong>half-life</strong> is found from \(e^{kT}=\tfrac12\), so \(T=\dfrac{\ln2}{|k|}\).</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: a quantity grows according to \(\dfrac{dy}{dt}=0.04\,y\). Find its doubling time. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(T=\dfrac{\ln2}{0.04}\approx17.33\) time units. (Check: \(e^{0.04\cdot17.33}\approx e^{0.693}=2\) &#10003;.) The initial amount never entered the calculation.
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; DECAY, DATA, AND THE LIMITS OF THE MODEL</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2: radiocarbon dating.</strong> Carbon-14 has a half-life of 5730 years. A sample has decayed for \(t\) years, with \(y(t)=y_0e^{kt}\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Half-life gives \(\tfrac12=e^{5730k}\), so \(k=-\dfrac{\ln2}{5730}\approx-1.21\times10^{-4}\) per year. (a) The fraction remaining after 10,000 years is \(e^{10000k}=2^{-10000/5730}\approx0.298\), about 29.8%. (b) A bone retains 30% of its original carbon-14. Its age solves \(0.30=e^{kt}\): \(t=\dfrac{\ln0.30}{k}=\dfrac{5730\,\ln(1/0.30)}{\ln2}\approx9953\) years, roughly 9950 years. Notice what the answer is: a <em>model-based estimate</em>, resting on the assumption that the decay rate has been constant and that the initial carbon-14 level is known.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3: fitting the model to data.</strong> A population is 400 at \(t=0\) and 520 at \(t=2\) years. Assuming \(\dfrac{dy}{dt}=ky\), find \(k\) and predict the population at \(t=5\). From \(520=400e^{2k}\): \(e^{2k}=1.3\), \(k=\dfrac{\ln1.3}{2}\approx0.1312\) per year. Then \(y(5)=400e^{5k}=400\cdot1.3^{2.5}\approx771\). Two data points fixed the two unknowns, \(y_0\) and \(k\); everything else is a prediction.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Do not confuse \(k\) with a yearly percentage. A population that grows 3% <em>per year, compounded once a year</em> multiplies by 1.03 each year, which corresponds to \(k=\ln1.03\approx0.02956\), not \(0.03\). The value \(k=0.03\) means 3% growth <em>continuously</em>. For small percentages the two are close, but they are not equal.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; WHICH MODEL IS THIS?</div>
+          <div class="widget-question">Match each situation to what the equation \(\dfrac{dy}{dt}=ky\) says about \(k\).</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The amount halves in 6 hours, so k is negative and the half-life is 6 hours. (After 15 hours: 80 * 2^(-15/6), about 14.1 mg.)" data-hint="Is the amount getting larger or smaller? What does that say about the sign of k?">
+            <div class="widget-row-prompt">1. A drug leaves the bloodstream so that its amount is 80 mg at \(t=0\) and 40 mg at \(t=6\) hours.</div>
+            <div class="widget-options">
+              <button data-choice="0">\(k>0\), doubling every 6 hours</button>
+              <button data-choice="1">\(k<0\), with half-life 6 hours</button>
+              <button data-choice="2">\(k=0\), the amount is constant</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. dA/dt = kA with k = 0.05 gives A = 1000 e^(0.05 t). After 20 years, 0.05 * 20 = 1, so A = 1000e, about 2718 dollars." data-hint="The equation says the rate is proportional to the amount, not constant. Which formula solves dA/dt = kA?">
+            <div class="widget-row-prompt">2. An account earns interest continuously at \(\dfrac{dA}{dt}=0.05A\), starting from \(A(0)=1000\) dollars.</div>
+            <div class="widget-options">
+              <button data-choice="0">\(A(t)=1000+0.05t\)</button>
+              <button data-choice="1">\(A(t)=1000e^{0.05t}\), so \(A(20)\approx2718\) dollars</button>
+              <button data-choice="2">\(A(t)=1000(0.05)^{t}\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. A constant rate of change gives linear growth, y = y0 + 20t. Exponential growth needs the rate to be proportional to the amount." data-hint="In exponential growth, does the yearly increase stay the same, or does it grow with the amount?">
+            <div class="widget-row-prompt">3. A quantity increases by exactly 20 units each year, regardless of its size.</div>
+            <div class="widget-options">
+              <button data-choice="0">Exponential growth, \(\dfrac{dy}{dt}=ky\)</button>
+              <button data-choice="1">Not exponential: the rate \(\dfrac{dy}{dt}\) is constant, not proportional to \(y\)</button>
+              <button data-choice="2">Exponential decay, because 20 is positive</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Where the model stops being true.</strong> The solution \(y=y_0e^{kt}\) grows without bound if \(k>0\). A culture that doubles every 3 hours would, after 10 days (80 doublings), exceed any physical container; no real population grows exponentially forever, because food, space, and competition push back. The equation \(\dfrac{dy}{dt}=ky\) is an excellent model for the early stage of growth, or for radioactive decay where nothing interferes, and a poor one for the later stages of a crowded system. A good mathematician states the model, solves it exactly, and then says honestly where it can no longer be trusted. Models with a limit on growth, such as \(\dfrac{dy}{dt}=ky\bigl(1-\dfrac{y}{L}\bigr)\), are also separable and are met in later courses.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> your friend says &ldquo;exponential growth means the quantity grows by the same amount each hour.&rdquo; Use the 1000-cell culture, which gains 1000 cells in its first 3 hours, to show what it actually does in its second 3 hours.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Exponential models are easy to fit and easy to misuse. If a chatbot or a spreadsheet trendline extrapolates an exponential fit far beyond your data, ask what physical limit it is ignoring. The formula can produce a number for any \(t\); only your judgment can say whether the number means anything.</div>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 31 Problem Set: Separable Equations and Growth and Decay</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Solve separable equations and growth and decay problems by hand, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 31 Quiz: Separable Equations and Growth and Decay</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 15 - Discussion and Module 15 Challenge</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Post your reasoning and one reply in the Module 15 - Discussion, then complete the Module 15 Challenge, your fullest and most careful work of the module.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">When a quantity changes at a rate proportional to itself, \(\dfrac{dy}{dt}=ky\), it follows \(y=y_0e^{kt}\): doubling time \(\dfrac{\ln2}{k}\), half-life \(\dfrac{\ln2}{|k|}\), and a model whose assumptions are part of the answer. You can now recover a function from the way it changes, which is the second great use of the integral. Next module returns to the integral's first and most visual job, area. Lesson 16.01, Area Between Curves, asks you to add up thin rectangles between two graphs, and the whole apparatus of the Fundamental Theorem takes over from there.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 15.04 &middot; Exponential Growth and Decay</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

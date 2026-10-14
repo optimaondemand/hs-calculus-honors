@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 13.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 13</div>
+        <div style="font-size: 12px; color: #666;">Riemann Sums and Approximating Integrals</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 13.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Sigma Notation and Riemann Sums</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Riemann Sums and Approximating Integrals</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 13.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Sigma Notation and Riemann Sums</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Four rectangles gave 3.75, ten gave 3.08, a thousand gave 2.6707. Which exact number are the answers marching toward, and can we prove it?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 13.01 ended with a pattern: more rectangles, better estimates. Today we turn the pattern into a proof. To write a sum of a thousand heights we need a compact notation, and to evaluate it for every \(n\) at once we need formulas for sums of powers. With those two tools, the right sum for \(x^2\) collapses into a single expression in \(n\), and a limit from Module 2 finishes the job. The result is the first <em>exact</em> area you have computed from rectangles, and it matches a result Archimedes obtained more than two thousand years ago.</div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> read and write sigma notation, and use the formulas for \(\sum i\), \(\sum i^2\) and \(\sum i^3\).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> write a right-endpoint sum for \(n\) rectangles in closed form for a polynomial such as \(x^2\), \(x^3\) or \(x^2+1\).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> take the limit as \(n\to\infty\) to find the exact area, and explain why the left and right sums squeeze to the same value.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil; a calculator for arithmetic only.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Left, right and midpoint sums from Lesson 13.01, limits at infinity from Lesson 2.01, and the Squeeze Theorem from Lesson 2.03.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE LANGUAGE OF SUMS</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Add the whole numbers from 1 to 100. Before you start, how would you plan to do it?</div>
+          <div class="widget-options">
+            <button data-response="That works, and it takes a hundred steps. It is also how a computer would do it. The interesting question is whether there is a shortcut that works for any number of terms, and today you will meet one.">Add them one at a time: 1, then 3, then 6, then 10, and so on.</button>
+            <button data-response="Exactly the shortcut. Every pair totals 101 and there are 50 pairs, so the sum is 5050. The story goes that the young Carl Friedrich Gauss found it this way in a classroom, and the same idea gives a formula for the sum of the first n whole numbers.">Pair them up: \(1+100\), \(2+99\), \(3+98\), and so on.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Thirty-two rectangles, a hundred, a thousand: no one wants to write out that many heights. Mathematicians solved this the way they always do, with notation. <strong>Sigma notation</strong> takes its symbol from the Greek capital letter \(\Sigma\), the first letter of the Greek word for &ldquo;sum.&rdquo; It packs a long sum into one line.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Sigma notation</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">\[ \sum_{i=m}^{n} a_i = a_m + a_{m+1} + \cdots + a_n. \]The letter \(i\) is the <em>index</em>; it starts at the lower limit \(m\), increases by 1 each time, and stops at the upper limit \(n\). The index is a placeholder, so \(\sum_{i=1}^{4}2i\) and \(\sum_{k=1}^{4}2k\) mean the same thing.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Examples.</strong> \(\displaystyle\sum_{i=1}^{5}i^2=1+4+9+16+25=55\), and \(\displaystyle\sum_{k=0}^{3}(2k+1)=1+3+5+7=16\). Two rules, both just the distributive and commutative laws at work, will be used constantly: \(\sum c\,a_i=c\sum a_i\) for a constant \(c\), and \(\sum(a_i+b_i)=\sum a_i+\sum b_i\).</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Four sums to know</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">\[ \sum_{i=1}^{n}1=n,\qquad \sum_{i=1}^{n}i=\frac{n(n+1)}{2},\qquad \sum_{i=1}^{n}i^2=\frac{n(n+1)(2n+1)}{6},\qquad \sum_{i=1}^{n}i^3=\left[\frac{n(n+1)}{2}\right]^2. \]</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Why the second one is true.</strong> Write \(S=1+2+\cdots+n\) forwards and again backwards, and add the two lines term by term:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \begin{aligned} S&=1+2+\cdots+(n-1)+n\\ S&=n+(n-1)+\cdots+2+1\\ 2S&=(n+1)+(n+1)+\cdots+(n+1)=n(n+1). \end{aligned} \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">So \(S=\dfrac{n(n+1)}{2}\). The same trick that handled 1 to 100 handles any \(n\). The formulas for \(\sum i^2\) and \(\sum i^3\) are proved by induction, which you will meet in a later course; for now, check them on a small case. With \(n=4\): \(1+4+9+16=30\) and \(\dfrac{4\cdot5\cdot9}{6}=30\). Also \(1+8+27+64=100\) and \(\left[\dfrac{4\cdot5}{2}\right]^2=100\). We are using these two formulas on trust from a verified pattern, and we will say so whenever we lean on them.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The Gauss story is probably embellished in the telling, but the arithmetic is not. The pairing argument is a good example of mathematics at its most characteristic: one clean observation replaces a hundred steps, and then replaces <em>every</em> number of steps at once.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; A RIGHT SUM IN CLOSED FORM</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Return to \(f(x)=x^2\) on \([0,2]\) from Lesson 13.01 and write the right-endpoint sum for a general number of pieces \(n\). The width is \(\Delta x=\dfrac2n\), and the right endpoints are \(x_i=0+i\cdot\dfrac2n=\dfrac{2i}{n}\) for \(i=1,\dots,n\). Then</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ R_n=\sum_{i=1}^{n}f(x_i)\,\Delta x=\sum_{i=1}^{n}\left(\frac{2i}{n}\right)^2\frac2n=\frac{8}{n^3}\sum_{i=1}^{n}i^2=\frac{8}{n^3}\cdot\frac{n(n+1)(2n+1)}{6}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Simplify, cancelling an \(n\) and then dividing through by powers of \(n\):</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ R_n=\frac{4(n+1)(2n+1)}{3n^2}=\frac43\cdot\frac{2n^2+3n+1}{n^2}=\frac43\left(2+\frac3n+\frac1{n^2}\right)=\frac83+\frac4n+\frac4{3n^2}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Check against Lesson 13.01.</strong> At \(n=4\): \(\dfrac83+1+\dfrac{4}{48}=\dfrac83+1+\dfrac1{12}=3.75\). That agrees with the four right rectangles we computed by hand, so the formula is right. One formula now produces the right sum for every \(n\):</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;"><table style="border-collapse: collapse; font-size: 16px; color: #1a2340; min-width: 420px; text-align:center;"><tr style="background:#EEF1F8;"><th style="border:1px solid #D0D9E8; padding:6px 12px;">\(n\)</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">4</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">10</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">100</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">1000</th></tr><tr><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(R_n\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">3.75</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">3.08</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">2.7068</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">2.670668</td></tr></table></div>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin: 14px 0; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:8px; padding:12px;"><div style="flex:1; min-width:250px; text-align:center;"><svg viewBox="0 0 330 230" width="100%" style="max-width:330px;" role="img" aria-label="Eight right-endpoint rectangles under y = x squared on 0 to 2" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif"><rect x="34.0" y="199.4" width="35.8" height="2.6" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="69.8" y="191.6" width="35.8" height="10.4" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="105.5" y="178.5" width="35.8" height="23.5" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="141.2" y="160.2" width="35.8" height="41.8" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="177.0" y="136.7" width="35.8" height="65.3" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="212.8" y="108.0" width="35.8" height="94.0" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="248.5" y="74.1" width="35.8" height="127.9" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="284.2" y="34.9" width="35.8" height="167.1" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><polyline points="34.0,202.0 36.4,202.0 38.8,202.0 41.1,201.9 43.5,201.8 45.9,201.7 48.3,201.6 50.7,201.4 53.1,201.3 55.5,201.1 57.8,200.8 60.2,200.6 62.6,200.3 65.0,200.0 67.4,199.7 69.8,199.4 72.1,199.0 74.5,198.6 76.9,198.2 79.3,197.8 81.7,197.4 84.0,196.9 86.4,196.4 88.8,195.9 91.2,195.3 93.6,194.7 96.0,194.2 98.4,193.5 100.7,192.9 103.1,192.2 105.5,191.6 107.9,190.8 110.3,190.1 112.7,189.4 115.0,188.6 117.4,187.8 119.8,187.0 122.2,186.1 124.6,185.2 127.0,184.3 129.3,183.4 131.7,182.5 134.1,181.5 136.5,180.5 138.9,179.5 141.2,178.5 143.6,177.4 146.0,176.4 148.4,175.3 150.8,174.1 153.2,173.0 155.6,171.8 157.9,170.6 160.3,169.4 162.7,168.2 165.1,166.9 167.5,165.6 169.8,164.3 172.2,163.0 174.6,161.6 177.0,160.2 179.4,158.8 181.8,157.4 184.2,155.9 186.5,154.5 188.9,153.0 191.3,151.4 193.7,149.9 196.1,148.3 198.4,146.7 200.8,145.1 203.2,143.5 205.6,141.8 208.0,140.2 210.4,138.5 212.8,136.7 215.1,135.0 217.5,133.2 219.9,131.4 222.3,129.6 224.7,127.7 227.1,125.9 229.4,124.0 231.8,122.1 234.2,120.1 236.6,118.2 239.0,116.2 241.3,114.2 243.7,112.1 246.1,110.1 248.5,108.0 250.9,105.9 253.3,103.8 255.7,101.6 258.0,99.5 260.4,97.3 262.8,95.0 265.2,92.8 267.6,90.5 269.9,88.3 272.3,86.0 274.7,83.6 277.1,81.3 279.5,78.9 281.9,76.5 284.2,74.1 286.6,71.6 289.0,69.1 291.4,66.6 293.8,64.1 296.2,61.6 298.6,59.0 300.9,56.4 303.3,53.8 305.7,51.2 308.1,48.5 310.5,45.8 312.8,43.1 315.2,40.4 317.6,37.7 320.0,34.9" fill="none" stroke="#0E1C42" stroke-width="2.2"/><line x1="34" y1="202.0" x2="320" y2="202.0" stroke="#6b7a99" stroke-width="1.2"/><line x1="34" y1="14" x2="34" y2="202.0" stroke="#6b7a99" stroke-width="1.2"/><text x="34.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">0</text><text x="177.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">1</text><text x="320.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">2</text><text x="29" y="206.0" font-size="11" fill="#444" text-anchor="end">0</text><text x="29" y="164.2" font-size="11" fill="#444" text-anchor="end">1</text><text x="29" y="122.4" font-size="11" fill="#444" text-anchor="end">2</text><text x="29" y="80.7" font-size="11" fill="#444" text-anchor="end">3</text><text x="29" y="38.9" font-size="11" fill="#444" text-anchor="end">4</text></svg><div style="font-size:14px; color:#1a2340; margin-top:4px;">Right sum, \(n=8\): \(R_8=3.1875\).</div></div><div style="flex:1; min-width:250px; text-align:center;"><svg viewBox="0 0 330 230" width="100%" style="max-width:330px;" role="img" aria-label="Thirty-two right-endpoint rectangles under y = x squared on 0 to 2" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif"><rect x="34.0" y="201.8" width="8.9" height="0.2" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="42.9" y="201.3" width="8.9" height="0.7" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="51.9" y="200.5" width="8.9" height="1.5" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="60.8" y="199.4" width="8.9" height="2.6" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="69.8" y="197.9" width="8.9" height="4.1" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="78.7" y="196.1" width="8.9" height="5.9" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="87.6" y="194.0" width="8.9" height="8.0" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="96.6" y="191.6" width="8.9" height="10.4" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="105.5" y="188.8" width="8.9" height="13.2" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="114.4" y="185.7" width="8.9" height="16.3" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="123.4" y="182.3" width="8.9" height="19.7" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="132.3" y="178.5" width="8.9" height="23.5" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="141.2" y="174.4" width="8.9" height="27.6" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="150.2" y="170.0" width="8.9" height="32.0" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="159.1" y="165.3" width="8.9" height="36.7" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="168.1" y="160.2" width="8.9" height="41.8" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="177.0" y="154.8" width="8.9" height="47.2" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="185.9" y="149.1" width="8.9" height="52.9" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="194.9" y="143.1" width="8.9" height="58.9" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="203.8" y="136.7" width="8.9" height="65.3" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="212.8" y="130.0" width="8.9" height="72.0" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="221.7" y="123.0" width="8.9" height="79.0" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="230.6" y="115.7" width="8.9" height="86.3" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="239.6" y="108.0" width="8.9" height="94.0" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="248.5" y="100.0" width="8.9" height="102.0" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="257.4" y="91.7" width="8.9" height="110.3" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="266.4" y="83.0" width="8.9" height="119.0" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="275.3" y="74.1" width="8.9" height="127.9" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="284.2" y="64.8" width="8.9" height="137.2" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="293.2" y="55.1" width="8.9" height="146.9" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="302.1" y="45.2" width="8.9" height="156.8" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="311.1" y="34.9" width="8.9" height="167.1" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><polyline points="34.0,202.0 36.4,202.0 38.8,202.0 41.1,201.9 43.5,201.8 45.9,201.7 48.3,201.6 50.7,201.4 53.1,201.3 55.5,201.1 57.8,200.8 60.2,200.6 62.6,200.3 65.0,200.0 67.4,199.7 69.8,199.4 72.1,199.0 74.5,198.6 76.9,198.2 79.3,197.8 81.7,197.4 84.0,196.9 86.4,196.4 88.8,195.9 91.2,195.3 93.6,194.7 96.0,194.2 98.4,193.5 100.7,192.9 103.1,192.2 105.5,191.6 107.9,190.8 110.3,190.1 112.7,189.4 115.0,188.6 117.4,187.8 119.8,187.0 122.2,186.1 124.6,185.2 127.0,184.3 129.3,183.4 131.7,182.5 134.1,181.5 136.5,180.5 138.9,179.5 141.2,178.5 143.6,177.4 146.0,176.4 148.4,175.3 150.8,174.1 153.2,173.0 155.6,171.8 157.9,170.6 160.3,169.4 162.7,168.2 165.1,166.9 167.5,165.6 169.8,164.3 172.2,163.0 174.6,161.6 177.0,160.2 179.4,158.8 181.8,157.4 184.2,155.9 186.5,154.5 188.9,153.0 191.3,151.4 193.7,149.9 196.1,148.3 198.4,146.7 200.8,145.1 203.2,143.5 205.6,141.8 208.0,140.2 210.4,138.5 212.8,136.7 215.1,135.0 217.5,133.2 219.9,131.4 222.3,129.6 224.7,127.7 227.1,125.9 229.4,124.0 231.8,122.1 234.2,120.1 236.6,118.2 239.0,116.2 241.3,114.2 243.7,112.1 246.1,110.1 248.5,108.0 250.9,105.9 253.3,103.8 255.7,101.6 258.0,99.5 260.4,97.3 262.8,95.0 265.2,92.8 267.6,90.5 269.9,88.3 272.3,86.0 274.7,83.6 277.1,81.3 279.5,78.9 281.9,76.5 284.2,74.1 286.6,71.6 289.0,69.1 291.4,66.6 293.8,64.1 296.2,61.6 298.6,59.0 300.9,56.4 303.3,53.8 305.7,51.2 308.1,48.5 310.5,45.8 312.8,43.1 315.2,40.4 317.6,37.7 320.0,34.9" fill="none" stroke="#0E1C42" stroke-width="2.2"/><line x1="34" y1="202.0" x2="320" y2="202.0" stroke="#6b7a99" stroke-width="1.2"/><line x1="34" y1="14" x2="34" y2="202.0" stroke="#6b7a99" stroke-width="1.2"/><text x="34.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">0</text><text x="177.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">1</text><text x="320.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">2</text><text x="29" y="206.0" font-size="11" fill="#444" text-anchor="end">0</text><text x="29" y="164.2" font-size="11" fill="#444" text-anchor="end">1</text><text x="29" y="122.4" font-size="11" fill="#444" text-anchor="end">2</text><text x="29" y="80.7" font-size="11" fill="#444" text-anchor="end">3</text><text x="29" y="38.9" font-size="11" fill="#444" text-anchor="end">4</text></svg><div style="font-size:14px; color:#1a2340; margin-top:4px;">Right sum, \(n=32\): the staircase hugs the curve.</div></div></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now use Lesson 2.01. As \(n\to\infty\), \(\dfrac4n\to0\) and \(\dfrac4{3n^2}\to0\), so</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \lim_{n\to\infty}R_n=\frac83. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The left sums obey the same logic. With left endpoints \(\dfrac{2i}{n}\) for \(i=0,\dots,n-1\), the sum is \(\dfrac8{n^3}\sum_{i=0}^{n-1}i^2=\dfrac8{n^3}\cdot\dfrac{(n-1)n(2n-1)}{6}\), which simplifies to \(L_n=\dfrac83-\dfrac4n+\dfrac4{3n^2}\). At \(n=4\) it gives \(\dfrac83-1+\dfrac1{12}=1.75\), matching Lesson 13.01. It also tends to \(\dfrac83\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now the argument that turns the numbers into a conclusion. Because \(x^2\) is increasing on \([0,2]\), Lesson 13.01 gave \(L_n\le A\le R_n\) for the true area \(A\), whatever \(n\) is. Both ends tend to \(\tfrac83\). By the Squeeze Theorem of Lesson 2.03, there is only one number \(A\) can be:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ A=\frac83. \]
+        </p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Archimedes found that the region cut from a parabola by a chord has area exactly \(\tfrac43\) of the triangle inscribed in it. Test the claim here. The chord \(y=2x\) joins \((0,0)\) to \((2,4)\) on the parabola \(y=x^2\). The region under that chord is a triangle of area \(\tfrac12\cdot2\cdot4=4\), and the region under the parabola has area \(\tfrac83\), so the segment between them has area \(4-\tfrac83=\tfrac43\). The inscribed triangle with vertices \((0,0)\), \((2,4)\) and \((1,1)\) has area \(1\), and \(\tfrac43\times1=\tfrac43\). Twenty-two centuries apart, a limit of rectangles and Archimedes' triangles give the same number.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; THE RECIPE ON OTHER FUNCTIONS</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The method is a recipe, and the recipe works whenever you can sum the heights in closed form. Here it is on a second function.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example.</strong> Find the exact area under \(f(x)=x^3\) on \([0,1]\). Take \(\Delta x=\dfrac1n\) and \(x_i=\dfrac in\):</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ R_n=\sum_{i=1}^{n}\left(\frac in\right)^3\frac1n=\frac1{n^4}\sum_{i=1}^{n}i^3=\frac1{n^4}\cdot\frac{n^2(n+1)^2}{4}=\frac14\left(1+\frac1n\right)^2. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">At \(n=4\) this is \(\dfrac14\cdot\dfrac{25}{16}=\dfrac{25}{64}\approx0.39\), and as \(n\to\infty\), \(R_n\to\dfrac14(1)^2=\dfrac14\). The function is increasing on \([0,1]\), so the same squeeze applies and the area is \(\dfrac14\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The recipe, step by step: (1) find \(\Delta x\) and the endpoints \(x_i\); (2) write \(R_n=\sum f(x_i)\Delta x\); (3) pull constants out and apply the sum formulas; (4) simplify to a rational expression in \(n\); (5) take the limit as \(n\to\infty\).</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find the exact area under \(f(x)=x^2+1\) on \([0,3]\) with a right-endpoint sum and a limit. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(\Delta x=\dfrac3n\), \(x_i=\dfrac{3i}{n}\). Then \(R_n=\sum\left[\dfrac{9i^2}{n^2}+1\right]\dfrac3n=\dfrac{27}{n^3}\sum i^2+\dfrac3n\sum1=\dfrac{27}{n^3}\cdot\dfrac{n(n+1)(2n+1)}{6}+3=\dfrac{9(n+1)(2n+1)}{2n^2}+3=12+\dfrac{27}{2n}+\dfrac{9}{2n^2}\). As \(n\to\infty\), \(R_n\to12\). The function is increasing on \([0,3]\), so the area is \(12\). Check the piece you can see: the unit-height strip contributes \(3\), and the parabola \(x^2\) alone, over a width of \(3\), contributes \(9\).
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 4 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; WHAT THE LIMIT IS TELLING YOU</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Step back and name what the limit is telling you. Each \(R_n\) is an <em>approximation</em> that you can compute with nothing but arithmetic. The limit is an <em>exact value</em>, and the Squeeze Theorem is what lets us say the area really equals it. The calculation is also honest about its scope: we have only handled functions whose heights we could sum in closed form, and we have only handled increasing functions, where the squeeze is easy. Lesson 13.03 removes both limits by <em>defining</em> the exact value as the limit of rectangle sums, for any reasonable function.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #C7922C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8a6420; margin-bottom: 8px;">&#129302; AI AND TOOLS AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A computer algebra system can expand \(\sum_{i=1}^{n}i^2\), simplify \(R_n\) and take the limit in a second. That is a good way to <em>check</em> your work after you have done it by hand. It is not a way to skip the hand work: the point of this lesson is that you can see why the limit is \(\tfrac83\), and a tool that prints the answer cannot give you that. If a tool and your hand calculation disagree, find the error rather than picking a winner.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; SUMS AND LIMITS</div>
+          <div class="widget-question">Decide each one, then check yourself.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. 2 + 4 + 6 + 8 = 20. Or pull out the 2: 2 times (1 + 2 + 3 + 4) = 2 times 10 = 20." data-hint="Write out the four terms 2k for k = 1, 2, 3, 4 and add them.">
+            <div class="widget-row-prompt">1. \(\displaystyle\sum_{k=1}^{4}2k\) equals&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">\(10\)</button>
+              <button data-choice="1">\(20\)</button>
+              <button data-choice="2">\(30\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Delta x = (4 - 1)/6 = 3/6 = 1/2." data-hint="The interval has length b - a = 3. Divide by the number of pieces.">
+            <div class="widget-row-prompt">2. For \([1,4]\) with \(n=6\) pieces, \(\Delta x\) is&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">\(2\)</button>
+              <button data-choice="1">\(\tfrac16\)</button>
+              <button data-choice="2">\(\tfrac12\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The terms 4/n and 4/(3n^2) both go to 0, leaving 8/3. This is the limit-at-infinity reasoning of Lesson 2.01." data-hint="Which terms depend on n, and what does each one do as n grows without bound?">
+            <div class="widget-row-prompt">3. A right sum simplifies to \(R_n=\dfrac83+\dfrac4n+\dfrac4{3n^2}\). As \(n\to\infty\), \(R_n\) tends to&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\tfrac83\)</button>
+              <button data-choice="1">infinity</button>
+              <button data-choice="2">\(4\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 26 Problem Set: Riemann Sums</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Write sums in sigma notation, find closed forms and exact areas, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 26 Quiz: Riemann Sums</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material, covering Lessons 13.01 and 13.02.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Sigma notation packs a long sum into one line, and the formulas for \(\sum i\), \(\sum i^2\) and \(\sum i^3\) let you evaluate a Riemann sum for every \(n\) at once. For \(f(x)=x^2\) on \([0,2]\), the right sums are \(R_n=\dfrac83+\dfrac4n+\dfrac4{3n^2}\), the left sums are \(L_n=\dfrac83-\dfrac4n+\dfrac4{3n^2}\), and the area, squeezed between them, is \(\dfrac83\). The area is the <em>limit</em> of the rectangle sums. Lesson 13.03 takes that limit as the definition of the definite integral, and with it, gives the area under a curve a symbol of its own.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 13.02 &middot; Sigma Notation and Riemann Sums</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

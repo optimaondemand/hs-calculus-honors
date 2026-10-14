@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 15.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 15</div>
+        <div style="font-size: 12px; color: #666;">Antiderivatives and Differential Equations</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 15.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Differential Equations and Slope Fields</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Antiderivatives and Differential Equations</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 15.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Differential Equations and Slope Fields</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">A population grows faster the larger it already is. The growth rate depends on the very thing you are trying to find. How can you solve for something you only know through its own rate of change?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">In Lesson 15.01 the derivative was a formula in \(x\) alone, so antidifferentiating finished the job. Most real change is not like that. The rate at which a cup of coffee cools depends on the coffee's temperature right now; the rate at which a rumor spreads depends on how many people already know it. Equations that tie a function to its own derivative are called <strong>differential equations</strong>, and they are the language physics, biology, and economics use to describe the world. Solving them exactly is often hard or impossible. But there is a way to <em>see</em> every solution at once, without solving anything: the <strong>slope field</strong>. Today you learn to read an equation as a map of slopes, check whether a proposed function solves it, and trace solution curves by eye.</div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> verify that a given function is (or is not) a solution of a differential equation, and fit a constant to an initial condition.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> build a slope field from an equation by computing slopes at grid points, and sketch a solution curve through a given point.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> match differential equations to slope fields using features such as where the segments are horizontal.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook, a pencil, and a straightedge or ruler for drawing short slope segments.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Derivative rules from Modules 5&ndash;7, especially the exponential derivative from Lesson 7.03, and the antiderivative families from Lesson 15.01.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; WHAT A DIFFERENTIAL EQUATION IS</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Consider the equation \(y'=2y\): a function whose derivative equals twice the function itself. Which kind of function do you think could satisfy it?</div>
+          <div class="widget-options">
+            <button data-response="Good instinct. By the chain rule \(\dfrac{d}{dx}e^{2x}=2e^{2x}\), exactly twice the function. Check it for yourself below, along with what happens to constant multiples.">An exponential, like \(e^{2x}\), since exponentials reproduce themselves under differentiation.</button>
+            <button data-response="Test it: if \(y=x^2\) then \(y'=2x\), but \(2y=2x^2\). Those are not equal, so \(x^2\) fails. The equation compares the derivative to the function itself, and only functions that reproduce themselves, like exponentials, can pass.">A power function, like \(x^2\), since its derivative is \(2x\), which has a 2 in it.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A <strong>differential equation</strong> is an equation that involves an unknown function and one or more of its derivatives. Its <strong>order</strong> is the order of the highest derivative that appears. A <strong>solution</strong> is a function that makes the equation true for every \(x\) in some interval. For instance, \(y'=2x\) is first-order, and Lesson 15.01 solved it: \(y=x^2+C\). The equation \(y''+y=0\) is second-order.</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">To <strong>verify a solution</strong> you never have to solve anything. Substitute the proposed function and its derivatives into the equation and check that both sides agree.</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1.</strong> Show that \(y=Ce^{2x}\) is a solution of \(y'=2y\) for every constant \(C\). Differentiate: \(y'=C\cdot2e^{2x}=2Ce^{2x}=2y\). &#10003; So \(y=Ce^{2x}\) is a whole family of solutions, the <em>general solution</em>, and the constant \(C\) plays the role that \(+C\) played in antiderivatives. An initial condition picks one. If \(y(0)=3\), then \(Ce^{0}=3\) gives \(C=3\), and the <em>particular solution</em> is \(y=3e^{2x}\).</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2.</strong> Show that \(y=x+1+Ce^x\) is a solution of \(y'=y-x\). Differentiate: \(y'=1+Ce^x\). Compute the right side: \(y-x=(x+1+Ce^x)-x=1+Ce^x\). The two sides agree. &#10003;</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3.</strong> Show that \(y=A\sin x+B\cos x\) satisfies \(y''+y=0\) for all constants \(A,B\). Differentiate twice: \(y'=A\cos x-B\sin x\) and \(y''=-A\sin x-B\cos x=-y\). So \(y''+y=0\). &#10003; A second-order equation produced a family with <em>two</em> constants, just like integrating twice in Lesson 15.01 produced two.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Verifying a solution is not the same as solving the equation. Passing the substitution test shows a function <em>is</em> a solution; it does not show it is the <em>only</em> one. Also, a solution must work for every \(x\) in its interval, not just at a few. The function \(y=x^2\) agrees with \(y'=2y\) at \(x=0\) (both sides are 0) and at \(x=1\) (both sides are 2), yet it fails at \(x=2\), where the sides are 4 and 8. Test the equation as an identity in \(x\), by symbolic substitution, never by trying a couple of numbers.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; IS IT A SOLUTION?</div>
+          <div class="widget-question">For each proposed function, decide whether it satisfies the differential equation.</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The chain rule gives \(y'=3e^{3x}\), which is exactly \(3y\)." data-hint="Differentiate e^{3x} with the chain rule, then compare to 3y.">
+            <div class="widget-row-prompt">1. Does \(y=e^{3x}\) solve \(y'=3y\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">Yes: \(y'=3e^{3x}=3y\)</button>
+              <button data-choice="1">No: \(y'=e^{3x}\), which is not \(3y\)</button>
+              <button data-choice="2">Only when \(x=0\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. \(2x\) and \(2x^2\) are different functions (they agree only at \(x=0\) and \(x=1\)), so the equation fails." data-hint="Compute y' and 2y separately and compare them as functions of x.">
+            <div class="widget-row-prompt">2. Does \(y=x^2\) solve \(y'=2y\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">Yes, since the derivative of \(x^2\) is \(2x\)</button>
+              <button data-choice="1">No: \(y'=2x\) but \(2y=2x^2\)</button>
+              <button data-choice="2">Yes, because both sides contain a 2</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. \(y'=\cos x\), \(y''=-\sin x\), and \(-\sin x+\sin x=0\)." data-hint="Differentiate twice. What is the derivative of cos x?">
+            <div class="widget-row-prompt">3. Does \(y=\sin x\) solve \(y''+y=0\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">No: \(y''=\sin x\)</button>
+              <button data-choice="1">Yes: \(y''=-\sin x\), so \(y''+y=0\)</button>
+              <button data-choice="2">No, because sine is not an exponential</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; SLOPE FIELDS</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now the main idea. Suppose a first-order equation has the form \(\dfrac{dy}{dx}=f(x,y)\). You may have no way to solve it. But at any point \((x,y)\) the equation tells you the <em>slope</em> of a solution curve passing through that point: just plug the coordinates into \(f\). So you can survey the plane, compute the slope at each point of a grid, and draw a tiny line segment of that slope there. The result is a <strong>slope field</strong> (or direction field): a map of the slopes of all the solution curves at once.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Building a slope field</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Take \(\dfrac{dy}{dx}=x-y\). Here are the slopes at some grid points; each is computed by substituting into \(x-y\):</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;">
+        <table style="border-collapse: collapse; width: 100%; font-size: 16px; color: #1a2340; text-align: center;">
+          <tr style="background: #0E1C42; color: #ffffff;"><th style="padding: 8px; border: 1px solid #D0D9E8;">Point \((x,y)\)</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Slope \(x-y\)</th><th style="padding: 8px; border: 1px solid #D0D9E8;">The segment</th></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\((0, 0)\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">flat</td></tr>
+          <tr style="background: #F4F6FA;"><td style="padding: 8px; border: 1px solid #D0D9E8;">\((1, 0)\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(1\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">rising at 45&deg;</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\((0, 2)\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-2\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">falling steeply</td></tr>
+          <tr style="background: #F4F6FA;"><td style="padding: 8px; border: 1px solid #D0D9E8;">\((2, 2)\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">flat</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\((-1, 1)\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-2\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">falling steeply</td></tr>
+          <tr style="background: #F4F6FA;"><td style="padding: 8px; border: 1px solid #D0D9E8;">\((2, 0)\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(2\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">rising steeply</td></tr>
+        </table>
+        </div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Doing this at many points (here every half unit) gives the field below. The dashed teal line is \(y=x\): everywhere on it \(x-y=0\), so every segment there is horizontal. The gold curve starts at \((0,1)\) and simply follows the segments, always staying tangent to the one it passes through.</p>
+<svg viewBox="0 0 420 420" width="100%" style="max-width:460px; display:block; margin:10px auto;" role="img" aria-label="Slope field for dy/dx equals x minus y, with the solution through (0, 1) in gold and the line y equals x dashed">
+<rect x="0" y="0" width="420" height="420" fill="#FFFFFF" stroke="#D0D9E8"/>
+<line x1="30.0" y1="15" x2="30.0" y2="405" stroke="#EEF1F8"/>
+<line x1="15" y1="390.0" x2="405" y2="390.0" stroke="#EEF1F8"/>
+<line x1="90.0" y1="15" x2="90.0" y2="405" stroke="#EEF1F8"/>
+<line x1="15" y1="330.0" x2="405" y2="330.0" stroke="#EEF1F8"/>
+<line x1="150.0" y1="15" x2="150.0" y2="405" stroke="#EEF1F8"/>
+<line x1="15" y1="270.0" x2="405" y2="270.0" stroke="#EEF1F8"/>
+<line x1="210.0" y1="15" x2="210.0" y2="405" stroke="#EEF1F8"/>
+<line x1="15" y1="210.0" x2="405" y2="210.0" stroke="#EEF1F8"/>
+<line x1="270.0" y1="15" x2="270.0" y2="405" stroke="#EEF1F8"/>
+<line x1="15" y1="150.0" x2="405" y2="150.0" stroke="#EEF1F8"/>
+<line x1="330.0" y1="15" x2="330.0" y2="405" stroke="#EEF1F8"/>
+<line x1="15" y1="90.0" x2="405" y2="90.0" stroke="#EEF1F8"/>
+<line x1="390.0" y1="15" x2="390.0" y2="405" stroke="#EEF1F8"/>
+<line x1="15" y1="30.0" x2="405" y2="30.0" stroke="#EEF1F8"/>
+<line x1="15" y1="210.0" x2="405" y2="210.0" stroke="#0E1C42" stroke-width="1.5"/>
+<line x1="210.0" y1="15" x2="210.0" y2="405" stroke="#0E1C42" stroke-width="1.5"/>
+<text x="30.0" y="224.0" font-size="11" fill="#666" text-anchor="middle">-3</text>
+<text x="206.0" y="394.0" font-size="11" fill="#666" text-anchor="end">-3</text>
+<text x="90.0" y="224.0" font-size="11" fill="#666" text-anchor="middle">-2</text>
+<text x="206.0" y="334.0" font-size="11" fill="#666" text-anchor="end">-2</text>
+<text x="150.0" y="224.0" font-size="11" fill="#666" text-anchor="middle">-1</text>
+<text x="206.0" y="274.0" font-size="11" fill="#666" text-anchor="end">-1</text>
+<text x="270.0" y="224.0" font-size="11" fill="#666" text-anchor="middle">1</text>
+<text x="206.0" y="154.0" font-size="11" fill="#666" text-anchor="end">1</text>
+<text x="330.0" y="224.0" font-size="11" fill="#666" text-anchor="middle">2</text>
+<text x="206.0" y="94.0" font-size="11" fill="#666" text-anchor="end">2</text>
+<text x="390.0" y="224.0" font-size="11" fill="#666" text-anchor="middle">3</text>
+<text x="206.0" y="34.0" font-size="11" fill="#666" text-anchor="end">3</text>
+<line x1="30.0" y1="390.0" x2="390.0" y2="30.0" stroke="#55C8E8" stroke-width="1.6" stroke-dasharray="6 4"/>
+<line x1="18.0" y1="390.0" x2="42.0" y2="390.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="19.3" y1="354.6" x2="40.7" y2="365.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="21.5" y1="321.5" x2="38.5" y2="338.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="23.3" y1="290.0" x2="36.7" y2="310.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="24.6" y1="259.3" x2="35.4" y2="280.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="25.5" y1="228.9" x2="34.5" y2="251.1" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="26.2" y1="198.6" x2="33.8" y2="221.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="26.7" y1="168.5" x2="33.3" y2="191.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="27.1" y1="138.4" x2="32.9" y2="161.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="27.4" y1="108.3" x2="32.6" y2="131.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="27.6" y1="78.2" x2="32.4" y2="101.8" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="27.9" y1="48.2" x2="32.1" y2="71.8" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="28.0" y1="18.2" x2="32.0" y2="41.8" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="49.3" y1="395.4" x2="70.7" y2="384.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="48.0" y1="360.0" x2="72.0" y2="360.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="49.3" y1="324.6" x2="70.7" y2="335.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="51.5" y1="291.5" x2="68.5" y2="308.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="53.3" y1="260.0" x2="66.7" y2="280.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="54.6" y1="229.3" x2="65.4" y2="250.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="55.5" y1="198.9" x2="64.5" y2="221.1" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="56.2" y1="168.6" x2="63.8" y2="191.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="56.7" y1="138.5" x2="63.3" y2="161.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="57.1" y1="108.4" x2="62.9" y2="131.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="57.4" y1="78.3" x2="62.6" y2="101.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="57.6" y1="48.2" x2="62.4" y2="71.8" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="57.9" y1="18.2" x2="62.1" y2="41.8" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="81.5" y1="398.5" x2="98.5" y2="381.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="79.3" y1="365.4" x2="100.7" y2="354.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="78.0" y1="330.0" x2="102.0" y2="330.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="79.3" y1="294.6" x2="100.7" y2="305.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="81.5" y1="261.5" x2="98.5" y2="278.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="83.3" y1="230.0" x2="96.7" y2="250.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="84.6" y1="199.3" x2="95.4" y2="220.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="85.5" y1="168.9" x2="94.5" y2="191.1" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="86.2" y1="138.6" x2="93.8" y2="161.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="86.7" y1="108.5" x2="93.3" y2="131.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="87.1" y1="78.4" x2="92.9" y2="101.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="87.4" y1="48.3" x2="92.6" y2="71.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="87.6" y1="18.2" x2="92.4" y2="41.8" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="113.3" y1="400.0" x2="126.7" y2="380.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="111.5" y1="368.5" x2="128.5" y2="351.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="109.3" y1="335.4" x2="130.7" y2="324.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="108.0" y1="300.0" x2="132.0" y2="300.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="109.3" y1="264.6" x2="130.7" y2="275.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="111.5" y1="231.5" x2="128.5" y2="248.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="113.3" y1="200.0" x2="126.7" y2="220.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="114.6" y1="169.3" x2="125.4" y2="190.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="115.5" y1="138.9" x2="124.5" y2="161.1" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="116.2" y1="108.6" x2="123.8" y2="131.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="116.7" y1="78.5" x2="123.3" y2="101.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="117.1" y1="48.4" x2="122.9" y2="71.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="117.4" y1="18.3" x2="122.6" y2="41.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="144.6" y1="400.7" x2="155.4" y2="379.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="143.3" y1="370.0" x2="156.7" y2="350.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="141.5" y1="338.5" x2="158.5" y2="321.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="139.3" y1="305.4" x2="160.7" y2="294.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="138.0" y1="270.0" x2="162.0" y2="270.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="139.3" y1="234.6" x2="160.7" y2="245.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="141.5" y1="201.5" x2="158.5" y2="218.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="143.3" y1="170.0" x2="156.7" y2="190.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="144.6" y1="139.3" x2="155.4" y2="160.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="145.5" y1="108.9" x2="154.5" y2="131.1" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="146.2" y1="78.6" x2="153.8" y2="101.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="146.7" y1="48.5" x2="153.3" y2="71.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="147.1" y1="18.4" x2="152.9" y2="41.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="175.5" y1="401.1" x2="184.5" y2="378.9" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="174.6" y1="370.7" x2="185.4" y2="349.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="173.3" y1="340.0" x2="186.7" y2="320.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="171.5" y1="308.5" x2="188.5" y2="291.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="169.3" y1="275.4" x2="190.7" y2="264.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="168.0" y1="240.0" x2="192.0" y2="240.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="169.3" y1="204.6" x2="190.7" y2="215.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="171.5" y1="171.5" x2="188.5" y2="188.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="173.3" y1="140.0" x2="186.7" y2="160.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="174.6" y1="109.3" x2="185.4" y2="130.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="175.5" y1="78.9" x2="184.5" y2="101.1" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="176.2" y1="48.6" x2="183.8" y2="71.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="176.7" y1="18.5" x2="183.3" y2="41.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="206.2" y1="401.4" x2="213.8" y2="378.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="205.5" y1="371.1" x2="214.5" y2="348.9" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="204.6" y1="340.7" x2="215.4" y2="319.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="203.3" y1="310.0" x2="216.7" y2="290.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="201.5" y1="278.5" x2="218.5" y2="261.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="199.3" y1="245.4" x2="220.7" y2="234.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="198.0" y1="210.0" x2="222.0" y2="210.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="199.3" y1="174.6" x2="220.7" y2="185.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="201.5" y1="141.5" x2="218.5" y2="158.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="203.3" y1="110.0" x2="216.7" y2="130.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="204.6" y1="79.3" x2="215.4" y2="100.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="205.5" y1="48.9" x2="214.5" y2="71.1" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="206.2" y1="18.6" x2="213.8" y2="41.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="236.7" y1="401.5" x2="243.3" y2="378.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="236.2" y1="371.4" x2="243.8" y2="348.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="235.5" y1="341.1" x2="244.5" y2="318.9" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="234.6" y1="310.7" x2="245.4" y2="289.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="233.3" y1="280.0" x2="246.7" y2="260.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="231.5" y1="248.5" x2="248.5" y2="231.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="229.3" y1="215.4" x2="250.7" y2="204.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="228.0" y1="180.0" x2="252.0" y2="180.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="229.3" y1="144.6" x2="250.7" y2="155.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="231.5" y1="111.5" x2="248.5" y2="128.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="233.3" y1="80.0" x2="246.7" y2="100.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="234.6" y1="49.3" x2="245.4" y2="70.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="235.5" y1="18.9" x2="244.5" y2="41.1" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="267.1" y1="401.6" x2="272.9" y2="378.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="266.7" y1="371.5" x2="273.3" y2="348.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="266.2" y1="341.4" x2="273.8" y2="318.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="265.5" y1="311.1" x2="274.5" y2="288.9" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="264.6" y1="280.7" x2="275.4" y2="259.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="263.3" y1="250.0" x2="276.7" y2="230.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="261.5" y1="218.5" x2="278.5" y2="201.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="259.3" y1="185.4" x2="280.7" y2="174.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="258.0" y1="150.0" x2="282.0" y2="150.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="259.3" y1="114.6" x2="280.7" y2="125.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="261.5" y1="81.5" x2="278.5" y2="98.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="263.3" y1="50.0" x2="276.7" y2="70.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="264.6" y1="19.3" x2="275.4" y2="40.7" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="297.4" y1="401.7" x2="302.6" y2="378.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="297.1" y1="371.6" x2="302.9" y2="348.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="296.7" y1="341.5" x2="303.3" y2="318.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="296.2" y1="311.4" x2="303.8" y2="288.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="295.5" y1="281.1" x2="304.5" y2="258.9" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="294.6" y1="250.7" x2="305.4" y2="229.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="293.3" y1="220.0" x2="306.7" y2="200.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="291.5" y1="188.5" x2="308.5" y2="171.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="289.3" y1="155.4" x2="310.7" y2="144.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="288.0" y1="120.0" x2="312.0" y2="120.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="289.3" y1="84.6" x2="310.7" y2="95.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="291.5" y1="51.5" x2="308.5" y2="68.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="293.3" y1="20.0" x2="306.7" y2="40.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="327.6" y1="401.8" x2="332.4" y2="378.2" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="327.4" y1="371.7" x2="332.6" y2="348.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="327.1" y1="341.6" x2="332.9" y2="318.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="326.7" y1="311.5" x2="333.3" y2="288.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="326.2" y1="281.4" x2="333.8" y2="258.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="325.5" y1="251.1" x2="334.5" y2="228.9" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="324.6" y1="220.7" x2="335.4" y2="199.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="323.3" y1="190.0" x2="336.7" y2="170.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="321.5" y1="158.5" x2="338.5" y2="141.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="319.3" y1="125.4" x2="340.7" y2="114.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="318.0" y1="90.0" x2="342.0" y2="90.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="319.3" y1="54.6" x2="340.7" y2="65.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="321.5" y1="21.5" x2="338.5" y2="38.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="357.9" y1="401.8" x2="362.1" y2="378.2" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="357.6" y1="371.8" x2="362.4" y2="348.2" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="357.4" y1="341.7" x2="362.6" y2="318.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="357.1" y1="311.6" x2="362.9" y2="288.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="356.7" y1="281.5" x2="363.3" y2="258.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="356.2" y1="251.4" x2="363.8" y2="228.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="355.5" y1="221.1" x2="364.5" y2="198.9" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="354.6" y1="190.7" x2="365.4" y2="169.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="353.3" y1="160.0" x2="366.7" y2="140.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="351.5" y1="128.5" x2="368.5" y2="111.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="349.3" y1="95.4" x2="370.7" y2="84.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="348.0" y1="60.0" x2="372.0" y2="60.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="349.3" y1="24.6" x2="370.7" y2="35.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="388.0" y1="401.8" x2="392.0" y2="378.2" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="387.9" y1="371.8" x2="392.1" y2="348.2" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="387.6" y1="341.8" x2="392.4" y2="318.2" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="387.4" y1="311.7" x2="392.6" y2="288.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="387.1" y1="281.6" x2="392.9" y2="258.4" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="386.7" y1="251.5" x2="393.3" y2="228.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="386.2" y1="221.4" x2="393.8" y2="198.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="385.5" y1="191.1" x2="394.5" y2="168.9" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="384.6" y1="160.7" x2="395.4" y2="139.3" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="383.3" y1="130.0" x2="396.7" y2="110.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="381.5" y1="98.5" x2="398.5" y2="81.5" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="379.3" y1="65.4" x2="400.7" y2="54.6" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="378.0" y1="30.0" x2="402.0" y2="30.0" stroke="#0E1C42" stroke-width="1.6" stroke-linecap="round"/>
+<polyline points="156.6,31.2 157.2,33.5 157.8,35.8 158.4,38.0 159.0,40.2 159.6,42.4 160.2,44.6 160.8,46.7 161.4,48.9 162.0,50.9 162.6,53.0 163.2,55.0 163.8,57.0 164.4,59.0 165.0,61.0 165.6,62.9 166.2,64.8 166.8,66.7 167.4,68.5 168.0,70.3 168.6,72.2 169.2,73.9 169.8,75.7 170.4,77.4 171.0,79.1 171.6,80.8 172.2,82.5 172.8,84.1 173.4,85.7 174.0,87.3 174.6,88.9 175.2,90.5 175.8,92.0 176.4,93.5 177.0,95.0 177.6,96.5 178.2,97.9 178.8,99.4 179.4,100.8 180.0,102.2 180.6,103.5 181.2,104.9 181.8,106.2 182.4,107.5 183.0,108.8 183.6,110.1 184.2,111.3 184.8,112.6 185.4,113.8 186.0,115.0 186.6,116.2 187.2,117.3 187.8,118.5 188.4,119.6 189.0,120.7 189.6,121.8 190.2,122.9 190.8,123.9 191.4,125.0 192.0,126.0 192.6,127.0 193.2,128.0 193.8,129.0 194.4,130.0 195.0,130.9 195.6,131.9 196.2,132.8 196.8,133.7 197.4,134.6 198.0,135.4 198.6,136.3 199.2,137.1 199.8,138.0 200.4,138.8 201.0,139.6 201.6,140.4 202.2,141.1 202.8,141.9 203.4,142.6 204.0,143.4 204.6,144.1 205.2,144.8 205.8,145.5 206.4,146.2 207.0,146.8 207.6,147.5 208.2,148.1 208.8,148.8 209.4,149.4 210.0,150.0 210.6,150.6 211.2,151.2 211.8,151.7 212.4,152.3 213.0,152.9 213.6,153.4 214.2,153.9 214.8,154.4 215.4,154.9 216.0,155.4 216.6,155.9 217.2,156.4 217.8,156.8 218.4,157.3 219.0,157.7 219.6,158.1 220.2,158.6 220.8,159.0 221.4,159.4 222.0,159.8 222.6,160.1 223.2,160.5 223.8,160.9 224.4,161.2 225.0,161.5 225.6,161.9 226.2,162.2 226.8,162.5 227.4,162.8 228.0,163.1 228.6,163.4 229.2,163.7 229.8,163.9 230.4,164.2 231.0,164.4 231.6,164.7 232.2,164.9 232.8,165.1 233.4,165.4 234.0,165.6 234.6,165.8 235.2,166.0 235.8,166.1 236.4,166.3 237.0,166.5 237.6,166.6 238.2,166.8 238.8,166.9 239.4,167.1 240.0,167.2 240.6,167.3 241.2,167.5 241.8,167.6 242.4,167.7 243.0,167.8 243.6,167.9 244.2,167.9 244.8,168.0 245.4,168.1 246.0,168.1 246.6,168.2 247.2,168.2 247.8,168.3 248.4,168.3 249.0,168.4 249.6,168.4 250.2,168.4 250.8,168.4 251.4,168.4 252.0,168.4 252.6,168.4 253.2,168.4 253.8,168.4 254.4,168.3 255.0,168.3 255.6,168.3 256.2,168.2 256.8,168.2 257.4,168.1 258.0,168.1 258.6,168.0 259.2,167.9 259.8,167.9 260.4,167.8 261.0,167.7 261.6,167.6 262.2,167.5 262.8,167.4 263.4,167.3 264.0,167.2 264.6,167.1 265.2,167.0 265.8,166.9 266.4,166.7 267.0,166.6 267.6,166.5 268.2,166.3 268.8,166.2 269.4,166.0 270.0,165.9 270.6,165.7 271.2,165.5 271.8,165.4 272.4,165.2 273.0,165.0 273.6,164.8 274.2,164.6 274.8,164.4 275.4,164.3 276.0,164.1 276.6,163.9 277.2,163.6 277.8,163.4 278.4,163.2 279.0,163.0 279.6,162.8 280.2,162.6 280.8,162.3 281.4,162.1 282.0,161.9 282.6,161.6 283.2,161.4 283.8,161.1 284.4,160.9 285.0,160.6 285.6,160.4 286.2,160.1 286.8,159.8 287.4,159.6 288.0,159.3 288.6,159.0 289.2,158.7 289.8,158.5 290.4,158.2 291.0,157.9 291.6,157.6 292.2,157.3 292.8,157.0 293.4,156.7 294.0,156.4 294.6,156.1 295.2,155.8 295.8,155.5 296.4,155.2 297.0,154.9 297.6,154.5 298.2,154.2 298.8,153.9 299.4,153.6 300.0,153.2 300.6,152.9 301.2,152.6 301.8,152.2 302.4,151.9 303.0,151.5 303.6,151.2 304.2,150.8 304.8,150.5 305.4,150.1 306.0,149.8 306.6,149.4 307.2,149.1 307.8,148.7 308.4,148.3 309.0,148.0 309.6,147.6 310.2,147.2 310.8,146.8 311.4,146.5 312.0,146.1 312.6,145.7 313.2,145.3 313.8,144.9 314.4,144.5 315.0,144.1 315.6,143.8 316.2,143.4 316.8,143.0 317.4,142.6 318.0,142.2 318.6,141.8 319.2,141.4 319.8,141.0 320.4,140.5 321.0,140.1 321.6,139.7 322.2,139.3 322.8,138.9 323.4,138.5 324.0,138.1 324.6,137.6 325.2,137.2 325.8,136.8 326.4,136.4 327.0,135.9 327.6,135.5 328.2,135.1 328.8,134.6 329.4,134.2 330.0,133.8 330.6,133.3 331.2,132.9 331.8,132.4 332.4,132.0 333.0,131.6 333.6,131.1 334.2,130.7 334.8,130.2 335.4,129.8 336.0,129.3 336.6,128.9 337.2,128.4 337.8,127.9 338.4,127.5 339.0,127.0 339.6,126.6 340.2,126.1 340.8,125.6 341.4,125.2 342.0,124.7 342.6,124.2 343.2,123.8 343.8,123.3 344.4,122.8 345.0,122.4 345.6,121.9 346.2,121.4 346.8,120.9 347.4,120.4 348.0,120.0 348.6,119.5 349.2,119.0 349.8,118.5 350.4,118.0 351.0,117.6 351.6,117.1 352.2,116.6 352.8,116.1 353.4,115.6 354.0,115.1 354.6,114.6 355.2,114.1 355.8,113.6 356.4,113.1 357.0,112.6 357.6,112.1 358.2,111.6 358.8,111.2 359.4,110.7 360.0,110.1 360.6,109.6 361.2,109.1 361.8,108.6 362.4,108.1 363.0,107.6 363.6,107.1 364.2,106.6 364.8,106.1 365.4,105.6 366.0,105.1 366.6,104.6 367.2,104.1 367.8,103.6 368.4,103.0 369.0,102.5 369.6,102.0 370.2,101.5 370.8,101.0 371.4,100.5 372.0,99.9 372.6,99.4 373.2,98.9 373.8,98.4 374.4,97.9 375.0,97.3 375.6,96.8 376.2,96.3 376.8,95.8 377.4,95.2 378.0,94.7 378.6,94.2 379.2,93.6 379.8,93.1 380.4,92.6 381.0,92.1 381.6,91.5 382.2,91.0 382.8,90.5 383.4,89.9 384.0,89.4 384.6,88.9 385.2,88.3 385.8,87.8 386.4,87.3 387.0,86.7 387.6,86.2 388.2,85.6 388.8,85.1 389.4,84.6 390.0,84.0" fill="none" stroke="#C7922C" stroke-width="3"/>
+<circle cx="210.0" cy="150.0" r="5" fill="#C7922C" stroke="#0E1C42"/>
+</svg><p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><span style="font-size:15px; color:#666;">The gold curve is the particular solution \(y=x-1+2e^{-x}\) with \(y(0)=1\). You can verify it: \(y'=1-2e^{-x}\), and \(x-y=x-(x-1+2e^{-x})=1-2e^{-x}\), so the equation holds; and \(y(0)=-1+2=1\).</span></p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">What the field shows</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Read the picture the way you would read a map of wind. Solution curves flow along the segments. Several things are visible at a glance, with no solving at all: solution curves below the line \(y=x\) climb and curves above it fall, and all of them settle toward one special solution that is a straight line, \(y=x-1\). Check it: \(y'=1\) and \(x-y=x-(x-1)=1\). It is parallel to the dashed line and one unit below it, and it is a solution that every other solution approaches but never touches. Those long-term facts came from the field, not from a formula.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A slope field shows slopes, not heights. The segment at \((0,2)\) says a solution passing <em>through that point</em> is falling with slope \(-2\); it does not say anything about where other solutions are. Also, the segments are not solution curves: a solution curve is what you get by threading a smooth curve through the segments. And for equations like the ones in this course, two different solution curves never cross, because a point would then have two different slopes. (We state that fact without proof here.)</div>
+        </div>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Before computers, people drew slope fields by hand, often along <em>isoclines</em>: curves where the slope is constant. For \(y'=x-y\) the isocline for slope \(m\) is the line \(y=x-m\), which is why the slope-0 line is \(y=x\) and the slope-1 line is one unit below it. Leonhard Euler described a step-by-step way to follow a slope field numerically in the 1760s, and the same idea, with a computer taking millions of tiny steps, is how weather and orbit forecasts are computed today.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; READ THE FIELD</div>
+          <div class="widget-question">Use the slope field for \(\dfrac{dy}{dx}=x-y\), or compute straight from the equation, to answer each row.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. \(x-y=1-0=1\): a segment rising at 45 degrees." data-hint="Substitute x = 1 and y = 0 into x - y.">
+            <div class="widget-row-prompt">1. At the point \((1,0)\), the segment has slope&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">\(0\)</button>
+              <button data-choice="1">\(1\)</button>
+              <button data-choice="2">\(-1\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Slope zero means \(x-y=0\), which is \(y=x\). On the axes the slopes are \(x\) and \(-y\), which are not zero in general." data-hint="Set the slope x - y equal to 0 and describe the set of points.">
+            <div class="widget-row-prompt">2. Along which curve are all the segments horizontal?</div>
+            <div class="widget-options">
+              <button data-choice="0">The line \(y=x\)</button>
+              <button data-choice="1">The \(x\)-axis</button>
+              <button data-choice="2">The \(y\)-axis</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. \(x-y=0-2=-2\). The curve is falling steeply at that point, which is why curves that start high swoop down toward the line \(y=x-1\)." data-hint="Compute x - y at (0, 2).">
+            <div class="widget-row-prompt">3. A solution passes through \((0,2)\). Right there it is&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">rising with slope \(2\)</button>
+              <button data-choice="1">falling with slope \(-2\)</button>
+              <button data-choice="2">horizontal</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; MATCH THE EQUATION TO ITS FIELD</div>
+          <div class="widget-question">Each row describes a feature of a slope field. Choose the equation that produces it.</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Only \(x-y\) vanishes along \(y=x\). (For \(x+y\) the horizontal line is \(y=-x\); for \(y\) it is the \(x\)-axis.)" data-hint="Which expression equals zero exactly when y = x?">
+            <div class="widget-row-prompt">1. All segments are horizontal along the entire line \(y=x\), and steepen as you move away from it.</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\dfrac{dy}{dx}=x-y\)</button>
+              <button data-choice="1">\(\dfrac{dy}{dx}=x+y\)</button>
+              <button data-choice="2">\(\dfrac{dy}{dx}=y\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. With \(y'=y\) the slope at \((x,0)\) is 0 for every \(x\), and moving up a row changes the slope but moving sideways does not." data-hint="If the slope depends only on y, what happens to the segments as x changes?">
+            <div class="widget-row-prompt">2. Every segment on the \(x\)-axis is horizontal, and the slope depends only on \(y\), so the segments are identical along each horizontal row.</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\dfrac{dy}{dx}=y\)</button>
+              <button data-choice="1">\(\dfrac{dy}{dx}=x\)</button>
+              <button data-choice="2">\(\dfrac{dy}{dx}=x-y\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The slope depends on \(x\) alone. These are exactly the equations of Lesson 15.01, whose solutions are the vertical shifts \(y=\tfrac{x^2}{2}+C\)." data-hint="Which equation has no y in it?">
+            <div class="widget-row-prompt">3. In every vertical column, all the segments are parallel; only moving left or right changes the slope.</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\dfrac{dy}{dx}=x\)</button>
+              <button data-choice="1">\(\dfrac{dy}{dx}=y\)</button>
+              <button data-choice="2">\(\dfrac{dy}{dx}=x-y\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; BUILD ONE YOURSELF</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Slope fields reward the commit-then-check habit: sketch first, think, then compare. Here is a field to build yourself.</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: for \(\dfrac{dy}{dx}=x+y\), compute the slope at the nine grid points with \(x,y\in\{-1,0,1\}\). Where are the segments horizontal? Is there a straight-line solution? Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                The slopes \(x+y\): at \((-1,-1)\) it is \(-2\); \((-1,0)\) \(-1\); \((-1,1)\) \(0\); \((0,-1)\) \(-1\); \((0,0)\) \(0\); \((0,1)\) \(1\); \((1,-1)\) \(0\); \((1,0)\) \(1\); \((1,1)\) \(2\). The segments are horizontal exactly where \(x+y=0\), the line \(y=-x\) (you can see it passing through \((-1,1)\), \((0,0)\), and \((1,-1)\)). A straight-line solution \(y=mx+b\) needs \(m=x+mx+b\) for all \(x\), forcing \(m=-1\) and \(b=-1\): \(y=-x-1\). Check: \(y'=-1\) and \(x+y=x-x-1=-1\). &#10003; Solutions above that line curve upward without bound; solutions below it curve downward.
+            </div>
+        </details>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Look at what this lesson has done. In Lesson 15.01 you could solve \(y'=f(x)\) by integrating. In this lesson you met equations like \(y'=x-y\) and \(y'=2y\), where the right side involves \(y\), and you saw that antidifferentiation alone no longer works: you cannot integrate \(x-y\) with respect to \(x\) while \(y\) is still an unknown function of \(x\). Yet you could verify solutions and see their shape. Is there a method that actually produces a formula? For a very important class of equations, yes.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E8B96A; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Software can draw a slope field in a second and even trace solutions for you. That does not make it a replacement for the reading skills above. A tool will plot whatever equation you type, including one you typed wrong, and it will not tell you that the long-term behavior contradicts the situation you were modeling. You are the one who asks whether the curve makes sense: do the slopes at the points you can check by hand match the picture? Use the tool to check your reading, not to substitute for it.</div>
+        </div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 15.03 (Separable Differential Equations) introduces a method that solves equations whose right side factors into a function of \(x\) times a function of \(y\), such as \(y'=2y\) and \(y'=x/y\). It is the technique that finally explains where the exponentials in Example 1 came from.</p>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 30 Problem Set: Antiderivatives and Slope Fields</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Work the problems by hand, show every step, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 0;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 30 Quiz: Antiderivatives and Slope Fields</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A differential equation ties an unknown function to its own derivative, and a solution is a function that makes the equation true. You can always verify a proposed solution by substitution, and a constant (or two, for a second-order equation) is fixed by initial conditions. A first-order equation \(y'=f(x,y)\) also hands you the slope of every solution curve at every point, which is what a slope field draws. Reading a field means following the segments, not treating them as heights. Lesson 15.03 (Separable Differential Equations) shows how to turn many of these equations into actual formulas.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 15.02 &middot; Differential Equations and Slope Fields</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

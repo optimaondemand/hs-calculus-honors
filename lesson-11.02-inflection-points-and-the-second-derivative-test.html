@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 11.02</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 11</div>
+        <div style="font-size: 12px; color: #666;">Concavity and Curve Sketching</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 11.02</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Inflection Points and the Second Derivative Test</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Concavity and Curve Sketching</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 11.02</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Inflection Points and the Second Derivative Test</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">A highway curves left, then right. Where exactly does it switch, and can the second derivative alone tell a mountaintop from a valley floor?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 11.01 taught you to read concavity from the sign of \(f''\). Today you look at the places where that sign <em>changes</em>. A point on the curve where the bending switches direction is called an <strong>inflection point</strong>, and finding one takes more care than solving \(f''(x)=0\): some zeros of \(f''\) are inflection points and some are not. Then you put \(f''\) to a second use. At a critical point where the tangent is horizontal, the concavity decides whether you are standing at the bottom of a bowl or the top of a dome. That is the <strong>Second Derivative Test</strong>. It is fast when it works, and honest about when it does not.</div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> define an inflection point, find the candidates where \(f''\) is zero or undefined, and use a sign chart to confirm which candidates are real inflection points.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain with examples why \(f''(c)=0\) does not guarantee an inflection point at \(x=c\), and why the point must be on the curve.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> apply the Second Derivative Test to classify critical points, recognize when it is inconclusive, and switch to the First Derivative Test from Lesson 10.02.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus sign charts for \(f''\) and the Concavity Test from Lesson 11.01, critical points and the First Derivative Test from Lessons 10.01 and 10.02, and cusps and vertical tangents from Lesson 9.02.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A graphing tool is optional and may only be used to check work you have already done by hand.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; WHERE THE BEND CHANGES</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">In Lesson 11.01, \(f(x)=x^4-4x^3\) was concave up, then concave down, then concave up again. What do you expect to happen to the curve at the two places where the concavity switches?</div>
+          <div class="widget-options">
+            <button data-response="Yes. Nothing breaks and there is no corner. The curve simply stops bending one way and starts bending the other. A point where that happens is called an <strong>inflection point</strong>.">The curve passes smoothly from bending one way to bending the other.</button>
+            <button data-response="Not necessarily. A change of concavity is about how a smooth curve <em>bends</em>, and the curve you studied is perfectly smooth. Corners and breaks are separate ideas. The point where the bend switches is an <strong>inflection point</strong>.">The curve must have a sharp corner or a break there.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Inflection point</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">A point \((c,f(c))\) on the graph of \(f\) is an <strong>inflection point</strong> if \(f\) is defined (and continuous) at \(c\) and the concavity of \(f\) <em>changes</em> at \(c\): concave up on one side of \(c\) and concave down on the other.</div>
+        </div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Because concavity is decided by the sign of \(f''\), an inflection point needs \(f''\) to <em>change sign</em> at \(c\). For the functions you meet in this course, \(f''\) can only change sign at a point where it is zero or where it is undefined. So the candidates are the points where \(f''(c)=0\) or \(f''(c)\) does not exist, with \(c\) in the domain of \(f\). A candidate is only a candidate. You confirm it with a sign chart.</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here is the trap in two pictures. Both \(f(x)=x^3\) and \(f(x)=x^4\) have a horizontal tangent at the origin and \(f''(0)=0\). Only one of them has an inflection point.</p>
+        <div style="max-width:640px; margin: 8px auto 14px auto;">
+            <svg viewBox="0 0 640 230" width="100%" role="img" aria-label="Left: the graph of y equals x cubed, with the horizontal tangent at the origin passing through the curve. Right: the graph of y equals x to the fourth, with the horizontal tangent at the origin staying below the curve."><rect x="10" y="10" width="300" height="210" rx="6" fill="#FCFDFE" stroke="#D0D9E8"/><path d="M 22.0,208.3 L 26.6,199.3 L 31.2,190.9 L 35.8,183.0 L 40.4,175.7 L 45.0,169.0 L 49.6,162.8 L 54.2,157.0 L 58.8,151.8 L 63.4,147.0 L 68.0,142.6 L 72.6,138.7 L 77.2,135.2 L 81.8,132.0 L 86.4,129.2 L 91.0,126.7 L 95.6,124.5 L 100.2,122.6 L 104.8,121.0 L 109.4,119.6 L 114.0,118.5 L 118.6,117.5 L 123.2,116.8 L 127.8,116.2 L 132.4,115.7 L 137.0,115.4 L 141.6,115.2 L 146.2,115.1 L 150.8,115.0 L 155.4,115.0 L 160.0,115.0 L 164.6,115.0 L 169.2,115.0 L 173.8,114.9 L 178.4,114.8 L 183.0,114.6 L 187.6,114.3 L 192.2,113.8 L 196.8,113.2 L 201.4,112.5 L 206.0,111.5 L 210.6,110.4 L 215.2,109.0 L 219.8,107.4 L 224.4,105.5 L 229.0,103.3 L 233.6,100.8 L 238.2,98.0 L 242.8,94.8 L 247.4,91.3 L 252.0,87.4 L 256.6,83.0 L 261.2,78.2 L 265.8,73.0 L 270.4,67.2 L 275.0,61.0 L 279.6,54.3 L 284.2,47.0 L 288.8,39.1 L 293.4,30.7 L 298.0,21.7" fill="none" stroke="#0E1C42" stroke-width="3"/><line x1="41.7" y1="115.0" x2="278.3" y2="115.0" stroke="#C7922C" stroke-width="2.5"/><circle cx="160.0" cy="115.0" r="4.5" fill="#C7922C"/><text x="160" y="212" font-size="13" fill="#1a2340" text-anchor="middle">y = x&#179;: inflection, tangent crosses the curve</text><text x="160.0" y="108.0" font-size="12" fill="#C0392B">(0,0)</text><rect x="330" y="10" width="300" height="210" rx="6" fill="#FCFDFE" stroke="#D0D9E8"/><path d="M 342.0,52.2 L 346.6,70.3 L 351.2,86.6 L 355.8,101.3 L 360.4,114.4 L 365.0,126.1 L 369.6,136.5 L 374.2,145.7 L 378.8,153.7 L 383.4,160.7 L 388.0,166.8 L 392.6,172.0 L 397.2,176.5 L 401.8,180.3 L 406.4,183.4 L 411.0,186.1 L 415.6,188.2 L 420.2,190.0 L 424.8,191.3 L 429.4,192.4 L 434.0,193.2 L 438.6,193.8 L 443.2,194.3 L 447.8,194.6 L 452.4,194.8 L 457.0,194.9 L 461.6,195.0 L 466.2,195.0 L 470.8,195.0 L 475.4,195.0 L 480.0,195.0 L 484.6,195.0 L 489.2,195.0 L 493.8,195.0 L 498.4,195.0 L 503.0,194.9 L 507.6,194.8 L 512.2,194.6 L 516.8,194.3 L 521.4,193.8 L 526.0,193.2 L 530.6,192.4 L 535.2,191.3 L 539.8,190.0 L 544.4,188.2 L 549.0,186.1 L 553.6,183.4 L 558.2,180.3 L 562.8,176.5 L 567.4,172.0 L 572.0,166.8 L 576.6,160.7 L 581.2,153.7 L 585.8,145.7 L 590.4,136.5 L 595.0,126.1 L 599.6,114.4 L 604.2,101.3 L 608.8,86.6 L 613.4,70.3 L 618.0,52.2" fill="none" stroke="#0E1C42" stroke-width="3"/><line x1="352.6" y1="195.0" x2="607.4" y2="195.0" stroke="#C7922C" stroke-width="2.5"/><circle cx="480.0" cy="195.0" r="4.5" fill="#C7922C"/><text x="480" y="212" font-size="13" fill="#1a2340" text-anchor="middle">y = x&#8308;: no inflection, curve stays above tangent</text><text x="480.0" y="188.0" font-size="12" fill="#C0392B">(0,0)</text></svg>
+        </div>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;">
+        <table style="border-collapse: collapse; width: 100%; font-size: 16px; color: #1a2340; text-align: center;">
+          <tr style="background: #0E1C42; color: #ffffff;"><th style="padding: 8px; border: 1px solid #D0D9E8;">Function</th><th style="padding: 8px; border: 1px solid #D0D9E8;">\(f''(x)\)</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Sign of \(f''\) near 0</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Concavity at 0</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Inflection at 0?</th></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\(x^3\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(6x\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-\) then \(+\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">changes (down, then up)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">Yes</td></tr>
+          <tr style="background: #F4F6FA;"><td style="padding: 8px; border: 1px solid #D0D9E8;">\(x^4\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(12x^2\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(+\) then \(+\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">does not change</td><td style="padding: 8px; border: 1px solid #D0D9E8;">No</td></tr>
+        </table>
+        </div>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">\(f''(c)=0\) means \(c\) is a <em>candidate</em>, nothing more. For \(f(x)=x^4\), \(f''(0)=0\) but the graph is concave up on both sides, so there is no inflection point. Always confirm that \(f''\) actually changes sign. And always give <em>both</em> coordinates of an inflection point: it is a point of the graph, so write \((c,f(c))\), not just \(x=c\).</div>
+        </div>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 1: two inflection points</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Find the inflection points of \(f(x)=x^4-6x^2\). Differentiate twice and factor:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ f'(x)=4x^3-12x,\qquad f''(x)=12x^2-12=12(x-1)(x+1). \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">\(f''\) is zero at \(x=-1\) and \(x=1\) and is defined everywhere. Test one number in each interval:</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;">
+        <table style="border-collapse: collapse; width: 100%; font-size: 16px; color: #1a2340; text-align: center;">
+          <tr style="background: #0E1C42; color: #ffffff;"><th style="padding: 8px; border: 1px solid #D0D9E8;">Interval</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Test point</th><th style="padding: 8px; border: 1px solid #D0D9E8;">\(f''\) there</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Concavity</th></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\((-\infty,-1)\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(x=-2\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(12(4)-12=36>0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">up</td></tr>
+          <tr style="background: #F4F6FA;"><td style="padding: 8px; border: 1px solid #D0D9E8;">\((-1,1)\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(x=0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-12<0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">down</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\((1,\infty)\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(x=2\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(12(4)-12=36>0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">up</td></tr>
+        </table>
+        </div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The sign changes at both \(x=-1\) and \(x=1\), so both are inflection points. The \(y\)-coordinates are \(f(\pm1)=1-6=-5\), so the inflection points are \((-1,-5)\) and \((1,-5)\).</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 2: where \(f''\) is undefined</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">For \(f(x)=x^{1/3}\), \(f'(x)=\tfrac13x^{-2/3}\) and \(f''(x)=-\tfrac29x^{-5/3}\). This \(f''\) is never zero, but it is undefined at \(x=0\), and \(f(0)=0\) is defined. For \(x<0\), \(x^{-5/3}<0\), so \(f''>0\) and the curve is concave up. For \(x>0\), \(f''<0\) and the curve is concave down. The concavity changes at a point that is on the curve, so \((0,0)\) is an inflection point, and, as in Lesson 9.02, the tangent line there is vertical. Compare \(f(x)=x^{2/3}\), where \(f''(x)=-\tfrac29x^{-4/3}<0\) on <em>both</em> sides of \(0\): the concavity never changes, so the cusp at the origin is not an inflection point. And for \(f(x)=\tfrac1x\) from Lesson 11.01, \(f''\) does change sign at \(0\), but \(0\) is not in the domain, so there is no point on the curve there and no inflection point.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Every cubic \(f(x)=ax^3+bx^2+cx+d\) with \(a\ne0\) has exactly one inflection point, because \(f''(x)=6ax+2b\) is a line that changes sign once, at \(x=-\dfrac{b}{3a}\). That point is also the center of symmetry of the cubic: turn the graph half a turn around it and it lands on itself. For \(x^3-3x\), the center is the origin.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; IS IT AN INFLECTION POINT?</div>
+          <div class="widget-question">Decide whether the graph has an inflection point at the given \(x\)-value. Look at what \(f''\) does, not just its value.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. \(20x^3\) is negative for \(x<0\) and positive for \(x>0\), so the concavity switches at \(0\)." data-hint="Look at the sign of 20x^3 just left and just right of 0, not only at 0 itself.">
+            <div class="widget-row-prompt">1. \(f(x)=x^5\) at \(x=0\). Here \(f''(x)=20x^3\).</div>
+            <div class="widget-options">
+              <button data-choice="0">No, because \(f''(0)=0\) means the curve is flat there</button>
+              <button data-choice="1">No, because \(f'(0)=0\)</button>
+              <button data-choice="2">Yes, because \(f''\) changes sign at \(0\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. \(30x^4\ge0\) everywhere, so the concavity is up on both sides. A zero of \(f''\) with no sign change is not an inflection point." data-hint="Does 30x^4 ever change sign? Test a number on each side of 0.">
+            <div class="widget-row-prompt">2. \(f(x)=x^6\) at \(x=0\). Here \(f''(x)=30x^4\).</div>
+            <div class="widget-options">
+              <button data-choice="0">No, because \(f''\) is positive on both sides of \(0\)</button>
+              <button data-choice="1">Yes, because \(f''(0)=0\)</button>
+              <button data-choice="2">Yes, because \(f'(0)=0\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Just left of \(\pi\), \(\sin x>0\) so \(f''<0\); just right, \(\sin x<0\) so \(f''>0\). An inflection point does not need a horizontal tangent." data-hint="Check the sign of -sin x on each side of pi. A horizontal tangent is not required for an inflection point.">
+            <div class="widget-row-prompt">3. \(f(x)=\sin x\) at \(x=\pi\). Here \(f''(x)=-\sin x\).</div>
+            <div class="widget-options">
+              <button data-choice="0">No, because the sine curve is smooth</button>
+              <button data-choice="1">Yes, because \(-\sin x\) changes from negative to positive at \(\pi\)</button>
+              <button data-choice="2">No, because \(f'(\pi)=-1\ne0\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The concavity is down on both sides, so it never changes. Being undefined is only a reason to <em>check</em>; it is not enough by itself." data-hint="An undefined f'' makes 0 a candidate. Now test the sign of f'' on each side: does it change?">
+            <div class="widget-row-prompt">4. \(f(x)=x^{2/3}\) at \(x=0\). Here \(f''(x)=-\tfrac29x^{-4/3}\) for \(x\ne0\).</div>
+            <div class="widget-options">
+              <button data-choice="0">Yes, because \(f''\) is undefined at \(0\)</button>
+              <button data-choice="1">Yes, because the graph has a cusp at \(0\)</button>
+              <button data-choice="2">No, because \(f''<0\) on both sides of \(0\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; THE SECOND DERIVATIVE TEST</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now put \(f''\) to a second use. Suppose \(f'(c)=0\), so the tangent line at \(c\) is horizontal. Picture the curve there. If it is concave up (a bowl), \(c\) is the bottom: a local minimum. If it is concave down (a dome), \(c\) is the top: a local maximum. That picture is a theorem.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The Second Derivative Test</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Suppose \(f'(c)=0\) and \(f''(c)\) exists. If \(f''(c)>0\), then \(f\) has a <strong>local minimum</strong> at \(c\). If \(f''(c)<0\), then \(f\) has a <strong>local maximum</strong> at \(c\). If \(f''(c)=0\), the test gives <strong>no information</strong>.</div>
+        </div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Why it is true.</strong> Take the case \(f''(c)>0\). Since \(f'(c)=0\), the definition of the derivative applied to \(f'\) gives</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ f''(c)=\lim_{x\to c}\frac{f'(x)-f'(c)}{x-c}=\lim_{x\to c}\frac{f'(x)}{x-c}>0. \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A limit that is positive forces the quotient \(\dfrac{f'(x)}{x-c}\) to be positive for every \(x\ne c\) close enough to \(c\). When \(x<c\) the denominator is negative, so \(f'(x)<0\); when \(x>c\) the denominator is positive, so \(f'(x)>0\). The derivative changes from negative to positive at \(c\), and the First Derivative Test from Lesson 10.02 says that is a local minimum. The case \(f''(c)<0\) is the mirror image. When \(f''(c)=0\) the quotient argument has nothing to grab, and that is exactly why the test is silent.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 3: classify two critical points</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Classify the critical points of \(f(x)=x^3-3x\). First \(f'(x)=3x^2-3=3(x-1)(x+1)\), so the critical points are \(x=-1\) and \(x=1\). Then \(f''(x)=6x\):</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ f''(-1)=-6<0\ \Rightarrow\ \text{local max at }(-1,2),\qquad f''(1)=6>0\ \Rightarrow\ \text{local min at }(1,-2). \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">One derivative, two substitutions, two classifications, with no sign chart for \(f'\) needed. That is the test's whole appeal.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">When the test is silent</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Three functions all have \(f'(0)=0\) and \(f''(0)=0\). The Second Derivative Test cannot separate them, but they behave in three different ways, and the First Derivative Test separates them at once:</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;">
+        <table style="border-collapse: collapse; width: 100%; font-size: 16px; color: #1a2340; text-align: center;">
+          <tr style="background: #0E1C42; color: #ffffff;"><th style="padding: 8px; border: 1px solid #D0D9E8;">Function</th><th style="padding: 8px; border: 1px solid #D0D9E8;">\(f'(0)\)</th><th style="padding: 8px; border: 1px solid #D0D9E8;">\(f''(0)\)</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Sign of \(f'\) near 0</th><th style="padding: 8px; border: 1px solid #D0D9E8;">What happens at 0</th></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\(x^4\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-\) then \(+\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">local minimum</td></tr>
+          <tr style="background: #F4F6FA;"><td style="padding: 8px; border: 1px solid #D0D9E8;">\(-x^4\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(+\) then \(-\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">local maximum</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">\(x^3\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(0\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(+\) then \(+\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">neither (an inflection point)</td></tr>
+        </table>
+        </div>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">\(f''(c)=0\) does <em>not</em> mean there is no extremum at \(c\), and it does not mean there is one. It means this test has nothing to say. As the table shows, the same two numbers \(f'(0)=0\) and \(f''(0)=0\) are shared by a minimum, a maximum, and a point that is neither. When the Second Derivative Test is silent, go back to the sign of \(f'\).</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find and classify every critical point of \(f(x)=x^4-8x^2+3\) with the Second Derivative Test, and give the \(y\)-value of each. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f'(x)=4x^3-16x=4x(x-2)(x+2)\), so the critical points are \(x=-2,0,2\). Then \(f''(x)=12x^2-16\). At \(x=0\): \(f''(0)=-16<0\), a local maximum at \((0,3)\). At \(x=\pm2\): \(f''(\pm2)=48-16=32>0\), local minima, and \(f(\pm2)=16-32+3=-13\), so the points are \((-2,-13)\) and \((2,-13)\). Every critical point was settled by one substitution.
+            </div>
+        </details>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; USE THE SECOND DERIVATIVE TEST</div>
+          <div class="widget-question">Each function has a horizontal tangent at the given point. What does the test say?</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. \(f'(2)=12-12=0\) and \(f''(2)=12>0\), so the point is a local minimum." data-hint="Check that f'(2) = 0, then find the sign of f''(2) = 12.">
+            <div class="widget-row-prompt">1. \(f(x)=x^3-12x\) at \(x=2\). Here \(f''(x)=6x\).</div>
+            <div class="widget-options">
+              <button data-choice="0">local maximum</button>
+              <button data-choice="1">local minimum</button>
+              <button data-choice="2">the test is inconclusive</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. \(f'(0)=-\sin 0=0\) and \(f''(0)=-1<0\), so \(\cos x\) has a local maximum at \(0\), the top of the cosine hill." data-hint="f''(0) = -cos 0. What sign is that?">
+            <div class="widget-row-prompt">2. \(f(x)=\cos x\) at \(x=0\). Here \(f''(x)=-\cos x\).</div>
+            <div class="widget-options">
+              <button data-choice="0">local maximum</button>
+              <button data-choice="1">local minimum</button>
+              <button data-choice="2">the test is inconclusive</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. \(f'(0)=0\) and \(f''(0)=0\), so the Second Derivative Test says nothing. (The First Derivative Test shows \(f'=5x^4\ge0\) on both sides, so there is no extremum at all.)" data-hint="Evaluate f''(0) = 20 * 0^3. What does the test say when f''(c) is zero?">
+            <div class="widget-row-prompt">3. \(f(x)=x^5\) at \(x=0\). Here \(f''(x)=20x^3\).</div>
+            <div class="widget-options">
+              <button data-choice="0">local minimum</button>
+              <button data-choice="1">local maximum</button>
+              <button data-choice="2">the test is inconclusive</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. \(f'(1)=1-1=0\) and \(f''(1)=2>0\), so there is a local minimum, with value \(f(1)=2\)." data-hint="Compute f''(1) = 2/1 and check its sign.">
+            <div class="widget-row-prompt">4. \(f(x)=x+\dfrac1x\) at \(x=1\). Here \(f''(x)=\dfrac2{x^3}\).</div>
+            <div class="widget-options">
+              <button data-choice="0">local maximum</button>
+              <button data-choice="1">the test is inconclusive</button>
+              <button data-choice="2">local minimum</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; CHOOSING THE RIGHT TEST</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">You now own two tests for classifying a critical point. Neither is always better. Choose on purpose.</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;">
+        <table style="border-collapse: collapse; width: 100%; font-size: 16px; color: #1a2340; text-align: center;">
+          <tr style="background: #0E1C42; color: #ffffff;"><th style="padding: 8px; border: 1px solid #D0D9E8;"></th><th style="padding: 8px; border: 1px solid #D0D9E8;">First Derivative Test</th><th style="padding: 8px; border: 1px solid #D0D9E8;">Second Derivative Test</th></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">It needs</td><td style="padding: 8px; border: 1px solid #D0D9E8;">the sign of \(f'\) on both sides of \(c\)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(f'(c)=0\) and the value \(f''(c)\)</td></tr>
+          <tr style="background: #F4F6FA;"><td style="padding: 8px; border: 1px solid #D0D9E8;">Works at</td><td style="padding: 8px; border: 1px solid #D0D9E8;">any critical point, including where \(f'\) is undefined (corners, cusps)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">only critical points with \(f'(c)=0\)</td></tr>
+          <tr><td style="padding: 8px; border: 1px solid #D0D9E8;">Fails when</td><td style="padding: 8px; border: 1px solid #D0D9E8;">never fails (but needs more work)</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(f''(c)=0\), where it is silent</td></tr>
+          <tr style="background: #F4F6FA;"><td style="padding: 8px; border: 1px solid #D0D9E8;">Best when</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(f''\) is messy or \(c\) is a cusp</td><td style="padding: 8px; border: 1px solid #D0D9E8;">\(f''\) is easy to compute and nonzero</td></tr>
+        </table>
+        </div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A sensible strategy: try the Second Derivative Test first for a quick answer, and fall back on the First Derivative Test the moment it is silent or \(f'(c)\) does not exist.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example 4: using both</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Classify the critical points of \(f(x)=x^4-4x^3\), the function from Lesson 11.01. Here \(f'(x)=4x^3-12x^2=4x^2(x-3)\), so the critical points are \(x=0\) and \(x=3\), and \(f''(x)=12x(x-2)\).</p>
+        <ul style="font-size: 17px; color: #1a2340; line-height: 1.8; padding-left: 22px; margin: 0 0 10px 0;">
+          <li>At \(x=3\): \(f''(3)=36>0\), so there is a local minimum, at \((3,-27)\).</li>
+          <li>At \(x=0\): \(f''(0)=0\), so the Second Derivative Test is silent. Use \(f'(x)=4x^2(x-3)\): for \(x<0\) and for \(0<x<3\), \(x^2>0\) and \(x-3<0\), so \(f'<0\) on both sides. The derivative does not change sign, so there is <em>no</em> extremum at \(x=0\).</li>
+        </ul>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">And notice something from Part 1: in Lesson 11.01 you found that \(f''=12x(x-2)\) changes sign at \(x=0\), so \((0,0)\) is also an inflection point. A horizontal tangent at an inflection point, with the curve passing straight through its own tangent line, is a perfectly real thing.</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">One more case the Second Derivative Test cannot touch at all: \(f(x)=x^{2/3}\) at \(0\). There \(f'(x)=\tfrac23x^{-1/3}\) is undefined, not zero, so the test does not apply. The First Derivative Test does: \(f'<0\) for \(x<0\) and \(f'>0\) for \(x>0\), so \(x=0\) is a local (indeed absolute) minimum at the cusp from Lesson 9.02.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E8B96A; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AND GRAPHING TOOLS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A graphing tool will mark inflection points and extrema with a dot, and an AI assistant will classify them in one sentence. Both can be wrong at a cusp, at a flat stretch like \(x^4\) near the origin, or where \(f''\) is zero without changing sign, and you cannot tell without doing the sign analysis yourself. Do the tests by hand first. Then let a tool confirm the picture. Your own justification, with a sign chart or a value of \(f''\), is the part that cannot be handed off.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 22 Problem Set: Concavity and Inflection Points</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Work the problems by hand, show every step, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 0;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 22 Quiz: Concavity and Inflection Points</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">An inflection point is a point of the graph where \(f\) is defined and the concavity actually changes, so you find the candidates where \(f''\) is zero or undefined and then confirm the sign change with a sign chart. A zero of \(f''\) alone is not enough, as \(x^4\) shows. At a critical point with \(f'(c)=0\), the Second Derivative Test reads a local minimum from \(f''(c)>0\) and a local maximum from \(f''(c)<0\), and it is silent when \(f''(c)=0\), when the First Derivative Test takes over. Lesson 11.03 combines everything you now know about \(f\), \(f'\), and \(f''\) into a complete method for sketching a curve.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 11.02 &middot; Inflection Points and the Second Derivative Test</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

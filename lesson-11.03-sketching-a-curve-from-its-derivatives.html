@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 11.03</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 11</div>
+        <div style="font-size: 12px; color: #666;">Concavity and Curve Sketching</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 11.03</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Sketching a Curve from Its Derivatives</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Concavity and Curve Sketching</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 11.03</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Sketching a Curve from Its Derivatives</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">How little do you have to know about a function to draw its whole graph?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Since Module 1 you have collected tools: limits and asymptotes, the first derivative's sign, the second derivative's sign. Each one answers one question about a graph. Today they work as a team. You will follow a single checklist from the formula to the finished picture, and you will see that a sketch built this way is not a guess dressed up as a graph. It is an <em>argument</em>, with every curve segment licensed by a sign chart and every landmark by a computation.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> carry out the full curve-sketching checklist (domain, intercepts, symmetry, asymptotes, \(f'\) and \(f''\) sign charts) for a polynomial and a rational function.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> combine the sign of \(f'\) and the sign of \(f''\) into four graph shapes and use them to join landmark points correctly.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain why a zero of \(f'\) or \(f''\), or a change of sign across an asymptote, is not by itself an extremum or an inflection point.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook, a pencil, and graph paper if you like. A graphing tool is for checking a finished sketch, never for producing one.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your notes on asymptotes from Lessons 2.01 and 2.02, and on the first and second derivative tests from Lessons 10.02 and 11.02.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE CHECKLIST</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">You are asked to sketch \(y = x^3 - 6x^2 + 9x\) with no graphing tool. What would you do first?</div>
+          <div class="widget-options">
+            <button data-response="That works, and it is how graphs were first drawn. But points alone miss the turning points and the bends unless you happen to land on them. Today you will let f' and f'' tell you where to look, so a handful of well-chosen points is enough.">Plot a lot of points and connect them.</button>
+            <button data-response="That is the plan for today. The derivatives are a map of the graph: f' says where it rises and falls, f'' says how it bends. Plot the landmarks and the sketch nearly draws itself.">Use the derivatives to find where the graph turns and where it bends, then plot only those points.</button>
+            <button data-response="End behavior is one real piece of the picture, and it belongs on the checklist. But it says nothing about the humps in the middle. The rest of the checklist fills those in.">Look only at end behavior and guess the middle.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Sketching a curve was a serious mathematical art long before calculators. In 1704 Isaac Newton appended a treatise on cubic curves to his <em>Opticks</em> and sorted them into dozens of species by their shapes, working with equations and a pen. What changed with the derivative is that the work became a <em>procedure</em>: a checklist whose every step has a reason. You now own every tool on that checklist. Lessons 11.01 and 11.02 gave you the last two, concavity and inflection points. Today you assemble them.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The Curve-Sketching Checklist</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;"><ol style='margin: 6px 0 0 0; padding-left: 22px;'><li><strong>Domain.</strong> Where is \(f\) defined? Any gaps or breaks?</li><li><strong>Intercepts.</strong> Solve \(f(0)\) for the \(y\)-intercept and \(f(x)=0\) for the \(x\)-intercepts, when the algebra allows.</li><li><strong>Symmetry.</strong> If \(f(-x)=f(x)\) the graph is mirrored across the \(y\)-axis; if \(f(-x)=-f(x)\) it is symmetric about the origin.</li><li><strong>Asymptotes and end behavior.</strong> Vertical asymptotes from the domain breaks; horizontal asymptotes and end behavior from limits at \(\pm\infty\) (Lessons 2.01 and 2.02).</li><li><strong>First derivative.</strong> Find the critical points, make a sign chart for \(f'\), and read increasing and decreasing and the local extrema (Lessons 10.01 and 10.02).</li><li><strong>Second derivative.</strong> Make a sign chart for \(f''\) and read concavity and inflection points (Lessons 11.01 and 11.02).</li><li><strong>Assemble.</strong> Plot the landmark points, add the asymptotes, and join them following the signs of \(f'\) and \(f''\).</li></ol></div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Two habits make the checklist work. First, <strong>decide the order of evidence</strong>: domain, asymptotes, and symmetry come from \(f\) itself and cost almost nothing, so do them first. Second, <strong>let the two sign charts agree with each other</strong>. A graph that is increasing and concave down looks like the left side of a hill; decreasing and concave up looks like the left side of a valley. Four combinations of sign, four shapes, and the sketch is those four shapes joined at the landmarks.</p>
+        <div style="overflow-x: auto; margin: 12px 0;"><table style="border-collapse: collapse; width: 100%;"><tr><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">\(f'\)</th><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">\(f''\)</th><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">What the graph is doing</th></tr><tr><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">Rising and getting steeper (the right side of a valley)</td></tr><tr><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">Rising and flattening out (the left side of a hill)</td></tr><tr><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">Falling and getting steeper (the right side of a hill)</td></tr><tr><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">Falling and flattening out (the left side of a valley)</td></tr></table></div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; A POLYNOMIAL, STEP BY STEP</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1. Sketch \(f(x)=x^3-6x^2+9x\).</strong> Factor first: \(f(x)=x(x-3)^2\). Every step below is a checklist line.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Domain, intercepts, symmetry.</strong> A polynomial is defined for every real number. The factored form gives the \(x\)-intercepts \(x=0\) and \(x=3\), and \(f(0)=0\). The factor \((x-3)^2\) is squared, so at \(x=3\) the graph <em>touches</em> the axis and turns back rather than crossing it. Neither \(f(-x)=f(x)\) nor \(f(-x)=-f(x)\), so there is no symmetry.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>End behavior.</strong> The leading term is \(x^3\), so \(f(x)\to+\infty\) as \(x\to+\infty\) and \(f(x)\to-\infty\) as \(x\to-\infty\). A polynomial has no asymptotes.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ f'(x)=3x^2-12x+9=3(x-1)(x-3), \qquad f''(x)=6x-12=6(x-2). \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>First derivative.</strong> The critical points are \(x=1\) and \(x=3\). <strong>Second derivative.</strong> \(f''(x)=0\) at \(x=2\) only, and \(f''\) changes sign there. Now organize both sign charts together:</p>
+        <div style="overflow-x: auto; margin: 12px 0;"><table style="border-collapse: collapse; width: 100%;"><tr><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">Interval</th><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">\((-\infty,1)\)</th><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">\((1,2)\)</th><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">\((2,3)\)</th><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">\((3,\infty)\)</th></tr><tr><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">Sign of \(f'\)</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td></tr><tr><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">Sign of \(f''\)</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td></tr><tr><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">Shape of \(f\)</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">rising, concave down</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">falling, concave down</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">falling, concave up</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">rising, concave up</td></tr></table></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The landmarks follow. At \(x=1\), \(f'\) changes from \(+\) to \(-\), a local maximum, and \(f(1)=1\cdot 4=4\). At \(x=3\), \(f'\) changes from \(-\) to \(+\), a local minimum, and \(f(3)=0\). (The Second Derivative Test agrees: \(f''(1)=-6<0\) and \(f''(3)=6>0\).) At \(x=2\), concavity changes from down to up, so \((2,\,f(2))=(2,2)\) is an inflection point.</p>
+        <div style="margin: 14px 0;"><svg viewBox="0 0 900 354" style="width: 100%; max-width: 900px; height: auto; display: block; margin: 0 auto; font-family: Segoe UI, Roboto, Helvetica, Arial, sans-serif;" role="img" aria-label="The finished sketch of y = x(x - 3)^2. Gold dots are the landmarks the two sign charts produced.">
+<rect x="20" y="12" width="840" height="330" fill="#FFFFFF" stroke="#D0D9E8"/>
+<clipPath id="clip1"><rect x="20" y="12" width="840" height="330"/></clipPath>
+<line x1="170" y1="12" x2="170" y2="342" stroke="#9AA6BF" stroke-width="1"/>
+<line x1="20" y1="268.667" x2="860" y2="268.667" stroke="#9AA6BF" stroke-width="1"/>
+<line x1="20" y1="265.667" x2="20" y2="271.667" stroke="#9AA6BF"/>
+<text x="20" y="283.667" font-size="11" fill="#6b7a99" text-anchor="middle">-1</text>
+<line x1="320" y1="265.667" x2="320" y2="271.667" stroke="#9AA6BF"/>
+<text x="320" y="283.667" font-size="11" fill="#6b7a99" text-anchor="middle">1</text>
+<line x1="470" y1="265.667" x2="470" y2="271.667" stroke="#9AA6BF"/>
+<text x="470" y="283.667" font-size="11" fill="#6b7a99" text-anchor="middle">2</text>
+<line x1="620" y1="265.667" x2="620" y2="271.667" stroke="#9AA6BF"/>
+<text x="620" y="283.667" font-size="11" fill="#6b7a99" text-anchor="middle">3</text>
+<line x1="770" y1="265.667" x2="770" y2="271.667" stroke="#9AA6BF"/>
+<text x="770" y="283.667" font-size="11" fill="#6b7a99" text-anchor="middle">4</text>
+<polyline points="20.0,855.3 23.5,835.0 27.0,815.0 30.5,795.3 34.0,776.0 37.5,757.1 41.0,738.5 44.5,720.2 48.0,702.3 51.5,684.7 55.0,667.5 58.5,650.6 62.0,634.0 65.5,617.7 69.0,601.8 72.5,586.2 76.0,570.9 79.5,555.9 83.0,541.2 86.5,526.9 90.0,512.8 93.5,499.1 97.0,485.6 100.5,472.4 104.0,459.6 107.5,447.0 111.0,434.7 114.5,422.7 118.0,411.0 121.5,399.6 125.0,388.5 128.5,377.6 132.0,367.0 135.5,356.7 139.0,346.6 142.5,336.8 146.0,327.2 149.5,318.0 153.0,308.9 156.5,300.2 160.0,291.7 163.5,283.4 167.0,275.4 170.5,267.6 174.0,260.0 177.5,252.7 181.0,245.6 184.5,238.8 188.0,232.2 191.5,225.8 195.0,219.6 198.5,213.7 202.0,207.9 205.5,202.4 209.0,197.1 212.5,192.0 216.0,187.1 219.5,182.4 223.0,177.9 226.5,173.6 230.0,169.5 233.5,165.6 237.0,161.9 240.5,158.4 244.0,155.0 247.5,151.8 251.0,148.8 254.5,146.0 258.0,143.4 261.5,140.9 265.0,138.6 268.5,136.5 272.0,134.5 275.5,132.6 279.0,131.0 282.5,129.4 286.0,128.1 289.5,126.9 293.0,125.8 296.5,124.8 300.0,124.0 303.5,123.4 307.0,122.9 310.5,122.5 314.0,122.2 317.5,122.0 321.0,122.0 324.5,122.1 328.0,122.3 331.5,122.6 335.0,123.1 338.5,123.6 342.0,124.3 345.5,125.0 349.0,125.8 352.5,126.8 356.0,127.8 359.5,129.0 363.0,130.2 366.5,131.5 370.0,132.9 373.5,134.3 377.0,135.9 380.5,137.5 384.0,139.2 387.5,140.9 391.0,142.8 394.5,144.6 398.0,146.6 401.5,148.6 405.0,150.7 408.5,152.8 412.0,154.9 415.5,157.1 419.0,159.4 422.5,161.7 426.0,164.0 429.5,166.4 433.0,168.8 436.5,171.2 440.0,173.6 443.5,176.1 447.0,178.6 450.5,181.1 454.0,183.6 457.5,186.2 461.0,188.7 464.5,191.3 468.0,193.9 471.5,196.4 475.0,199.0 478.5,201.6 482.0,204.1 485.5,206.7 489.0,209.2 492.5,211.7 496.0,214.2 499.5,216.7 503.0,219.1 506.5,221.6 510.0,224.0 513.5,226.3 517.0,228.7 520.5,231.0 524.0,233.2 527.5,235.4 531.0,237.6 534.5,239.7 538.0,241.8 541.5,243.8 545.0,245.8 548.5,247.6 552.0,249.5 555.5,251.2 559.0,252.9 562.5,254.6 566.0,256.1 569.5,257.6 573.0,259.0 576.5,260.3 580.0,261.5 583.5,262.7 587.0,263.7 590.5,264.7 594.0,265.6 597.5,266.3 601.0,267.0 604.5,267.5 608.0,268.0 611.5,268.3 615.0,268.5 618.5,268.7 622.0,268.6 625.5,268.5 629.0,268.3 632.5,267.9 636.0,267.4 639.5,266.7 643.0,265.9 646.5,265.0 650.0,264.0 653.5,262.8 657.0,261.4 660.5,259.9 664.0,258.3 667.5,256.5 671.0,254.5 674.5,252.4 678.0,250.1 681.5,247.6 685.0,245.0 688.5,242.2 692.0,239.3 695.5,236.1 699.0,232.8 702.5,229.3 706.0,225.6 709.5,221.7 713.0,217.6 716.5,213.4 720.0,208.9 723.5,204.3 727.0,199.4 730.5,194.3 734.0,189.0 737.5,183.5 741.0,177.8 744.5,171.9 748.0,165.8 751.5,159.4 755.0,152.8 758.5,146.0 762.0,139.0 765.5,131.7 769.0,124.2 772.5,116.4 776.0,108.4 779.5,100.2 783.0,91.7 786.5,83.0 790.0,74.0 793.5,64.8 797.0,55.3 800.5,45.5 804.0,35.5 807.5,25.2 811.0,14.6 814.5,3.8 818.0,-7.3 821.5,-18.7 825.0,-30.4 828.5,-42.3 832.0,-54.6 835.5,-67.1 839.0,-79.9 842.5,-93.0 846.0,-106.4 849.5,-120.2 853.0,-134.2 856.5,-148.5 860.0,-163.1" fill="none" stroke="#0E1C42" stroke-width="2.6" stroke-linejoin="round" clip-path="url(#clip1)"/>
+<circle cx="170" cy="268.667" r="4.5" fill="#C7922C" stroke="#0E1C42"/>
+<text x="180" y="286.667" font-size="12" fill="#0E1C42">(0, 0)</text>
+<circle cx="320" cy="122" r="4.5" fill="#C7922C" stroke="#0E1C42"/>
+<text x="330" y="114" font-size="12" fill="#0E1C42">local max (1, 4)</text>
+<circle cx="470" cy="195.333" r="4.5" fill="#C7922C" stroke="#0E1C42"/>
+<text x="480" y="185.333" font-size="12" fill="#0E1C42">inflection (2, 2)</text>
+<circle cx="620" cy="268.667" r="4.5" fill="#C7922C" stroke="#0E1C42"/>
+<text x="630" y="288.667" font-size="12" fill="#0E1C42">local min (3, 0)</text>
+<text x="28" y="30" font-size="14" fill="#0E1C42" font-weight="bold">y = x(x - 3)^2</text>
+</svg><div style="font-size: 14px; color: #6b7a99; text-align: center; margin-top: 4px;">The finished sketch of y = x(x - 3)^2. Gold dots are the landmarks the two sign charts produced.</div></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Notice how little work the sketch needed: four points, all supplied by the derivatives, and a rule for the shape between them. Now check yourself on reading the charts.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; READ THE CHARTS</div>
+          <div class="widget-question">Use Example 1's sign charts for \(f(x)=x(x-3)^2\) to answer each row.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Right. Negative slope means falling; positive f'' means the slope is increasing, so the graph is bending upward, flattening toward the valley at x = 3." data-hint="Read the sign of f' for rising or falling, then the sign of f'' for the bend.">
+            <div class="widget-row-prompt">1. On \((2,3)\) we have \(f'<0\) and \(f''>0\). What is the graph doing there?</div>
+            <div class="widget-options">
+              <button data-choice="0">Rising and concave up</button>
+              <button data-choice="1">Falling and concave up</button>
+              <button data-choice="2">Falling and concave down</button>
+              <button data-choice="3">Rising and concave down</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Right. A horizontal tangent with a positive second derivative sits at the bottom of a bowl: a local minimum, and f(3)=0." data-hint="Positive f'' means concave up. A flat tangent on a concave up graph is at the bottom.">
+            <div class="widget-row-prompt">2. At \(x=3\), \(f'(3)=0\) and \(f''(3)=6\). What does the Second Derivative Test say?</div>
+            <div class="widget-options">
+              <button data-choice="0">Local maximum</button>
+              <button data-choice="1">Inflection point</button>
+              <button data-choice="2">Local minimum</button>
+              <button data-choice="3">The test cannot decide</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Right. A zero of f'' is only a candidate. It is an inflection point because f'' changes sign across it, switching the graph from concave down to concave up." data-hint="Recall Lesson 11.02: what must happen to f'' on either side?">
+            <div class="widget-row-prompt">3. Why is \((2,2)\) an inflection point, not just a place where \(f''=0\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">Because \(f'(2)=0\)</button>
+              <button data-choice="1">Because \(f(2)=2\)</button>
+              <button data-choice="2">Because \(f\) has a local maximum there</button>
+              <button data-choice="3">Because \(f''\) changes sign there, so the concavity changes</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A zero of \(f'\) or \(f''\) is a <em>candidate</em>, never a conclusion. Check the sign chart on both sides. For \(y=x^4\), \(f''(0)=0\) but concavity never changes, so there is no inflection point; for \(y=x^3\), \(f'(0)=0\) but the function is increasing on both sides, so there is no extremum. Signs decide, not zeros.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; A RATIONAL FUNCTION AND ITS ASYMPTOTES</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2. Sketch \(f(x)=\dfrac{x^2}{x^2-4}\).</strong> A rational function brings in the first three checklist lines in earnest, because the algebra of \(f\) itself tells you a great deal before any calculus.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Domain.</strong> The denominator \(x^2-4=(x-2)(x+2)\) vanishes at \(x=\pm2\), so the domain is every real number except \(\pm2\). <strong>Intercepts.</strong> \(f(0)=0\), and \(f(x)=0\) only at \(x=0\). <strong>Symmetry.</strong> \(f(-x)=\dfrac{x^2}{x^2-4}=f(x)\), so \(f\) is even: the graph is mirrored across the \(y\)-axis, and we only need to understand \(x\ge 0\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Asymptotes.</strong> From Lessons 2.01 and 2.02: \(\displaystyle\lim_{x\to\pm\infty}\frac{x^2}{x^2-4}=1\), so \(y=1\) is a horizontal asymptote on both ends. Near \(x=2\) the numerator is close to \(4\) and the denominator is close to \(0\), so the sign of the denominator decides the direction: \(\displaystyle\lim_{x\to2^+}f(x)=+\infty\) and \(\displaystyle\lim_{x\to2^-}f(x)=-\infty\). By the symmetry, \(\displaystyle\lim_{x\to-2^-}f(x)=+\infty\) and \(\displaystyle\lim_{x\to-2^+}f(x)=-\infty\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ f'(x)=\frac{-8x}{(x^2-4)^2}, \qquad f''(x)=\frac{8(3x^2+4)}{(x^2-4)^3}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Reading \(f'\).</strong> The denominator \((x^2-4)^2\) is positive wherever it is defined, so the sign of \(f'\) is the sign of \(-8x\): positive for \(x<0\), negative for \(x>0\). The only critical point inside the domain is \(x=0\) (the values \(\pm2\) make \(f'\) undefined, but they are not in the domain, so they are not critical points). \(f'\) changes from \(+\) to \(-\) at \(0\), so \((0,0)\) is a local maximum.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Reading \(f''\).</strong> The numerator \(8(3x^2+4)\) is always positive, so the sign of \(f''\) is the sign of \((x^2-4)^3\), which is the sign of \(x^2-4\). That is positive when \(|x|>2\) and negative when \(|x|<2\). \(f''\) is never zero.</p>
+        <div style="overflow-x: auto; margin: 12px 0;"><table style="border-collapse: collapse; width: 100%;"><tr><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">Interval</th><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">\((-\infty,-2)\)</th><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">\((-2,0)\)</th><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">\((0,2)\)</th><th style="border: 1px solid #D0D9E8; background: #EEF1F8; color: #0E1C42; padding: 8px 10px; font-size: 15px; text-align: left;">\((2,\infty)\)</th></tr><tr><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">Sign of \(f'\)</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td></tr><tr><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">Sign of \(f''\)</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">&minus;</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">+</td></tr><tr><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">Shape of \(f\)</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">rising, concave up (from 1 up to \(+\infty\))</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">rising, concave down (from \(-\infty\) up to 0)</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">falling, concave down (from 0 down to \(-\infty\))</td><td style="border: 1px solid #D0D9E8; padding: 8px 10px; font-size: 16px; color: #1a2340; line-height: 1.5;">falling, concave up (from \(+\infty\) down toward 1)</td></tr></table></div>
+        <div style="margin: 14px 0;"><svg viewBox="0 0 900 354" style="width: 100%; max-width: 900px; height: auto; display: block; margin: 0 auto; font-family: Segoe UI, Roboto, Helvetica, Arial, sans-serif;" role="img" aria-label="The finished sketch of y = x^2/(x^2 - 4). Dashed lines are the asymptotes x = -2, x = 2 and y = 1.">
+<rect x="20" y="12" width="840" height="330" fill="#FFFFFF" stroke="#D0D9E8"/>
+<clipPath id="clip2"><rect x="20" y="12" width="840" height="330"/></clipPath>
+<line x1="440" y1="12" x2="440" y2="342" stroke="#9AA6BF" stroke-width="1"/>
+<line x1="20" y1="177" x2="860" y2="177" stroke="#9AA6BF" stroke-width="1"/>
+<line x1="160" y1="174" x2="160" y2="180" stroke="#9AA6BF"/>
+<text x="160" y="192" font-size="11" fill="#6b7a99" text-anchor="middle">-4</text>
+<line x1="300" y1="174" x2="300" y2="180" stroke="#9AA6BF"/>
+<text x="300" y="192" font-size="11" fill="#6b7a99" text-anchor="middle">-2</text>
+<line x1="580" y1="174" x2="580" y2="180" stroke="#9AA6BF"/>
+<text x="580" y="192" font-size="11" fill="#6b7a99" text-anchor="middle">2</text>
+<line x1="720" y1="174" x2="720" y2="180" stroke="#9AA6BF"/>
+<text x="720" y="192" font-size="11" fill="#6b7a99" text-anchor="middle">4</text>
+<line x1="300" y1="12" x2="300" y2="342" stroke="#C0392B" stroke-width="1.4" stroke-dasharray="6 4"/>
+<line x1="580" y1="12" x2="580" y2="342" stroke="#C0392B" stroke-width="1.4" stroke-dasharray="6 4"/>
+<line x1="20" y1="149.5" x2="860" y2="149.5" stroke="#C0392B" stroke-width="1.4" stroke-dasharray="6 4"/>
+<polyline points="20.0,146.1 23.5,146.0 27.0,145.9 30.5,145.9 34.0,145.8 37.5,145.7 41.0,145.6 44.5,145.6 48.0,145.5 51.5,145.4 55.0,145.3 58.5,145.2 62.0,145.1 65.5,145.0 69.0,144.9 72.5,144.8 76.0,144.7 79.5,144.6 83.0,144.5 86.5,144.4 90.0,144.3 93.5,144.1 97.0,144.0 100.5,143.9 104.0,143.7 107.5,143.6 111.0,143.4 114.5,143.3 118.0,143.1 121.5,142.9 125.0,142.7 128.5,142.5 132.0,142.3 135.5,142.1 139.0,141.9 142.5,141.7 146.0,141.4 149.5,141.2 153.0,140.9 156.5,140.6 160.0,140.3 163.5,140.0 167.0,139.7 170.5,139.3 174.0,139.0 177.5,138.6 181.0,138.1 184.5,137.7 188.0,137.2 191.5,136.7 195.0,136.2 198.5,135.6 202.0,134.9 205.5,134.3 209.0,133.5 212.5,132.7 216.0,131.9 219.5,130.9 223.0,129.9 226.5,128.8 230.0,127.5 233.5,126.1 237.0,124.6 240.5,122.8 244.0,120.9 247.5,118.6 251.0,116.1 254.5,113.1 258.0,109.6 261.5,105.5 265.0,100.6 268.5,94.6 272.0,87.0 275.5,77.3 279.0,64.2 282.5,46.0 286.0,18.5 289.5,-27.2 293.0,-118.8 296.5,-393.7" fill="none" stroke="#0E1C42" stroke-width="2.6" stroke-linejoin="round" clip-path="url(#clip2)"/>
+<polyline points="303.5,706.5 307.0,431.6 310.5,340.0 314.0,294.2 317.5,266.8 321.0,248.6 324.5,235.6 328.0,225.9 331.5,218.4 335.0,212.4 338.5,207.5 342.0,203.4 345.5,200.0 349.0,197.1 352.5,194.6 356.0,192.5 359.5,190.6 363.0,188.9 366.5,187.5 370.0,186.2 373.5,185.0 377.0,184.0 380.5,183.1 384.0,182.2 387.5,181.5 391.0,180.8 394.5,180.2 398.0,179.7 401.5,179.2 405.0,178.8 408.5,178.5 412.0,178.1 415.5,177.9 419.0,177.6 422.5,177.4 426.0,177.3 429.5,177.2 433.0,177.1 436.5,177.0 440.0,177.0 443.5,177.0 447.0,177.1 450.5,177.2 454.0,177.3 457.5,177.4 461.0,177.6 464.5,177.9 468.0,178.1 471.5,178.5 475.0,178.8 478.5,179.2 482.0,179.7 485.5,180.2 489.0,180.8 492.5,181.5 496.0,182.2 499.5,183.1 503.0,184.0 506.5,185.0 510.0,186.2 513.5,187.5 517.0,188.9 520.5,190.6 524.0,192.5 527.5,194.6 531.0,197.1 534.5,200.0 538.0,203.4 541.5,207.5 545.0,212.4 548.5,218.4 552.0,225.9 555.5,235.6 559.0,248.6 562.5,266.8 566.0,294.2 569.5,340.0 573.0,431.6 576.5,706.5" fill="none" stroke="#0E1C42" stroke-width="2.6" stroke-linejoin="round" clip-path="url(#clip2)"/>
+<polyline points="583.5,-393.7 587.0,-118.8 590.5,-27.2 594.0,18.5 597.5,46.0 601.0,64.2 604.5,77.3 608.0,87.0 611.5,94.6 615.0,100.6 618.5,105.5 622.0,109.6 625.5,113.1 629.0,116.1 632.5,118.6 636.0,120.9 639.5,122.8 643.0,124.6 646.5,126.1 650.0,127.5 653.5,128.8 657.0,129.9 660.5,130.9 664.0,131.9 667.5,132.7 671.0,133.5 674.5,134.3 678.0,134.9 681.5,135.6 685.0,136.2 688.5,136.7 692.0,137.2 695.5,137.7 699.0,138.1 702.5,138.6 706.0,139.0 709.5,139.3 713.0,139.7 716.5,140.0 720.0,140.3 723.5,140.6 727.0,140.9 730.5,141.2 734.0,141.4 737.5,141.7 741.0,141.9 744.5,142.1 748.0,142.3 751.5,142.5 755.0,142.7 758.5,142.9 762.0,143.1 765.5,143.3 769.0,143.4 772.5,143.6 776.0,143.7 779.5,143.9 783.0,144.0 786.5,144.1 790.0,144.3 793.5,144.4 797.0,144.5 800.5,144.6 804.0,144.7 807.5,144.8 811.0,144.9 814.5,145.0 818.0,145.1 821.5,145.2 825.0,145.3 828.5,145.4 832.0,145.5 835.5,145.6 839.0,145.6 842.5,145.7 846.0,145.8 849.5,145.9 853.0,145.9 856.5,146.0 860.0,146.1" fill="none" stroke="#0E1C42" stroke-width="2.6" stroke-linejoin="round" clip-path="url(#clip2)"/>
+<circle cx="440" cy="177" r="4.5" fill="#C7922C" stroke="#0E1C42"/>
+<text x="450" y="167" font-size="12" fill="#0E1C42">local max (0, 0)</text>
+<text x="28" y="30" font-size="14" fill="#0E1C42" font-weight="bold">y = x^2 / (x^2 - 4)</text>
+</svg><div style="font-size: 14px; color: #6b7a99; text-align: center; margin-top: 4px;">The finished sketch of y = x^2/(x^2 - 4). Dashed lines are the asymptotes x = -2, x = 2 and y = 1.</div></div>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Concavity <em>does</em> change at \(x=2\) and \(x=-2\), yet there are <strong>no inflection points</strong> on this graph. An inflection point has to be a point <em>on the graph</em>, and \(f\) is not defined at \(\pm2\). The sign chart for \(f''\) changes across an asymptote, not across a point of the curve. Check the domain before you name an inflection point.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; READ THE RATIONAL FUNCTION</div>
+          <div class="widget-question">Answer from Example 2, \(f(x)=\dfrac{x^2}{x^2-4}\).</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Right. Replacing x by -x leaves x squared unchanged, so f is even. Whatever happens for positive x happens as a mirror image for negative x." data-hint="Compute f(-x) by substituting; the squares remove the minus signs.">
+            <div class="widget-row-prompt">1. Which statement about the symmetry of \(f\) is correct?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(f(-x)=-f(x)\), so the graph is symmetric about the origin</button>
+              <button data-choice="1">The graph has no symmetry</button>
+              <button data-choice="2">\(f(-x)=f(x)\), so the graph is mirrored across the \(y\)-axis</button>
+              <button data-choice="3">The graph is symmetric about the line \(y=1\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Right. The numerator is near 4, the denominator is a small positive number, so the quotient is large and positive." data-hint="Slightly to the right of 2, is x^2-4 positive or negative?">
+            <div class="widget-row-prompt">2. As \(x\to2^+\), what does \(f(x)\) do?</div>
+            <div class="widget-options">
+              <button data-choice="0">It approaches \(+\infty\)</button>
+              <button data-choice="1">It approaches \(-\infty\)</button>
+              <button data-choice="2">It approaches 0</button>
+              <button data-choice="3">It approaches 1</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Right. f' has the sign of -8x, so f rises for x < 0. We must skip x = -2, which is not in the domain, so the intervals are (-infinity,-2) and (-2,0)." data-hint="The sign of f' is the sign of -8x. Remember the break at x=-2.">
+            <div class="widget-row-prompt">3. Where is \(f\) increasing?</div>
+            <div class="widget-options">
+              <button data-choice="0">Wherever \(x>0\)</button>
+              <button data-choice="1">On \((-\infty,-2)\) and \((-2,0)\)</button>
+              <button data-choice="2">On \((-2,2)\) only</button>
+              <button data-choice="3">Nowhere</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 4 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; YOUR TURN: WHEN THE EVIDENCE SURPRISES YOU</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A sketch is a claim: <em>this is the shape the evidence demands.</em> Now try a function where the evidence has a surprise in it. Do the whole checklist on paper before you open the reveal.</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it first: sketch \(f(x)=x^4-4x^3\) using the checklist.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                <strong>Setup.</strong> Domain: all real numbers. Factor: \(f(x)=x^3(x-4)\), so the \(x\)-intercepts are \(x=0\) and \(x=4\), and \(f(0)=0\). End behavior: \(f\to+\infty\) at both ends (even degree, positive leading coefficient). No symmetry, no asymptotes.<br/><br/>
+    <strong>Derivatives.</strong> \(f'(x)=4x^3-12x^2=4x^2(x-3)\) and \(f''(x)=12x^2-24x=12x(x-2)\).<br/><br/>
+    <strong>Sign charts.</strong> \(f'\) is zero at \(x=0\) and \(x=3\), but \(4x^2\ge0\) means the sign of \(f'\) is the sign of \(x-3\): negative on \((-\infty,0)\), negative on \((0,3)\), positive on \((3,\infty)\). So \(x=0\) is a critical point where \(f'\) does <em>not</em> change sign: <strong>not an extremum</strong>. At \(x=3\) the sign goes \(-\) to \(+\): a local (and absolute) minimum, \(f(3)=81-108=-27\).<br/>
+    \(f''\) is zero at \(x=0\) and \(x=2\) and changes sign at both: positive on \((-\infty,0)\), negative on \((0,2)\), positive on \((2,\infty)\). So \((0,0)\) and \((2,-16)\) are both <strong>inflection points</strong>.<br/><br/>
+    <strong>The surprise.</strong> The point \((0,0)\) is a critical point <em>and</em> an inflection point: the tangent is horizontal there, but the graph is falling on both sides and it flips from concave up to concave down. The graph comes down from the upper left, flattens briefly at the origin, keeps falling through the inflection point at \((2,-16)\), bottoms out at \((3,-27)\), then rises.
+            </div>
+        </details>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A graphing tool can draw \(y=x^4-4x^3\) in a second. It cannot tell you <em>why</em> the origin is both flat and a bend, and in a poorly chosen window it can hide the inflection point at \(x=2\) entirely. Use a graphing tool to <em>check</em> a sketch you have already reasoned out, then make sure you can explain every feature on it with a sign chart. If the tool and your sketch disagree, find out which of you made the error.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> Explain to a classmate why a sketch with the correct landmarks can still be wrong, and what the sign charts of \(f'\) and \(f''\) add that the landmarks alone do not.</p>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 23 Problem Set: Curve Sketching and Graph Analysis</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Sketch several curves with the full checklist and show your sign charts, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 23 Quiz: Curve Sketching and Graph Analysis</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material. Lesson 11.04 comes first, so finish it before the quiz.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A good curve sketch is an argument: gather the evidence from \(f\) itself (domain, intercepts, symmetry, asymptotes), then from \(f'\) and \(f''\) sign charts, and join the landmarks with the four shapes the signs allow. Zeros of derivatives are candidates, and signs make the decision. Lesson 11.04 reverses the direction: instead of building a graph from a formula, you will be handed a graph of \(f\), \(f'\), or \(f''\) and asked to work out the other two.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 11.03 &middot; Sketching a Curve from Its Derivatives</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

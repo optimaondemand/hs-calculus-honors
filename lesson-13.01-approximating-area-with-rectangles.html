@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 13.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 13</div>
+        <div style="font-size: 12px; color: #666;">Riemann Sums and Approximating Integrals</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 13.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Approximating Area with Rectangles</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Riemann Sums and Approximating Integrals</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 13.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Approximating Area with Rectangles</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">If you cannot write down the area under a curve, can you still get close by adding up rectangles, and know which way you missed?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Derivatives broke a changing quantity into instants. This module goes the other way and gathers instants back into a whole: a total distance from a velocity, a total amount from a rate. The first tool is wonderfully plain. Slice the interval into thin pieces, pretend the function is constant on each piece, and add up the rectangles. Today you will build three versions (left, right and midpoint), learn to tell which one overestimates and which one underestimates, and use the same machinery on a table of data. Every later idea in the module, including the exact value of an area, is built on the rectangles you draw today.</div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> compute left, right and midpoint rectangle sums with \(n\) equal pieces from a formula, a graph or a table of values.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> decide whether a left or right sum overestimates or underestimates when the function is increasing or decreasing, and explain why in a sentence.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> interpret the area under a velocity graph as distance traveled, and state a bracket for it from tabular data without claiming more than the data supports.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil; a calculator for arithmetic only.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The idea of velocity from Lessons 4.01 and 8.02, and the link between the sign of \(f'\) and increasing or decreasing from Lesson 10.02.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE AREA UNDER A VELOCITY GRAPH</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A runner wears a watch that logs her speed only once every 10 seconds. You want to estimate how far she ran in a minute. For each 10-second stretch, which speed reading would you pair with it?</div>
+          <div class="widget-options">
+            <button data-response="A sensible choice, and it has a name: the left-endpoint rule. It uses the speed she had when the stretch began. If she was speeding up, it will undercount, and by the end of this lesson you will be able to say exactly when.">The reading at the <em>start</em> of the stretch.</button>
+            <button data-response="Also sensible: the right-endpoint rule. If she was speeding up, it will overcount. The two rules lean in opposite directions, and that fact is going to be useful.">The reading at the <em>end</em> of the stretch.</button>
+            <button data-response="That is the midpoint rule, and it usually does best, because the overcount on one half of a stretch tends to cancel the undercount on the other half. We will test that today.">Something in between, like the reading from the middle of the stretch.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">You already know how to find distance when speed is constant: distance is speed times time, \(d=vt\). Draw that on a graph with time across the bottom and velocity up the side, and \(vt\) is the <strong>area of a rectangle</strong> of height \(v\) and width \(t\). The distance is an area.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">That picture does not break when the speed changes. It simply gets harder to compute. Chop the time into short pieces. On each short piece the speed is <em>almost</em> constant, so the distance covered is almost a rectangle's area. Add the rectangles and you have an estimate of the whole distance. Make the pieces thinner and the estimate should improve. Lesson 8.02 went from position to velocity by differentiating; this module runs the road in the other direction, from velocity back to total change, and it begins with rectangles.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Archimedes, working in Syracuse in the third century BCE, found the area of a region bounded by a parabola by filling it with shapes whose areas he could compute and showing that the leftover gap could be made as small as you like. He had no algebraic notation for it and no limits, only extraordinary patience. The rectangles in this module are the descendants of his method, and in Lesson 13.02 we will recover one of his results with algebra.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; LEFT, RIGHT AND MIDPOINT SUMS</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Every rectangle approximation needs the same three decisions: the interval \([a,b]\), the number of pieces \(n\), and which point of each piece sets the height.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Rectangle sums with \(n\) equal pieces</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Cut \([a,b]\) into \(n\) pieces of equal width \(\Delta x=\dfrac{b-a}{n}\), with endpoints \(x_i=a+i\,\Delta x\) for \(i=0,1,\dots,n\). Then\[ L_n=\Delta x\,[f(x_0)+f(x_1)+\cdots+f(x_{n-1})],\qquad R_n=\Delta x\,[f(x_1)+f(x_2)+\cdots+f(x_n)], \]\[ M_n=\Delta x\,[f(m_1)+f(m_2)+\cdots+f(m_n)],\quad m_i=\tfrac{x_{i-1}+x_i}{2}. \]These are the <strong>left</strong>, <strong>right</strong> and <strong>midpoint</strong> sums. Each uses exactly \(n\) heights.</div>
+        </div>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: \(f(x)=x^2\) on \([0,2]\), \(n=4\)</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here \(\Delta x=\dfrac{2-0}{4}=0.5\), and the endpoints are \(0,\ 0.5,\ 1,\ 1.5,\ 2\). Lay the work out in a vertical table, the way you would on paper:</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;"><table style="border-collapse: collapse; font-size: 16px; color: #1a2340; min-width: 420px;"><tr style="background:#EEF1F8;"><th style="border:1px solid #D0D9E8; padding:6px 12px;">Piece</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">Left height \(f(x_{i-1})\)</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">Right height \(f(x_i)\)</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">Midpoint height</th></tr><tr><td style="border:1px solid #D0D9E8; padding:6px 12px;">\([0,0.5]\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(0\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(0.25\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(f(0.25)=0.0625\)</td></tr><tr><td style="border:1px solid #D0D9E8; padding:6px 12px;">\([0.5,1]\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(0.25\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(1\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(f(0.75)=0.5625\)</td></tr><tr><td style="border:1px solid #D0D9E8; padding:6px 12px;">\([1,1.5]\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(1\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(2.25\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(f(1.25)=1.5625\)</td></tr><tr><td style="border:1px solid #D0D9E8; padding:6px 12px;">\([1.5,2]\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(2.25\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(4\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(f(1.75)=3.0625\)</td></tr><tr style="background:#FDF3E3;"><td style="border:1px solid #D0D9E8; padding:6px 12px;"><strong>Sum of heights</strong></td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(3.5\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(7.5\)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(5.25\)</td></tr></table></div>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ L_4=0.5(3.5)=1.75,\qquad R_4=0.5(7.5)=3.75,\qquad M_4=0.5(5.25)=2.625. \]
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:14px; margin: 14px 0; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:8px; padding:12px;"><div style="flex:1; min-width:250px; text-align:center;"><svg viewBox="0 0 330 230" width="100%" style="max-width:330px;" role="img" aria-label="Four left-endpoint rectangles under y = x squared on 0 to 2" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif"><rect x="34.0" y="202.0" width="71.5" height="0.0" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="105.5" y="191.6" width="71.5" height="10.4" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="177.0" y="160.2" width="71.5" height="41.8" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="248.5" y="108.0" width="71.5" height="94.0" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><polyline points="34.0,202.0 36.4,202.0 38.8,202.0 41.1,201.9 43.5,201.8 45.9,201.7 48.3,201.6 50.7,201.4 53.1,201.3 55.5,201.1 57.8,200.8 60.2,200.6 62.6,200.3 65.0,200.0 67.4,199.7 69.8,199.4 72.1,199.0 74.5,198.6 76.9,198.2 79.3,197.8 81.7,197.4 84.0,196.9 86.4,196.4 88.8,195.9 91.2,195.3 93.6,194.7 96.0,194.2 98.4,193.5 100.7,192.9 103.1,192.2 105.5,191.6 107.9,190.8 110.3,190.1 112.7,189.4 115.0,188.6 117.4,187.8 119.8,187.0 122.2,186.1 124.6,185.2 127.0,184.3 129.3,183.4 131.7,182.5 134.1,181.5 136.5,180.5 138.9,179.5 141.2,178.5 143.6,177.4 146.0,176.4 148.4,175.3 150.8,174.1 153.2,173.0 155.6,171.8 157.9,170.6 160.3,169.4 162.7,168.2 165.1,166.9 167.5,165.6 169.8,164.3 172.2,163.0 174.6,161.6 177.0,160.2 179.4,158.8 181.8,157.4 184.2,155.9 186.5,154.5 188.9,153.0 191.3,151.4 193.7,149.9 196.1,148.3 198.4,146.7 200.8,145.1 203.2,143.5 205.6,141.8 208.0,140.2 210.4,138.5 212.8,136.7 215.1,135.0 217.5,133.2 219.9,131.4 222.3,129.6 224.7,127.7 227.1,125.9 229.4,124.0 231.8,122.1 234.2,120.1 236.6,118.2 239.0,116.2 241.3,114.2 243.7,112.1 246.1,110.1 248.5,108.0 250.9,105.9 253.3,103.8 255.7,101.6 258.0,99.5 260.4,97.3 262.8,95.0 265.2,92.8 267.6,90.5 269.9,88.3 272.3,86.0 274.7,83.6 277.1,81.3 279.5,78.9 281.9,76.5 284.2,74.1 286.6,71.6 289.0,69.1 291.4,66.6 293.8,64.1 296.2,61.6 298.6,59.0 300.9,56.4 303.3,53.8 305.7,51.2 308.1,48.5 310.5,45.8 312.8,43.1 315.2,40.4 317.6,37.7 320.0,34.9" fill="none" stroke="#0E1C42" stroke-width="2.2"/><line x1="34" y1="202.0" x2="320" y2="202.0" stroke="#6b7a99" stroke-width="1.2"/><line x1="34" y1="14" x2="34" y2="202.0" stroke="#6b7a99" stroke-width="1.2"/><text x="34.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">0</text><text x="177.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">1</text><text x="320.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">2</text><text x="29" y="206.0" font-size="11" fill="#444" text-anchor="end">0</text><text x="29" y="164.2" font-size="11" fill="#444" text-anchor="end">1</text><text x="29" y="122.4" font-size="11" fill="#444" text-anchor="end">2</text><text x="29" y="80.7" font-size="11" fill="#444" text-anchor="end">3</text><text x="29" y="38.9" font-size="11" fill="#444" text-anchor="end">4</text></svg><div style="font-size:14px; color:#1a2340; margin-top:4px;">Left sum, \(n=4\): every rectangle sits <em>under</em> the curve.</div></div><div style="flex:1; min-width:250px; text-align:center;"><svg viewBox="0 0 330 230" width="100%" style="max-width:330px;" role="img" aria-label="Four right-endpoint rectangles under y = x squared on 0 to 2" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif"><rect x="34.0" y="191.6" width="71.5" height="10.4" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="105.5" y="160.2" width="71.5" height="41.8" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="177.0" y="108.0" width="71.5" height="94.0" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><rect x="248.5" y="34.9" width="71.5" height="167.1" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/><polyline points="34.0,202.0 36.4,202.0 38.8,202.0 41.1,201.9 43.5,201.8 45.9,201.7 48.3,201.6 50.7,201.4 53.1,201.3 55.5,201.1 57.8,200.8 60.2,200.6 62.6,200.3 65.0,200.0 67.4,199.7 69.8,199.4 72.1,199.0 74.5,198.6 76.9,198.2 79.3,197.8 81.7,197.4 84.0,196.9 86.4,196.4 88.8,195.9 91.2,195.3 93.6,194.7 96.0,194.2 98.4,193.5 100.7,192.9 103.1,192.2 105.5,191.6 107.9,190.8 110.3,190.1 112.7,189.4 115.0,188.6 117.4,187.8 119.8,187.0 122.2,186.1 124.6,185.2 127.0,184.3 129.3,183.4 131.7,182.5 134.1,181.5 136.5,180.5 138.9,179.5 141.2,178.5 143.6,177.4 146.0,176.4 148.4,175.3 150.8,174.1 153.2,173.0 155.6,171.8 157.9,170.6 160.3,169.4 162.7,168.2 165.1,166.9 167.5,165.6 169.8,164.3 172.2,163.0 174.6,161.6 177.0,160.2 179.4,158.8 181.8,157.4 184.2,155.9 186.5,154.5 188.9,153.0 191.3,151.4 193.7,149.9 196.1,148.3 198.4,146.7 200.8,145.1 203.2,143.5 205.6,141.8 208.0,140.2 210.4,138.5 212.8,136.7 215.1,135.0 217.5,133.2 219.9,131.4 222.3,129.6 224.7,127.7 227.1,125.9 229.4,124.0 231.8,122.1 234.2,120.1 236.6,118.2 239.0,116.2 241.3,114.2 243.7,112.1 246.1,110.1 248.5,108.0 250.9,105.9 253.3,103.8 255.7,101.6 258.0,99.5 260.4,97.3 262.8,95.0 265.2,92.8 267.6,90.5 269.9,88.3 272.3,86.0 274.7,83.6 277.1,81.3 279.5,78.9 281.9,76.5 284.2,74.1 286.6,71.6 289.0,69.1 291.4,66.6 293.8,64.1 296.2,61.6 298.6,59.0 300.9,56.4 303.3,53.8 305.7,51.2 308.1,48.5 310.5,45.8 312.8,43.1 315.2,40.4 317.6,37.7 320.0,34.9" fill="none" stroke="#0E1C42" stroke-width="2.2"/><line x1="34" y1="202.0" x2="320" y2="202.0" stroke="#6b7a99" stroke-width="1.2"/><line x1="34" y1="14" x2="34" y2="202.0" stroke="#6b7a99" stroke-width="1.2"/><text x="34.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">0</text><text x="177.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">1</text><text x="320.0" y="220.0" font-size="11" fill="#444" text-anchor="middle">2</text><text x="29" y="206.0" font-size="11" fill="#444" text-anchor="end">0</text><text x="29" y="164.2" font-size="11" fill="#444" text-anchor="end">1</text><text x="29" y="122.4" font-size="11" fill="#444" text-anchor="end">2</text><text x="29" y="80.7" font-size="11" fill="#444" text-anchor="end">3</text><text x="29" y="38.9" font-size="11" fill="#444" text-anchor="end">4</text></svg><div style="font-size:14px; color:#1a2340; margin-top:4px;">Right sum, \(n=4\): every rectangle pokes <em>over</em> the curve.</div></div></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Narrate it as you would to a classmate: &ldquo;I cut \([0,2]\) into four pieces of width \(0.5\). The left sum reads each height at the left end of its piece, so it uses \(f(0),f(0.5),f(1),f(1.5)\). The right sum shifts every reading one step to the right. Each sum multiplies the total of the heights by the width.&rdquo; The true area is somewhere between \(1.75\) and \(3.75\), and the midpoint sum, \(2.625\), is already close to the value we will prove in Lesson 13.02, \(\tfrac83\approx2.667\).</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Two slips account for most lost points here. First, the width is \(\Delta x=\dfrac{b-a}{n}\), the length of the interval divided by the <em>number of pieces</em>, not \(b-a\) and not \(\dfrac{b-a}{n+1}\). Second, a left sum and a right sum each use exactly \(n\) heights. The left sum drops the last endpoint and the right sum drops the first, so the two lists are not the same list. Count your heights before you multiply.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: for \(f(x)=9-x^2\) on \([0,3]\) with \(n=3\), compute \(L_3\), \(R_3\) and \(M_3\). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(\Delta x=1\). Left heights: \(f(0)=9,\ f(1)=8,\ f(2)=5\), so \(L_3=1(9+8+5)=22\). Right heights: \(f(1)=8,\ f(2)=5,\ f(3)=0\), so \(R_3=13\). Midpoints \(0.5,\ 1.5,\ 2.5\): \(f=8.75,\ 6.75,\ 2.75\), so \(M_3=18.25\). The exact area is \(18\), which you will be able to prove soon: it lies between \(R_3=13\) and \(L_3=22\), and the midpoint sum is the closest of the three.
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; TOO BIG OR TOO SMALL?</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Notice that for \(f(x)=x^2\) on \([0,2]\) the left sum was too small and the right sum was too big. That was not luck. On \([0,2]\) this function is <em>increasing</em> (Lesson 10.02 tells you why: \(f'(x)=2x>0\)), so on every piece the smallest height is at the left end and the largest is at the right end. A left rectangle fits under the curve and a right rectangle sticks up above it.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Over and under for a monotone function</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(f\) is <strong>increasing</strong> on \([a,b]\), then \(L_n\le\) (true area) \(\le R_n\). If \(f\) is <strong>decreasing</strong>, the inequalities reverse: \(R_n\le\) (true area) \(\le L_n\). Either way the true area is trapped between the left sum and the right sum.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example (a decreasing function).</strong> Let \(f(x)=\dfrac1x\) on \([1,3]\) with \(n=4\), so \(\Delta x=0.5\). Left heights \(f(1),f(1.5),f(2),f(2.5)=1,\ 0.6667,\ 0.5,\ 0.4\) give \(L_4=0.5(2.5667)\approx1.2833\). Right heights \(f(1.5),f(2),f(2.5),f(3)=0.6667,\ 0.5,\ 0.4,\ 0.3333\) give \(R_4=0.5(1.9)=0.95\). Because \(f\) is decreasing, the area lies between \(0.95\) and \(1.2833\). (Soon you will be able to show that the exact area is \(\ln3\approx1.0986\), inside the bracket, as the theorem promised.)</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Why more pieces help.</strong> For \(f(x)=x^2\) on \([0,2]\), doubling to \(n=8\) gives \(L_8=2.1875\), \(R_8=3.1875\) and \(M_8=2.65625\). The left and right errors, measured from the exact area \(\tfrac83\approx2.667\), fall from about \(0.92\) and \(1.08\) to about \(0.48\) and \(0.52\): roughly half as large. Thinner rectangles waste less. The bracket closes in, which is exactly the behavior Lesson 13.02 will turn into a limit.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The &ldquo;trapped between&rdquo; guarantee needs \(f\) to be monotone on the whole interval. If a function rises and then falls, a left sum can overcount on one piece and undercount on the next, and the true area need not lie between \(L_n\) and \(R_n\). The midpoint sum carries no over/under guarantee even for monotone functions. State a bracket only when you have checked the hypothesis.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 4 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; WHEN THE DATA IS A TABLE</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Real data arrives as a table, not a formula, and the same sums work on it. The widths are the gaps between readings, the heights are the readings, and the units multiply: meters per second times seconds gives meters.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example.</strong> A cart's velocity is recorded every 2 seconds, and the readings never decrease:</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;"><table style="border-collapse: collapse; font-size: 16px; color: #1a2340; min-width: 420px; text-align:center;"><tr style="background:#EEF1F8;"><th style="border:1px solid #D0D9E8; padding:6px 12px;">\(t\) (s)</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">0</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">2</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">4</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">6</th><th style="border:1px solid #D0D9E8; padding:6px 12px;">8</th></tr><tr><td style="border:1px solid #D0D9E8; padding:6px 12px;">\(v\) (m/s)</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">0</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">6</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">10</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">12</td><td style="border:1px solid #D0D9E8; padding:6px 12px;">13</td></tr></table></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">With \(\Delta t=2\) and four pieces: the left sum is \(2(0+6+10+12)=56\) m, and the right sum is \(2(6+10+12+13)=82\) m. If the cart never slowed down, the distance traveled is at least \(56\) m and at most \(82\) m. Notice the honesty in that sentence. We did not say the cart traveled \(69\) m, the average of the two, and we did not claim anything about what happened <em>between</em> readings beyond the assumption that the velocity never decreased. A table can support a bracket; it cannot support a decimal place the data never contained.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> in two sentences, why does the area under a velocity graph measure distance? Then say what would change if the cart were reversing, so that the velocity were negative on some stretch.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; READING THE RECTANGLES</div>
+          <div class="widget-question">Decide each one, then check yourself.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. On each piece a decreasing function is smallest at the right end, so every right rectangle sits under the curve. Right sums underestimate decreasing functions, and left sums overestimate them." data-hint="Sketch a falling curve and draw one right-endpoint rectangle on it. Is the top of the rectangle above or below the curve over the rest of that piece?">
+            <div class="widget-row-prompt">1. \(f\) is <em>decreasing</em> on \([a,b]\). The right-endpoint sum \(R_n\) is&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">an overestimate of the area</button>
+              <button data-choice="1">an underestimate of the area</button>
+              <button data-choice="2">exactly the area</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Delta x = (5 - 1)/8 = 4/8 = 0.5. The interval length is b - a = 4, divided by the number of pieces." data-hint="Use Delta x = (b - a)/n. What is b - a here, and what do you divide it by?">
+            <div class="widget-row-prompt">2. For \(f(x)=x^2\) on \([1,5]\) with \(n=8\), the width \(\Delta x\) is&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">\(0.5\)</button>
+              <button data-choice="1">\(0.4\)</button>
+              <button data-choice="2">\(\tfrac58\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. With a monotone increasing velocity, the left sum is a lower bound and the right sum an upper bound. The table alone does not let you name a single exact distance." data-hint="Which sum is a lower bound for an increasing function, and which is an upper bound? Can a bracket ever pin down one exact number?">
+            <div class="widget-row-prompt">3. A velocity table that never decreases gives \(L=50\) m and \(R=75\) m. The best statement about the distance is&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">exactly \(50\) m</button>
+              <button data-choice="1">exactly \(75\) m</button>
+              <button data-choice="2">at least \(50\) m and at most \(75\) m</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 26 Problem Set: Riemann Sums</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Compute left, right and midpoint sums, bracket areas, and work from tables, then upload your completed pages. Finish Lesson 13.02 first, since the set uses both lessons.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 26 Quiz: Riemann Sums</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material. Lesson 13.02 comes next, so finish it before the quiz.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A rectangle sum estimates an area by adding \(\Delta x\) times a list of heights, with \(\Delta x=\dfrac{b-a}{n}\) and exactly \(n\) heights taken at the left ends, the right ends or the midpoints of the pieces. For a monotone function the left and right sums trap the true area between them, and thinner rectangles close the gap. When the area under a velocity graph is the distance, the same sums estimate distance from a table. Lesson 13.02 gives the sums a language, sigma notation, and then asks what happens to \(R_n\) as \(n\) grows without bound.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 13.01 &middot; Approximating Area with Rectangles</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

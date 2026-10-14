@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 10.03</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 10</div>
+        <div style="font-size: 12px; color: #666;">Increasing, Decreasing, and Extrema</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 10.03</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Absolute Extrema on a Closed Interval</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Increasing, Decreasing, and Extrema</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 10.03</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Absolute Extrema on a Closed Interval</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">A local maximum is the top of a hill. An absolute maximum is the highest point of all, and it is not always on a hill.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">In Lessons 10.01 and 10.02 you found where a function has local highs and lows, and you used the sign of the derivative to say which are which. Today the question gets bigger: over an entire interval, where is the function truly largest, and where is it truly smallest? The answer is a finite checklist. The Extreme Value Theorem (Lesson 3.04) promises that on a closed interval the extremes exist; Fermat's Theorem (Lesson 8.03) shows they can only be at critical points or endpoints; and a table of values finishes the job. You will also learn to say, honestly, when that promise does not apply.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> explain the difference between local and absolute extrema, and state the hypotheses of the Extreme Value Theorem that make absolute extrema exist.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> use the Closed Interval Method to find the absolute maximum and minimum values of a continuous function on \([a,b]\), and state both the values and where they occur.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> decide when the Closed Interval Method does not apply, and find an absolute extremum another way or explain why none exists.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and a calculator for arithmetic only.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The Extreme Value Theorem from Lesson 3.04, critical points from Lesson 10.01, and the First Derivative Test from Lesson 10.02.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; LOCAL VERSUS ABSOLUTE, AND THE CLOSED INTERVAL METHOD</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A hiker walks a marked trail from mile 0 to mile 6 and records her elevation the whole way. Where must the highest point of the trail be? Make a prediction before you read on.</div>
+          <div class="widget-options">
+            <button data-response="That is the usual instinct, and it is only half right. If the trail climbs steadily and finishes at the summit, the highest point is the endpoint, with no hilltop in sight. Today's method is built to catch exactly that case.">At the top of one of the hills, never at the very start or the very end of the trail.</button>
+            <button data-response="Exactly. A highest point on a closed stretch of trail is either a place where the ground levels off (a hilltop) or a place where the trail simply stops. Calculus makes this a finite list you can check, and that list is the whole method.">Either on a hilltop or at one of the two ends of the trail, so I have to check both kinds of place.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lessons 10.01 and 10.02 taught you to find <em>local</em> extrema: places where a function is higher or lower than everything nearby. A local maximum is the top of a hill, but it may not be the highest point anywhere. Today's question is different, and more practical: over a whole stretch of the graph, where is the function <em>largest</em> and where is it <em>smallest</em>? Engineers, economists, and anyone who has asked &ldquo;what is the most I can get?&rdquo; are asking this question.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Definition: absolute extrema</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Let \(f\) be defined on a set \(S\), and let \(c\) be in \(S\). Then \(f(c)\) is the <strong>absolute maximum</strong> of \(f\) on \(S\) if \(f(c)\ge f(x)\) for every \(x\) in \(S\), and the <strong>absolute minimum</strong> if \(f(c)\le f(x)\) for every \(x\) in \(S\). The absolute maximum and minimum values are called the <strong>absolute extrema</strong>.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Notice the vocabulary. The <em>value</em> \(f(c)\) is the extremum; the input \(c\) is the <em>place where it occurs</em>. A careful answer states both: &ldquo;the absolute maximum value is 17, and it occurs at \(x=4\).&rdquo;</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Recall the Extreme Value Theorem from Lesson 3.04: <strong>if \(f\) is continuous on a closed interval \([a,b]\), then \(f\) has both an absolute maximum and an absolute minimum on \([a,b]\).</strong> That theorem says the extrema <em>exist</em>. It does not say where they are. The derivative does that work.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Why the method works.</strong> Suppose an absolute maximum occurs at a point \(c\) of the open interval \((a,b)\). Being the highest point on the whole interval, it is certainly the highest point nearby, so \(f(c)\) is also a local maximum. Fermat's Theorem (Lesson 8.03, used again in Lesson 10.01) says that at an interior local extremum, either \(f'(c)=0\) or \(f'(c)\) does not exist. That is, \(c\) is a critical point. So an absolute extremum can hide in only two kinds of places: a critical point in \((a,b)\), or an endpoint \(a\) or \(b\). The same argument works for a minimum.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The Closed Interval Method</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">To find the absolute maximum and minimum of a continuous function \(f\) on a closed interval \([a,b]\):<br/>1. Check that \(f\) is continuous on \([a,b]\).<br/>2. Find every critical point of \(f\) in the open interval \((a,b)\).<br/>3. Evaluate \(f\) at each of those critical points and at the two endpoints \(a\) and \(b\).<br/>4. The largest of these values is the absolute maximum; the smallest is the absolute minimum.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Step 3 is the part students are tempted to skip. You are not asking whether a critical point is a max or a min (the First Derivative Test from Lesson 10.02 does that, and it is not needed here). You are just comparing numbers, and the biggest and smallest numbers win.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1.</strong> Find the absolute extrema of \(f(x)=x^3-3x^2+1\) on \([-1,4]\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>Step 1.</em> \(f\) is a polynomial, so it is continuous on \([-1,4]\). <em>Step 2.</em> \(f'(x)=3x^2-6x=3x(x-2)\), which is zero at \(x=0\) and \(x=2\). Both lie in \((-1,4)\), and \(f'\) exists everywhere, so these are all the critical points. <em>Step 3.</em> Make a table:</p>
+        <table style="border-collapse: collapse; margin: 10px auto 14px auto; font-size: 17px; color: #1a2340;">
+            <tr style="background:#EEF1F8;"><th style="border:1px solid #D0D9E8; padding:6px 16px;">\(x\)</th><th style="border:1px solid #D0D9E8; padding:6px 16px;">\(-1\) (endpoint)</th><th style="border:1px solid #D0D9E8; padding:6px 16px;">\(0\)</th><th style="border:1px solid #D0D9E8; padding:6px 16px;">\(2\)</th><th style="border:1px solid #D0D9E8; padding:6px 16px;">\(4\) (endpoint)</th></tr>
+            <tr><td style="border:1px solid #D0D9E8; padding:6px 16px; text-align:center;">\(f(x)\)</td><td style="border:1px solid #D0D9E8; padding:6px 16px; text-align:center;">\(-3\)</td><td style="border:1px solid #D0D9E8; padding:6px 16px; text-align:center;">\(1\)</td><td style="border:1px solid #D0D9E8; padding:6px 16px; text-align:center;">\(-3\)</td><td style="border:1px solid #D0D9E8; padding:6px 16px; text-align:center;">\(17\)</td></tr>
+        </table>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">For instance, \(f(4)=64-48+1=17\) and \(f(2)=8-12+1=-3\). <em>Step 4.</em> The largest value is \(17\) and the smallest is \(-3\). So the <strong>absolute maximum value is 17, at \(x=4\)</strong>, and the <strong>absolute minimum value is \(-3\), attained at both \(x=-1\) and \(x=2\)</strong>. An extremum can be attained at more than one place. The local maximum at \(x=0\) (value 1) is only a hilltop; it is not the highest point on the interval, because the graph climbs past it all the way to \(x=4\).</p>
+        <div style="background:#FFFFFF; border:1px solid #D0D9E8; border-radius:6px; padding:10px; margin:14px 0;"><svg viewBox="0 0 560 270" width="100%" style="max-width:560px;display:block;margin:0 auto;" role="img" aria-label="Graph of x cubed minus 3 x squared plus 1 on the interval from negative 1 to 4, with the absolute maximum at x equals 4 and the absolute minimum attained at x equals negative 1 and x equals 2." xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="560" height="270" fill="#FFFFFF"/><line x1="44.0" y1="197.8" x2="542.0" y2="197.8" stroke="#6b7a99" stroke-width="1.2"/><line x1="162.2" y1="22.0" x2="162.2" y2="244.0" stroke="#6b7a99" stroke-width="1.2"/><polyline fill="none" stroke="#0E1C42" stroke-width="2.6"  points="77.8,225.5 79.5,223.8 81.3,222.1 83.0,220.5 84.8,218.9 86.6,217.4 88.3,215.9 90.1,214.5 91.8,213.1 93.6,211.8 95.3,210.5 97.1,209.2 98.9,208.0 100.6,206.8 102.4,205.7 104.1,204.6 105.9,203.6 107.7,202.6 109.4,201.6 111.2,200.7 112.9,199.8 114.7,198.9 116.4,198.1 118.2,197.3 120.0,196.6 121.7,195.9 123.5,195.2 125.2,194.6 127.0,194.0 128.8,193.4 130.5,192.9 132.3,192.4 134.0,191.9 135.8,191.5 137.6,191.1 139.3,190.7 141.1,190.4 142.8,190.1 144.6,189.8 146.3,189.5 148.1,189.3 149.9,189.1 151.6,189.0 153.4,188.8 155.1,188.7 156.9,188.6 158.7,188.5 160.4,188.5 162.2,188.5 163.9,188.5 165.7,188.5 167.4,188.6 169.2,188.7 171.0,188.8 172.7,188.9 174.5,189.1 176.2,189.2 178.0,189.4 179.8,189.6 181.5,189.8 183.3,190.1 185.0,190.4 186.8,190.6 188.5,190.9 190.3,191.2 192.1,191.6 193.8,191.9 195.6,192.3 197.3,192.6 199.1,193.0 200.9,193.4 202.6,193.9 204.4,194.3 206.1,194.7 207.9,195.2 209.6,195.6 211.4,196.1 213.2,196.6 214.9,197.1 216.7,197.6 218.4,198.1 220.2,198.6 222.0,199.1 223.7,199.7 225.5,200.2 227.2,200.8 229.0,201.3 230.7,201.9 232.5,202.4 234.3,203.0 236.0,203.5 237.8,204.1 239.5,204.7 241.3,205.3 243.1,205.8 244.8,206.4 246.6,207.0 248.3,207.6 250.1,208.2 251.9,208.7 253.6,209.3 255.4,209.9 257.1,210.5 258.9,211.0 260.6,211.6 262.4,212.1 264.2,212.7 265.9,213.2 267.7,213.8 269.4,214.3 271.2,214.9 273.0,215.4 274.7,215.9 276.5,216.4 278.2,216.9 280.0,217.4 281.7,217.9 283.5,218.4 285.3,218.8 287.0,219.3 288.8,219.7 290.5,220.1 292.3,220.6 294.1,221.0 295.8,221.4 297.6,221.7 299.3,222.1 301.1,222.4 302.8,222.8 304.6,223.1 306.4,223.4 308.1,223.6 309.9,223.9 311.6,224.2 313.4,224.4 315.2,224.6 316.9,224.8 318.7,224.9 320.4,225.1 322.2,225.2 323.9,225.3 325.7,225.4 327.5,225.5 329.2,225.5 331.0,225.5 332.7,225.5 334.5,225.5 336.3,225.4 338.0,225.3 339.8,225.2 341.5,225.0 343.3,224.9 345.1,224.7 346.8,224.5 348.6,224.2 350.3,223.9 352.1,223.6 353.8,223.3 355.6,222.9 357.4,222.5 359.1,222.1 360.9,221.6 362.6,221.1 364.4,220.6 366.2,220.0 367.9,219.4 369.7,218.8 371.4,218.1 373.2,217.4 374.9,216.7 376.7,215.9 378.5,215.1 380.2,214.2 382.0,213.3 383.7,212.4 385.5,211.4 387.3,210.4 389.0,209.4 390.8,208.3 392.5,207.2 394.3,206.0 396.0,204.8 397.8,203.5 399.6,202.2 401.3,200.9 403.1,199.5 404.8,198.1 406.6,196.6 408.4,195.1 410.1,193.5 411.9,191.9 413.6,190.2 415.4,188.5 417.1,186.7 418.9,184.9 420.7,183.1 422.4,181.2 424.2,179.2 425.9,177.2 427.7,175.2 429.5,173.0 431.2,170.9 433.0,168.7 434.7,166.4 436.5,164.1 438.2,161.7 440.0,159.3 441.8,156.8 443.5,154.2 445.3,151.6 447.0,149.0 448.8,146.3 450.6,143.5 452.3,140.7 454.1,137.8 455.8,134.8 457.6,131.8 459.4,128.8 461.1,125.7 462.9,122.5 464.6,119.2 466.4,115.9 468.1,112.5 469.9,109.1 471.7,105.6 473.4,102.0 475.2,98.4 476.9,94.7 478.7,90.9 480.5,87.1 482.2,83.2 484.0,79.3 485.7,75.2 487.5,71.1 489.2,67.0 491.0,62.7 492.8,58.4 494.5,54.1 496.3,49.6 498.0,45.1 499.8,40.5"/><circle cx="77.8" cy="225.5" r="6" fill="#C7922C" stroke="#0E1C42" stroke-width="1.2"/><circle cx="162.2" cy="188.5" r="6" fill="#FFFFFF" stroke="#0E1C42" stroke-width="1.2"/><circle cx="331.0" cy="225.5" r="6" fill="#C7922C" stroke="#0E1C42" stroke-width="1.2"/><circle cx="499.8" cy="40.5" r="6" fill="#C7922C" stroke="#0E1C42" stroke-width="1.2"/><text x="85.8" y="243.5" font-size="13" fill="#0E1C42" text-anchor="start" font-family="Segoe UI,Arial,sans-serif">endpoint (&minus;1, &minus;3)</text><text x="172.2" y="180.5" font-size="13" fill="#0E1C42" text-anchor="start" font-family="Segoe UI,Arial,sans-serif">local max (0, 1)</text><text x="339.0" y="243.5" font-size="13" fill="#0E1C42" text-anchor="start" font-family="Segoe UI,Arial,sans-serif">abs. min also at (2, &minus;3)</text><text x="489.8" y="38.5" font-size="13" fill="#0E1C42" text-anchor="end" font-family="Segoe UI,Arial,sans-serif">abs. max (4, 17)</text></svg><div style="font-size: 14px; color: #666; text-align: center; margin: 4px 0 12px 0; font-style: italic;">The graph of f(x) = x&sup3; &minus; 3x&sup2; + 1 on [&minus;1, 4]. Gold points are where the absolute extrema occur.</div></div>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Two slips cost students the most points. First, <strong>forgetting the endpoints</strong>: in Example 1 the absolute maximum is an endpoint, and a student who only checks \(f'(x)=0\) would wrongly report \(1\). Second, <strong>reporting the place instead of the value</strong>: the absolute maximum value is 17, not 4. Write both, and label which is which.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2 (a critical point where \(f'\) does not exist).</strong> Find the absolute extrema of \(f(x)=\sqrt[3]{x^2}=x^{2/3}\) on \([-1,8]\). Here \(f\) is continuous on the interval, and \(f'(x)=\dfrac{2}{3}x^{-1/3}=\dfrac{2}{3\sqrt[3]{x}}\). This is never zero, but it fails to exist at \(x=0\), which is in \((-1,8)\) and in the domain of \(f\). So \(x=0\) is the only critical point. Compare \(f(-1)=1\), \(f(0)=0\), \(f(8)=4\). The absolute maximum value is \(4\) at \(x=8\); the absolute minimum value is \(0\) at \(x=0\), a sharp point of the graph (a cusp, as in Lesson 9.02) where the derivative does not exist. The method caught it because Step 2 includes points where \(f'\) is undefined.</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find the absolute extrema of \(g(x)=x^3-12x\) on \([-3,5]\). Write the critical points, the table of values, and the conclusion in a full sentence. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(g'(x)=3x^2-12=3(x-2)(x+2)\), so the critical points are \(x=\pm2\), both in \((-3,5)\). The values: \(g(-3)=-27+36=9\), \(g(-2)=-8+24=16\), \(g(2)=8-24=-16\), \(g(5)=125-60=65\). The absolute maximum value is \(65\), at \(x=5\) (an endpoint), and the absolute minimum value is \(-16\), at \(x=2\) (a critical point). Notice that the local maximum \(16\) at \(x=-2\) is not the absolute maximum.
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; WHEN THE GUARANTEE FAILS</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The Closed Interval Method rests on the Extreme Value Theorem, and the Extreme Value Theorem has hypotheses: \(f\) must be continuous, and the interval must be closed. Optima mathematics keeps asking the same honest question of every theorem: <em>do its hypotheses actually hold here?</em> Watch what happens when they do not.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The interval is not closed.</strong> Consider \(f(x)=x^2\) on the open interval \((-1,2)\). The smallest value is \(f(0)=0\). But there is no largest value: the function climbs toward \(4\) as \(x\) approaches \(2\), and \(x=2\) is not allowed, so it never gets there. Every value you could name as a maximum is beaten by a value slightly closer to \(2\). The theorem did not apply, and indeed there is no absolute maximum.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The function is not continuous.</strong> Consider \(f(x)=\tan x\) on \([0,\pi]\). The interval is closed, but \(f\) has an infinite discontinuity at \(x=\pi/2\), and it grows without bound just to its left. There is no absolute maximum. Likewise \(f(x)=\dfrac1x\) on \((0,1]\) is continuous on a half-open interval, grows without bound near \(0\), and has no absolute maximum, though its absolute minimum, \(f(1)=1\), exists.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A failed hypothesis cancels the <em>guarantee</em>, not necessarily the <em>result</em>. On \((-1,2)\), \(x^2\) has no absolute maximum, yet it does have an absolute minimum. The Extreme Value Theorem simply stops promising anything. When the hypotheses fail, you must reason directly about what the function actually does.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>A single critical point on a non-closed interval.</strong> Sometimes the work you already know how to do answers the question without the Closed Interval Method. Take \(f(x)=x^2-4x+5\) on \((-\infty,\infty)\). Here \(f'(x)=2x-4\), which is negative for \(x<2\) and positive for \(x>2\) (Lesson 10.02). So \(f\) decreases all the way down to \(x=2\) and then increases forever after. The graph never goes below the value at \(x=2\), so the absolute minimum value is \(f(2)=4-8+5=1\), at \(x=2\). There is no absolute maximum, because \(f(x)\to\infty\) in both directions. The Extreme Value Theorem never applied; monotonicity did the job.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; WHICH TOOL, AND WHAT FOLLOWS?</div>
+          <div class="widget-question">For each situation, choose the statement that is true.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Only critical points inside the open interval \((0,5)\) count, and the endpoints always count. The critical point \(x=7\) is outside \([0,5]\), so it is discarded." data-hint="Which of the points 0, 2, 5, and 7 actually lie in the interval [0,5]? Endpoints are always candidates.">
+            <div class="widget-row-prompt">1. \(f\) is continuous on \([0,5]\), and \(f'(x)=0\) at \(x=2\) and \(x=7\). To find the absolute extrema you should:</div>
+            <div class="widget-options">
+              <button data-choice="0">compare \(f(0)\), \(f(2)\), \(f(7)\), and \(f(5)\)</button>
+              <button data-choice="1">compare \(f(0)\), \(f(2)\), and \(f(5)\) only, because \(x=7\) is outside the interval</button>
+              <button data-choice="2">compare only \(f(2)\) and \(f(7)\), because those are the critical points</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Continuity alone is not enough; the interval must also be closed. Compare \(f(x)=\dfrac1x\) on \((0,3)\) or \(f(x)=x\) on \((0,3)\): neither attains a maximum." data-hint="Look at \(f(x)=x\) on \((0,3)\). Does it ever reach its supremum, 3?">
+            <div class="widget-row-prompt">2. \(f\) is continuous on the <em>open</em> interval \((0,3)\). Does the Extreme Value Theorem guarantee an absolute maximum?</div>
+            <div class="widget-options">
+              <button data-choice="0">Yes, because \(f\) is continuous</button>
+              <button data-choice="1">Yes, because \(f\) is continuous and the interval is bounded</button>
+              <button data-choice="2">No: the theorem requires a closed interval, so it promises nothing here</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. \(f(-1)=-3\) and \(f(2)=-3\): the same minimum value is attained at two different inputs. Extrema can be tied." data-hint="Evaluate f(-1) and f(2) and compare.">
+            <div class="widget-row-prompt">3. For \(f(x)=x^3-3x^2+1\) on \([-1,4]\) the absolute minimum value is \(-3\). Which statement is correct?</div>
+            <div class="widget-options">
+              <button data-choice="0">It occurs only at \(x=2\), the critical point</button>
+              <button data-choice="1">It occurs at both \(x=-1\) and \(x=2\)</button>
+              <button data-choice="2">It occurs only at \(x=-1\), the endpoint</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; THE METHOD IN CONTEXT</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The method is the same when the function describes something real; what changes is the sentence you write at the end. A particle moves along a line with position \(s(t)=t^3-6t^2+9t\) metres at time \(t\) seconds, for \(0\le t\le5\). What are the greatest and the least positions it reaches during those five seconds? In other words, what are the absolute extrema of \(s\) on \([0,5]\)?</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>Critical points.</em> \(s'(t)=3t^2-12t+9=3(t-1)(t-3)\), zero at \(t=1\) and \(t=3\), both in \((0,5)\). <em>Table.</em> \(s(0)=0\), \(s(1)=1-6+9=4\), \(s(3)=27-54+27=0\), \(s(5)=125-150+45=20\). <em>Conclusion.</em> The particle's greatest position is \(20\) m, at \(t=5\) s (the end of the interval). Its least position is \(0\) m, reached at \(t=0\) s <em>and again</em> at \(t=3\) s. In the story: it starts at the origin, moves out to \(4\) m, comes back to the origin, then heads off again and is at \(20\) m when the clock stops. The local maximum of \(4\) m at \(t=1\) is not the farthest it ever gets.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> a classmate says &ldquo;the maximum is wherever the derivative is zero.&rdquo; Use the particle's table to explain, in two sentences, exactly when that is true and when it is not.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Pierre de Fermat was finding greatest and least values around 1636, decades before Newton and Leibniz built the calculus. His method, which he called <em>adequality</em>, treated the vanishing of a small quantity as the signal of a maximum or minimum, and it is the ancestor of the idea that the derivative is zero at a hilltop. The Closed Interval Method is Fermat's old problem with a modern guarantee underneath it: the Extreme Value Theorem, proved rigorously only in the nineteenth century by Bolzano and Weierstrass.</div>
+        </div>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A graphing tool will happily draw a window that hides the endpoint where the maximum occurs, or round two nearly equal values until they look tied. If a tool reports an absolute maximum, check three things yourself: that \(f\) is continuous on a closed interval, that every critical point and both endpoints were compared, and that the number reported is the <em>value</em>, not the place. The tool checks arithmetic; you are responsible for the argument.</div>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 21 Problem Set: Absolute Extrema and Reading Graphs</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Apply the Closed Interval Method and analyze graphs, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 21 Quiz: Absolute Extrema and Reading Graphs</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material, including Lesson 10.04.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">On a closed interval, a continuous function has an absolute maximum and an absolute minimum, and each one lives at a critical point or at an endpoint. Find the critical points, add the endpoints, evaluate, and compare: the biggest number and the smallest number are your answers, stated as values and as places. Always check the hypotheses first, because a theorem's guarantee is only as honest as the conditions it rests on. Next, in Lesson 10.04, you will read all of this from graphs: given only the graph of \(f'\), where does \(f\) have its highs and lows, and given the graph of \(f\), what must the graph of \(f'\) look like?</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 10.03 &middot; Absolute Extrema on a Closed Interval</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

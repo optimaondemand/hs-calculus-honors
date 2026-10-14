@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Semester 2 Review</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Semester 2 Finals &middot; Week 34</div>
+        <div style="font-size: 12px; color: #666;">Review of Modules 9&ndash;16</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Review</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Semester 2 Review</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">From Applications of the Derivative to the Integral</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Semester 2 Finals &middot; Week 34</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Semester 2 Review: From Applications of the Derivative to the Integral</div>
+        <div style="font-size: 16px; color: #666;">Review Lesson</div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Slope and area look like two different subjects. Sixteen weeks of work say they are one subject read in two directions. Can you say, in one sentence, how?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Archimedes found areas and volumes by a method of exhaustion two thousand years before anyone had a derivative, and tangent lines were a separate craft altogether. Newton and Leibniz saw that the two crafts were inverse to each other, and that single insight is why calculus is one subject and not two. This semester you have travelled the same road: you put the derivative to work on tangent lines, extrema, curve shape, optimization, motion, and related rates, then built the integral from rectangles, and then watched the Fundamental Theorem tie it to everything before it. Today's review does not re-teach the semester. It shows you the joints between the parts, trains you to pick the right tool for a problem that carries no label, and asks you to be honest about what each theorem actually promises.</div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> trace how each idea of Semester 2 depends on the one before it, from tangent lines to volumes.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> choose the right tool for an unlabeled derivative-side or integral-side problem, and say why it fits.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> check a theorem&#39;s hypotheses, a model&#39;s units, and an optimum&#39;s justification before claiming a conclusion.</div>
+        </div>
+
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil. Work every &ldquo;try it in your notebook first&rdquo; prompt on paper before you open its check.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your Week 18&ndash;33 problem sets and quizzes, for any week where you want a second look.</div>
+        </div>
+
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE MAP OF THE SEMESTER</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Before you read the map below: if you had to say what the Fundamental Theorem of Calculus <em>does</em> for you, which description feels closest? There is no wrong answer; commit to one and see how it holds up.</div>
+          <div class="widget-options">
+            <button data-response="A fair reading, and the heart of Part 2 of the theorem: a definite integral is computed by evaluating an antiderivative at the two endpoints, so one subtraction replaces a limit of infinitely many rectangles.">It lets me compute areas without adding up rectangles.</button>
+            <button data-response="Also fair, and the heart of Part 1: if you accumulate a quantity and then ask how fast the accumulation grows, you get the original rate back. Accumulating and differentiating undo each other.">It says accumulating and differentiating are inverse operations.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here is the semester as one chain. Read the second line of each entry as the answer to a single question: <em>what did this module hand to the next one?</em></p>
+<div style="margin: 6px 0 14px 0;">
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 9</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Tangent lines and linear approximation</strong> &mdash; Tangent and normal lines, vertical tangents and cusps, linearization, differentials.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It showed that near a point, a differentiable function is nearly a line.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 10</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Increasing, decreasing, and extrema</strong> &mdash; Critical points, the First Derivative Test, absolute extrema on closed intervals.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It made the sign of \(f'\) a compass for where a function climbs, falls, and turns.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 11</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Concavity and curve sketching</strong> &mdash; The second derivative, inflection points, the Second Derivative Test, complete sketches.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It added how the curve bends, so \(f\), \(f'\), and \(f''\) became one picture.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 12</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Optimization, motion, and related rates</strong> &mdash; Applied optimization, motion along a line, related rates.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It turned stories about the world into functions the derivative could solve.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 13</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Riemann sums and approximating integrals</strong> &mdash; Rectangle sums, sigma notation, the definite integral, the Trapezoidal Rule.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It gathered infinitely many thin pieces into one number: area as a limit.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 14</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>The Fundamental Theorem of Calculus</strong> &mdash; Accumulation functions, evaluation by antiderivatives, net change, substitution.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It proved slope and area are inverse operations.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 15</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Antiderivatives and differential equations</strong> &mdash; Initial conditions, slope fields, separable equations, growth and decay.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It recovered a function from facts about how it changes.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 16</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Area, average value, and volume</strong> &mdash; Area between curves, average value, cross-sections, disks and washers.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It showed the integral measures far more than area under a curve.</div>
+        </div>
+    </div>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Joint 1: slope and area are inverses</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 14.01 asked you to accumulate area from a fixed left end, and the answer was startling. For \(f(t)=t^2\), the accumulated area is \(F(x)=\int_0^x t^2\,dt=\tfrac{x^3}{3}\), and differentiating it returns the rate you started with:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ \frac{d}{dx}\int_0^x t^2\,dt=\frac{d}{dx}\,\frac{x^3}{3}=x^2 \]
+        </p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">That is Part 1 of the theorem. Part 2 runs it the other way: to find \(\int_a^b f\), find any antiderivative \(F\) and compute \(F(b)-F(a)\). Every derivative you learned in Semesters 1 and 2 is now also an integration fact, read backward.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Joint 2: reading graphs of \(f\), \(f'\), and \(f''\), then reading them in reverse</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In Lesson 11.04 you matched a function to its derivative graphs: where \(f'\) is positive, \(f\) rises; where \(f''\) is positive, \(f\) bends up. Lesson 14.03 ran the same skill in reverse. If \(F(x)=\int_0^x f(t)\,dt\), then \(F'=f\) and \(F''=f'\), so the graph of \(f\) <em>is</em> the slope graph of \(F\): \(F\) rises where \(f\) is positive, has a maximum where \(f\) crosses from positive to negative, and bends up where \(f\) is increasing. Nothing new had to be learned; the old graph-reading ran in the other direction.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Joint 3: the Mean Value Theorem returns</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The Mean Value Theorem of Lesson 8.03 says that somewhere inside an interval, the instantaneous rate equals the average rate. Lesson 16.02 gave the integral version: a continuous function on \([a,b]\) takes its average value \(\tfrac{1}{b-a}\int_a^b f\) at some point of the interval. For \(f(x)=x^2\) on \([0,3]\), the average value is \(\tfrac13\int_0^3x^2\,dx=\tfrac13\cdot9=3\), and \(f(c)=3\) at \(c=\sqrt3\approx1.73\), which lies inside \((0,3)\). The same theorem also underlies the proof of Part 1 of the Fundamental Theorem, so the Semester 1 guarantee is quietly holding up Semester 2.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Substitution is the Chain Rule run backward, and only works when the inner derivative is actually present. \(\int2x\cos(x^2)\,dx=\sin(x^2)+C\) works because \(2x\) is the derivative of \(x^2\). If a different factor stood there, you would not get to &ldquo;fix&rdquo; it by guessing; check by differentiating your answer.</div>
+        </div>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Velocity is a thread that runs the whole way through. In Lesson 8.02, \(s'\) was velocity. In Lesson 12.03 you split a trip by the sign of \(v\). In Lesson 15.01 you recovered position from velocity. For \(s(t)=t^3-6t^2+9t\), \(v=3(t-1)(t-3)\), and \(\int_0^4v\,dt=s(4)-s(0)=4\) meters of displacement, yet the particle actually travels \(4+4+4=12\) meters because it turns around at \(t=1\) and \(t=3\). Displacement is the integral of \(v\); total distance is the integral of \(|v|\).</div>
+        </div>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E8B965; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A6420; margin-bottom: 8px;">&#129302; AI-AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A computer algebra system will return \(\int_0^4v\,dt=4\) instantly. It will not tell you that the particle covered 12 meters, or that the two numbers answer different questions. Use a tool to check your answer, never to produce your reasoning. On the final, the reasoning is what is being assessed.</div>
+        </div>
+
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; WHICH TOOL DOES THIS CALL FOR?</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A problem on the final will not say &ldquo;disk method&rdquo; at the top. It will hand you a situation, and recognizing the tool is part of the work. For each item below, decide which tool to reach for <em>first</em>; the feedback names the signal that should have told you.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; WHICH TOOL DOES THIS CALL FOR?</div>
+          <div class="widget-question">Choose the first tool for each problem. Do not solve it yet; just decide.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. With width \(x\) the area is \(A=x(20-x)\), \(A'=20-2x=0\) at \(x=10\), and \(A''=-2&lt;0\) confirms a maximum of \(100\) m². Justifying that it is a maximum is part of the answer." data-hint="Is this asking for a best case, a rate, or an accumulated total?">
+            <div class="widget-row-prompt">1. A farmer has \(40\) m of fence for a rectangular pen. Which dimensions give the largest area?</div>
+            <div class="widget-options">
+              <button data-choice="0">Area between curves</button>
+              <button data-choice="1">Optimization: write the area in one variable, then find critical points</button>
+              <button data-choice="2">Separation of variables</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Two quantities change together over time. With \(x=5\) and \(y=12\), \(x\,x'+y\,y'=0\) gives \(y'=-\tfrac{5\cdot2}{12}=-\tfrac56\) ft/s." data-hint="Several quantities are changing with time and linked by one equation. Which technique differentiates such a relationship?">
+            <div class="widget-row-prompt">2. A \(13\)-ft ladder slides down a wall as its base moves away at \(2\) ft/s. How fast is the top falling when the base is \(5\) ft from the wall?</div>
+            <div class="widget-options">
+              <button data-choice="0">Linear approximation</button>
+              <button data-choice="1">Average value</button>
+              <button data-choice="2">Related rates: differentiate \(x^2+y^2=169\) with respect to time</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Separating gives \(\int\tfrac{dy}{y}=\int2\,dx\), so \(\ln|y|=2x+C\), and the initial condition gives \(y=3e^{2x}\)." data-hint="The equation relates \(y\) to its own rate of change. Which technique handles that?">
+            <div class="widget-row-prompt">3. Find \(y\) if \(\dfrac{dy}{dx}=2y\) and \(y(0)=3\).</div>
+            <div class="widget-options">
+              <button data-choice="0">Separate variables: this is a growth model</button>
+              <button data-choice="1">Substitution</button>
+              <button data-choice="2">The closed interval method</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Each slice is a disk of radius \(\sqrt x\), so \(V=\pi\int_0^4x\,dx=\pi\cdot8=8\pi\)." data-hint="A region spun around an axis sweeps out circular slices. Which method adds those up?">
+            <div class="widget-row-prompt">4. The region under \(y=\sqrt x\) on \([0,4]\) is rotated about the \(x\)-axis. Find the volume.</div>
+            <div class="widget-options">
+              <button data-choice="0">Area between curves</button>
+              <button data-choice="1">Average value</button>
+              <button data-choice="2">The disk method</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. With \(f(x)=\sqrt x\), \(f(25)=5\) and \(f'(25)=\tfrac1{10}\), so \(\sqrt{26}\approx5+\tfrac1{10}(1)=5.1\). The true value is about \(5.099\)." data-hint="You know a nearby value and its slope. What tool uses exactly that?">
+            <div class="widget-row-prompt">5. Estimate \(\sqrt{26}\) without a calculator.</div>
+            <div class="widget-options">
+              <button data-choice="0">The Trapezoidal Rule</button>
+              <button data-choice="1">Linear approximation near \(x=25\)</button>
+              <button data-choice="2">The Mean Value Theorem for integrals</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The total change of a quantity is the integral of its rate: \(\int_0^4(6-t)\,dt=24-8=16\) gallons." data-hint="You are given a rate and want the total. Which direction is that: derivative or integral?">
+            <div class="widget-row-prompt">6. Water flows into a tank at \(r(t)=6-t\) gallons per minute for \(0\le t\le4\). How much water enters?</div>
+            <div class="widget-options">
+              <button data-choice="0">Net change: integrate the rate</button>
+              <button data-choice="1">Differentiate the rate</button>
+              <button data-choice="2">The Second Derivative Test</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Ask three questions in order. <strong>(1)</strong> Am I given a function and asked how it <em>changes</em> or where it is largest or smallest? That is the derivative side: tangent lines, extrema, concavity, optimization, rates. <strong>(2)</strong> Am I given a <em>rate</em> or a shape and asked for a total, an area, an average, or a volume? That is the integral side. <strong>(3)</strong> Am I given an equation about rates and asked for the function? That is a differential equation. Asking these in order before you pick up the pencil is a habit, not a trick.</div>
+        </div>
+
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; MIXED FLUENCY</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now do the work. Each block below has a question; try it in your notebook first, then open the check. Compare your steps, not just your answer.</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: differentiate \(G(x)=\displaystyle\int_0^{x^2}\cos t\,dt\).
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Part 1 of the theorem plus the Chain Rule: the upper limit is \(u=x^2\), so \(G'(x)=\cos(x^2)\cdot\dfrac{d}{dx}(x^2)=2x\cos(x^2)\). (Check: \(G(x)=\sin(x^2)\), and its derivative is the same.)
+            </div>
+        </details>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: evaluate \(\displaystyle\int_0^1 2x\,e^{x^2}\,dx\).
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Let \(u=x^2\), so \(du=2x\,dx\). The limits change: \(x=0\to u=0\) and \(x=1\to u=1\). Then \(\int_0^1e^u\,du=e^1-e^0=e-1\).
+            </div>
+        </details>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find the area between \(y=2x\) and \(y=x^2\).
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Intersections: \(x^2=2x\) gives \(x=0\) and \(x=2\). On \((0,2)\) the line is above the parabola, so \(A=\int_0^2(2x-x^2)\,dx=\left[x^2-\tfrac{x^3}{3}\right]_0^2=4-\tfrac83=\tfrac43\).
+            </div>
+        </details>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find the absolute maximum and minimum of \(f(x)=x^3-3x^2\) on \([-1,3]\).
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f\) is continuous on a closed interval, so both exist. \(f'(x)=3x^2-6x=3x(x-2)\) gives critical points \(0\) and \(2\). Compare values: \(f(-1)=-4\), \(f(0)=0\), \(f(2)=-4\), \(f(3)=0\). The absolute maximum is \(0\) (at \(x=0\) and \(x=3\)) and the absolute minimum is \(-4\) (at \(x=-1\) and \(x=2\)).
+            </div>
+        </details>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: solve \(\dfrac{dy}{dx}=xy\) with \(y(0)=2\).
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Separate: \(\dfrac{dy}{y}=x\,dx\). Integrate: \(\ln|y|=\tfrac{x^2}{2}+C\), so \(y=Ae^{x^2/2}\). The condition \(y(0)=2\) gives \(A=2\): \(y=2e^{x^2/2}\).
+            </div>
+        </details>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Notice what the optimization problem did: it compared <em>every</em> candidate, endpoints included, instead of stopping at the first critical point. That habit returns in Part 4.</p>
+
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; THE HONEST-REASONING CHECK</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Honesty in mathematics has a precise meaning: you may claim only what a theorem&#39;s hypotheses, a model&#39;s units, and your own justification entitle you to claim. When a hypothesis fails, the theorem has made <em>no</em> promise. Settle each case below.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; WHAT ARE YOU ENTITLED TO CLAIM?</div>
+          <div class="widget-question">For each, say what is wrong or what the facts support.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. \(1/x^2\) is undefined at \(0\), inside the interval. The theorem needs continuity on the whole closed interval, and the negative answer for an everywhere-positive function is the warning sign. Even \(\int_1^2\tfrac1{x^2}dx=\tfrac12\) is positive." data-hint="Check the hypothesis: is the function continuous at every point of the interval? And can a positive function have a negative integral?">
+            <div class="widget-row-prompt">1. A student computes \(\displaystyle\int_{-1}^{1}\frac1{x^2}\,dx=\left[-\frac1x\right]_{-1}^{1}=-2\). What is wrong?</div>
+            <div class="widget-options">
+              <button data-choice="0">The antiderivative of \(1/x^2\) is wrong</button>
+              <button data-choice="1">The interval is too short</button>
+              <button data-choice="2">The function is not continuous on \([-1,1]\), so the Fundamental Theorem does not apply</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. A critical point is a candidate, not a verdict. \(f'(x)=3x^2\) is positive on both sides of \(0\), so \(f\) keeps rising, and \(f''(0)=0\) is inconclusive." data-hint="Does the derivative change sign at \(0\)?">
+            <div class="widget-row-prompt">2. For \(f(x)=x^3\), \(f'(0)=0\). What are you entitled to claim about \(x=0\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">It is only a candidate; you must check the sign of \(f'\) to classify it (here it is neither a maximum nor a minimum)</button>
+              <button data-choice="1">It is a local maximum</button>
+              <button data-choice="2">It is a local minimum</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Finding where \(A'=0\) is only the first half. Show the sign change of \(A'\), or the sign of \(A''\), or compare against the endpoints, and then answer in context with units." data-hint="What separates a maximum from a minimum or an inflection point?">
+            <div class="widget-row-prompt">3. A student finds a single critical point \(x=5\) in an optimization problem on \((0,10)\) and writes &ldquo;so this is the maximum.&rdquo; What is missing?</div>
+            <div class="widget-options">
+              <button data-choice="0">Nothing; every critical point is a maximum</button>
+              <button data-choice="1">A justification, such as the sign change of \(A'\) or \(A''&lt;0\), showing it really is a maximum</button>
+              <button data-choice="2">A third differentiation</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The units of an integral are the units of the integrand times the units of the variable: \((\text{m/s})\cdot\text{s}=\text{m}\). Stating units is part of the answer, and it catches many setup errors." data-hint="Multiply the units of the integrand by the units of \(dt\).">
+            <div class="widget-row-prompt">4. A particle has velocity \(v(t)\) in meters per second, with \(t\) in seconds. What are the units of \(\displaystyle\int_0^4v(t)\,dt\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">Meters (a displacement: velocity times time)</button>
+              <button data-choice="1">Meters per second</button>
+              <button data-choice="2">Meters per second squared</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find the average value of \(f(x)=\sin x\) on \([0,\pi]\), then find every \(c\) in \((0,\pi)\) where \(f\) equals that average.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f\) is continuous, so the Mean Value Theorem for integrals applies. The average is \(\dfrac1\pi\int_0^\pi\sin x\,dx=\dfrac{2}{\pi}\approx0.637\). Solve \(\sin c=\tfrac2\pi\): \(c=\arcsin\tfrac2\pi\approx0.690\) and \(c=\pi-0.690\approx2.451\), and both lie in \((0,\pi)\). The theorem promised at least one such point; here there are two.
+            </div>
+        </details>
+
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Semester 2 Review Activity</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A mixed-topic review of the whole semester. Work it by hand, show your reasoning, and upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Semester 2 Final Exam</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Cumulative across Modules 9&ndash;16, written by hand in one sitting of about two hours. When you finish, upload your pages as one PDF.</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Slope and area are one subject. The derivative asks how fast a quantity changes; the integral asks how much has accumulated; and the Fundamental Theorem says each undoes the other. Everything else this semester, from tangent lines and optimization to differential equations and volumes, is that single idea put to work. Carry the habits as much as the formulas: check a theorem&#39;s hypotheses before you use its conclusion, justify that an optimum really is one, and state your units. These are the marks of a mathematician who can be trusted.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Semester 2 Finals &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Week 34 &middot; Semester 2 Review: From Applications of the Derivative to the Integral</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

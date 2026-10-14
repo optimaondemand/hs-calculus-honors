@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 9.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 9</div>
+        <div style="font-size: 12px; color: #666;">Tangent Lines and Linear Approximation</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 9.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Equations of Tangent and Normal Lines</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Tangent Lines and Linear Approximation</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 9.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Equations of Tangent and Normal Lines</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">At one point, a curve and a straight line agree on direction. Which line is it, and what line stands at a right angle to it?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Since Module 4 you have computed derivatives for their own sake. Starting this quarter, the derivative goes to work. The first job is the oldest one in calculus: to write down, exactly, the line that touches a curve at a point and points the same way the curve does. That line is the tangent line, and the line at a right angle to it is the normal line. Today you will write both from an explicit formula and from an implicit equation, you will hunt for the points where the tangent is horizontal, and you will learn what to do when you are asked for a tangent line through a point that is not on the curve at all.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> write the equation of the tangent line and the normal line to a curve at a given point, whether the curve is given explicitly or implicitly.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> find every point where a curve has a horizontal tangent line, and write the tangent and normal lines there.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> find the tangent lines to a curve that pass through a point not on the curve, and check each answer.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and a graphing tool to check your lines (never to replace the algebra).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The derivative rules from Modules 5 through 7 and the implicit differentiation from Lesson 7.01.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE TANGENT LINE AND THE NORMAL LINE</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Stand at the point \((1,1)\) on the parabola \(y=x^2\), where the tangent line has slope \(2\). Now picture the line through that same point that is perpendicular to the tangent, the one that leaves the curve at a right angle. Take a guess: what is its slope?</div>
+          <div class="widget-options">
+            <button data-response="There is no wrong answer at a guess. The reasoning to test is that perpendicular lines should tilt in opposite directions, so a negative slope is a good instinct. Whether the slope is exactly \(-2\) is what the first part of today's lesson settles.">\(-2\)</button>
+            <button data-response="There is no wrong answer at a guess. Flipping and negating, \(2\) becomes \(-\tfrac12\), and that is the rule you are about to prove. Watch for why it works, not just that it does.">\(-\tfrac12\)</button>
+            <button data-response="There is no wrong answer at a guess. The reciprocal is on the right track, but check the tilt: the tangent rises left to right, so a perpendicular line has to fall left to right. You will see what has to change.">\(\tfrac12\)</button>
+            <button data-response="There is no wrong answer at a guess. A line with the same slope is parallel to the tangent, not perpendicular, so it would never leave the curve at a right angle. Keep this guess in mind and see how the rule corrects it.">\(2\)</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In Lesson 4.02 you met the tangent line as the best straight-line picture of a curve at one point. Its equation comes straight from the point-slope form of a line: if \(f\) is differentiable at \(a\), the tangent line at \(x=a\) is</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ y-f(a)=f'(a)\,(x-a)\qquad\text{or equivalently}\qquad y=f(a)+f'(a)(x-a). \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Every tangent-line problem is the same three steps: find the point \((a,f(a))\), find the slope \(f'(a)\), and substitute into point-slope form. The only real work is the derivative, and Modules 5 through 7 gave you every tool you need for it.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The <strong>normal line</strong> to a curve at a point is the line through that point that is perpendicular to the tangent line there. Two non-vertical lines are perpendicular exactly when the product of their slopes is \(-1\) (you can check this by taking direction vectors \((1,m)\) and \((1,m')\): they are perpendicular when \(1+mm'=0\)). So if the tangent slope is \(m=f'(a)\ne0\), the normal slope is</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ m_{\perp}=-\frac{1}{f'(a)},\qquad\text{so the normal line is}\qquad y-f(a)=-\frac{1}{f'(a)}\,(x-a). \]
+        </p>
+        <div style="text-align:center; margin: 14px 0;">
+        <svg viewBox="0 0 400 280" width="100%" style="max-width:420px;" role="img" aria-label="The parabola y equals x squared with its tangent line and normal line at the point (1,1), meeting at a right angle">
+            <rect x="0" y="0" width="400" height="280" fill="#FFFFFF" stroke="#D0D9E8"/>
+            <line x1="10" y1="250.0" x2="390" y2="250.0" stroke="#9aa7c4" stroke-width="1"/>
+            <line x1="200.0" y1="10" x2="200.0" y2="270" stroke="#9aa7c4" stroke-width="1"/>
+            <polyline points="98.0,76.6 101.0,86.7 104.0,96.4 107.0,105.9 110.0,115.0 113.0,123.8 116.0,132.4 119.0,140.7 122.0,148.6 125.0,156.2 128.0,163.6 131.0,170.7 134.0,177.4 137.0,183.9 140.0,190.0 143.0,195.8 146.0,201.4 149.0,206.7 152.0,211.6 155.0,216.2 158.0,220.6 161.0,224.7 164.0,228.4 167.0,231.9 170.0,235.0 173.0,237.8 176.0,240.4 179.0,242.7 182.0,244.6 185.0,246.2 188.0,247.6 191.0,248.7 194.0,249.4 197.0,249.8 200.0,250.0 203.0,249.8 206.0,249.4 209.0,248.7 212.0,247.6 215.0,246.2 218.0,244.6 221.0,242.6 224.0,240.4 227.0,237.8 230.0,235.0 233.0,231.8 236.0,228.4 239.0,224.6 242.0,220.6 245.0,216.2 248.0,211.6 251.0,206.6 254.0,201.4 257.0,195.8 260.0,190.0 263.0,183.8 266.0,177.4 269.0,170.6 272.0,163.6 275.0,156.2 278.0,148.6 281.0,140.6 284.0,132.4 287.0,123.8 290.0,115.0 293.0,105.8 296.0,96.4 299.0,86.6 302.0,76.6" fill="none" stroke="#0E1C42" stroke-width="2.5"/>
+            <line x1="182.0" y1="346.0" x2="326.0" y2="58.0" stroke="#2196D0" stroke-width="2.2"/>
+            <line x1="128.0" y1="124.0" x2="392.0" y2="256.0" stroke="#C7922C" stroke-width="2.2" stroke-dasharray="6 4"/>
+            <polyline points="267.5,175.0 282.5,182.5 275.0,197.5" fill="none" stroke="#0E1C42" stroke-width="1.2"/>
+            <circle cx="260.0" cy="190.0" r="4.5" fill="#C0392B"/>
+            <text x="14.0" y="22.0" font-size="13" fill="#2196D0" font-family="Segoe UI,Arial,sans-serif">&#9472; tangent, slope 2</text>
+            <text x="14.0" y="42.0" font-size="13" fill="#8A5F12" font-family="Segoe UI,Arial,sans-serif">- - normal, slope &#8722;1/2</text>
+            <text x="332.0" y="19.0" font-size="13" fill="#0E1C42" font-family="Segoe UI,Arial,sans-serif">y = x&#178;</text>
+            <text x="274.0" y="224.0" font-size="13" fill="#C0392B" font-family="Segoe UI,Arial,sans-serif">(1, 1)</text>
+        </svg>
+        <div style="font-size: 14px; color: #666; margin-top: 4px;">The tangent and the normal to \(y=x^2\) at \((1,1)\) meet at a right angle.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Two special cases are worth knowing by name, because they are where the formula \(-1/f'(a)\) stops working. If \(f'(a)=0\), the tangent line is horizontal and the normal line is the <em>vertical</em> line \(x=a\), which has no slope. In the other direction, if the tangent line is vertical, the normal line is the <em>horizontal</em> line \(y=f(a)\). Lesson 9.02 is about that second case.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 1: a tangent line and a normal line</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(f(x)=x^3-2x+1\). Find the tangent line and the normal line at \(x=2\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Point.</strong> \(f(2)=8-4+1=5\), so the point is \((2,5)\). <strong>Slope.</strong> \(f'(x)=3x^2-2\), so \(f'(2)=12-2=10\). <strong>Tangent line.</strong> \(y-5=10(x-2)\), which simplifies to \(y=10x-15\). <strong>Normal line.</strong> The normal slope is \(-\tfrac1{10}\), so \(y-5=-\tfrac1{10}(x-2)\), which simplifies to \(y=-\tfrac1{10}x+\tfrac{26}{5}\). <strong>Check.</strong> Both lines should pass through \((2,5)\): \(10(2)-15=5\) and \(-\tfrac{2}{10}+\tfrac{26}{5}=-0.2+5.2=5\).</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Two slips cause most wrong answers on normal-line problems. The first is writing the normal slope as \(-f'(a)\) (negating but forgetting to flip). The second is using \(f(a)\), the height of the curve, where \(f'(a)\), the slope, belongs. A thirty-second check catches both: multiply your tangent slope by your normal slope. The product must be exactly \(-1\).</div>
+        </div>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Every normal line to a circle passes through the center. For \(x^2+y^2=25\) at \((3,4)\), implicit differentiation gives tangent slope \(-\tfrac34\), so the normal slope is \(\tfrac43\) and the normal line is \(y-4=\tfrac43(x-3)\), which simplifies to \(y=\tfrac43x\). That line goes through \((0,0)\), the center. Optics uses the normal line the same way: the angle at which light reflects off a mirror is measured from the normal to the surface, not from the surface itself.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; WHERE THE TANGENT IS HORIZONTAL</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A <strong>horizontal tangent</strong> occurs where the slope is zero, so you find it by solving \(f'(x)=0\). This is a different question from the one in Part 1: instead of being handed the point, you search for it. Once you have each solution \(x=a\), the tangent line is the horizontal line \(y=f(a)\) and the normal line is the vertical line \(x=a\).</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 2: a cubic</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Find every horizontal tangent line to \(f(x)=x^3-3x^2+4\). Differentiate: \(f'(x)=3x^2-6x=3x(x-2)\). Setting \(f'(x)=0\) gives \(x=0\) and \(x=2\). Then \(f(0)=4\) and \(f(2)=8-12+4=0\). The horizontal tangent lines are \(y=4\) (touching the curve at \((0,4)\)) and \(y=0\) (touching at \((2,0)\)). The matching normal lines are the vertical lines \(x=0\) and \(x=2\).</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 3: a function with a restricted domain</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Find every horizontal tangent line to \(f(x)=x+\dfrac4x\). The domain excludes \(x=0\). Here \(f'(x)=1-\dfrac4{x^2}\), which is zero when \(x^2=4\), so \(x=\pm2\). Then \(f(2)=2+2=4\) and \(f(-2)=-2-2=-4\). The horizontal tangent lines are \(y=4\) and \(y=-4\). Notice that \(f'(x)\) is also undefined at \(x=0\), but \(x=0\) is not in the domain, so it produces no tangent line at all. Always check that a solution actually lies in the domain.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A point where \(f'(x)=0\) is a candidate for a local maximum or minimum, as Fermat's fact from Lesson 8.03 promised. It is a candidate and not a guarantee, and Module 10 is where you will learn to tell which is which.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; NORMAL LINES AT A GLANCE</div>
+          <div class="widget-question">Given what you know about the tangent line at a point, decide what the normal line there must be.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Flip and negate: the reciprocal of 4 is 1/4, and the sign changes, so -1/4. Check: 4 times -1/4 is -1." data-hint="Perpendicular slopes multiply to -1. What number times 4 gives -1?">
+            <div class="widget-row-prompt">1. The tangent slope is \(4\). The normal slope is</div>
+            <div class="widget-options">
+              <button data-choice="0">\(4\)</button>
+              <button data-choice="1">\(-4\)</button>
+              <button data-choice="2">\(-\tfrac14\)</button>
+              <button data-choice="3">\(\tfrac14\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Flip -2/3 to get -3/2, then change the sign to get 3/2. Check: (-2/3)(3/2) = -1." data-hint="Flip the fraction and also change the sign. Then multiply the two slopes to check for -1.">
+            <div class="widget-row-prompt">2. The tangent slope is \(-\tfrac23\). The normal slope is</div>
+            <div class="widget-options">
+              <button data-choice="0">\(-\tfrac32\)</button>
+              <button data-choice="1">\(\tfrac32\)</button>
+              <button data-choice="2">\(\tfrac23\)</button>
+              <button data-choice="3">\(-\tfrac23\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. A horizontal tangent has slope 0, so the perpendicular line is vertical, and a vertical line through (a,b) is x = a. There is no slope to flip, since 1/0 is undefined." data-hint="A line perpendicular to a horizontal line is vertical. Which option is a vertical line through (a, b)?">
+            <div class="widget-row-prompt">3. The tangent line at \((a,b)\) is horizontal. The normal line there is</div>
+            <div class="widget-options">
+              <button data-choice="0">\(y=b\)</button>
+              <button data-choice="1">\(y=-b\)</button>
+              <button data-choice="2">\(x=-a\)</button>
+              <button data-choice="3">\(x=a\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; TANGENT AND NORMAL LINES TO IMPLICIT CURVES</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">When a curve is given implicitly, such as an ellipse or a circle, you cannot solve for \(y\) cleanly, but Lesson 7.01 gave you a better route: differentiate both sides with respect to \(x\) and solve for \(\dfrac{dy}{dx}\). That formula, evaluated at the given point, is the tangent slope.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 4: an ellipse</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Find the tangent and normal lines to \(x^2+4y^2=20\) at \((2,2)\). First confirm the point is on the curve: \(4+16=20\). \(\checkmark\) Differentiate both sides: \(2x+8y\,y'=0\), so \(y'=-\dfrac{x}{4y}\). At \((2,2)\): \(y'=-\dfrac{2}{8}=-\dfrac14\). The tangent line is \(y-2=-\tfrac14(x-2)\), or \(y=-\tfrac14x+\tfrac52\). The normal slope is \(4\), so the normal line is \(y-2=4(x-2)\), or \(y=4x-6\).</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 5: horizontal tangents on a tilted ellipse</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Find every point on \(x^2+xy+y^2=7\) where the tangent line is horizontal. Differentiate: \(2x+y+x\,y'+2y\,y'=0\), so \(y'(x+2y)=-(2x+y)\) and \(y'=-\dfrac{2x+y}{x+2y}\). A fraction is zero when its numerator is zero (and its denominator is not), so we need \(2x+y=0\), that is, \(y=-2x\). Substituting into the curve: \(x^2-2x^2+4x^2=3x^2=7\), so \(x=\pm\sqrt{7/3}=\pm\dfrac{\sqrt{21}}{3}\). The two points are \(\left(\dfrac{\sqrt{21}}3,\,-\dfrac{2\sqrt{21}}3\right)\approx(1.53,\,-3.06)\) and \(\left(-\dfrac{\sqrt{21}}3,\,\dfrac{2\sqrt{21}}3\right)\approx(-1.53,\,3.06)\), with horizontal tangent lines \(y=-\dfrac{2\sqrt{21}}3\) and \(y=\dfrac{2\sqrt{21}}3\). At both points the denominator \(x+2y=-3x\neq0\), so the slope really is zero and not undefined. Keep this curve in mind: in Lesson 9.02, the <em>denominator</em> going to zero will be the point of the whole lesson.</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it first: find the tangent line and the normal line to \(f(x)=\sqrt x\) at \(x=4\). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f(4)=2\), and \(f'(x)=\dfrac1{2\sqrt x}\), so \(f'(4)=\dfrac14\). Tangent line: \(y-2=\tfrac14(x-4)\), which simplifies to \(y=\tfrac14x+1\). The normal slope is \(-4\), so the normal line is \(y-2=-4(x-4)\), which simplifies to \(y=-4x+18\). Check: \(\tfrac14\cdot(-4)=-1\), and both lines pass through \((4,2)\): \(\tfrac14(4)+1=2\) and \(-4(4)+18=2\).
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 4 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; TANGENT LINES THROUGH A POINT OFF THE CURVE</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Sometimes you are given a point that is <em>not</em> on the curve and asked for the tangent lines that pass through it. The usual instinct is to treat the given point as the point of tangency, and that instinct is wrong, because the point is not on the curve. The honest approach is to admit what you do not know: the point of tangency. Give it a name and let the algebra find it.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Example 6: tangent lines to a parabola through an outside point</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Find the tangent lines to \(y=x^2\) that pass through \((1,-3)\). First note \((1,-3)\) is not on the curve, since \(1^2=1\ne-3\). Let the point of tangency be \((t,t^2)\). The slope there is \(2t\), so the tangent line at that point is \(y-t^2=2t(x-t)\), that is, \(y=2tx-t^2\). Require this line to pass through \((1,-3)\): \(-3=2t-t^2\), so \(t^2-2t-3=0\), so \((t-3)(t+1)=0\), and \(t=3\) or \(t=-1\). There are <em>two</em> tangent lines:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ t=3:\; y=6x-9\qquad\qquad t=-1:\; y=-2x-1. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Check both lines against the given point: \(6(1)-9=-3\) and \(-2(1)-1=-3\). \(\checkmark\) They touch the parabola at \((3,9)\) and \((-1,1)\) respectively.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> in two sentences, why did we get two tangent lines here? What would you expect if the outside point were <em>inside</em> the parabola, for example \((0,5)\)? (Try the same algebra and see what happens to \(t\).)</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it first: find every tangent line to \(y=\dfrac1x\) that passes through \((0,3)\). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Let the point of tangency be \(\left(t,\tfrac1t\right)\). The slope is \(-\tfrac1{t^2}\), so the tangent line is \(y-\tfrac1t=-\tfrac1{t^2}(x-t)\), which simplifies to \(y=\tfrac2t-\tfrac{x}{t^2}\). Passing through \((0,3)\) requires \(3=\tfrac2t\), so \(t=\tfrac23\). There is exactly <em>one</em> tangent line, with slope \(-\tfrac94\): \(y=3-\tfrac94x\). Check: it touches the curve at \(\left(\tfrac23,\tfrac32\right)\), because \(3-\tfrac94\cdot\tfrac23=3-\tfrac32=\tfrac32=\dfrac1{2/3}\). \(\checkmark\)
+            </div>
+        </details>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A graphing tool can draw a curve and a tangent line, and it will happily let you slide the point of tangency until the line looks right. That is a good way to <em>check</em> an answer like the one above, but a picture cannot tell you the exact value \(t=\tfrac23\), and it cannot tell you whether there are two tangent lines or only one. Do the algebra yourself, then use the tool to test it.</div>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 18 Problem Set: Tangent Lines, Normals, and Vertical Tangents</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Work every problem by hand on paper, then upload your completed pages. Lesson 9.02 comes first for the vertical-tangent problems.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 18 Quiz: Tangent Lines, Normals, and Vertical Tangents</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material. Finish Lesson 9.02 before you take it.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">The tangent line at \(x=a\) is \(y=f(a)+f'(a)(x-a)\), and the normal line has slope \(-1/f'(a)\) whenever \(f'(a)\) is neither zero nor undefined. The three questions of the day were: where is the tangent horizontal (solve \(f'(x)=0\)), what is the tangent at a given point of an implicit curve (differentiate implicitly), and which tangent lines pass through a point off the curve (let the point of tangency be \(t\) and solve). But every one of these used a slope that was a real number. Lesson 9.02 asks what happens when the slope is not: when the tangent line stands straight up.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 9.01 &middot; Equations of Tangent and Normal Lines</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

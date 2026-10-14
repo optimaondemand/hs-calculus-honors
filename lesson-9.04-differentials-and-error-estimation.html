@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 9.04</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 9</div>
+        <div style="font-size: 12px; color: #666;">Tangent Lines and Linear Approximation</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 9.04</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Differentials and Error Estimation</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Tangent Lines and Linear Approximation</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 9.04</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Differentials and Error Estimation</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Every measurement is a little wrong. What separates a scientist from a guesser is knowing how wrong the answer computed from it could be.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 9.03 made the tangent line an estimator of values. Today you turn it into an estimator of <em>change</em>. You will define the differential \(dy=f'(x)\,dx\), use it to find how an error in a measurement spreads into a computed quantity, and, just as important, learn what a differential estimate does not promise. This is where calculus becomes a habit of honesty about numbers.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> define the differential \(dy=f'(x)\,dx\) and compare it with the actual change \(\Delta y\).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> use differentials to estimate the absolute and relative (percent) error in a quantity computed from a measurement, such as the area of a circle or the volume of a sphere.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> state honestly what a differential estimate does and does not guarantee, including its direction of error and what happens when \(dx\) is not small.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and a calculator for <em>checking</em> decimals only.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The linearization from Lesson 9.03 and the Power Rule, Chain Rule, and sphere/circle formulas from earlier in this course.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE DIFFERENTIAL: PREDICTING A CHANGE</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A square's side is measured as 10 cm, but the ruler could be off by 1%. About how far off, in percent, could the <em>area</em> of the square be?</div>
+          <div class="widget-options">
+            <button data-response="A reasonable first guess, and it is the one to test. Try a side of 10.1 cm: the area is \(102.01\), which is \(2.01\%\) more than \(100\). The error roughly <em>doubles</em>. By the end of Part 2 you will know why, and you will be able to predict it for any shape.">About \(1\%\): the area is off by the same percentage as the side.</button>
+            <button data-response="Exactly right, and Part 2 will prove it with a differential. A \(1\%\) error in the side gives about a \(2\%\) error in the area. For a cube's volume it would be about \(3\%\).">About \(2\%\): the area is side times side, so the error counts twice.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 9.03 turned a tangent line into an estimator: \(f(x)\approx L(x)\). Rewrite that statement as a statement about <em>change</em>. If \(x\) moves by a small amount \(\Delta x\), the function really changes by</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \Delta y=f(x+\Delta x)-f(x), \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">and the tangent line predicts that it changes by \(f'(x)\,\Delta x\). The prediction gets a name.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Differentials</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Let \(dx\) be a small change in the input (the same number as \(\Delta x\)). The <strong>differential</strong> of \(y=f(x)\) is \[ dy=f'(x)\,dx. \] It is the change in \(y\) <em>along the tangent line</em>, and \(dy\approx\Delta y\) when \(dx\) is small.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1.</strong> \(y=x^2\), \(x=3\), \(dx=0.1\). Then \(dy=2(3)(0.1)=0.6\). The actual change is \(\Delta y=3.1^2-3^2=9.61-9=0.61\). The differential is off by \(0.01\), and note that \(0.01=(dx)^2\). The gap is the error of Lesson 9.03.</p>
+        <div style="margin: 14px 0; text-align:center;"><svg viewBox="0 0 520 300" width="100%" style="max-width:520px; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:8px;" role="img" aria-label="On y = x squared at x = 3 with dx = 1, the tangent line predicts a change dy = 6, while the curve actually rises by 7. The small gap is the error." xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif"><line x1="60" y1="272" x2="476.0" y2="272" stroke="#9AA6BF" stroke-width="1.5"/><polyline points="60.0,270.0 64.0,268.7 68.0,267.4 72.0,266.0 76.0,264.7 80.0,263.3 84.0,261.9 88.0,260.5 92.0,259.1 96.0,257.6 100.0,256.2 104.0,254.7 108.0,253.2 112.0,251.7 116.0,250.2 120.0,248.7 124.0,247.1 128.0,245.6 132.0,244.0 136.0,242.4 140.0,240.8 144.0,239.1 148.0,237.5 152.0,235.8 156.0,234.1 160.0,232.4 164.0,230.7 168.0,229.0 172.0,227.2 176.0,225.5 180.0,223.7 184.0,221.9 188.0,220.1 192.0,218.3 196.0,216.4 200.0,214.5 204.0,212.7 208.0,210.8 212.0,208.9 216.0,206.9 220.0,205.0 224.0,203.0 228.0,201.1 232.0,199.1 236.0,197.1 240.0,195.0 244.0,193.0 248.0,191.0 252.0,188.9 256.0,186.8 260.0,184.7 264.0,182.6 268.0,180.4 272.0,178.3 276.0,176.1 280.0,173.9 284.0,171.7 288.0,169.5 292.0,167.3 296.0,165.0 300.0,162.8 304.0,160.5 308.0,158.2 312.0,155.9 316.0,153.5 320.0,151.2 324.0,148.8 328.0,146.4 332.0,144.0 336.0,141.6 340.0,139.2 344.0,136.7 348.0,134.3 352.0,131.8 356.0,129.3 360.0,126.8 364.0,124.3 368.0,121.7 372.0,119.2 376.0,116.6 380.0,114.0 384.0,111.4 388.0,108.8 392.0,106.1 396.0,103.5 400.0,100.8 404.0,98.1 408.0,95.4 412.0,92.7 416.0,89.9 420.0,87.2 424.0,84.4 428.0,81.6 432.0,78.8 436.0,76.0 440.0,73.2 444.0,70.3 448.0,67.5 452.0,64.6 456.0,61.7 460.0,58.8" fill="none" stroke="#0E1C42" stroke-width="3"/><polyline points="92.0,267.4 460.0,88.0" fill="none" stroke="#C7922C" stroke-width="2.5" stroke-dasharray="7 4"/><line x1="220.0" y1="205.0" x2="380.0" y2="205.0" stroke="#2196D0" stroke-width="2"/><line x1="380.0" y1="205.0" x2="380.0" y2="127.0" stroke="#1B6A94" stroke-width="4"/><line x1="380.0" y1="127.0" x2="380.0" y2="114.0" stroke="#C0392B" stroke-width="4"/><circle cx="220.0" cy="205.0" r="5" fill="#0E1C42"/><text x="168.0" y="209.0" font-size="13" fill="#0E1C42">(3, 9)</text><text x="268.0" y="223.0" font-size="13" fill="#1B6A94">dx = 1</text><text x="390.0" y="162.1" font-size="13" fill="#1B6A94">dy = 6</text><text x="390.0" y="188.1" font-size="13" fill="#C0392B">gap = 1</text><text x="390.0" y="206.3" font-size="13" fill="#C0392B">so &#916;y = 7</text><text x="148.0" y="107.5" font-size="13" fill="#0E1C42">y = x&#178;</text><text x="244.0" y="246.6" font-size="13" fill="#8A5F12">tangent line</text></svg><div style="font-size:14px; color:#666; margin-top:6px; font-style:italic;">On y = x squared at x = 3 with dx = 1, the tangent line predicts a change dy = 6, while the curve actually rises by 7. The small gap is the error.</div></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2: watching the gap close.</strong> For \(y=x^3\) at \(x=2\), \(dy=3(2)^2\,dx=12\,dx\). Compare it with the real change as \(dx\) shrinks:</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;"><table style="border-collapse:collapse; width:100%; min-width:420px;"><tr><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(dx\)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(dy=12\,dx\)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(\Delta y=(2+dx)^3-8\)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(\Delta y-dy\)</th></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.1</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">1.2</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">1.261</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.061</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.01</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.12</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.120601</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.000601</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.001</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.012</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.012006001</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.000006001</td></tr></table></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Each tenfold decrease in \(dx\) makes the gap about a hundred times smaller, exactly the behavior Lesson 9.03 proved: the error in a tangent-line estimate shrinks faster than the distance.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">You have written \(\dfrac{dy}{dx}\) since Module 4 as one symbol for the derivative. Differentials let it read like a fraction: from \(dy=f'(x)\,dx\), dividing by \(dx\) gives \(\dfrac{dy}{dx}=f'(x)\). That is a <em>definition we chose</em>, not a proof that the derivative is secretly a quotient. Leibniz, who invented the notation, liked how it made the Chain Rule look like cancelling fractions; it is a helpful memory aid, not a theorem.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: for \(y=\sqrt x\) at \(x=25\) with \(dx=0.2\), find \(dy\), then compare with the actual change \(\sqrt{25.2}-5\). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(dy=\dfrac{1}{2\sqrt{x}}\,dx=\dfrac1{10}(0.2)=0.02\). The actual change is \(\sqrt{25.2}-5=0.019960\ldots\). The differential \(0.02\) is within \(0.00004\) of the truth. Notice \(dy\) is slightly <em>high</em>, which matches Lesson 9.03: the square root bends downward, so the tangent line lies above the curve.
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; PROPAGATED ERROR: HOW WRONG COULD I BE?</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here is why differentials matter outside a classroom. Every measurement has uncertainty. If you measure \(x\) with error \(dx\) and then <em>compute</em> a quantity \(y=f(x)\), the uncertainty in \(x\) travels into \(y\). The differential estimates how much.</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;"><table style="border-collapse:collapse; width:100%; min-width:420px;"><tr><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;"></th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">what it is</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">how to estimate it</th></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">absolute error in \(y\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(\Delta y\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(|dy|=|f'(x)|\,dx\)</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">relative error in \(y\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(\dfrac{\Delta y}{y}\)</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">\(\left|\dfrac{dy}{y}\right|\)  (multiply by 100 for percent)</td></tr></table></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3: a cube.</strong> A cube's edge is measured as \(x=10\) cm, with possible error \(dx=0.1\) cm. Its volume is \(V=x^3=1000\text{ cm}^3\). Then \(dV=3x^2\,dx=3(100)(0.1)=30\). So \(V\approx1000\pm30\text{ cm}^3\), a relative error of \(\dfrac{30}{1000}=3\%\), while the edge was only \(\dfrac{0.1}{10}=1\%\) off. (The true change is \(\Delta V=10.1^3-1000=30.301\).)</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 4: a circle.</strong> A circular plate has radius \(r=5\) cm, with possible error \(dr=0.1\) cm. Its area is \(A=\pi r^2=25\pi\approx78.54\text{ cm}^2\). Then \(dA=2\pi r\,dr=2\pi(5)(0.1)=\pi\approx3.14\). So \(A\approx78.5\pm3.1\text{ cm}^2\). The relative error is \(\dfrac{\pi}{25\pi}=4\%\), while the radius was \(\dfrac{0.1}{5}=2\%\) off.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A pattern shows up. For \(y=x^n\), we have \(dy=nx^{n-1}\,dx\), and dividing by \(y=x^n\):</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \frac{dy}{y}=n\,\frac{dx}{x}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>The relative error in \(x^n\) is about \(n\) times the relative error in \(x\).</em> That settles the opening check-in: the area of a square (\(n=2\)) doubles a relative error, the volume of a cube (\(n=3\)) triples it. A sphere's volume is \(\tfrac43\pi r^3\); with \(r=6\) and \(dr=0.1\), it has relative error \(3\cdot\frac{0.1}{6}=5\%\), and \(dV=\tfrac{72\pi}{5}\approx45.2\) on \(V=288\pi\approx904.8\).</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; PROPAGATED ERROR</div>
+          <div class="widget-question">Use a differential, or the rule \(dy/y=n\,dx/x\), for each situation.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. V = x^3, so n = 3, and the relative error is 3 x 2% = 6%." data-hint="The volume of a cube is x^3. Multiply the relative error in x by the exponent n = 3.">
+            <div class="widget-row-prompt">1. A cube's edge has a \(2\%\) relative error. About what is the relative error in its volume?</div>
+            <div class="widget-options">
+              <button data-choice="0">2%</button>
+              <button data-choice="1">6%</button>
+              <button data-choice="2">8%</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. dA = 2 pi (10)(0.2) = 4 pi, about 12.57 m^2. Check: the true change is pi(10.2^2 - 100) = 4.04 pi, almost the same." data-hint="Compute 2 x pi x 10 x 0.2. Make sure your answer matches the units: square metres.">
+            <div class="widget-row-prompt">2. A circle's radius is \(10\) m with possible error \(0.2\) m. Estimate the error in its area, using \(dA=2\pi r\,dr\).</div>
+            <div class="widget-options">
+              <button data-choice="0">20pi m^2, about 62.8 m^2</button>
+              <button data-choice="1">0.4pi m^2, about 1.26 m^2</button>
+              <button data-choice="2">4pi m^2, about 12.57 m^2</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Area is proportional to r^2 (n = 2), volume to r^3 (n = 3). The larger the exponent, the more the error is magnified." data-hint="Relative error in r^n is about n times the relative error in r. Which exponent is larger?">
+            <div class="widget-row-prompt">3. A \(1\%\) error in the radius: which quantity is <em>more</em> sensitive, the area of a circle or the volume of a sphere?</div>
+            <div class="widget-options">
+              <button data-choice="0">The sphere's volume, about 3%, against about 2% for the circle's area</button>
+              <button data-choice="1">The circle's area, about 2%, against about 3% for the sphere's volume</button>
+              <button data-choice="2">They are equally sensitive</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: a ball's radius is measured as \(6\) cm with possible error \(0.1\) cm. Estimate the error in its volume \(V=\tfrac43\pi r^3\) using \(dV\), and the relative error. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(V=\tfrac43\pi(216)=288\pi\approx904.8\text{ cm}^3\). \(dV=4\pi r^2\,dr=4\pi(36)(0.1)=14.4\pi\), which is \(\tfrac{72\pi}{5}\approx45.2\text{ cm}^3\). So \(V\approx904.8\pm45.2\text{ cm}^3\), and \(\dfrac{dV}{V}=\dfrac{14.4\pi}{288\pi}=5\%\), which is \(3\) times the radius's \(\tfrac{0.1}{6}\approx1.67\%\). (The true change is \(\Delta V\approx46.0\), a little larger, because \(V\) bends upward.)
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; THE FINE PRINT: WHAT A DIFFERENTIAL DOES NOT PROMISE</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A differential is a promise with fine print. Before you report a number such as \(1000\pm30\text{ cm}^3\), you owe your reader the fine print.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>1. A differential is an estimate, not a bound.</strong> In the cube example, \(dV=30\) but the true change was \(30.301\). The estimate was a little low. When the curve bends <em>upward</em> (as \(x^3\) does for \(x>0\)), the tangent line lies below the curve, so \(dy\) <em>underestimates</em> \(\Delta y\); when it bends downward, \(dy\) overestimates. This is the direction rule from Lesson 9.03. The true error can therefore be slightly larger than \(dy\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>2. The estimate fails when \(dx\) is not small.</strong> Take \(y=x^2\) at \(x=3\):</p>
+        <div style="overflow-x:auto; margin: 10px 0 14px 0;"><table style="border-collapse:collapse; width:100%; min-width:420px;"><tr><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(dx\)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(dy=6\,dx\)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">\(\Delta y\)</th><th style="text-align:left; padding:8px 10px; background:#EEF1F8; color:#0E1C42; font-size:14px; border-bottom:2px solid #D0D9E8;">how far off is \(dy\)?</th></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.1</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.6</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">0.61</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">about 1.6%</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">1</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">6</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">7</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">about 14%</td></tr><tr><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">2</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">12</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">16</td><td style="padding:7px 10px; font-size:15px; color:#1a2340; border-bottom:1px solid #EEF1F8;">25%</td></tr></table></div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Nothing in the formula \(dy=f'(x)\,dx\) warns you. It computes a number for any \(dx\). The responsibility for asking &ldquo;is \(dx\) small compared to the scale on which \(f\) curves?&rdquo; is yours.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>3. The inputs are only as honest as the measurement.</strong> \(dx=0.1\) is a claim about the instrument. If the ruler's true error is \(0.5\) cm, then \(1000\pm30\) is false precision, however neat the derivative.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> your lab partner says &ldquo;the differential gives \(dV=30\), so the volume is exactly \(1030\).&rdquo; Explain, using this lesson, two reasons that is overclaiming.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Reporting \(1000\pm30\text{ cm}^3\) <em>as a differential estimate</em> is honest. Reporting \(1030\) as if it were measured is not. Scientists and engineers write the error next to the answer for the same reason you show your work: a number without its uncertainty cannot be checked, and an answer that cannot be checked is only a claim.</div>
+        </div>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Ask an AI tool for the &ldquo;error in the volume of a cube with edge \(10\pm0.1\)&rdquo; and it may give you \(30\), or \(30.301\), or \(\pm0.3\%\), depending on how it reads the question. Now you know the differences: \(30\) is a differential estimate, \(30.301\) is the exact change, and a percent needs the relative error. You are the one who decides which question is being asked.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; READING A DIFFERENTIAL ESTIMATE HONESTLY</div>
+          <div class="widget-question">Choose the statement that is true.</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. x^3 bends upward for x > 0, so the tangent line (whose rise is dV) lies below the curve (whose rise is the real change)." data-hint="Which is larger here, dV or the true change? Use the direction rule from Lesson 9.03.">
+            <div class="widget-row-prompt">1. For \(V=x^3\) at \(x=10\) with \(dx=0.1\), \(dV=30\) but \(\Delta V=30.301\). Which statement explains the difference?</div>
+            <div class="widget-options">
+              <button data-choice="0">The tangent line lies below the upward-bending curve, so dV underestimates</button>
+              <button data-choice="1">The derivative was computed incorrectly</button>
+              <button data-choice="2">Differentials are exact when dx is smaller than 1</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The estimate depends on dx being small. With dx = 2, the curve has bent well away from its tangent line (25% error)." data-hint="The derivative at x = 3 really is 6. What assumption about dx did the differential make?">
+            <div class="widget-row-prompt">2. Why is \(dy=6\) a poor estimate of \(\Delta y=16\) for \(y=x^2\) at \(x=3\) with \(dx=2\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">Because the derivative of x^2 is 2x, not 6</button>
+              <button data-choice="1">Because dx = 2 is too large: the curve has bent away from its tangent line</button>
+              <button data-choice="2">Because differentials only work for cubes</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. dV = 3x^2 dx = 150 when dx = 0.5. The reported uncertainty can only be as good as the claimed measurement error." data-hint="Recompute dV = 3x^2 dx with dx = 0.5.">
+            <div class="widget-row-prompt">3. A technician reports \(V\approx1000\pm30\text{ cm}^3\) and also says her ruler could be off by \(0.5\) cm instead of \(0.1\). What follows?</div>
+            <div class="widget-options">
+              <button data-choice="0">The stated error is still right because dV = 30</button>
+              <button data-choice="1">The stated error is too small: dV would be 3(100)(0.5) = 150</button>
+              <button data-choice="2">The relative error is unaffected</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 19 Problem Set: Linear Approximation and Differentials</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Estimate values, changes, and errors; say which way each estimate errs. Upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 19 Quiz: Linear Approximation and Differentials</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 9 - Discussion and Module 9 Challenge</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Post your reasoning and one reply in the Module 9 - Discussion, then complete the Module 9 Challenge, your fullest and most careful work of the module.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A differential is the tangent line's prediction of a change. It lets you carry the uncertainty in a measurement through a formula, and it comes with honest fine print: it is an estimate, it errs in a direction you can predict, and it fails when the change is not small. Module 10 turns to the places where the tangent line is perfectly <em>flat</em>. Lesson 10.01, Critical Points and Local Extrema, asks what it means when \(f'(x)=0\), and why the highs and lows of a graph live exactly there.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 9.04 &middot; Differentials and Error Estimation</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

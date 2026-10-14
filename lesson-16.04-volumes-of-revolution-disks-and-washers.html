@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 16.04</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 16</div>
+        <div style="font-size: 12px; color: #666;">Area, Average Value, and Volume</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 16.04</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Volumes of Revolution: Disks and Washers</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Area, Average Value, and Volume</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 16.04</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Volumes of Revolution: Disks and Washers</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Spin any flat region around a line and the solid you make has circles for cross-sections, so its volume is nearly written for you.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">In Lesson 16.03 you built volumes from cross-sections of your choosing. Today the cross-sections are chosen by geometry: rotate a region about a line and every slice perpendicular to that line is a disk or a ring. That turns \(A(x)\) into \(\pi R^2\) or \(\pi(R^2-r^2)\), and the integral does the rest. You will derive the volumes of the sphere and the cone, find volumes of vase-like solids, handle regions that leave a hole in the middle, and spin regions about axes other than the coordinate axes. This is the last new technique of the semester, and it ties back to the oldest results in the course's story, to Archimedes and Kepler.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> use the disk method \(V=\pi\int R^2\,dx\) (or \(dy\)) to find the volume of a solid formed by rotating a region about the \(x\)-axis or the \(y\)-axis.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> use the washer method \(V=\pi\int (R^2-r^2)\,dx\) when the region does not touch the axis, identifying \(R\) and \(r\) as distances from the axis of rotation.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> set up volumes for regions rotated about lines such as \(y=2\) or \(y=-1\), starting from a sketch.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, and room to sketch a region, an axis, and a typical slice.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The cross-section method from Lesson 16.03, the area-between-curves setup from Lesson 16.01, and the integration techniques of Module 14.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The habit of sketching first. For solids of revolution, the sketch is the setup.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; SPINNING A REGION INTO DISKS</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Take the flat region under the curve \(y=\sqrt{x}\) from \(x=0\) to \(x=4\) and spin it all the way around the \(x\)-axis. What is the shape of a slice of the solid cut by a plane perpendicular to the \(x\)-axis?</div>
+          <div class="widget-options">
+            <button data-response="Yes. Every point of the region at distance \(\sqrt{x}\) from the axis traces a full circle, so the slice at \(x\) is a disk of radius \(\sqrt x\). Because \(\pi r^2\) is the area of a disk, the volume integral is nearly written already.">A disk, a filled circle centered on the axis.</button>
+            <button data-response="Not quite. Rotation sweeps every point around the axis in a circle, so a slice perpendicular to the axis is round, never square. That is the key simplification of this lesson: for a solid of revolution, the cross-sections are automatically circles or rings.">A square, since the region has straight sides.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 16.03 showed that a volume is \(\int A\,dx\) once you know the cross-section area. A <em>solid of revolution</em> is a solid made by spinning a flat region about a line. It is the shape a potter's wheel or a lathe produces, a vase or a bowl or a table leg, and it has a gift for us: every cross-section perpendicular to the axis of spin is a circle (a <strong>disk</strong>) or a ring (a <strong>washer</strong>). So \(A\) is always built from \(\pi\) and a radius.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Johannes Kepler, in 1615, wrote a short book on the volumes of wine barrels, <em>Nova stereometria doliorum vinariorum</em>. The occasion was practical. At his wedding feast he watched a merchant gauge a barrel with a rod pushed in through the bung hole, and he doubted the rule. He imagined barrels, and many other solids of revolution, as stacks of thin disks. It is the same picture you are about to use, sixty years before Newton and Leibniz gave it a notation.</div>
+        </div>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">The disk method</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Spin the region between \(y=f(x)\) and the \(x\)-axis, for \(a\le x\le b\), about the \(x\)-axis. The slice at \(x\) is a disk of radius \(R=f(x)\), so \(A(x)=\pi R^2=\pi\,[f(x)]^2\), and</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ V=\pi\int_a^b [f(x)]^2\,dx. \]
+        </p>
+<div style="text-align:center; margin: 12px 0;"><svg viewBox="0 0 520 270" width="520" height="270" role="img" aria-label="Region under y equals square root of x spun about the x-axis; a vertical segment of length R equals square root of x is the radius of a thin disk" style="max-width:100%; height:auto; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:8px; font-family: Segoe UI, Arial, sans-serif;"><line x1="28.9" y1="133.0" x2="491.1" y2="133.0" stroke="#6b7a99" stroke-width="1.5"/><line x1="57.2" y1="254.7" x2="57.2" y2="11.3" stroke="#6b7a99" stroke-width="1.5"/><text x="487.1" y="149.0" font-size="13" fill="#6b7a99" font-style="italic">x</text><text x="63.2" y="21.3" font-size="13" fill="#6b7a99" font-style="italic">y</text><polygon points="57.2,133.0 63.5,119.3 69.7,113.7 76.0,109.3 82.3,105.7 88.6,102.4 94.9,99.5 101.2,96.9 107.5,94.4 113.8,92.0 120.1,89.8 126.4,87.7 132.6,85.7 138.9,83.7 145.2,81.9 151.5,80.1 157.8,78.3 164.1,76.7 170.4,75.0 176.7,73.4 183.0,71.9 189.2,70.4 195.5,68.9 201.8,67.5 208.1,66.1 214.4,64.7 220.7,63.3 227.0,62.0 233.3,60.7 239.6,59.4 245.8,58.2 252.1,56.9 258.4,55.7 264.7,54.5 271.0,53.3 277.3,52.2 283.6,51.0 289.9,49.9 296.2,48.8 302.5,47.7 308.7,46.6 315.0,45.5 321.3,44.5 327.6,43.4 333.9,42.4 340.2,41.3 346.5,40.3 352.8,39.3 359.1,38.3 365.3,37.4 371.6,36.4 377.9,35.4 384.2,34.5 390.5,33.5 396.8,32.6 403.1,31.7 409.4,30.8 415.7,29.8 421.9,28.9 428.2,28.1 434.5,27.2 434.5,133.0 428.2,133.0 421.9,133.0 415.7,133.0 409.4,133.0 403.1,133.0 396.8,133.0 390.5,133.0 384.2,133.0 377.9,133.0 371.6,133.0 365.3,133.0 359.1,133.0 352.8,133.0 346.5,133.0 340.2,133.0 333.9,133.0 327.6,133.0 321.3,133.0 315.0,133.0 308.7,133.0 302.5,133.0 296.2,133.0 289.9,133.0 283.6,133.0 277.3,133.0 271.0,133.0 264.7,133.0 258.4,133.0 252.1,133.0 245.8,133.0 239.6,133.0 233.3,133.0 227.0,133.0 220.7,133.0 214.4,133.0 208.1,133.0 201.8,133.0 195.5,133.0 189.2,133.0 183.0,133.0 176.7,133.0 170.4,133.0 164.1,133.0 157.8,133.0 151.5,133.0 145.2,133.0 138.9,133.0 132.6,133.0 126.4,133.0 120.1,133.0 113.8,133.0 107.5,133.0 101.2,133.0 94.9,133.0 88.6,133.0 82.3,133.0 76.0,133.0 69.7,133.0 63.5,133.0 57.2,133.0" fill="#55C8E8" fill-opacity="0.28" stroke="none"/><polygon points="57.2,133.0 63.5,133.0 69.7,133.0 76.0,133.0 82.3,133.0 88.6,133.0 94.9,133.0 101.2,133.0 107.5,133.0 113.8,133.0 120.1,133.0 126.4,133.0 132.6,133.0 138.9,133.0 145.2,133.0 151.5,133.0 157.8,133.0 164.1,133.0 170.4,133.0 176.7,133.0 183.0,133.0 189.2,133.0 195.5,133.0 201.8,133.0 208.1,133.0 214.4,133.0 220.7,133.0 227.0,133.0 233.3,133.0 239.6,133.0 245.8,133.0 252.1,133.0 258.4,133.0 264.7,133.0 271.0,133.0 277.3,133.0 283.6,133.0 289.9,133.0 296.2,133.0 302.5,133.0 308.7,133.0 315.0,133.0 321.3,133.0 327.6,133.0 333.9,133.0 340.2,133.0 346.5,133.0 352.8,133.0 359.1,133.0 365.3,133.0 371.6,133.0 377.9,133.0 384.2,133.0 390.5,133.0 396.8,133.0 403.1,133.0 409.4,133.0 415.7,133.0 421.9,133.0 428.2,133.0 434.5,133.0 434.5,238.8 428.2,237.9 421.9,237.1 415.7,236.2 409.4,235.2 403.1,234.3 396.8,233.4 390.5,232.5 384.2,231.5 377.9,230.6 371.6,229.6 365.3,228.6 359.1,227.7 352.8,226.7 346.5,225.7 340.2,224.7 333.9,223.6 327.6,222.6 321.3,221.5 315.0,220.5 308.7,219.4 302.5,218.3 296.2,217.2 289.9,216.1 283.6,215.0 277.3,213.8 271.0,212.7 264.7,211.5 258.4,210.3 252.1,209.1 245.8,207.8 239.6,206.6 233.3,205.3 227.0,204.0 220.7,202.7 214.4,201.3 208.1,199.9 201.8,198.5 195.5,197.1 189.2,195.6 183.0,194.1 176.7,192.6 170.4,191.0 164.1,189.3 157.8,187.7 151.5,185.9 145.2,184.1 138.9,182.3 132.6,180.3 126.4,178.3 120.1,176.2 113.8,174.0 107.5,171.6 101.2,169.1 94.9,166.5 88.6,163.6 82.3,160.3 76.0,156.7 69.7,152.3 63.5,146.7 57.2,133.0" fill="#C7922C" fill-opacity="0.12" stroke="none"/><polyline points="57.2,133.0 63.5,119.3 69.7,113.7 76.0,109.3 82.3,105.7 88.6,102.4 94.9,99.5 101.2,96.9 107.5,94.4 113.8,92.0 120.1,89.8 126.4,87.7 132.6,85.7 138.9,83.7 145.2,81.9 151.5,80.1 157.8,78.3 164.1,76.7 170.4,75.0 176.7,73.4 183.0,71.9 189.2,70.4 195.5,68.9 201.8,67.5 208.1,66.1 214.4,64.7 220.7,63.3 227.0,62.0 233.3,60.7 239.6,59.4 245.8,58.2 252.1,56.9 258.4,55.7 264.7,54.5 271.0,53.3 277.3,52.2 283.6,51.0 289.9,49.9 296.2,48.8 302.5,47.7 308.7,46.6 315.0,45.5 321.3,44.5 327.6,43.4 333.9,42.4 340.2,41.3 346.5,40.3 352.8,39.3 359.1,38.3 365.3,37.4 371.6,36.4 377.9,35.4 384.2,34.5 390.5,33.5 396.8,32.6 403.1,31.7 409.4,30.8 415.7,29.8 421.9,28.9 428.2,28.1 434.5,27.2" fill="none" stroke="#0E1C42" stroke-width="2.2"/><polyline points="57.2,133.0 63.5,146.7 69.7,152.3 76.0,156.7 82.3,160.3 88.6,163.6 94.9,166.5 101.2,169.1 107.5,171.6 113.8,174.0 120.1,176.2 126.4,178.3 132.6,180.3 138.9,182.3 145.2,184.1 151.5,185.9 157.8,187.7 164.1,189.3 170.4,191.0 176.7,192.6 183.0,194.1 189.2,195.6 195.5,197.1 201.8,198.5 208.1,199.9 214.4,201.3 220.7,202.7 227.0,204.0 233.3,205.3 239.6,206.6 245.8,207.8 252.1,209.1 258.4,210.3 264.7,211.5 271.0,212.7 277.3,213.8 283.6,215.0 289.9,216.1 296.2,217.2 302.5,218.3 308.7,219.4 315.0,220.5 321.3,221.5 327.6,222.6 333.9,223.6 340.2,224.7 346.5,225.7 352.8,226.7 359.1,227.7 365.3,228.6 371.6,229.6 377.9,230.6 384.2,231.5 390.5,232.5 396.8,233.4 403.1,234.3 409.4,235.2 415.7,236.2 421.9,237.1 428.2,237.9 434.5,238.8" fill="none" stroke="#6b7a99" stroke-width="1.6" stroke-dasharray="5,4"/><line x1="269.4" y1="212.4" x2="269.4" y2="53.6" stroke="#C7922C" stroke-width="3.5"/><ellipse cx="269.4" cy="133.0" rx="15.1" ry="79.4" fill="#C7922C" fill-opacity="0.18" stroke="#C7922C" stroke-width="2"/><text x="288.3" y="93.3" font-size="14" fill="#8A5F12" text-anchor="start" >R = &#8730;x</text><text x="66.6" y="32.5" font-size="13" fill="#1B6A94" text-anchor="start" >region: y = &#8730;x, 0 &le; x &le; 4</text><text x="66.6" y="233.5" font-size="12" fill="#6b7a99" text-anchor="start" >its mirror image (dashed): the spin sweeps this out</text></svg></div>
+        <p style="font-size: 14px; color: #666; line-height: 1.5; margin: -4px 0 12px 0; text-align:center;">The gold segment of length \(R=\sqrt{x}\) is the radius of the thin disk at position \(x\). The dashed curve is the mirror image of the boundary, to show the full width the spin sweeps out.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Worked example 1.</strong> Spin the region under \(y=\sqrt{x}\) on \([0,4]\) about the \(x\)-axis. The radius is \(R=\sqrt x\), so \(A=\pi(\sqrt x)^2=\pi x\), and</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\pi\int_0^4 x\,dx=\pi\left[\frac{x^2}{2}\right]_0^4=8\pi. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Checking the method on solids you already know.</strong> Spin \(y=\sqrt{r^2-x^2}\), the upper half of a circle of radius \(r\), about the \(x\)-axis on \([-r,r]\). The solid is a sphere, and</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\pi\int_{-r}^{r}(r^2-x^2)\,dx=\pi\left[r^2x-\frac{x^3}{3}\right]_{-r}^{r}=\pi\left(2r^3-\frac{2r^3}{3}\right)=\frac{4}{3}\pi r^3. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now spin the line \(y=\dfrac{r}{h}x\) on \([0,h]\), which makes a cone of height \(h\) and base radius \(r\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\pi\int_0^h \frac{r^2}{h^2}x^2\,dx=\pi\,\frac{r^2}{h^2}\cdot\frac{h^3}{3}=\frac{1}{3}\pi r^2 h. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Both are the classical formulas, and now you know why they are true. It is a pleasing fact, proved by Archimedes with an entirely different argument, that a cone, a sphere, and a cylinder of matching dimensions have volumes in the ratio \(1:2:3\) (cone of height \(2r\), sphere of radius \(r\), cylinder of radius \(r\) and height \(2r\)). Archimedes asked that a sphere inside a cylinder be carved on his tomb.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Rotating about the \(y\)-axis.</strong> If the region is described with \(x\) as a function of \(y\), slice perpendicular to the \(y\)-axis and integrate in \(y\). Spin the region bounded by \(y=x^2\), the \(y\)-axis, and \(y=4\) about the \(y\)-axis. At height \(y\) the radius of the disk is the distance from the axis to the curve, \(x=\sqrt y\), so</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\pi\int_0^4 (\sqrt y)^2\,dy=\pi\int_0^4 y\,dy=8\pi. \]
+        </p>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; WASHERS, AND OTHER AXES OF ROTATION</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">When the region does not touch the axis of rotation, the solid has a hole through it, and each cross-section is a <strong>washer</strong>: a disk with a smaller disk removed. If the outer radius is \(R\) and the inner radius is \(r\), the washer has area \(\pi R^2-\pi r^2\), so</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ V=\pi\int_a^b \left(R^2-r^2\right)dx. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here \(R\) is the distance from the axis to the <em>far</em> edge of the region, and \(r\) the distance from the axis to the <em>near</em> edge. For a region between two curves, with the axis along the \(x\)-axis, \(R\) is the upper curve and \(r\) the lower.</p>
+<div style="text-align:center; margin: 12px 0;"><svg viewBox="0 0 520 270" width="520" height="270" role="img" aria-label="Region between y equals x and y equals x squared spun about the x-axis; at one x the outer radius R equals x and the inner radius r equals x squared" style="max-width:100%; height:auto; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:8px; font-family: Segoe UI, Arial, sans-serif;"><line x1="27.9" y1="133.0" x2="492.1" y2="133.0" stroke="#6b7a99" stroke-width="1.5"/><line x1="63.6" y1="249.4" x2="63.6" y2="16.6" stroke="#6b7a99" stroke-width="1.5"/><text x="488.1" y="149.0" font-size="13" fill="#6b7a99" font-style="italic">x</text><text x="69.6" y="26.6" font-size="13" fill="#6b7a99" font-style="italic">y</text><polygon points="63.6,133.0 69.5,131.2 75.5,129.5 81.4,127.7 87.4,125.9 93.3,124.2 99.3,122.4 105.2,120.7 111.2,118.9 117.1,117.1 123.1,115.4 129.0,113.6 135.0,111.8 141.0,110.1 146.9,108.3 152.9,106.5 158.8,104.8 164.8,103.0 170.7,101.2 176.7,99.5 182.6,97.7 188.6,96.0 194.5,94.2 200.5,92.4 206.4,90.7 212.4,88.9 218.3,87.1 224.3,85.4 230.2,83.6 236.2,81.8 242.1,80.1 248.1,78.3 254.0,76.6 260.0,74.8 266.0,73.0 271.9,71.3 277.9,69.5 283.8,67.7 289.8,66.0 295.7,64.2 301.7,62.4 307.6,60.7 313.6,58.9 319.5,57.2 325.5,55.4 331.4,53.6 337.4,51.9 343.3,50.1 349.3,48.3 355.2,46.6 361.2,44.8 367.1,43.0 373.1,41.3 379.0,39.5 385.0,37.7 391.0,36.0 396.9,34.2 402.9,32.5 408.8,30.7 414.8,28.9 420.7,27.2 420.7,27.2 414.8,30.7 408.8,34.1 402.9,37.5 396.9,40.8 391.0,44.1 385.0,47.3 379.0,50.4 373.1,53.5 367.1,56.5 361.2,59.5 355.2,62.4 349.3,65.3 343.3,68.1 337.4,70.8 331.4,73.5 325.5,76.1 319.5,78.6 313.6,81.1 307.6,83.6 301.7,86.0 295.7,88.3 289.8,90.5 283.8,92.8 277.9,94.9 271.9,97.0 266.0,99.0 260.0,101.0 254.0,102.9 248.1,104.7 242.1,106.5 236.2,108.3 230.2,110.0 224.3,111.6 218.3,113.1 212.4,114.6 206.4,116.1 200.5,117.4 194.5,118.8 188.6,120.0 182.6,121.2 176.7,122.4 170.7,123.5 164.8,124.5 158.8,125.5 152.9,126.4 146.9,127.2 141.0,128.0 135.0,128.8 129.0,129.4 123.1,130.1 117.1,130.6 111.2,131.1 105.2,131.6 99.3,131.9 93.3,132.3 87.4,132.5 81.4,132.7 75.5,132.9 69.5,133.0 63.6,133.0" fill="#55C8E8" fill-opacity="0.28" stroke="none"/><polygon points="63.6,133.0 69.5,133.0 75.5,133.1 81.4,133.3 87.4,133.5 93.3,133.7 99.3,134.1 105.2,134.4 111.2,134.9 117.1,135.4 123.1,135.9 129.0,136.6 135.0,137.2 141.0,138.0 146.9,138.8 152.9,139.6 158.8,140.5 164.8,141.5 170.7,142.5 176.7,143.6 182.6,144.8 188.6,146.0 194.5,147.2 200.5,148.6 206.4,149.9 212.4,151.4 218.3,152.9 224.3,154.4 230.2,156.0 236.2,157.7 242.1,159.5 248.1,161.3 254.0,163.1 260.0,165.0 266.0,167.0 271.9,169.0 277.9,171.1 283.8,173.2 289.8,175.5 295.7,177.7 301.7,180.0 307.6,182.4 313.6,184.9 319.5,187.4 325.5,189.9 331.4,192.5 337.4,195.2 343.3,197.9 349.3,200.7 355.2,203.6 361.2,206.5 367.1,209.5 373.1,212.5 379.0,215.6 385.0,218.7 391.0,221.9 396.9,225.2 402.9,228.5 408.8,231.9 414.8,235.3 420.7,238.8 420.7,238.8 414.8,237.1 408.8,235.3 402.9,233.5 396.9,231.8 391.0,230.0 385.0,228.2 379.0,226.5 373.1,224.7 367.1,223.0 361.2,221.2 355.2,219.4 349.3,217.7 343.3,215.9 337.4,214.1 331.4,212.4 325.5,210.6 319.5,208.8 313.6,207.1 307.6,205.3 301.7,203.6 295.7,201.8 289.8,200.0 283.8,198.3 277.9,196.5 271.9,194.7 266.0,193.0 260.0,191.2 254.0,189.4 248.1,187.7 242.1,185.9 236.2,184.2 230.2,182.4 224.3,180.6 218.3,178.9 212.4,177.1 206.4,175.3 200.5,173.6 194.5,171.8 188.6,170.0 182.6,168.3 176.7,166.5 170.7,164.8 164.8,163.0 158.8,161.2 152.9,159.5 146.9,157.7 141.0,155.9 135.0,154.2 129.0,152.4 123.1,150.6 117.1,148.9 111.2,147.1 105.2,145.3 99.3,143.6 93.3,141.8 87.4,140.1 81.4,138.3 75.5,136.5 69.5,134.8 63.6,133.0" fill="#C7922C" fill-opacity="0.12" stroke="none"/><polyline points="63.6,133.0 69.5,131.2 75.5,129.5 81.4,127.7 87.4,125.9 93.3,124.2 99.3,122.4 105.2,120.7 111.2,118.9 117.1,117.1 123.1,115.4 129.0,113.6 135.0,111.8 141.0,110.1 146.9,108.3 152.9,106.5 158.8,104.8 164.8,103.0 170.7,101.2 176.7,99.5 182.6,97.7 188.6,96.0 194.5,94.2 200.5,92.4 206.4,90.7 212.4,88.9 218.3,87.1 224.3,85.4 230.2,83.6 236.2,81.8 242.1,80.1 248.1,78.3 254.0,76.6 260.0,74.8 266.0,73.0 271.9,71.3 277.9,69.5 283.8,67.7 289.8,66.0 295.7,64.2 301.7,62.4 307.6,60.7 313.6,58.9 319.5,57.2 325.5,55.4 331.4,53.6 337.4,51.9 343.3,50.1 349.3,48.3 355.2,46.6 361.2,44.8 367.1,43.0 373.1,41.3 379.0,39.5 385.0,37.7 391.0,36.0 396.9,34.2 402.9,32.5 408.8,30.7 414.8,28.9 420.7,27.2" fill="none" stroke="#0E1C42" stroke-width="2.2"/><polyline points="63.6,133.0 69.5,133.0 75.5,132.9 81.4,132.7 87.4,132.5 93.3,132.3 99.3,131.9 105.2,131.6 111.2,131.1 117.1,130.6 123.1,130.1 129.0,129.4 135.0,128.8 141.0,128.0 146.9,127.2 152.9,126.4 158.8,125.5 164.8,124.5 170.7,123.5 176.7,122.4 182.6,121.2 188.6,120.0 194.5,118.8 200.5,117.4 206.4,116.1 212.4,114.6 218.3,113.1 224.3,111.6 230.2,110.0 236.2,108.3 242.1,106.5 248.1,104.7 254.0,102.9 260.0,101.0 266.0,99.0 271.9,97.0 277.9,94.9 283.8,92.8 289.8,90.5 295.7,88.3 301.7,86.0 307.6,83.6 313.6,81.1 319.5,78.6 325.5,76.1 331.4,73.5 337.4,70.8 343.3,68.1 349.3,65.3 355.2,62.4 361.2,59.5 367.1,56.5 373.1,53.5 379.0,50.4 385.0,47.3 391.0,44.1 396.9,40.8 402.9,37.5 408.8,34.1 414.8,30.7 420.7,27.2" fill="none" stroke="#0E1C42" stroke-width="2.2"/><polyline points="63.6,133.0 69.5,134.8 75.5,136.5 81.4,138.3 87.4,140.1 93.3,141.8 99.3,143.6 105.2,145.3 111.2,147.1 117.1,148.9 123.1,150.6 129.0,152.4 135.0,154.2 141.0,155.9 146.9,157.7 152.9,159.5 158.8,161.2 164.8,163.0 170.7,164.8 176.7,166.5 182.6,168.3 188.6,170.0 194.5,171.8 200.5,173.6 206.4,175.3 212.4,177.1 218.3,178.9 224.3,180.6 230.2,182.4 236.2,184.2 242.1,185.9 248.1,187.7 254.0,189.4 260.0,191.2 266.0,193.0 271.9,194.7 277.9,196.5 283.8,198.3 289.8,200.0 295.7,201.8 301.7,203.6 307.6,205.3 313.6,207.1 319.5,208.8 325.5,210.6 331.4,212.4 337.4,214.1 343.3,215.9 349.3,217.7 355.2,219.4 361.2,221.2 367.1,223.0 373.1,224.7 379.0,226.5 385.0,228.2 391.0,230.0 396.9,231.8 402.9,233.5 408.8,235.3 414.8,237.1 420.7,238.8" fill="none" stroke="#6b7a99" stroke-width="1.4" stroke-dasharray="5,4"/><polyline points="63.6,133.0 69.5,133.0 75.5,133.1 81.4,133.3 87.4,133.5 93.3,133.7 99.3,134.1 105.2,134.4 111.2,134.9 117.1,135.4 123.1,135.9 129.0,136.6 135.0,137.2 141.0,138.0 146.9,138.8 152.9,139.6 158.8,140.5 164.8,141.5 170.7,142.5 176.7,143.6 182.6,144.8 188.6,146.0 194.5,147.2 200.5,148.6 206.4,149.9 212.4,151.4 218.3,152.9 224.3,154.4 230.2,156.0 236.2,157.7 242.1,159.5 248.1,161.3 254.0,163.1 260.0,165.0 266.0,167.0 271.9,169.0 277.9,171.1 283.8,173.2 289.8,175.5 295.7,177.7 301.7,180.0 307.6,182.4 313.6,184.9 319.5,187.4 325.5,189.9 331.4,192.5 337.4,195.2 343.3,197.9 349.3,200.7 355.2,203.6 361.2,206.5 367.1,209.5 373.1,212.5 379.0,215.6 385.0,218.7 391.0,221.9 396.9,225.2 402.9,228.5 408.8,231.9 414.8,235.3 420.7,238.8" fill="none" stroke="#6b7a99" stroke-width="1.4" stroke-dasharray="5,4"/><line x1="277.9" y1="133.0" x2="277.9" y2="69.5" stroke="#C7922C" stroke-width="3.5"/><line x1="277.9" y1="133.0" x2="277.9" y2="94.9" stroke="#0E1C42" stroke-width="3.5"/><ellipse cx="277.9" cy="133.0" rx="4.3" ry="63.5" fill="none" fill-opacity="1" stroke="#C7922C" stroke-width="2"/><ellipse cx="277.9" cy="133.0" rx="4.3" ry="38.1" fill="none" fill-opacity="1" stroke="#0E1C42" stroke-width="2"/><text x="292.1" y="69.5" font-size="13" fill="#8A5F12" text-anchor="start" >R = x</text><text x="292.1" y="111.8" font-size="13" fill="#0E1C42" text-anchor="start" >r = x&#178;</text><text x="63.6" y="21.9" font-size="13" fill="#1B6A94" text-anchor="start" >region between y = x and y = x&#178;</text></svg></div>
+        <p style="font-size: 14px; color: #666; line-height: 1.5; margin: -4px 0 12px 0; text-align:center;">At position \(x\), the gold segment is the outer radius \(R=x\) and the navy segment is the inner radius \(r=x^2\). The washer is the gold disk with the navy disk removed.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Worked example 2.</strong> The region between \(y=x\) and \(y=x^2\) on \([0,1]\) is spun about the \(x\)-axis. The line is farther from the axis than the parabola on this interval, so \(R=x\) and \(r=x^2\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\pi\int_0^1 \left(x^2-x^4\right)dx=\pi\left(\frac13-\frac15\right)=\frac{2\pi}{15}. \]
+        </p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The washer area is \(\pi R^2-\pi r^2\), <strong>not</strong> \(\pi(R-r)^2\). In the example above, \(\pi\int_0^1 (x-x^2)^2\,dx=\dfrac{\pi}{30}\), which is far too small: it is the volume of a solid whose radius is the <em>gap</em> between the curves, not the volume of a ring. Square each radius first, then subtract.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Worked example 3: the same region, spun about the \(y\)-axis.</strong> Now the slices are perpendicular to the \(y\)-axis, so we describe the curves with \(x\) as a function of \(y\): the line is \(x=y\) and the parabola is \(x=\sqrt y\). For \(0\le y\le 1\), \(\sqrt y\ge y\), so the parabola is the farther edge, with \(R=\sqrt y\), \(r=y\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\pi\int_0^1\left(y-y^2\right)dy=\pi\left(\frac12-\frac13\right)=\frac{\pi}{6}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The same region gave two different solids, \(\tfrac{2\pi}{15}\) and \(\tfrac{\pi}{6}\), because the axis of rotation changed what \(R\) and \(r\) mean. This is why the sketch comes first.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Worked example 4: an axis that is not a coordinate axis.</strong> Spin the region under \(y=\sqrt x\) on \([0,4]\) about the horizontal line \(y=2\). Distances are now measured from \(y=2\), not from \(y=0\). The region lies below the line. Its far edge from the axis is the \(x\)-axis (distance \(2-0=2\)), and its near edge is the curve (distance \(2-\sqrt x\)):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\pi\int_0^4\left[2^2-\left(2-\sqrt x\right)^2\right]dx=\pi\int_0^4\left(4\sqrt x-x\right)dx=\pi\left[\frac{8}{3}x^{3/2}-\frac{x^2}{2}\right]_0^4=\frac{40\pi}{3}. \]
+        </p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; IDENTIFY R AND r</div>
+          <div class="widget-question">The region between \(y=x\) and \(y=x^2\), for \(0\le x\le 1\), is spun about different horizontal lines. For each axis, pick the outer radius \(R\) at position \(x\).</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The line \(y=x\) is the farther edge from \(y=0\), so \(R=x\) and \(r=x^2\)." data-hint="Measure the distance from the axis to the farther of the two curves.">
+            <div class="widget-row-prompt">1. About the \(x\)-axis (\(y=0\))</div>
+            <div class="widget-options">
+              <button data-choice="0">\(R=x\)</button>
+              <button data-choice="1">\(R=x-x^2\)</button>
+              <button data-choice="2">\(R=1-x\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. From \(y=1\) the farther edge is the lower curve \(y=x^2\), at distance \(1-x^2\); the nearer edge is \(y=x\), at distance \(1-x\)." data-hint="Distances from \(y=1\) go downward. The lower curve is farther from the axis.">
+            <div class="widget-row-prompt">2. About the line \(y=1\) (above the region)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(R=1-x\)</button>
+              <button data-choice="1">\(R=1-x^2\)</button>
+              <button data-choice="2">\(R=x^2-1\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The distance from \(y=-1\) up to the upper curve \(y=x\) is \(x-(-1)=x+1\), and up to the lower curve it is \(x^2+1\)." data-hint="The distance from the line \(y=-1\) to a curve at height \(y\) is \(y+1\).">
+            <div class="widget-row-prompt">3. About the line \(y=-1\) (below the region)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(R=x+1\)</button>
+              <button data-choice="1">\(R=x^2+1\)</button>
+              <button data-choice="2">\(R=x-x^2\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: the region between \(y=x^2\) and \(y=1\) is spun about the line \(y=-1\). Sketch it, name \(R\) and \(r\), and set up the volume before opening this.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                The curves meet at \(x=\pm1\), and \(y=1\) is above the parabola. Measured from \(y=-1\): the far edge is \(y=1\), so \(R=1-(-1)=2\); the near edge is the parabola, so \(r=x^2+1\). Then \(V=\pi\int_{-1}^{1}\left[4-(x^2+1)^2\right]dx=\pi\int_{-1}^{1}\left(3-2x^2-x^4\right)dx=\pi\left(6-\dfrac43-\dfrac25\right)=\dfrac{64\pi}{15}.\)
+            </div>
+        </details>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> Two classmates compute the volume obtained by spinning the same region about the \(x\)-axis and about the \(y\)-axis, and they get different answers. Explain why this does not mean either of them made an error.</p>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; THE SETUP ROUTINE, AND WHAT THIS MODULE HAS BEEN DOING</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A full setup for any solid of revolution follows one routine, and it is the same routine as Lesson 16.03 with a rotating twist. <strong>(1)</strong> Sketch the region and the axis. <strong>(2)</strong> Draw one typical slice perpendicular to the axis, and ask whether it is a disk or a washer. <strong>(3)</strong> Label the radii as distances from the <em>axis</em>, not from the origin. <strong>(4)</strong> Choose the variable that runs along the axis, so the slice is perpendicular to it, and find its limits. <strong>(5)</strong> Integrate \(\pi R^2\) or \(\pi(R^2-r^2)\).</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">There is another way to find these volumes, called the method of cylindrical shells, which slices parallel to the axis instead of perpendicular to it. It is a fine technique and you may meet it in later study, but it is not needed in this course. Disks and washers, together with the cross-section method of Lesson 16.03, find every volume you will be asked for here.</div>
+        </div>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A graphing tool can draw a solid of revolution, and a computer algebra system can integrate \(\pi(R^2-r^2)\). Neither can tell you whether the region lies above or below the axis, so neither can choose \(R\) and \(r\) for you. Use tools to check a result, for example to confirm that your washer integral for a region spun about \(y=2\) agrees with the number you found by hand, but make the setup your own work, and keep a special case such as a sphere or a cone in mind as a test.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Look back over this module. Lesson 16.01 turned the integral into an area between curves. Lesson 16.02 turned it into an average value. Lessons 16.03 and 16.04 turned it into a volume. In every case a quantity that is spread out, changing from place to place, was cut into pieces small enough to be nearly constant, and the pieces were added back together exactly. That is what the integral is. Week 34, Semester 2 Finals, is your chance to step back and see how the whole semester fits together.</p>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 33 Problem Set: Volumes</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Set up and evaluate volumes by cross-sections and by rotation, then upload your completed pages as a PDF or image.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 33 Quiz: Volumes</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 16 - Discussion and Module 16 Challenge</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Post your reasoning and one reply in the Module 16 - Discussion, then complete the Module 16 Challenge, your fullest and most careful work of the module.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 34: Semester 2 Finals</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Next week is the finals week: the Semester 2 Review lesson, the Semester 2 Review Activity, and the Semester 2 Final Exam.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A solid of revolution is a stack of disks or washers. Sketch the region and the axis, draw one slice perpendicular to the axis, measure \(R\) and \(r\) as distances from the <em>axis</em>, and integrate \(\pi R^2\) or \(\pi(R^2-r^2)\) over the length of the axis, never \(\pi(R-r)^2\). Behind every volume is the pattern that has run through the whole year: cut a changing quantity into pieces so small they are nearly constant, add them up, and let the pieces shrink. Week 34 is Semester 2 Finals, where you will review that pattern from the first derivative to the last volume, in the Semester 2 Review lesson, the Semester 2 Review Activity, and the Semester 2 Final Exam.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 16.04 &middot; Volumes of Revolution: Disks and Washers</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

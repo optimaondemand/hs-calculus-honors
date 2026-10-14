@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 14.03</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 14</div>
+        <div style="font-size: 12px; color: #666;">The Fundamental Theorem of Calculus</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 14.03</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Net Change and Analyzing Graphs</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">The Fundamental Theorem of Calculus</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 14.03</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Net Change and Analyzing Graphs with the Theorem</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">If you know how fast something is changing, how much has it changed? And if you know only the graph of the rate, what does the graph of the total look like?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lessons 14.01 and 14.02 gave you the Fundamental Theorem in its two forms: accumulate a function and you get an antiderivative, and evaluate an antiderivative at two ends and you get a definite integral. Today both halves go to work. Read as a statement about change, the theorem says that the integral of a rate is a total. Read as a statement about shape, it says that the graph of \(f\) tells you everything about where its accumulation function rises, falls, peaks, and bends. Then, in Lesson 14.04, you add the last tool the module needs.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> use the Net Change Theorem to find total change and final amount from a rate, with units and an initial value.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> find displacement and total distance traveled from a velocity function, using a sign chart to split the interval.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> describe where \(g(x)=\int_0^x f(t)\,dt\) increases, decreases, has extrema, and bends, from the graph of \(f\), and compute its values as signed areas.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus your work from Lessons 8.02, 12.03, 14.01 and 14.02.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A graphing tool, only to check predictions you have made first.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE NET CHANGE THEOREM</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A reservoir's volume changes at a rate of \(V'(t)=12-2t\) thousand liters per hour, where \(t\) is hours from midnight. You know the rate at every moment of the next eight hours. Do you know how much the volume will have changed by the end of hour 8?</div>
+          <div class="widget-options">
+            <button data-response="That is exactly the idea. A rate tells you how fast something is changing; adding the rate up over an interval gives the total change. Part 1 of the Fundamental Theorem (Lesson 14.01) and Part 2 (Lesson 14.02) turn that sentence into one equation, and today you use it.">Yes. Adding up the rate over the eight hours gives the total change.</button>
+            <button data-response="You do need a starting volume to know the volume at hour 8, but not to know how much the volume has changed. The change depends only on the rate. Today you separate those two questions: total change from the rate alone, then the final amount by adding the change to a known start.">No. I would need the volume itself at some starting time.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 14.02 gave you the rule \(\displaystyle\int_a^b f(x)\,dx = F(b)-F(a)\) where \(F'=f\). Read that rule with a different eye. Suppose \(F\) is some quantity (a volume, a position, a population) and \(F'\) is how fast that quantity is changing. Then the rule says something you can say out loud: <strong>the integral of a rate is the total change.</strong></p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The Net Change Theorem</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(F'\) is continuous on \([a,b]\), then \[ \int_a^b F'(x)\,dx \;=\; F(b)-F(a). \] In words: the accumulated rate of change equals the net change in the quantity. Rearranged, \(F(b)=F(a)+\int_a^b F'(x)\,dx\): <em>final amount = starting amount + net change</em>.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Nothing new is being proved; this is the second half of the Fundamental Theorem read as a statement about the world. What is new is the habit of mind. Whenever a problem hands you a <em>rate</em> and asks for a <em>total</em>, an integral is waiting.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: the reservoir</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The volume changes at \(V'(t)=12-2t\) thousand liters per hour for \(0\le t\le 8\). Find the net change in volume over those eight hours, and then the volume at hour 8 if the reservoir held 50 thousand liters at \(t=0\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">An antiderivative of \(12-2t\) is \(12t-t^2\). So</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \int_0^8 (12-2t)\,dt = \bigl[\,12t-t^2\,\bigr]_0^8 = (96-64)-0 = 32. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The volume rises by 32 thousand liters over the eight hours, so \(V(8)=50+32=82\) thousand liters.</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Predict first: is the volume still rising at hour 8? Then check it against the integral over the first six hours.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                The rate \(12-2t\) is positive for \(t<6\) and negative for \(t>6\), so the volume rises until hour 6 and falls afterward. Over \([0,6]\): \(\int_0^6(12-2t)\,dt=72-36=36\), so \(V(6)=86\). Over \([6,8]\): \(\int_6^8(12-2t)\,dt=(96-64)-(72-36)=-4\), so the volume falls back to \(V(8)=82\). Notice that the net change over \([0,8]\) is \(36+(-4)=32\): the falling part subtracts from the rising part, just as area below the axis counts as negative.
+            </div>
+        </details>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The integral of a rate gives the <em>change</em>, not the amount. If the problem asks for the volume at hour 8, finishing at \(32\) is a mistake: that is only how much the volume moved. You still have to add the starting amount, \(50+32=82\). Check your final line by reading the units and the question: &ldquo;thousand liters of change&rdquo; is not &ldquo;thousand liters in the reservoir.&rdquo;</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; DISPLACEMENT AND TOTAL DISTANCE</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Velocity is the rate of change of position, so the Net Change Theorem applies to motion immediately. If \(s'(t)=v(t)\), then</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \int_a^b v(t)\,dt = s(b)-s(a) = \text{displacement}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Displacement is <em>net</em> change in position: it counts motion in the positive direction as positive and motion in the negative direction as negative, so a particle that walks 3 meters east and 3 meters back west has displacement 0. Back in Lesson 8.02 and Lesson 12.03 you separated displacement from <em>total distance traveled</em>, which counts every meter walked no matter which way. The integral gives displacement directly. For total distance you need the <em>speed</em>, \(|v(t)|\):</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \text{total distance} = \int_a^b |v(t)|\,dt. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In practice you do not integrate \(|v|\) in one step. You find where \(v\) changes sign, split the interval there, and integrate each piece with the right sign.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: a particle that turns around twice</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A particle moves along a line with velocity \(v(t)=t^2-4t+3\) meters per second for \(0\le t\le 4\). Find its displacement and its total distance traveled.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Step 1, sign chart.</strong> Factor: \(v(t)=(t-1)(t-3)\). So \(v>0\) on \((0,1)\), \(v<0\) on \((1,3)\), and \(v>0\) on \((3,4)\). The particle turns around at \(t=1\) and \(t=3\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Step 2, one antiderivative.</strong> Let \(S(t)=\dfrac{t^3}{3}-2t^2+3t\), so \(S'=v\). The values at the key times are \(S(0)=0\), \(S(1)=\tfrac43\), \(S(3)=0\), \(S(4)=\tfrac43\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Step 3, displacement.</strong> \(\displaystyle\int_0^4 v\,dt=S(4)-S(0)=\tfrac43\) meters.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Step 4, total distance.</strong> Integrate each piece, flipping the sign where \(v<0\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \int_0^4|v|\,dt=\underbrace{\bigl(S(1)-S(0)\bigr)}_{\frac43}-\underbrace{\bigl(S(3)-S(1)\bigr)}_{-\frac43}+\underbrace{\bigl(S(4)-S(3)\bigr)}_{\frac43}=\tfrac43+\tfrac43+\tfrac43=4. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The particle ends only \(\tfrac43\) meters from where it started, yet it has traveled 4 meters. The two numbers answer different questions, and a problem will tell you which one it wants by the words it uses: <em>displacement</em>, <em>net change</em>, <em>final position</em> mean the plain integral; <em>total distance</em>, <em>how far did it travel</em>, <em>distance covered</em> mean the integral of \(|v|\).</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Do not get total distance by adding up \(\int_0^4 v\,dt\) and hoping. That gives \(\tfrac43\), the displacement. And do not drop the sign-chart step: if you integrate \(v\) straight through \([1,3]\) where \(v\) is negative, the negative area cancels a positive area you have already counted, and you undercount the distance.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; Displacement or distance?</div>
+          <div class="widget-question">For each question about a particle with velocity \(v(t)\) on \([0,6]\), choose the integral that answers it.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Position at the end minus position at the start is \(\int_0^6 v\,dt\), the displacement. (The particle's final position equals its displacement because it started at the origin.)" data-hint="Final position minus starting position is the change in position, which comes from integrating the rate of change of position.">
+            <div class="widget-row-prompt">1. &ldquo;How far is the particle from its starting point at \(t=6\)?&rdquo; (it started at the origin and ends at positive position)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\displaystyle\int_0^6 |v(t)|\,dt\)</button>
+              <button data-choice="1">\(\displaystyle\int_0^6 v(t)\,dt\)</button>
+              <button data-choice="2">\(\displaystyle v(6)-v(0)\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Distance counts motion in either direction as positive, so it integrates the speed \(|v|\)." data-hint="Both of the other expressions let backward motion cancel forward motion. Distance cannot cancel.">
+            <div class="widget-row-prompt">2. &ldquo;What is the total length of path the particle covered?&rdquo;</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\displaystyle\int_0^6 v(t)\,dt\)</button>
+              <button data-choice="1">\(\displaystyle s(6)-s(0)\)</button>
+              <button data-choice="2">\(\displaystyle\int_0^6 |v(t)|\,dt\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. An odometer measures total distance, so integrate the speed." data-hint="Which quantity never decreases, even when the car reverses?">
+            <div class="widget-row-prompt">3. &ldquo;The odometer reading changes by how much?&rdquo; (an odometer adds up distance, never subtracts)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\displaystyle\int_0^6 |v(t)|\,dt\)</button>
+              <button data-choice="1">\(\displaystyle\int_0^6 v(t)\,dt\)</button>
+              <button data-choice="2">\(\displaystyle\int_0^6 v'(t)\,dt\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; READING AN ACCUMULATION FUNCTION FROM A GRAPH</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The same two ideas run in the opposite direction too. Lesson 14.01 showed that if you <em>accumulate</em> a function, \(g(x)=\displaystyle\int_0^x f(t)\,dt\), then \(g'(x)=f(x)\). That one fact, \(g'=f\), lets you read the shape of \(g\) straight off the graph of \(f\), without ever finding a formula for \(g\). The tools are the ones from Modules 10 and 11, with a change of names:</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Reading \(g\) from the graph of \(f\)</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Let \(g(x)=\int_0^x f(t)\,dt\), so \(g'=f\) and \(g''=f'\). <br/>&bull; \(g\) is <strong>increasing</strong> where \(f>0\) and <strong>decreasing</strong> where \(f<0\). <br/>&bull; \(g\) has a <strong>local maximum</strong> where \(f\) crosses from positive to negative, and a <strong>local minimum</strong> where \(f\) crosses from negative to positive (the First Derivative Test, Lesson 10.02, applied to \(g\)). <br/>&bull; \(g\) is <strong>concave up</strong> where \(f\) is increasing and <strong>concave down</strong> where \(f\) is decreasing (Lesson 11.01, applied to \(g\), since \(g''=f'\)). <br/>&bull; \(g(0)=0\), and the <strong>value</strong> of \(g(x)\) is the signed area between the graph of \(f\) and the \(t\)-axis from \(0\) to \(x\).</div>
+        </div>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: from a graph of f to a picture of g</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The graph below shows \(f\): a straight line from \((0,2)\) down to \((4,-2)\), flat at \(-2\) from \(t=4\) to \(t=6\), then a straight line rising to \((8,0)\). Let \(g(x)=\int_0^x f(t)\,dt\).</p>
+        <div style="text-align:center; margin: 12px 0 6px 0;">
+        <svg viewBox="0 0 440 230" width="440" height="230" role="img" aria-label="Graph of f: a line from (0,2) down through (2,0) to (4,-2), flat at -2 until t=6, then a line rising to (8,0)." style="max-width:100%; height:auto; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:6px;">
+          <line x1="30" y1="115" x2="420" y2="115" stroke="#0E1C42" stroke-width="1.5"/>
+          <line x1="30" y1="20" x2="30" y2="210" stroke="#0E1C42" stroke-width="1.5"/>
+          <g stroke="#D0D9E8" stroke-width="1"><line x1="120" y1="25" x2="120" y2="205"/><line x1="210" y1="25" x2="210" y2="205"/><line x1="300" y1="25" x2="300" y2="205"/><line x1="390" y1="25" x2="390" y2="205"/></g>
+          <polyline points="30,35 120,115 210,195 300,195 390,115" fill="none" stroke="#2196D0" stroke-width="3"/>
+          <g fill="#0E1C42" font-size="12" font-family="Segoe UI,Arial,sans-serif" text-anchor="middle">
+            <text x="120" y="130">2</text><text x="210" y="130">4</text><text x="300" y="130">6</text><text x="390" y="130">8</text>
+            <text x="18" y="39" text-anchor="end">2</text><text x="18" y="199" text-anchor="end">-2</text>
+            <text x="410" y="108" >t</text><text x="42" y="30" text-anchor="start">y = f(t)</text>
+          </g>
+        </svg>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Where is \(g\) increasing?</strong> \(f>0\) on \([0,2)\) and \(f<0\) on \((2,8)\). So \(g\) rises until \(x=2\) and falls after, which makes \(x=2\) the location of the absolute maximum of \(g\) on \([0,8]\) (\(f\) crosses from positive to negative there).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>How does \(g\) bend?</strong> \(f\) is decreasing on \((0,4)\), constant on \((4,6)\), and increasing on \((6,8)\). So \(g\) is concave down on \((0,4)\), a straight line on \((4,6)\) (slope \(-2\)), and concave up on \((6,8)\). The slope of \(g\) is as steep as it ever gets downward at \(x\) between 4 and 6, and it eases to \(0\) at \(x=8\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>What are the values?</strong> Signed areas, one piece at a time (each is a triangle, trapezoid, or rectangle, so you need no antiderivative):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ g(2)=\tfrac12(2)(2)=2,\quad g(4)=2-2=0,\quad g(6)=0-4=-4,\quad g(8)=-4-2=-6. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">That last piece deserves a second look: on \([6,8]\) the graph of \(f\) lies <em>below</em> the axis (from \(-2\) up to \(0\)) and encloses a triangle of area 2, so it contributes \(-2\) to the integral and \(g(8)=-4-2=-6\).</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Commit first: estimate \(g(3)\), \(g(5)\) and \(g(7)\) using areas, then check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                From \(t=2\) to \(t=3\) the graph of \(f\) drops from \(0\) to \(-1\): a triangle of area \(\tfrac12\) below the axis, so \(g(3)=2-\tfrac12=\tfrac32\). From \(t=4\) to \(t=5\) the graph is flat at \(-2\): a rectangle of area 2 below the axis, so \(g(5)=0-2=-2\). From \(t=6\) to \(t=7\) the graph rises from \(-2\) to \(-1\): a trapezoid of area \(\tfrac{(2+1)}{2}\cdot1=\tfrac32\), so \(g(7)=-4-\tfrac32=-\tfrac{11}{2}\). Together with \(g(0)=0,\,g(1)=\tfrac32,\,g(2)=2\), these values trace the picture you described: up to a peak at \(x=2\), then down, steepest through \([4,6]\), flattening at the end.
+            </div>
+        </details>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A graphing tool or a computer algebra system can draw \(g\) for you in a second. Use that second as a <em>check</em>, after you have predicted where \(g\) rises, falls, peaks and bends from the graph of \(f\) alone. If the tool disagrees with your prediction, one of you has made a mistake, and finding out which is where the learning happens.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; Reading g from f</div>
+          <div class="widget-question">Use the graph of \(f\) above, with \(g(x)=\int_0^x f(t)\,dt\).</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. \(g'=f\), and \(f>0\) only on \((0,2)\)." data-hint="Increasing means \(g'=f\) is positive. Where is the graph of \(f\) above the \(t\)-axis?">
+            <div class="widget-row-prompt">1. On which interval is \(g\) <em>increasing</em>?</div>
+            <div class="widget-options">
+              <button data-choice="0">\((2,8)\)</button>
+              <button data-choice="1">\((0,2)\)</button>
+              <button data-choice="2">\((0,4)\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. \(f\) changes from positive to negative at \(t=2\), so \(g\) stops rising and starts falling there." data-hint="A maximum of \(g\) is where \(g'=f\) changes from positive to negative.">
+            <div class="widget-row-prompt">2. At which \(x\) does \(g\) have its absolute maximum on \([0,8]\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(x=4\)</button>
+              <button data-choice="1">\(x=8\)</button>
+              <button data-choice="2">\(x=2\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. \(g''=f'\), and \(f\) is increasing (so \(f'>0\)) only on \((6,8)\)." data-hint="Concave up means \(g''=f'\) is positive, so ask where the graph of \(f\) is <em>rising</em>, not where it is positive.">
+            <div class="widget-row-prompt">3. Where is \(g\) concave <em>up</em>?</div>
+            <div class="widget-options">
+              <button data-choice="0">\((6,8)\)</button>
+              <button data-choice="1">\((0,2)\)</button>
+              <button data-choice="2">\((0,4)\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The triangle above the axis from 0 to 2 has area 2, and the triangle below the axis from 2 to 4 has area 2, so they cancel." data-hint="\(g(4)\) is signed area. Add the area above the axis from 0 to 2 and subtract the area below it from 2 to 4.">
+            <div class="widget-row-prompt">4. What is the value of \(g(4)\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(2\)</button>
+              <button data-choice="1">\(0\)</button>
+              <button data-choice="2">\(-2\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> in your own words, why \(g\) has its maximum at \(x=2\) even though the graph of \(f\) keeps going well past that point.</p>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 29 Problem Set: Net Change and Substitution</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Net change, displacement and distance, and reading an accumulation function from a graph. Work by hand and upload your pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 29 Quiz: Net Change and Substitution</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material. Lesson 14.04 (Integration by Substitution) comes next, so finish it before the quiz.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">The integral of a rate is a total: \(\int_a^b F'(x)\,dx=F(b)-F(a)\) is the net change, and the final amount is the starting amount plus that change. Displacement integrates the velocity; total distance integrates its absolute value, and a sign chart tells you where to split. Turned around, \(g'=f\) lets you read the shape of an accumulation function off the graph of \(f\). Lesson 14.04 adds the last technique of the module: when an antiderivative is hiding behind a chain-rule pattern, substitution brings it out.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 14.03 &middot; Net Change and Analyzing Graphs with the Theorem</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

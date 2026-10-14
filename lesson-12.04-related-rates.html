@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 12.04</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q3 &middot; Module 12</div>
+        <div style="font-size: 12px; color: #666;">Optimization, Motion, and Related Rates</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 12.04</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Related Rates</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Optimization, Motion, and Related Rates</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 12.04</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Related Rates</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">A balloon's radius grows at a steady rate. Its volume does not. Calculus is how you find the second rate from the first.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Many things you can measure change at once, and they are tied together by formulas: the radius, area, and volume of a ripple or balloon; the height and distance of a sliding ladder; the depth and volume of water in a tank. When quantities are tied by an equation, their rates of change are tied by the same equation differentiated with respect to time. Today you learn the five-step method for related rates, built from the Chain Rule and implicit differentiation you already have. You will meet its three most important habits: differentiate before you substitute, eliminate extra variables first, and say in words what your answer and its sign mean. You will also see where an answer is a statement about a model, not about the world.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> translate a changing-quantities situation into an equation among variables that are functions of time, using geometry or similar triangles to eliminate extra variables.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> differentiate the relationship with respect to \(t\) using the Chain Rule, substitute the values for the instant only afterward, and report the answer with units and the meaning of its sign.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> solve standard related-rates problems (an expanding circle, a sliding ladder, a filling cone, a moving shadow) and state where a model stops being believable.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus the Chain Rule from Lesson 6.03 and implicit differentiation from Lesson 7.01.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A calculator for arithmetic only. Draw a labeled picture for every problem, because the picture is half the solution.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; RATES THAT ARE TIED TOGETHER</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A spherical balloon is inflated so that its radius grows at a steady 2 cm per second. Is its volume growing at a steady rate too?</div>
+          <div class="widget-options">
+            <button data-response="It feels right, but the volume does not grow steadily. When the radius is 5 cm, the volume is growing at \(200\pi\approx628\) cm\(^3\)/s; when the radius is 10 cm, at \(800\pi\approx2513\) cm\(^3\)/s, four times as fast. You will derive those numbers in a moment. A steady rate for one quantity does not make a steady rate for another.">Yes: the radius grows steadily, so the volume must grow steadily.</button>
+            <button data-response="Yes. A new layer of air of the same thickness around a big balloon holds far more volume than around a small one. That is exactly why the rates are related but not equal, and today you learn to find one rate from another.">No: the same growth in radius adds more volume when the balloon is already big.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In Lessons 12.01 and 12.02 you asked for the <em>best</em> value of a quantity. Today a quantity is not sought, it is <em>changing</em>, and so are the others tied to it. A balloon's radius, surface, and volume all change at once, and they are linked by formulas. Because they are linked, their rates are linked. Finding one rate from another is the problem of <strong>related rates</strong>.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The mathematics is something you already know. Lesson 6.03 gave you the Chain Rule, and Lesson 7.01 used it to differentiate an equation in which \(y\) is secretly a function of \(x\). Here every variable is a function of time \(t\), so differentiating with respect to \(t\) puts a factor like \(\dfrac{dr}{dt}\) on every term where \(r\) appears.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The five-step strategy for related rates</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;"><strong>1. Draw and name.</strong> Sketch the situation. Give a letter to every quantity that changes, and note which rates are given and which one is wanted.<br><strong>2. Relate.</strong> Write an equation connecting the variables that is true <em>at every moment</em> (a geometry fact, a formula, similar triangles). If there are too many variables, use a second fact to eliminate one.<br><strong>3. Differentiate with respect to \(t\).</strong> Use the Chain Rule on every variable quantity.<br><strong>4. Substitute last.</strong> Only now put in the values at the instant in question.<br><strong>5. Solve and state the answer with units</strong> and a sentence in the context of the problem, including the meaning of the sign.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1: a ripple.</strong> A stone is dropped into a still pond, and a circular ripple spreads so that its radius increases at 2 ft/s. How fast is the enclosed area increasing when the radius is 10 ft?</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>Draw and name:</em> radius \(r\) (feet), area \(A\) (square feet), both functions of \(t\). Given: \(\dfrac{dr}{dt}=2\) ft/s. Wanted: \(\dfrac{dA}{dt}\) at \(r=10\). <em>Relate:</em> \(A=\pi r^2\), true at every moment. <em>Differentiate:</em></p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \frac{dA}{dt}=2\pi r\,\frac{dr}{dt}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>Substitute last:</em> \(\dfrac{dA}{dt}=2\pi(10)(2)=40\pi\approx125.7\) ft\(^2\)/s. At the moment the ripple is 10 ft across from its center, the area it encloses is growing at about 126 square feet per second.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The most common error is to substitute \(r=10\) <em>before</em> differentiating. Then \(A=\pi(10)^2=100\pi\) is a constant, and its derivative is \(0\): an absurd answer for a ripple that is plainly spreading. The equation \(A=\pi r^2\) is true at every moment only while \(r\) is still a variable. Substituting a number freezes the picture at one instant and throws away all the change you are trying to measure. Always differentiate first, then substitute.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> in Example 1, if the radius grows at a steady 2 ft/s, why does the area grow faster when the ripple is large? Point to the factor in \(\dfrac{dA}{dt}=2\pi r\,\dfrac{dr}{dt}\) that explains it.</p>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; THE SLIDING LADDER AND THE MEANING OF THE SIGN</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2: the sliding ladder.</strong> A 13-foot ladder leans against a vertical wall. The base is pulled away from the wall at 2 ft/s. How fast is the top sliding down the wall at the moment the base is 5 ft from the wall?</p>
+<svg viewBox="0 0 330 250" role="img" aria-label="A 13-foot ladder leaning against a wall, base 5 feet from the wall, top 12 feet up" style="width:100%; max-width:330px; display:block; margin:10px auto; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:8px;"><line x1="70" y1="20" x2="70" y2="220" stroke="#6b7a99" stroke-width="3"/><line x1="70" y1="220" x2="320" y2="220" stroke="#6b7a99" stroke-width="3"/><line x1="70" y1="52" x2="140" y2="220" stroke="#0E1C42" stroke-width="4"/><text x="111" y="132" font-size="13" fill="#0E1C42">13 ft</text><text x="44" y="136" font-size="13" fill="#8A5F12" text-anchor="middle">y</text><text x="105" y="240" font-size="13" fill="#8A5F12" text-anchor="middle">x</text><path d="M 140 220 l 28 0" stroke="#C7922C" stroke-width="2.5" fill="none" marker-end="url(#a)"/><defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#C7922C"/></marker></defs><text x="144" y="212" font-size="12" fill="#8A5F12">base slides out</text></svg>        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>Draw and name:</em> \(x\) is the distance from the wall to the base, \(y\) the height of the top, both in feet and both changing with \(t\). Given: \(\dfrac{dx}{dt}=2\). Wanted: \(\dfrac{dy}{dt}\) when \(x=5\). <em>Relate:</em> the ladder, wall, and floor form a right triangle with fixed hypotenuse 13, at every moment:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ x^2+y^2=169. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>Differentiate with respect to \(t\):</em> \(2x\dfrac{dx}{dt}+2y\dfrac{dy}{dt}=0\), so</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \frac{dy}{dt}=-\frac{x}{y}\,\frac{dx}{dt}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>Substitute last.</em> When \(x=5\), the equation gives \(y=\sqrt{169-25}=12\). Then \(\dfrac{dy}{dt}=-\dfrac{5}{12}(2)=-\dfrac56\) ft/s. The negative sign means \(y\) is decreasing: at that moment the top of the ladder slides down the wall at \(\tfrac56\approx0.83\) ft/s.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>It gets faster.</strong> The same formula at \(x=12\) (then \(y=5\)) gives \(\dfrac{dy}{dt}=-\dfrac{12}{5}(2)=-4.8\) ft/s. The base has been moving at a steady 2 ft/s, but the top is sliding almost six times faster than before, because the ratio \(x/y\) keeps growing.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Look at what the formula says as the ladder nears the floor. As \(x\to13\), \(y\to0\), and \(\dfrac{dy}{dt}=-\dfrac xy\cdot2\) grows without bound, a sliding speed beyond any speed limit, which no real ladder can reach. The mathematics is right for the model; the model is wrong for a ladder close to the floor, because a real ladder would leave the wall and fall. A related-rates answer is a statement about the model, and an honest solver says where the model stops being believable.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; STRATEGY AND MEANING</div>
+          <div class="widget-question">Choose the best answer about the related-rates method.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Differentiate the relationship while x and y are still variables, then substitute the values for the instant you care about." data-hint="If you plug in x = 5 first, what happens to the derivative of the constants 25 + 144?">
+            <div class="widget-row-prompt">1. In the ladder problem, when should you substitute \(x=5\) and \(y=12\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">Before differentiating, to make the equation simpler</button>
+              <button data-choice="1">After differentiating, once the rates are in the equation</button>
+              <button data-choice="2">Never: the answer would be wrong at any value</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. A negative rate means the quantity is decreasing. The speed is 5/6 ft/s, directed downward." data-hint="Think about what a negative derivative says about the function. Which quantity does dy/dt describe?">
+            <div class="widget-row-prompt">2. We found \(\dfrac{dy}{dt}=-\dfrac56\) ft/s. What does the negative sign tell you?</div>
+            <div class="widget-options">
+              <button data-choice="0">The ladder is getting shorter</button>
+              <button data-choice="1">The calculation must contain an error, because speeds are positive</button>
+              <button data-choice="2">\(y\) is decreasing, so the top is moving down the wall</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The Chain Rule gives 3 * (4/3) pi r^2 * dr/dt = 4 pi r^2 dr/dt. At r = 5 and dr/dt = 2 this is 200 pi, the number from the opening check-in." data-hint="r depends on t, so d/dt of r cubed is 3 r squared times dr/dt (Chain Rule, Lesson 6.03).">
+            <div class="widget-row-prompt">3. A spherical balloon has \(V=\dfrac43\pi r^3\) with \(r\) a function of \(t\). Then \(\dfrac{dV}{dt}=\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(4\pi r^2\,\dfrac{dr}{dt}\)</button>
+              <button data-choice="1">\(4\pi r^2\)</button>
+              <button data-choice="2">\(\dfrac43\pi r^3\,\dfrac{dr}{dt}\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; ELIMINATE FIRST, DIFFERENTIATE SECOND</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Sometimes the first relation you write has too many variables. The remedy is a second fact that eliminates one, and it must be done <em>before</em> you differentiate.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3: filling a cone.</strong> Water pours into an inverted conical tank (point down) at 10 ft\(^3\)/min. The tank is 12 ft tall with a top radius of 6 ft. How fast is the water level rising when the water is 8 ft deep?</p>
+<svg viewBox="0 0 320 250" role="img" aria-label="An inverted cone tank 12 feet tall with top radius 6 feet, water at depth h with surface radius r" style="width:100%; max-width:320px; display:block; margin:10px auto; background:#FFFFFF; border:1px solid #D0D9E8; border-radius:8px;"><polygon points="55,20 265,20 160,230" fill="#FFFFFF" stroke="#0E1C42" stroke-width="3"/><polygon points="90,90 230,90 160,230" fill="#E8F6FB" stroke="#2196D0" stroke-width="2"/><line x1="90" y1="90" x2="230" y2="90" stroke="#2196D0" stroke-width="2"/><text x="160" y="83" font-size="13" fill="#1B6A94" text-anchor="middle">surface radius r</text><text x="168" y="165" font-size="13" fill="#0E1C42">depth h</text><line x1="160" y1="90" x2="160" y2="230" stroke="#C7922C" stroke-width="2" stroke-dasharray="4 3"/><text x="160" y="12" font-size="12" fill="#1a2340" text-anchor="middle">top radius 6 ft, tank height 12 ft</text></svg>        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>Draw and name:</em> water depth \(h\) and surface radius \(r\), both changing. Given: \(\dfrac{dV}{dt}=10\). Wanted: \(\dfrac{dh}{dt}\) when \(h=8\). <em>Relate:</em> the volume of a cone is \(V=\tfrac13\pi r^2h\), but this involves two changing variables. The water's cross-section is similar to the tank's, so \(\dfrac rh=\dfrac6{12}\), that is \(r=\dfrac h2\) at every moment. Eliminate \(r\) first:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ V=\frac13\pi\Big(\frac h2\Big)^2h=\frac{\pi}{12}h^3. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><em>Differentiate with respect to \(t\):</em> \(\dfrac{dV}{dt}=\dfrac{\pi}{4}h^2\,\dfrac{dh}{dt}\). <em>Substitute last:</em> \(10=\dfrac{\pi}{4}(8)^2\dfrac{dh}{dt}=16\pi\,\dfrac{dh}{dt}\), so</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \frac{dh}{dt}=\frac{10}{16\pi}=\frac{5}{8\pi}\approx0.199\ \text{ft/min}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The level rises about 0.2 ft per minute, about 2.4 inches a minute. Check the units: \(\text{ft}^3/\text{min}\) divided by \(\text{ft}^2\) leaves ft/min, as a rate of depth should be. And the sign makes sense: positive, because the water is rising.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">If you give an AI tool a related-rates problem, test it with the strategy above. Does it name the variables? Does it eliminate extra variables <em>before</em> differentiating? Does it substitute only at the end, and state the units and the meaning of the sign? Tools sometimes substitute early and still produce a confident-looking number. The five steps are how you catch that, and the reasoning stays yours.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: a person 6 ft tall walks away from a lamppost 18 ft high at 4 ft/s. How fast is the <em>tip of the shadow</em> moving away from the post, and how fast is the <em>length of the shadow</em> growing? Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Let \(x\) be the person's distance from the post and \(s\) the shadow's length. Similar triangles (lamp and person, both measured to the tip of the shadow): \(\dfrac{18}{x+s}=\dfrac6s\), so \(18s=6x+6s\), \(12s=6x\), \(s=\dfrac x2\). The tip is at distance \(x+s=\dfrac{3x}{2}\) from the post, so its speed is \(\dfrac32\cdot4=6\) ft/s. The shadow's length grows at \(\dfrac{ds}{dt}=\dfrac12\cdot4=2\) ft/s. Notice that neither rate depends on how far the person has walked: the relation is linear, so the rates are constant.
+            </div>
+        </details>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Related rates put every tool of this half of the course into one problem: modeling from Lesson 12.01, the Chain Rule from Lesson 6.03, implicit differentiation from Lesson 7.01, and honest interpretation of results from Lesson 12.03. Quarter 4 turns the derivative around. Lesson 13.01, Approximating Area with Rectangles, begins the other great half of calculus: starting from a rate and recovering the total.</p>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 25 Problem Set: Motion and Related Rates</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Work every problem by hand, draw and label each situation, and upload your completed pages as one PDF.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 25 Quiz: Motion and Related Rates</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 12 - Discussion</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Post your reasoning and one reply to a classmate's reasoning.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 12 Challenge</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Your fullest and most careful work of the module.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">When quantities are tied together by an equation, their rates are tied together by the same equation, differentiated with respect to time. Draw and name; relate with a fact that is true at every moment; differentiate with the Chain Rule; substitute last; and answer in context with units and the meaning of the sign. This lesson closes Module 12 and the derivative half of the course: you can now find the best case, describe a motion, and relate rates. Quarter 4 begins with Lesson 13.01, Approximating Area with Rectangles, where you will see how to do the opposite job: given a rate of change, recover the total accumulated change.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 3 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 12.04 &middot; Related Rates</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

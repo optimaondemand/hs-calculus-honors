@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 15.03</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 15</div>
+        <div style="font-size: 12px; color: #666;">Antiderivatives and Differential Equations</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 15.03</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Separable Differential Equations</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Antiderivatives and Differential Equations</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 15.03</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Separable Differential Equations</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">How do you solve an equation whose unknown, a function, appears on both sides?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Last lesson you could only see the solutions of a differential equation: a slope field is a picture of the answer, not the answer itself. Today you learn to compute it. When the right-hand side of \(\dfrac{dy}{dx}\) factors into a part that depends only on \(x\) and a part that depends only on \(y\), you can separate the two, integrate each, and solve. The method is simple, and its honest use requires care about three things: checking the answer by substitution, stating where a solution is valid, and remembering the constant solutions that division can hide. This is Week 31 of the course.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> solve a separable differential equation by separating variables, integrating both sides, and applying an initial condition.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> decide whether a given differential equation is separable, and explain why a sum such as \(x+y\) is not.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> verify a solution by substitution, state the interval on which it is valid, and identify constant solutions that division can lose.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The substitution rule from Lesson 14.04, antiderivatives and initial conditions from Lesson 15.01, and slope fields from Lesson 15.02.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The derivative of \(e^x\) from Lesson 7.03.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; SEPARATING VARIABLES</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Lesson 15.02 showed you a slope field for \(\dfrac{dy}{dx}=\dfrac{x}{y}\) and asked you to sketch solution curves by following the tick marks. Is there a way to find those curves with algebra and integration instead of by eye?</div>
+          <div class="widget-options">
+            <button data-response="That is separation of variables, and it is today's lesson. It works when the right-hand side can be factored into a piece that depends only on \(x\) times a piece that depends only on \(y\). Not every equation can be split this way, which is why you will also learn to recognize when it fails.">Yes: get all the \(y\)'s on one side with \(dy\), all the \(x\)'s on the other with \(dx\), and integrate each side.</button>
+            <button data-response="Slope fields are always available, and they are the safe fallback, but for many important equations you can do better. When the \(x\)'s and \(y\)'s can be pulled apart, two ordinary integrals give you the exact solution curves.">No: a slope field is the only way to see solutions when \(y\) shows up on the right-hand side.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 15.01 recovered a function from its derivative when the derivative was a function of \(x\) alone: \(y'=f(x)\) means \(y=\int f(x)\,dx\). The hard part of differential equations is that \(y\) usually appears on the right-hand side too. Today's technique handles the most important such case.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Separable equation</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">A differential equation is <strong>separable</strong> if it can be written \(\dfrac{dy}{dx}=g(x)\,h(y)\), a product of a function of \(x\) alone and a function of \(y\) alone.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The method.</strong> Treat \(\dfrac{dy}{dx}\) as the ratio of \(dy\) to \(dx\) (Leibniz built his notation to permit this) and divide by \(h(y)\), multiply by \(dx\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \frac{1}{h(y)}\,dy=g(x)\,dx. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now integrate both sides, one with respect to \(y\) and one with respect to \(x\), and put a single constant of integration on one side:</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ \int \frac{1}{h(y)}\,dy=\int g(x)\,dx + C. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Why is this legitimate? Write \(\dfrac{1}{h(y)}\dfrac{dy}{dx}=g(x)\) and integrate both sides with respect to \(x\). On the left, the substitution rule (Lesson 14.04) says \(\int \dfrac{1}{h(y)}\dfrac{dy}{dx}\,dx=\int\dfrac{1}{h(y)}\,dy\). The &ldquo;multiply both sides by \(dx\)&rdquo; step is a shorthand for exactly that substitution, so the method is the Chain Rule run backward.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1.</strong> Solve \(\dfrac{dy}{dx}=\dfrac{x}{y}\) with \(y(0)=2\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Separate: \(y\,dy=x\,dx\). Integrate: \(\dfrac{y^2}{2}=\dfrac{x^2}{2}+C\), which we can write as \(y^2=x^2+K\) (where \(K=2C\) is just another constant). The condition \(y(0)=2\) gives \(4=0+K\), so \(K=4\) and \(y^2=x^2+4\). Because \(y(0)=2>0\), we keep the positive square root, so</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ y=\sqrt{x^2+4}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Check it</strong>, because a differential equation's answer can always be tested. \(y'=\dfrac{x}{\sqrt{x^2+4}}=\dfrac{x}{y}\) &#10003;, and \(y(0)=\sqrt4=2\) &#10003;. The family \(y^2=x^2+K\) is the set of hyperbolas you see below; the initial condition selects the one through \((0,2)\).</p>
+        <div style="margin: 14px 0; text-align: center;">
+        <svg viewBox="0 0 420 320" width="100%" style="max-width: 420px; background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px;" role="img" aria-label="Solution curves of dy/dx = x/y: the family y&#178; = x&#178; + C, with the curve through (0, 2) highlighted.">
+          <line x1="10" y1="160" x2="410" y2="160" stroke="#999" stroke-width="1"/>
+          <line x1="210" y1="10" x2="210" y2="310" stroke="#999" stroke-width="1"/>
+          <polyline fill="none" stroke="#8FA3C8" stroke-width="1.6" points="68.0,12.5 70.0,14.4 72.0,16.3 74.0,18.2 76.0,20.2 78.0,22.1 80.0,24.0 82.0,25.9 84.0,27.8 86.0,29.7 88.0,31.6 90.0,33.5 92.0,35.4 94.0,37.3 96.0,39.2 98.0,41.1 100.0,43.0 102.0,44.8 104.0,46.7 106.0,48.6 108.0,50.4 110.0,52.3 112.0,54.2 114.0,56.0 116.0,57.8 118.0,59.7 120.0,61.5 122.0,63.3 124.0,65.2 126.0,67.0 128.0,68.8 130.0,70.6 132.0,72.3 134.0,74.1 136.0,75.9 138.0,77.6 140.0,79.4 142.0,81.1 144.0,82.8 146.0,84.5 148.0,86.2 150.0,87.9 152.0,89.5 154.0,91.2 156.0,92.8 158.0,94.4 160.0,96.0 162.0,97.5 164.0,99.0 166.0,100.5 168.0,102.0 170.0,103.4 172.0,104.8 174.0,106.2 176.0,107.5 178.0,108.8 180.0,110.0 182.0,111.2 184.0,112.3 186.0,113.4 188.0,114.3 190.0,115.3 192.0,116.1 194.0,116.9 196.0,117.6 198.0,118.2 200.0,118.8 202.0,119.2 204.0,119.6 206.0,119.8 208.0,120.0 210.0,120.0 212.0,120.0 214.0,119.8 216.0,119.6 218.0,119.2 220.0,118.8 222.0,118.2 224.0,117.6 226.0,116.9 228.0,116.1 230.0,115.3 232.0,114.3 234.0,113.4 236.0,112.3 238.0,111.2 240.0,110.0 242.0,108.8 244.0,107.5 246.0,106.2 248.0,104.8 250.0,103.4 252.0,102.0 254.0,100.5 256.0,99.0 258.0,97.5 260.0,96.0 262.0,94.4 264.0,92.8 266.0,91.2 268.0,89.5 270.0,87.9 272.0,86.2 274.0,84.5 276.0,82.8 278.0,81.1 280.0,79.4 282.0,77.6 284.0,75.9 286.0,74.1 288.0,72.3 290.0,70.6 292.0,68.8 294.0,67.0 296.0,65.2 298.0,63.3 300.0,61.5 302.0,59.7 304.0,57.8 306.0,56.0 308.0,54.2 310.0,52.3 312.0,50.4 314.0,48.6 316.0,46.7 318.0,44.8 320.0,43.0 322.0,41.1 324.0,39.2 326.0,37.3 328.0,35.4 330.0,33.5 332.0,31.6 334.0,29.7 336.0,27.8 338.0,25.9 340.0,24.0 342.0,22.1 344.0,20.2 346.0,18.2 348.0,16.3 350.0,14.4 352.0,12.5"/>
+          <polyline fill="none" stroke="#8FA3C8" stroke-width="1.6" points="68.0,307.5 70.0,305.6 72.0,303.7 74.0,301.8 76.0,299.8 78.0,297.9 80.0,296.0 82.0,294.1 84.0,292.2 86.0,290.3 88.0,288.4 90.0,286.5 92.0,284.6 94.0,282.7 96.0,280.8 98.0,278.9 100.0,277.0 102.0,275.2 104.0,273.3 106.0,271.4 108.0,269.6 110.0,267.7 112.0,265.8 114.0,264.0 116.0,262.2 118.0,260.3 120.0,258.5 122.0,256.7 124.0,254.8 126.0,253.0 128.0,251.2 130.0,249.4 132.0,247.7 134.0,245.9 136.0,244.1 138.0,242.4 140.0,240.6 142.0,238.9 144.0,237.2 146.0,235.5 148.0,233.8 150.0,232.1 152.0,230.5 154.0,228.8 156.0,227.2 158.0,225.6 160.0,224.0 162.0,222.5 164.0,221.0 166.0,219.5 168.0,218.0 170.0,216.6 172.0,215.2 174.0,213.8 176.0,212.5 178.0,211.2 180.0,210.0 182.0,208.8 184.0,207.7 186.0,206.6 188.0,205.7 190.0,204.7 192.0,203.9 194.0,203.1 196.0,202.4 198.0,201.8 200.0,201.2 202.0,200.8 204.0,200.4 206.0,200.2 208.0,200.0 210.0,200.0 212.0,200.0 214.0,200.2 216.0,200.4 218.0,200.8 220.0,201.2 222.0,201.8 224.0,202.4 226.0,203.1 228.0,203.9 230.0,204.7 232.0,205.7 234.0,206.6 236.0,207.7 238.0,208.8 240.0,210.0 242.0,211.2 244.0,212.5 246.0,213.8 248.0,215.2 250.0,216.6 252.0,218.0 254.0,219.5 256.0,221.0 258.0,222.5 260.0,224.0 262.0,225.6 264.0,227.2 266.0,228.8 268.0,230.5 270.0,232.1 272.0,233.8 274.0,235.5 276.0,237.2 278.0,238.9 280.0,240.6 282.0,242.4 284.0,244.1 286.0,245.9 288.0,247.7 290.0,249.4 292.0,251.2 294.0,253.0 296.0,254.8 298.0,256.7 300.0,258.5 302.0,260.3 304.0,262.2 306.0,264.0 308.0,265.8 310.0,267.7 312.0,269.6 314.0,271.4 316.0,273.3 318.0,275.2 320.0,277.0 322.0,278.9 324.0,280.8 326.0,282.7 328.0,284.6 330.0,286.5 332.0,288.4 334.0,290.3 336.0,292.2 338.0,294.1 340.0,296.0 342.0,297.9 344.0,299.8 346.0,301.8 348.0,303.7 350.0,305.6 352.0,307.5"/>
+          <polyline fill="none" stroke="#C7922C" stroke-width="3" points="86.0,12.4 88.0,14.1 90.0,15.8 92.0,17.4 94.0,19.1 96.0,20.7 98.0,22.4 100.0,24.0 102.0,25.6 104.0,27.2 106.0,28.8 108.0,30.4 110.0,31.9 112.0,33.5 114.0,35.0 116.0,36.6 118.0,38.1 120.0,39.6 122.0,41.1 124.0,42.5 126.0,44.0 128.0,45.4 130.0,46.9 132.0,48.3 134.0,49.7 136.0,51.0 138.0,52.4 140.0,53.7 142.0,55.0 144.0,56.3 146.0,57.6 148.0,58.8 150.0,60.0 152.0,61.2 154.0,62.3 156.0,63.5 158.0,64.6 160.0,65.7 162.0,66.7 164.0,67.7 166.0,68.7 168.0,69.6 170.0,70.6 172.0,71.4 174.0,72.3 176.0,73.1 178.0,73.8 180.0,74.6 182.0,75.2 184.0,75.9 186.0,76.5 188.0,77.0 190.0,77.5 192.0,78.0 194.0,78.4 196.0,78.8 198.0,79.1 200.0,79.4 202.0,79.6 204.0,79.8 206.0,79.9 208.0,80.0 210.0,80.0 212.0,80.0 214.0,79.9 216.0,79.8 218.0,79.6 220.0,79.4 222.0,79.1 224.0,78.8 226.0,78.4 228.0,78.0 230.0,77.5 232.0,77.0 234.0,76.5 236.0,75.9 238.0,75.2 240.0,74.6 242.0,73.8 244.0,73.1 246.0,72.3 248.0,71.4 250.0,70.6 252.0,69.6 254.0,68.7 256.0,67.7 258.0,66.7 260.0,65.7 262.0,64.6 264.0,63.5 266.0,62.3 268.0,61.2 270.0,60.0 272.0,58.8 274.0,57.6 276.0,56.3 278.0,55.0 280.0,53.7 282.0,52.4 284.0,51.0 286.0,49.7 288.0,48.3 290.0,46.9 292.0,45.4 294.0,44.0 296.0,42.5 298.0,41.1 300.0,39.6 302.0,38.1 304.0,36.6 306.0,35.0 308.0,33.5 310.0,31.9 312.0,30.4 314.0,28.8 316.0,27.2 318.0,25.6 320.0,24.0 322.0,22.4 324.0,20.7 326.0,19.1 328.0,17.4 330.0,15.8 332.0,14.1 334.0,12.4"/>
+          <polyline fill="none" stroke="#C7922C" stroke-width="3" points="86.0,307.6 88.0,305.9 90.0,304.2 92.0,302.6 94.0,300.9 96.0,299.3 98.0,297.6 100.0,296.0 102.0,294.4 104.0,292.8 106.0,291.2 108.0,289.6 110.0,288.1 112.0,286.5 114.0,285.0 116.0,283.4 118.0,281.9 120.0,280.4 122.0,278.9 124.0,277.5 126.0,276.0 128.0,274.6 130.0,273.1 132.0,271.7 134.0,270.3 136.0,269.0 138.0,267.6 140.0,266.3 142.0,265.0 144.0,263.7 146.0,262.4 148.0,261.2 150.0,260.0 152.0,258.8 154.0,257.7 156.0,256.5 158.0,255.4 160.0,254.3 162.0,253.3 164.0,252.3 166.0,251.3 168.0,250.4 170.0,249.4 172.0,248.6 174.0,247.7 176.0,246.9 178.0,246.2 180.0,245.4 182.0,244.8 184.0,244.1 186.0,243.5 188.0,243.0 190.0,242.5 192.0,242.0 194.0,241.6 196.0,241.2 198.0,240.9 200.0,240.6 202.0,240.4 204.0,240.2 206.0,240.1 208.0,240.0 210.0,240.0 212.0,240.0 214.0,240.1 216.0,240.2 218.0,240.4 220.0,240.6 222.0,240.9 224.0,241.2 226.0,241.6 228.0,242.0 230.0,242.5 232.0,243.0 234.0,243.5 236.0,244.1 238.0,244.8 240.0,245.4 242.0,246.2 244.0,246.9 246.0,247.7 248.0,248.6 250.0,249.4 252.0,250.4 254.0,251.3 256.0,252.3 258.0,253.3 260.0,254.3 262.0,255.4 264.0,256.5 266.0,257.7 268.0,258.8 270.0,260.0 272.0,261.2 274.0,262.4 276.0,263.7 278.0,265.0 280.0,266.3 282.0,267.6 284.0,269.0 286.0,270.3 288.0,271.7 290.0,273.1 292.0,274.6 294.0,276.0 296.0,277.5 298.0,278.9 300.0,280.4 302.0,281.9 304.0,283.4 306.0,285.0 308.0,286.5 310.0,288.1 312.0,289.6 314.0,291.2 316.0,292.8 318.0,294.4 320.0,296.0 322.0,297.6 324.0,299.3 326.0,300.9 328.0,302.6 330.0,304.2 332.0,305.9 334.0,307.6"/>
+          <polyline fill="none" stroke="#8FA3C8" stroke-width="1.6" points="124.0,12.4 126.0,13.5 128.0,14.7 130.0,15.8 132.0,16.9 134.0,18.0 136.0,19.0 138.0,20.1 140.0,21.1 142.0,22.1 144.0,23.0 146.0,24.0 148.0,24.9 150.0,25.8 152.0,26.7 154.0,27.6 156.0,28.4 158.0,29.2 160.0,30.0 162.0,30.8 164.0,31.5 166.0,32.2 168.0,32.9 170.0,33.5 172.0,34.1 174.0,34.7 176.0,35.3 178.0,35.8 180.0,36.3 182.0,36.8 184.0,37.2 186.0,37.6 188.0,38.0 190.0,38.3 192.0,38.7 194.0,38.9 196.0,39.2 198.0,39.4 200.0,39.6 202.0,39.7 204.0,39.9 206.0,39.9 208.0,40.0 210.0,40.0 212.0,40.0 214.0,39.9 216.0,39.9 218.0,39.7 220.0,39.6 222.0,39.4 224.0,39.2 226.0,38.9 228.0,38.7 230.0,38.3 232.0,38.0 234.0,37.6 236.0,37.2 238.0,36.8 240.0,36.3 242.0,35.8 244.0,35.3 246.0,34.7 248.0,34.1 250.0,33.5 252.0,32.9 254.0,32.2 256.0,31.5 258.0,30.8 260.0,30.0 262.0,29.2 264.0,28.4 266.0,27.6 268.0,26.7 270.0,25.8 272.0,24.9 274.0,24.0 276.0,23.0 278.0,22.1 280.0,21.1 282.0,20.1 284.0,19.0 286.0,18.0 288.0,16.9 290.0,15.8 292.0,14.7 294.0,13.5 296.0,12.4"/>
+          <polyline fill="none" stroke="#8FA3C8" stroke-width="1.6" points="124.0,307.6 126.0,306.5 128.0,305.3 130.0,304.2 132.0,303.1 134.0,302.0 136.0,301.0 138.0,299.9 140.0,298.9 142.0,297.9 144.0,297.0 146.0,296.0 148.0,295.1 150.0,294.2 152.0,293.3 154.0,292.4 156.0,291.6 158.0,290.8 160.0,290.0 162.0,289.2 164.0,288.5 166.0,287.8 168.0,287.1 170.0,286.5 172.0,285.9 174.0,285.3 176.0,284.7 178.0,284.2 180.0,283.7 182.0,283.2 184.0,282.8 186.0,282.4 188.0,282.0 190.0,281.7 192.0,281.3 194.0,281.1 196.0,280.8 198.0,280.6 200.0,280.4 202.0,280.3 204.0,280.1 206.0,280.1 208.0,280.0 210.0,280.0 212.0,280.0 214.0,280.1 216.0,280.1 218.0,280.3 220.0,280.4 222.0,280.6 224.0,280.8 226.0,281.1 228.0,281.3 230.0,281.7 232.0,282.0 234.0,282.4 236.0,282.8 238.0,283.2 240.0,283.7 242.0,284.2 244.0,284.7 246.0,285.3 248.0,285.9 250.0,286.5 252.0,287.1 254.0,287.8 256.0,288.5 258.0,289.2 260.0,290.0 262.0,290.8 264.0,291.6 266.0,292.4 268.0,293.3 270.0,294.2 272.0,295.1 274.0,296.0 276.0,297.0 278.0,297.9 280.0,298.9 282.0,299.9 284.0,301.0 286.0,302.0 288.0,303.1 290.0,304.2 292.0,305.3 294.0,306.5 296.0,307.6"/>
+          <circle cx="210.0" cy="80.0" r="4.5" fill="#0E1C42"/>
+          <text x="218.0" y="74.0" font-size="12" fill="#0E1C42">(0, 2)</text>
+          <text x="340.0" y="32.0" font-size="12" fill="#C7922C">y&#178; = x&#178; + 4</text>
+        </svg>
+        <div style="font-size: 14px; color: #666; margin-top: 4px;">Solution curves of dy/dx = x/y: the family y&#178; = x&#178; + C, with the curve through (0, 2) highlighted.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2.</strong> Solve \(\dfrac{dy}{dx}=2xy\) with \(y(0)=3\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Separate: \(\dfrac{dy}{y}=2x\,dx\). Integrate: \(\ln|y|=x^2+C\). Exponentiate: \(|y|=e^{C}e^{x^2}\), so \(y=Ae^{x^2}\), where \(A=\pm e^{C}\) is any nonzero constant. The initial condition gives \(3=Ae^{0}=A\), so</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ y=3e^{x^2}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Check: \(y'=3e^{x^2}\cdot2x=2x\,y\) &#10003;, and \(y(0)=3\) &#10003;.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The step from \(\ln|y|=x^2+C\) to \(y=Ae^{x^2}\) trades the additive constant \(C\) for a multiplicative constant \(A=\pm e^{C}\). You will do this every time the left side integrates to a logarithm, and it is why the solutions of growth equations look like \(Ae^{kt}\). Lesson 7.03 proved that \(e^x\) is its own derivative; this is the moment that fact turns into a solution method.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: solve \(\dfrac{dy}{dx}=x^2y\) with \(y(0)=5\). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Separate: \(\dfrac{dy}{y}=x^2\,dx\). Integrate: \(\ln|y|=\dfrac{x^3}{3}+C\), so \(y=Ae^{x^3/3}\). With \(y(0)=5\): \(A=5\), so \(y=5e^{x^3/3}\). Check: \(y'=5e^{x^3/3}\cdot x^2=x^2y\) &#10003;.
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; WHEN IT WORKS, WHEN IT FAILS, AND WHAT IT HIDES</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A method is only as trustworthy as your knowledge of when it applies. Before you separate anything, ask: can the right-hand side be written as (something in \(x\)) times (something in \(y\))? If not, the method has no purchase.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; SEPARABLE OR NOT?</div>
+          <div class="widget-question">For each equation, decide whether it is separable.</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. It is g(x) h(y) with g(x) = x^2 and h(y) = y. Separate: dy/y = x^2 dx." data-hint="Can you write the right side as (a function of x) times (a function of y)?">
+            <div class="widget-row-prompt">1. \(\dfrac{dy}{dx}=x^2\,y\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Separable</button>
+              <button data-choice="1">Not separable</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. A sum cannot be split into a product of an x-part and a y-part, so you cannot move all the y's to one side. (This equation is solvable by other methods, but not by separation.)" data-hint="Try to factor x + y into (something in x) times (something in y). Can you?">
+            <div class="widget-row-prompt">2. \(\dfrac{dy}{dx}=x+y\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Separable</button>
+              <button data-choice="1">Not separable</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The right side is cos x times y/(1 + y^2): an x-part times a y-part. Separate: ((1 + y^2)/y) dy = cos x dx." data-hint="Group the factors: cos x is the only x-part. Is everything else a function of y alone?">
+            <div class="widget-row-prompt">3. \(\dfrac{dy}{dx}=\dfrac{y\cos x}{1+y^2}\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Separable</button>
+              <button data-choice="1">Not separable</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The product xy is tangled inside the sine, and sin(xy) does not factor into an x-part times a y-part." data-hint="Can sin(xy) be written as (a function of x) times (a function of y)?">
+            <div class="widget-row-prompt">4. \(\dfrac{dy}{dx}=\sin(xy)\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Separable</button>
+              <button data-choice="1">Not separable</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3: a solution that division can hide.</strong> Solve \(\dfrac{dy}{dx}=y^2\) with \(y(0)=1\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Separate: \(\dfrac{dy}{y^2}=dx\). Integrate: \(-\dfrac1y=x+C\), so \(y=-\dfrac{1}{x+C}\). From \(y(0)=1\): \(1=-\dfrac1C\), so \(C=-1\) and</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ y=\frac{1}{1-x}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Check: \(y'=\dfrac{1}{(1-x)^2}=y^2\) &#10003;, and \(y(0)=1\) &#10003;. Two honest observations. First, this solution exists only on \(x<1\), the interval containing the starting point \(x=0\): as \(x\to1^-\), \(y\to\infty\), and the solution blows up in finite time. A differential equation does not promise a solution for all \(x\), and a solution should always be stated with the interval where it is valid. Second, look back at the step &ldquo;divide by \(y^2\)&rdquo;. That division is only legal where \(y\ne0\). The function \(y=0\) is a perfectly good solution (\(0'=0=0^2\)), but no value of \(C\) in \(y=-\dfrac{1}{x+C}\) produces it. It was <em>lost</em> when we divided.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Dividing by \(h(y)\) silently assumes \(h(y)\ne0\). Every number \(y_0\) with \(h(y_0)=0\) gives a constant solution \(y=y_0\) that separation can miss. Always solve \(h(y)=0\) before you divide, and list those constant solutions separately. Sometimes they are absorbed by the general formula (for \(\dfrac{dy}{dx}=2xy\), taking \(A=0\) gives \(y=0\)); sometimes, as with \(y^2\), they are not.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 4: a solution you cannot fully isolate.</strong> Solve \(\dfrac{dy}{dx}=e^{x-y}\) with \(y(0)=0\). Rewrite \(e^{x-y}=e^{x}e^{-y}\), so the equation is separable. Separate: \(e^{y}\,dy=e^{x}\,dx\). Integrate: \(e^{y}=e^{x}+C\). Use \(y(0)=0\): \(1=1+C\), so \(C=0\), \(e^{y}=e^{x}\), and \(y=x\). Check: \(y'=1\), and \(e^{x-y}=e^{0}=1\) &#10003;. For a different starting value, such as \(y(0)=\ln 4\), you would get \(4=1+C\), \(C=3\), and \(y=\ln(e^{x}+3)\). Check: \(y'=\dfrac{e^{x}}{e^{x}+3}\), and \(e^{x-y}=\dfrac{e^{x}}{e^{y}}=\dfrac{e^{x}}{e^{x}+3}\) &#10003;. Solving for \(y\) required a logarithm; sometimes the answer is left as an implicit relation such as \(y^2=x^2+4\), and that is a fully legitimate solution.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> a classmate says &ldquo;I separated, integrated, found \(y=-\dfrac{1}{x+C}\), and I'm done, so there are no other solutions.&rdquo; Use \(\dfrac{dy}{dx}=y^2\) to show what the classmate missed.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A computer algebra system will solve a separable equation in one line, and it will usually hand you the general formula without telling you the interval where it is valid or which constant solutions it divided away. When you use a tool to check a differential equation, substitute its answer back into the equation yourself. A solution is something you can test; a tool's output is only a claim.</div>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 31 Problem Set: Separable Equations and Growth and Decay</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Solve separable equations and growth and decay problems by hand, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 31 Quiz: Separable Equations and Growth and Decay</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A separable equation \(\dfrac{dy}{dx}=g(x)h(y)\) falls to two integrals, \(\int\dfrac{dy}{h(y)}=\int g(x)\,dx\), and the answer is not finished until you have checked it by substitution, stated where it is valid, and asked what the division by \(h(y)\) lost. Next lesson, Lesson 15.04, applies the method to the most important equation of all, \(\dfrac{dy}{dt}=ky\), where the rate of change of a quantity is proportional to the quantity itself. Its solution is the exponential function, and it describes populations, radioactive decay, and money in the bank.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 15.03 &middot; Separable Differential Equations</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

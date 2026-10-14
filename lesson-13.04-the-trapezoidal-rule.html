@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 13.04</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q4 &middot; Module 13</div>
+        <div style="font-size: 12px; color: #666;">Riemann Sums and Approximating Integrals</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 13.04</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">The Trapezoidal Rule</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Riemann Sums and Approximating Integrals</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 13.04</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">The Trapezoidal Rule</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">A rectangle pretends a curve is flat. What if you let it tilt instead?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Most integrals that arise in the real world have no tidy formula, and most real-world functions arrive as a table of measurements rather than as an equation. For those, you need a good <em>approximation</em> and, just as important, an honest account of how good it is. The Trapezoidal Rule replaces each rectangle with a trapezoid, which follows a rising or falling curve far better than a flat top can. It is the first member of a family of methods used constantly in engineering and science, and it has a lovely property: the direction of its error is predicted by concavity, a tool you already own from Lesson 11.01.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> apply the Trapezoidal Rule to a table of equally spaced data and to a formula, and relate it to the left and right sums.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> predict whether the Trapezoidal Rule over- or underestimates an integral from the concavity of the function, and compare it with the midpoint sum.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> use the error bound \(\dfrac{K(b-a)^3}{12n^2}\) to decide how many subintervals a required accuracy needs.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook, a pencil, and a calculator for arithmetic only.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The left, right, and midpoint sums from Lessons 13.01 and 13.02, and the idea of concavity from Lesson 11.01.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A willingness to trust a method only as far as you can say how wrong it might be.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; TRAPEZOIDS INSTEAD OF RECTANGLES</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A cart rolls down a ramp, and a sensor records its speed every 2 seconds: 0, 3, 7, 12, 20 feet per second at \(t=0,2,4,6,8\). The speed only ever increases. You want the distance traveled in 8 seconds. A left-endpoint sum uses the speed at the start of each 2-second interval; a right-endpoint sum uses the speed at the end. Which is the better single estimate, or is there something better than either?</div>
+          <div class="widget-options">
+            <button data-response="That instinct is the Trapezoidal Rule. With the speed rising, the left sum is too small (it uses the slowest speed in each interval) and the right sum is too big (it uses the fastest). The truth lives between them, and averaging the two is the natural compromise. Today you make that precise.">Neither is best. Something between them, like the average of the two, would be better.</button>
+            <button data-response="The right sum is too big here: in each interval it credits the cart with its fastest speed for the whole 2 seconds, even though the cart was slower earlier in the interval. The left sum makes the opposite mistake. Neither is wrong by luck; each is wrong in a known direction, and that is what lets us do better than either.">The right sum, because it uses the most recent speed of each interval.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lessons 13.01 and 13.02 used rectangles. A rectangle pretends the function is <em>flat</em> across each small interval. But a curve that is climbing is not flat, and a better pretense is available: draw a straight line from the curve's height at one end of the piece to its height at the other. The strip under that line is a <strong>trapezoid</strong>, and a trapezoid with parallel sides \(f(x_{i-1})\) and \(f(x_i)\) and width \(\Delta x\) has area</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \frac{f(x_{i-1})+f(x_i)}{2}\,\Delta x. \]
+        </p>
+        <svg viewBox="0 0 440 210" width="100%" style="max-width:470px; display:block; margin: 8px auto 14px auto;" role="img" aria-label="A rising curve y = f(x) over four equal subintervals. Each strip under the curve is approximated by a trapezoid whose top edge is a straight line joining two points on the curve. The curve bends upward, so the straight tops lie slightly above the curve.">
+            <line x1="30" y1="180" x2="420" y2="180" stroke="#6b7a99" stroke-width="1.5"/>
+            <polygon points="50,180 50,172 135,160 135,180" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/>
+            <polygon points="135,180 135,160 220,138 220,180" fill="#55C8E8" fill-opacity="0.25" stroke="#2196D0" stroke-width="1"/>
+            <polygon points="220,180 220,138 305,98 305,180" fill="#55C8E8" fill-opacity="0.35" stroke="#2196D0" stroke-width="1"/>
+            <polygon points="305,180 305,98 390,28 390,180" fill="#55C8E8" fill-opacity="0.25" stroke="#2196D0" stroke-width="1"/>
+            <path d="M50,172 Q 135,168 178,150 T 220,138 Q 262,114 305,98 T 390,28" fill="none" stroke="#0E1C42" stroke-width="2.5"/>
+            <text x="46" y="196" font-size="12" fill="#0E1C42">a</text>
+            <text x="386" y="196" font-size="12" fill="#0E1C42">b</text>
+            <text x="244" y="168" font-size="12" fill="#1B6A94">one trapezoid per strip</text>
+            <text x="60" y="30" font-size="13" fill="#0E1C42">y = f(x)</text>
+        </svg>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Add up all \(n\) trapezoids. Each interior height \(f(x_1),\dots,f(x_{n-1})\) is the right side of one trapezoid and the left side of the next, so it is counted twice, once in each, and then halved. The two end heights are counted once. The result is the <strong>Trapezoidal Rule</strong>:</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The Trapezoidal Rule</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">With \(\Delta x=\dfrac{b-a}{n}\) and \(x_i=a+i\,\Delta x\), \[ T_n=\frac{\Delta x}{2}\Bigl[f(x_0)+2f(x_1)+2f(x_2)+\cdots+2f(x_{n-1})+f(x_n)\Bigr]\approx\int_a^b f(x)\,dx. \]</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The cart, finished.</strong> With \(\Delta t=2\) and the five readings \(0,3,7,12,20\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ T_4=\frac{2}{2}\bigl[0+2(3)+2(7)+2(12)+20\bigr]=\bigl[0+6+14+24+20\bigr]=64\text{ feet}. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Compare the left sum \(L_4=2(0+3+7+12)=44\) and the right sum \(R_4=2(3+7+12+20)=84\). The truth is trapped between them, and the trapezoid estimate \(64\) is exactly their average, \(\tfrac{44+84}{2}=64\). That is no coincidence.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Trapezoid is the average of left and right</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">\(T_n=\dfrac{L_n+R_n}{2}\). Indeed \(L_n=\Delta x\,[f_0+\cdots+f_{n-1}]\) and \(R_n=\Delta x\,[f_1+\cdots+f_n]\), and adding them counts \(f_0\) and \(f_n\) once and every interior value twice, which is \(2\cdot\frac{\Delta x}{2}[\cdots]\) with the factor \(\tfrac12\) outside.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> Explain to a partner why the endpoint heights \(f(x_0)\) and \(f(x_n)\) appear in the Trapezoidal Rule with coefficient \(1\) but every interior height appears with coefficient \(2\).</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;"><strong>Three classic slips.</strong> (1) Forgetting the \(\tfrac12\) in \(\tfrac{\Delta x}{2}\). (2) Doubling the endpoints too, giving \(2f(x_0)\) or \(2f(x_n)\). (3) Miscounting: \(n\) trapezoids use \(n+1\) heights. Five table readings means four trapezoids, so \(n=4\) and \(\Delta t=\frac{8-0}{4}=2\), not \(\frac{8}{5}\).</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; ACCURACY, CONCAVITY, AND THE ERROR BOUND</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A table is one source of data; a formula is another. Let us test the rule on an integral we can compute exactly, so that we can see how good it really is. The Fundamental Theorem arrives in Module 14, but you can verify this one from the definition, exactly as you did for \(\int_0^3 x^2\,dx\) in Lesson 13.03: \(\displaystyle\int_0^2 x^2\,dx=\tfrac83\approx2.6667\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Trapezoids with \(n=4\).</strong> \(\Delta x=\tfrac{2-0}{4}=\tfrac12\), and the heights of \(f(x)=x^2\) at \(x=0,\tfrac12,1,\tfrac32,2\) are \(0,\tfrac14,1,\tfrac94,4\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ T_4=\frac{1/2}{2}\Bigl[0+2\bigl(\tfrac14\bigr)+2(1)+2\bigl(\tfrac94\bigr)+4\Bigr]=\frac14\Bigl[\tfrac12+2+\tfrac92+4\Bigr]=\frac14\cdot11=\frac{11}{4}=2.75. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The estimate \(2.75\) is too big by \(\tfrac{11}{4}-\tfrac83=\tfrac1{12}\approx0.083\). Why too big? Look back at the picture in Part 1. The parabola bends upward, so a straight chord joining two points on it lies <em>above</em> the curve, and each trapezoid holds slightly more than the strip beneath the curve. This is concavity from Lesson 11.01 at work.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Concavity decides the direction of the error</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(f\) is <strong>concave up</strong> on \([a,b]\) (\(f''>0\)), then \(T_n\) is an <strong>overestimate</strong>. If \(f\) is <strong>concave down</strong> (\(f''<0\)), then \(T_n\) is an <strong>underestimate</strong>. If \(f\) is a straight line, \(T_n\) is exact.</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The midpoint sum, for comparison.</strong> With the same four strips and midpoints \(\tfrac14,\tfrac34,\tfrac54,\tfrac74\), the midpoint sum is</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ M_4=\tfrac12\Bigl[\tfrac1{16}+\tfrac9{16}+\tfrac{25}{16}+\tfrac{49}{16}\Bigr]=\tfrac12\cdot\tfrac{84}{16}=\tfrac{21}{8}=2.625, \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">which is too small by \(\tfrac83-\tfrac{21}{8}=\tfrac1{24}\approx0.042\). Notice two things. The midpoint sum errs in the <em>opposite</em> direction (an underestimate on a concave-up curve), and its error is <em>half the size</em> of the trapezoid error. A rectangle at the midpoint is built from a tangent-like line that touches the curve at the center of the strip, and a tangent line to a concave-up curve lies below it.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Those two errors point in opposite directions with sizes in the ratio \(2:1\), so a weighted average cancels them. \(\dfrac{T_4+2M_4}{3}=\dfrac{\tfrac{11}{4}+\tfrac{21}{4}}{3}=\tfrac83\), the exact value! That combination is <strong>Simpson's Rule</strong>, named for the English mathematician Thomas Simpson, who published it in 1743 (the method itself was known to Kepler and to Cavalieri long before). It is exact here because Simpson's Rule is exact for every quadratic. You are not asked to use it in this course, but you are asked to notice how a careful look at the errors leads to a better method.</div>
+        </div>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">How big can the error be?</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Numerical analysts do not merely estimate; they bound the error. The standard bound, which we state without proof (it comes from the same ideas as the Mean Value Theorem and is proved in a course on numerical analysis), is</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ \bigl|\int_a^b f(x)\,dx-T_n\bigr|\le\frac{K\,(b-a)^3}{12\,n^2},\qquad K\ge\max_{[a,b]}|f''(x)|. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">For \(f(x)=x^2\) on \([0,2]\), \(f''=2\), so \(K=2\) and the bound with \(n=4\) is \(\dfrac{2\cdot8}{12\cdot16}=\dfrac1{12}\). That is exactly the error we found, because \(f''\) is constant, so this bound cannot be improved. Look at the \(n^2\) in the denominator: <strong>doubling \(n\) divides the error bound by 4</strong>. Check it: with \(n=8\), \(T_8=\tfrac{43}{16}=2.6875\), and the error is \(\tfrac{43}{16}-\tfrac83=\tfrac1{48}\), exactly one fourth of \(\tfrac1{12}\).</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; TRAPEZOID RULE</div>
+          <div class="widget-question">Use \(\Delta x=\dfrac{b-a}{n}\) and \(T_n=\dfrac{\Delta x}{2}[f_0+2f_1+\cdots+2f_{n-1}+f_n]\). Choose each value.</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. T_3 = (1/2)[2 + 2(3) + 2(5) + 8] = (1/2)(26) = 13." data-hint="Three trapezoids, width 1. Remember the interior values get a 2 and the whole bracket gets a factor of delta x over 2.">
+            <div class="widget-row-prompt">1. A table gives \(f\) at \(x=0,1,2,3\) as \(2,3,5,8\). What is \(T_3\) for \(\int_0^3 f\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">13</button>
+              <button data-choice="1">26</button>
+              <button data-choice="2">18</button>
+              <button data-choice="3">10.5</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. T_2 = (1/2)[0 + 2(1) + 4] = 3. It is an overestimate of 8/3, as concave-up predicts." data-hint="Width 1: T_2 = (1/2)[f(0) + 2f(1) + f(2)].">
+            <div class="widget-row-prompt">2. \(T_2\) for \(\int_0^2 x^2\,dx\) (so \(\Delta x=1\), heights \(0,1,4\))?</div>
+            <div class="widget-options">
+              <button data-choice="0">2</button>
+              <button data-choice="1">3</button>
+              <button data-choice="2">5</button>
+              <button data-choice="3">8/3</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. n + 1 heights make n trapezoids: 7 readings give n = 6, and delta x = 12/6 = 2." data-hint="Seven heights bound how many gaps? The width is the length divided by the number of gaps.">
+            <div class="widget-row-prompt">3. A table has 7 equally spaced readings. How many trapezoids does the rule use, and what is \(\Delta x\) if the interval is \([0,12]\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">7 trapezoids, \(\Delta x=12/7\)</button>
+              <button data-choice="1">6 trapezoids, \(\Delta x=2\)</button>
+              <button data-choice="2">8 trapezoids, \(\Delta x=3/2\)</button>
+              <button data-choice="3">6 trapezoids, \(\Delta x=12/7\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="3" data-fb="Correct. Each strip under a line is exactly a trapezoid, so there is no error at all." data-hint="Where does the trapezoid's slanted top come from? What if the graph already is that line?">
+            <div class="widget-row-prompt">4. If \(f\) is a straight line, how does \(T_n\) compare with \(\int_a^b f\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">Always too big</button>
+              <button data-choice="1">Always too small</button>
+              <button data-choice="2">Too big for increasing lines</button>
+              <button data-choice="3">Exactly equal</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; READING THE ERROR BEFORE YOU COMPUTE IT</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The error is not random. It follows concavity, and that gives you something an answer from a calculator cannot: the direction of the error, without computing anything. Here is a function with an exact value you will be able to prove in Lesson 14.02: \(\displaystyle\int_0^{\pi}\sin x\,dx=2\), the area of one arch of the sine wave. With \(n=4\), \(\Delta x=\tfrac{\pi}{4}\):</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ T_4=\frac{\pi}{8}\Bigl[0+2\Bigl(\tfrac{\sqrt2}{2}+1+\tfrac{\sqrt2}{2}\Bigr)+0\Bigr]=\frac{\pi}{8}\bigl(2+2\sqrt2\bigr)\approx1.896. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The sine arch is concave down on \((0,\pi)\) (\(\sin''x=-\sin x<0\)), so the chords lie below the curve and \(T_4\approx1.896\) is an <strong>underestimate</strong> of \(2\), as predicted. The midpoint sum \(M_4=\tfrac{\pi}{4}\bigl[\sin\tfrac{\pi}{8}+\sin\tfrac{3\pi}{8}+\sin\tfrac{5\pi}{8}+\sin\tfrac{7\pi}{8}\bigr]\approx2.052\) is an overestimate, again on the opposite side. And the error bound? With \(K=1\), \(\dfrac{1\cdot\pi^3}{12\cdot16}\approx0.161\), while the actual error is \(2-1.896\approx0.104\). The bound holds, but it is cautious.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; OVER OR UNDER?</div>
+          <div class="widget-question">For each integral, the Trapezoidal Rule with several equal subintervals gives an estimate. Without computing it, decide whether it is an overestimate or an underestimate.</div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. f is concave up on [1,2], so the chords lie above the curve. (For n = 4, T_4 = 3.796875 versus the exact 3.75.)" data-hint="Find the sign of f'' on the interval. Concave up means chords sit above the curve.">
+            <div class="widget-row-prompt">1. \(\displaystyle\int_1^2 x^3\,dx\) (\(f''=6x>0\))</div>
+            <div class="widget-options">
+              <button data-choice="0">Overestimate</button>
+              <button data-choice="1">Underestimate</button>
+              <button data-choice="2">Exactly right</button>
+              <button data-choice="3">Cannot tell</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. f'' is negative, so f is concave down and chords lie below the curve. (With n = 4, T_4 is about 5.146 versus the exact 16/3, about 5.333.)" data-hint="Is f'' positive or negative for x > 0? Concave down means chords sit below the curve.">
+            <div class="widget-row-prompt">2. \(\displaystyle\int_0^4 \sqrt{x}\,dx\) (\(f''=-\tfrac14 x^{-3/2}\))</div>
+            <div class="widget-options">
+              <button data-choice="0">Overestimate</button>
+              <button data-choice="1">Underestimate</button>
+              <button data-choice="2">Exactly right</button>
+              <button data-choice="3">Cannot tell</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The graph is a straight line, so each trapezoid is exactly the area under it." data-hint="What is f'' for a linear function?">
+            <div class="widget-row-prompt">3. \(\displaystyle\int_0^2 (3x-5)\,dx\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Overestimate</button>
+              <button data-choice="1">Underestimate</button>
+              <button data-choice="2">Exactly right</button>
+              <button data-choice="3">Cannot tell</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. f'' = -2 < 0, so it is concave down and T_4 = -2.75 lies below the exact value -8/3 (about -2.667)." data-hint="Check the sign of f''. Remember that for negative values, 'smaller' means more negative.">
+            <div class="widget-row-prompt">4. \(\displaystyle\int_0^2 \bigl(-x^2\bigr)\,dx\) with \(n=4\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Overestimate</button>
+              <button data-choice="1">Underestimate</button>
+              <button data-choice="2">Exactly right</button>
+              <button data-choice="3">Cannot tell</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The error bound and the over/under rule are <em>guarantees only under their hypotheses</em>. The rule needs \(f''\) to keep one sign across the whole interval. If \(f\) changes concavity inside \([a,b]\), the trapezoids overshoot in some strips and undershoot in others, and the sign of the total error cannot be read from concavity alone. Check that the hypothesis holds before you announce which way the error goes.</div>
+        </div>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A calculator or spreadsheet will happily compute \(T_{1000}\) in a blink. It will not tell you whether the answer is an overestimate, and it will not tell you how many digits to trust. A spreadsheet that reports 15 digits has not made your estimate 15 digits accurate; the error bound \(\dfrac{K(b-a)^3}{12n^2}\) tells you how many are trustworthy. Use the tool to do the arithmetic and the mathematics to judge the answer.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it first: how many trapezoids guarantee an error under \(0.001\) for \(\displaystyle\int_0^2 x^2\,dx\)?
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Here \(K=2\) and \(b-a=2\), so the bound is \(\dfrac{2\cdot8}{12\,n^2}=\dfrac{4}{3n^2}\). Require \(\dfrac{4}{3n^2}\le0.001\), so \(n^2\ge\dfrac{4}{0.003}\approx1333.3\) and \(n\ge36.5\). Since \(n\) must be a whole number, take \(n=37\). (Check: \(n=36\) gives \(\tfrac{4}{3\cdot1296}\approx0.00103>0.001\), which is not enough; \(n=37\) gives about \(0.000974\).)
+            </div>
+        </details>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it first: a sensor records the rate of water flowing into a tank, in gallons per minute, at minutes \(0,5,10,15\): \(4,6,5,9\). Estimate the total gallons in 15 minutes with the Trapezoidal Rule.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Three trapezoids, \(\Delta t=5\): \(T_3=\dfrac52\bigl[4+2(6)+2(5)+9\bigr]=\dfrac52(35)=87.5\) gallons. The rate is not monotonic and its concavity is unknown, so we cannot say whether \(87.5\) is high or low. This is the honest answer to &quot;how good is this estimate?&quot;: we know the method, we do not know the direction of the error.
+            </div>
+        </details>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 27 Problem Set: The Definite Integral and the Trapezoidal Rule</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Evaluate integrals by definition and by geometry, use the properties, and work trapezoid problems, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 27 Quiz: The Definite Integral and the Trapezoidal Rule</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material. Finish both lessons first.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 13 - Discussion</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Post your response to the module prompt and reply to one classmate's reasoning.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 13 Challenge</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Your fullest, most careful work of the module: show your reasoning and be honest about what you can and cannot guarantee.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">When a function is known only through data, or has no area formula, the Trapezoidal Rule gives a trustworthy estimate: the average of the left and right sums, with an error you can bound and a direction you can predict from concavity. Module 13 gave you the integral as a limit of sums, as signed area, and as something you can approximate and bound. The next module asks the question all of this has been circling: a derivative measures slope and an integral measures area, and they are connected. Lesson 14.01, The Fundamental Theorem of Calculus, Part 1, shows how.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 4 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 13.04 &middot; The Trapezoidal Rule</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>
