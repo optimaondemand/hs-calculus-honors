@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 8.04</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q2 &middot; Module 8</div>
+        <div style="font-size: 12px; color: #666;">Higher-Order Derivatives and the Mean Value Theorem</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 8.04</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Consequences of the Mean Value Theorem</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Higher-Order Derivatives and the Mean Value Theorem</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 8.04</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Consequences of the Mean Value Theorem</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">A theorem is judged by what it lets you prove. This one lets you prove that a flat derivative means a flat function, and that a positive derivative means a rising graph.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Lesson 8.03 stated and proved the Mean Value Theorem. Today you use it. You will prove three facts that sound obvious and that, until this theorem, no one had the tools to prove honestly: a function whose derivative is zero everywhere on an interval is constant; two functions with the same derivative differ by a constant; and a function with a positive derivative is increasing. Each follows from one application of the Mean Value Theorem between two points. You will also see the theorem back in its original habitat, motion, where it settles questions about speed cameras and photo-finish races. This lesson closes Module 8 and, with it, the last new material of Semester 1.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> prove that a function with zero derivative on an interval is constant, and that functions with equal derivatives differ by a constant, and use this to find a function from its derivative and one point.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> use the sign of \(f'\) on an interval to conclude that \(f\) is increasing or decreasing, and explain why the conclusion applies one interval at a time.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> apply the Mean Value Theorem and Rolle's Theorem to motion problems, including an average-speed problem and a race that finishes in a tie.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus Rolle's Theorem and the Mean Value Theorem from Lesson 8.03.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">The ideas of position and velocity (the derivative of position) from earlier in this course.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; ZERO DERIVATIVES AND CONSTANTS</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Two functions \(f\) and \(g\) have exactly the same derivative, \(f'(x)=g'(x)\), at every point of an interval. What do you expect the graphs of \(f\) and \(g\) to look like?</div>
+          <div class="widget-options">
+            <button data-response="That is exactly what the Mean Value Theorem proves, and you will prove it below. The functions \(x^2\) and \(x^2+5\) both have derivative \(2x\), and they differ by the constant 5. The surprise is that nothing else is possible.">They are the same curve shifted up or down, so \(f(x)-g(x)\) is a constant.</button>
+            <button data-response="It feels possible, but it is not. If two curves have the same slope at every point, the vertical gap between them never changes, so it is constant. Seeing why that is airtight, and not just plausible, is today's first proof.">They could be completely different curves that happen to have the same slope everywhere.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 8.03 gave you a theorem with real power. Today it pays off, three times. Each payoff is the same move: pick two points, apply the Mean Value Theorem between them, and read off what it forces. Start with the simplest question you can ask about a derivative: what if it is zero everywhere?</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Theorem A: zero derivative means constant</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(f'(x)=0\) for every \(x\) in an interval \(I\), then \(f\) is constant on \(I\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Proof.</strong> Choose any two points \(a<b\) in \(I\). Then \(f\) is differentiable, hence continuous, on \([a,b]\), so the Mean Value Theorem gives a \(c\) in \((a,b)\) with</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ f(b)-f(a)=f'(c)\,(b-a)=0\cdot(b-a)=0. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">So \(f(b)=f(a)\). Since \(a\) and \(b\) were arbitrary, \(f\) takes the same value at every point of \(I\). \(\blacksquare\)</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Theorem B: same derivative means differ by a constant</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(f'(x)=g'(x)\) for every \(x\) in an interval \(I\), then there is a constant \(C\) with \(f(x)=g(x)+C\) on \(I\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Proof.</strong> Let \(h=f-g\). Then \(h'(x)=f'(x)-g'(x)=0\) on \(I\), so by Theorem A, \(h\) is a constant \(C\). That is, \(f(x)-g(x)=C\). \(\blacksquare\)</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example.</strong> Suppose \(f'(x)=2x\) for all \(x\), and \(f(1)=4\). The function \(g(x)=x^2\) also has \(g'(x)=2x\), so by Theorem B, \(f(x)=x^2+C\) for some \(C\). Use the given point: \(4=1^2+C\), so \(C=3\), and \(f(x)=x^2+3\). One extra piece of information pins the function down completely. This is the seed of antiderivatives, which Module 15 develops fully: a derivative determines a function only up to a constant.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">The word <em>interval</em> in both theorems is not decoration. \(f(x)=\dfrac{x}{|x|}\) equals \(1\) for \(x>0\) and \(-1\) for \(x<0\), so \(f'(x)=0\) at every point where it is defined, yet \(f\) is not constant. Its domain \((-\infty,0)\cup(0,\infty)\) is two pieces, not one interval. The theorem applies on each piece separately, and says nothing across the gap. The guarantee holds only where its hypotheses hold.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: \(f'(x)=3x^2\) for all \(x\), and \(f(2)=10\). Find \(f(x)\), and then find \(f(0)\). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(g(x)=x^3\) has \(g'(x)=3x^2\), so by Theorem B, \(f(x)=x^3+C\). Use \(f(2)=10\): \(10=8+C\), so \(C=2\) and \(f(x)=x^3+2\). Then \(f(0)=0+2=2\). The reasoning, not the algebra, is the point: Theorem B is what lets you write \(+C\) and be sure no other function qualifies.
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; THE SIGN OF THE DERIVATIVE</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The Mean Value Theorem also converts the <em>sign</em> of the derivative into the <em>direction</em> of the function. This is the first time calculus tells you something about the shape of a graph without plotting a single point, and it is the engine behind most of Quarter 3.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Theorem C: the sign of \(f'\) controls the direction of \(f\)</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Let \(f\) be differentiable on an interval \(I\). If \(f'(x)>0\) for all \(x\) in \(I\), then \(f\) is <strong>increasing</strong> on \(I\): \(a<b\) implies \(f(a)<f(b)\). If \(f'(x)<0\) for all \(x\) in \(I\), then \(f\) is <strong>decreasing</strong> on \(I\): \(a<b\) implies \(f(a)>f(b)\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Proof</strong> (for \(f'>0\)). Take \(a<b\) in \(I\). The Mean Value Theorem gives a \(c\) in \((a,b)\) with \(f(b)-f(a)=f'(c)(b-a)\). Here \(f'(c)>0\) and \(b-a>0\), so the product is positive, and \(f(b)>f(a)\). The decreasing case is identical with the sign reversed. \(\blacksquare\)</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1.</strong> \(f(x)=x^3+x\) has \(f'(x)=3x^2+1\). Since \(3x^2\ge0\), we have \(f'(x)\ge1>0\) for every \(x\), so \(f\) is increasing on all of \((-\infty,\infty)\). You did not need a graph, a table of values, or a calculator.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2 (a warning).</strong> \(f(x)=\dfrac1x\) has \(f'(x)=-\dfrac{1}{x^2}\), which is negative at every \(x\ne0\). So \(f\) is decreasing on \((-\infty,0)\) and decreasing on \((0,\infty)\), separately. It is <em>not</em> decreasing on the whole domain: \(f(-1)=-1<1=f(1)\), even though \(-1<1\). The domain is two intervals, and Theorem C is about one interval at a time, the same fine print as Part 1.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3 (a one-way street).</strong> Theorem C says positive derivative implies increasing; it does not say the reverse. \(f(x)=x^3\) is increasing on \((-\infty,\infty)\), yet \(f'(0)=0\). The derivative is allowed to touch zero at isolated points while the function keeps climbing.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">This lesson sets up Quarter 3. Module 10 turns Theorem C into a method: find where \(f'\) changes sign, and you have found where \(f\) switches between increasing and decreasing, which is exactly where the highs and lows of a graph live. You will not need to graph \(f\) first; the derivative will tell you where to look.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; WHICH THEOREM, AND WHAT DOES IT SAY?</div>
+          <div class="widget-question">For each situation, choose the conclusion that actually follows from the theorems in this lesson.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. Theorem A: zero derivative on an interval means constant. The constant could be any number (for example f(x) = 7), so you cannot conclude f is zero." data-hint="Theorem A says constant, not necessarily zero. Think of f(x) = 7: what is its derivative?">
+            <div class="widget-row-prompt">1. \(f'(x)=0\) for every \(x\) in the interval \((2,9)\).</div>
+            <div class="widget-options">
+              <button data-choice="0">\(f\) is zero everywhere on \((2,9)\)</button>
+              <button data-choice="1">\(f\) is constant on \((2,9)\), with some constant value that may not be zero</button>
+              <button data-choice="2">\(f\) is increasing on \((2,9)\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Theorem B gives f(x) = g(x) + C. Using x = 0: 1 = 1 + C, so C = 0, and f = g. (Indeed both equal 3x^2 + 1.)" data-hint="Theorem B says f - g is a constant C. Use the given values at x = 0 to find C.">
+            <div class="widget-row-prompt">2. \(f'(x)=6x\) and \(g'(x)=6x\) on \((-\infty,\infty)\), and \(f(0)=1\), \(g(0)=1\).</div>
+            <div class="widget-options">
+              <button data-choice="0">\(f(x)=g(x)\) for all \(x\)</button>
+              <button data-choice="1">\(f\) and \(g\) differ by a constant that could be any number</button>
+              <button data-choice="2">\(f(x)=3x^2\) and nothing else is possible</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The domain is two intervals, and Theorem C applies to one interval at a time. Across the gap the claim fails: h(-1) = -1 is less than h(1) = 1." data-hint="Is the domain of 1/x a single interval? Test the claim with x = -1 and x = 1.">
+            <div class="widget-row-prompt">3. \(h(x)=\dfrac{1}{x}\) has \(h'(x)=-\dfrac{1}{x^2}<0\) wherever it is defined.</div>
+            <div class="widget-options">
+              <button data-choice="0">\(h\) is decreasing on its whole domain, so \(h(-1)>h(1)\)</button>
+              <button data-choice="1">\(h\) is decreasing on \((-\infty,0)\) and on \((0,\infty)\), separately</button>
+              <button data-choice="2">\(h\) is increasing, because its derivative never equals zero</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; MOTION: THE THEOREM IN ITS NATIVE HABITAT</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The Mean Value Theorem began as a fact about motion, so end there. The theorem turns two kinds of evidence about a journey (where you were at two times, and how fast you were going at each moment) into a single conclusion about what must have happened in between.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The speed camera.</strong> A car passes a tollbooth at 1:00 and a second booth 60 miles down the road at 1:48, which is \(0.8\) hours later. Its average speed was \(\dfrac{60}{0.8}=75\) mph. Let \(s(t)\) be the car's position. A car's position is continuous and (in any sensible model) differentiable, so the Mean Value Theorem says there is a time \(c\) between 1:00 and 1:48 when the instantaneous speed \(s'(c)\) was exactly 75 mph. If the speed limit were 65 mph, the car exceeded it at some instant, and a ticket issued on that reasoning rests on a theorem, not a hunch.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>A model.</strong> Suppose a car's position (in miles, \(t\) in hours) is \(s(t)=15t^2\) for \(0\le t\le4\). Then \(s(4)=240\) miles, so the average velocity is \(\dfrac{240-0}{4-0}=60\) mph. The velocity is \(s'(t)=30t\). Solve \(30c=60\): \(c=2\). So at \(t=2\) hours, exactly halfway, the car's speed equals its average. (For any quadratic position function, the guaranteed \(c\) is always the exact midpoint of the interval. For a cubic, it is not.)</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>The two-car race.</strong> Two cars start side by side at time \(0\) and finish a race <em>tied</em> at time \(T\). Must they have had exactly the same speed at some instant? Let \(f\) and \(g\) be their positions, and let \(h=f-g\), the gap between them. Then \(h(0)=0\) because they start together, and \(h(T)=0\) because they finish together. By Rolle's Theorem there is a time \(c\) with \(h'(c)=0\), that is, \(f'(c)=g'(c)\). At that instant the two speedometers read the same, even if one car led for the entire race. This is Rolle's Theorem applied to a <em>difference</em>, the same move that proved Theorem B.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> a friend says &ldquo;car A was always ahead of car B except at the start and finish, so they were never going the same speed.&rdquo; Use the race argument to explain why your friend is wrong.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E3B867; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">If you ask an AI tool to &ldquo;find the \(c\) in the Mean Value Theorem&rdquo; for a function, check two things yourself before you trust the answer: did it verify that the hypotheses hold, and did it discard any solution outside the open interval? Tools often solve \(f'(c)=m\) correctly and then forget to check that \(c\) lies strictly between the endpoints. You are responsible for the reasoning; the tool is only a calculator.</div>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 16 Problem Set: Rolle's Theorem and the Mean Value Theorem</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Apply both theorems and their consequences, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 16 Quiz: Rolle's Theorem and the Mean Value Theorem</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Module 8 Discussion and Module 8 Challenge</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Post your reasoning and one reply in the Module 8 Discussion, then complete the Module 8 Challenge, your fullest and most careful work of the module.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">The Mean Value Theorem turns local information into global conclusions. A zero derivative on an interval forces a constant function; equal derivatives force a constant difference; a positive derivative forces a rising graph; and a tied finish forces equal speeds at some instant. Every one of those facts comes from the same step: pick two points, apply the theorem between them, and read off what it forces, as long as the hypotheses are true. Next comes the Semester 1 Finals week, where you will review the whole arc, from limits through continuity to every derivative rule you have built. Quarter 3 then puts the Mean Value Theorem to work: tangent lines and linear approximation first, and then the shape of a graph read straight from its derivative.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 2 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 8.04 &middot; Consequences of the Mean Value Theorem</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

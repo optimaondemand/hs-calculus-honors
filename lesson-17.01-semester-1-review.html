@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Semester 1 Review</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Semester 1 Finals &middot; Week 17</div>
+        <div style="font-size: 12px; color: #666;">Review of Modules 1&ndash;8</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Review</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Semester 1 Review</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">From Limits to the Mean Value Theorem</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Semester 1 Finals &middot; Week 17</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Semester 1 Review: From Limits to the Mean Value Theorem</div>
+        <div style="font-size: 16px; color: #666;">Review Lesson</div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">Eight modules ago you could not say what \(f'(a)\) meant. Now you can differentiate nearly anything &mdash; and say what a derivative promises. Is that eight topics, or one argument?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">It is one argument. Newton and Leibniz built the calculus without a settled definition of a limit, and a century of mathematicians argued over what an infinitesimal could possibly be; Cauchy's limits finally put a foundation under what already worked. You have just walked that path in the proper order: a limit first, then continuity, then a derivative defined <em>as</em> a limit, then the rules that fall out of the definition, and finally theorems that say what a derivative guarantees. Today's review does not re-teach the semester. It shows you the joints between the parts, trains you to pick the right tool for a problem that carries no label, and asks you to be honest about which promises a theorem actually makes.</div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> trace how each idea of Semester 1 depends on the one before it, from limits to the Mean Value Theorem.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> choose the right tool for an unlabeled limit, derivative, or existence problem, and say why it fits.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> check a theorem's hypotheses before using its conclusion, and state honestly what you are and are not entitled to claim.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil. Work every &ldquo;try it in your notebook first&rdquo; prompt on paper before you open its check.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your Week 1&ndash;16 problem sets and quizzes, for any week where you want a second look.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE MAP OF THE SEMESTER</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">Before you read the map below: if you had to name the one thread that runs from Module 1 to Module 8, which would you pick? There is no wrong answer; commit to one and see how it holds up.</div>
+          <div class="widget-options">
+            <button data-response="A fair reading. Every derivative is a limit, and every rule you proved was that limit worked out once for a whole family of functions. Notice how often a theorem later in the semester quietly relies on a limit existing.">Everything is a limit in disguise.</button>
+            <button data-response="Also fair. The IVT, EVT, Rolle's Theorem, and the MVT each promise something, but only when their conditions hold. The semester's habit of mind is checking the conditions before you claim the conclusion.">Everything is a promise about change, with conditions attached.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Here is the semester as one chain. Read the second line of each entry as the answer to a single question: <em>what did this module hand to the next one?</em></p>
+<div style="margin: 6px 0 14px 0;">
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 1</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>The limit</strong> &mdash; What a function approaches, made precise: limit laws and one-sided limits.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It gave &ldquo;approaches&rdquo; a meaning you can compute with.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 2</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Limits without bound</strong> &mdash; Limits at infinity, vertical asymptotes, the Squeeze Theorem, indeterminate forms.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It named \(\tfrac00\) as a question with no answer yet, and promised a tool.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 3</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Continuity and the great theorems</strong> &mdash; Continuity, kinds of discontinuity, the Intermediate and Extreme Value Theorems.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It produced guarantees on closed intervals: a value is reached, a maximum exists.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 4</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>The derivative</strong> &mdash; Average vs. instantaneous rate, the difference-quotient limit, differentiable \(\Rightarrow\) continuous.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It turned a limit into a function: \(f\) became \(f'\).</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 5</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Derivative rules I</strong> &mdash; Sum, power, product, and quotient rules proved from the limit; L'H&ocirc;pital's Rule.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It made differentiating routine, and paid Module 2's promise.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 6</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>The Chain Rule and trigonometry</strong> &mdash; The Chain Rule; derivatives of all six trigonometric functions.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It let you differentiate compositions, layer by layer.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 7</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Implicit, inverse, exponential, logarithmic</strong> &mdash; Implicit differentiation, inverse functions, \(e^x\) and \(\ln x\), logarithmic differentiation.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It completed the toolkit: every elementary function has a derivative.</div>
+        </div>
+        <div style="border-left:3px solid #55C8E8; padding-left:14px; margin-bottom:12px;">
+            <div style="font-size:12px; color:#1B6A94; margin-bottom:4px;">MODULE 8</div>
+            <div style="font-size:17px; color:#0e1c42;"><strong>Higher-order derivatives and the MVT</strong> &mdash; Second derivatives, velocity and acceleration, Rolle's Theorem, the Mean Value Theorem.</div>
+            <div style="font-size:15px; color:#666; font-style: italic;">It turned from computing derivatives to what a derivative <em>guarantees</em>.</div>
+        </div>
+    </div>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Joint 1: the definition and the rules</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Every rule you memorized was once a limit you computed. The Power Rule for \(x^3\) is the Module 4 difference quotient, expanded and simplified once:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ \frac{(x+h)^3-x^3}{h}=\frac{3x^2h+3xh^2+h^3}{h}=3x^2+3xh+h^2\;\longrightarrow\;3x^2\quad(h\to0) \]
+        </p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">If a rule ever slips from memory, the definition rebuilds it. That is what it means to know the <em>why</em> and not only the procedure.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Joint 2: the promise Module 2 made, kept in Module 5</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Lesson 2.04 left \(\displaystyle\lim_{x\to0}\frac{x-\sin x}{x^3}\) unsolved: substitution gives \(\tfrac00\), and no algebra rescues it. Once the derivative existed, L'H&ocirc;pital's Rule settled it. The form is \(\tfrac00\) at every step, which is what licenses each application:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 6px 0;">
+        \[ \lim_{x\to0}\frac{x-\sin x}{x^3}=\lim_{x\to0}\frac{1-\cos x}{3x^2}=\lim_{x\to0}\frac{\sin x}{6x}=\frac16 \]
+        </p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">L'H&ocirc;pital's Rule applies <em>only</em> to \(\tfrac00\) or \(\tfrac{\infty}{\infty}\). On \(\displaystyle\lim_{x\to0}\frac{x+1}{x+2}\), substitution already gives \(\tfrac12\). Differentiating top and bottom anyway gives \(\tfrac11=1\), which is wrong. Check the form first, every time.</div>
+        </div>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Joint 3: the great theorems form one chain</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The Extreme Value Theorem (Module 3) says a continuous function on a closed interval attains a maximum and a minimum. Rolle's Theorem (Lesson 8.03) spends that guarantee: if such a function also has equal endpoint values and is differentiable inside, an extreme value lies at an interior point where the derivative must be zero. The Mean Value Theorem tilts Rolle's picture until the endpoints no longer match: somewhere inside, the instantaneous rate equals the average rate. So \(\text{EVT}\to\text{Rolle}\to\text{MVT}\) is a single argument, and each step is only as good as the hypotheses it inherits.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Velocity and acceleration are a thread you have only begun to pull. In Module 8, \(s'\) was velocity and \(s''\) was acceleration, and the MVT told you that an average speed of 60 mph over a trip means the speedometer read exactly 60 at some instant. Semester 2 carries the same thread forward through optimization and related rates, and then in reverse, recovering position from velocity.</div>
+        </div>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E8B965; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A6420; margin-bottom: 8px;">&#129302; AI-AWARENESS</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A computer algebra system will return \(\tfrac16\) for the limit above in an instant. It will not tell you whether the form was really \(\tfrac00\) at each step, or why the answer is what it is. Use a tool to check your answer, never to produce your reasoning. On the final, the reasoning is what is being assessed.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; WHICH TOOL DOES THIS CALL FOR?</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A problem on the final will not say &ldquo;Chain Rule&rdquo; at the top. It will hand you a function or a question, and recognizing the tool is part of the work. For each item below, decide which tool to reach for <em>first</em>; the feedback names the signal that should have told you.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; WHICH TOOL DOES THIS CALL FOR?</div>
+          <div class="widget-question">Choose the first tool for each problem. Do not solve it yet; just decide.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Substitution gives 0/0 and nothing factors, so L'Hopital's Rule applies: (e^x - 1)/(2x) is still 0/0, and a second application gives e^x/2, which tends to 1/2." data-hint="Substitute first. What form do you get, and does anything factor out?">
+            <div class="widget-row-prompt">1. \(\displaystyle\lim_{x\to0}\frac{e^x-1-x}{x^2}\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Direct substitution</button>
+              <button data-choice="1">Factor and cancel</button>
+              <button data-choice="2">L'H&ocirc;pital's Rule</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. This is an outer function (a square root) applied to an inner function (x^2 + 1). The Chain Rule gives x / sqrt(x^2 + 1)." data-hint="Is this two functions multiplied, divided, or one function placed inside another?">
+            <div class="widget-row-prompt">2. \(y=\sqrt{x^2+1}\)</div>
+            <div class="widget-options">
+              <button data-choice="0">The Product Rule</button>
+              <button data-choice="1">The Chain Rule</button>
+              <button data-choice="2">The Quotient Rule</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. y is not isolated, so differentiate both sides with respect to x and solve for y'. No logarithms or inverses are needed." data-hint="Can you solve for y alone? If not, which technique lets you differentiate anyway?">
+            <div class="widget-row-prompt">3. \(x^3+y^3=6xy\); find \(\dfrac{dy}{dx}\)</div>
+            <div class="widget-options">
+              <button data-choice="0">Implicit differentiation</button>
+              <button data-choice="1">Logarithmic differentiation</button>
+              <button data-choice="2">The inverse function rule</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The base and the exponent both vary, so neither the Power Rule nor the constant-base exponential rule fits. Take ln of both sides first." data-hint="Which parts of this function change with x: the base, the exponent, or both?">
+            <div class="widget-row-prompt">4. \(y=x^{\sin x}\)</div>
+            <div class="widget-options">
+              <button data-choice="0">The Power Rule</button>
+              <button data-choice="1">The exponential rule for a constant base</button>
+              <button data-choice="2">Logarithmic differentiation</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The function is continuous, f(0) = -1 is negative and f(1) = 1 is positive, so it must cross zero between them. The IVT promises that a value is reached; no derivative is needed." data-hint="You are showing that a value is reached between two endpoint values. Which theorem promises that?">
+            <div class="widget-row-prompt">5. Show that \(x^3+x-1=0\) has a solution between \(0\) and \(1\).</div>
+            <div class="widget-options">
+              <button data-choice="0">The Mean Value Theorem</button>
+              <button data-choice="1">The Intermediate Value Theorem</button>
+              <button data-choice="2">Rolle's Theorem</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The average rate is 150 / 2.5 = 60 mph, and position is continuous and differentiable, so the MVT guarantees an instant with speed exactly 60." data-hint="You are matching an instantaneous rate to an average rate. Which theorem does that?">
+            <div class="widget-row-prompt">6. A car covers \(150\) miles in \(2.5\) hours. Show its speed was exactly \(60\) mph at some instant.</div>
+            <div class="widget-options">
+              <button data-choice="0">The Intermediate Value Theorem</button>
+              <button data-choice="1">The Extreme Value Theorem</button>
+              <button data-choice="2">The Mean Value Theorem</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Three questions sort almost every problem. <strong>(1)</strong> Is this a limit with an indeterminate form? <strong>(2)</strong> Is this a derivative, and if so, how is the function built: sums, products, quotients, compositions, a hidden \(y\), or a variable exponent? <strong>(3)</strong> Is it asking that something <em>exists</em>, or <em>happens somewhere</em>? Asking them in that order before you pick up the pencil is a habit, not a trick.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; MIXED FLUENCY</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now do the work. Each block below has a question; try it in your notebook first, then open the check. Compare your steps, not just your answer.</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: differentiate \(f(x)=x^2e^{3x}\).
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                This is a product, with a Chain Rule step inside \(e^{3x}\): \(f'(x)=2x\,e^{3x}+x^2\cdot3e^{3x}=e^{3x}\,(3x^2+2x)=x\,e^{3x}(3x+2)\).
+            </div>
+        </details>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: differentiate \(g(x)=\arctan(x^2)\).
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                The outer function \(\arctan u\) has derivative \(\dfrac{1}{1+u^2}\), and the inner function is \(u=x^2\): \(g'(x)=\dfrac{1}{1+(x^2)^2}\cdot2x=\dfrac{2x}{1+x^4}\).
+            </div>
+        </details>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: the curve \(x^3+y^3=6xy\) passes through \((3,3)\). Find the slope there.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Check the point: \(27+27=54=6\cdot9\). Differentiate implicitly: \(3x^2+3y^2y'=6y+6x\,y'\). Collect \(y'\): \(y'(3y^2-6x)=6y-3x^2\), so \(y'=\dfrac{2y-x^2}{y^2-2x}\). At \((3,3)\): \(\dfrac{6-9}{9-6}=-1\).
+            </div>
+        </details>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: a particle moves with \(s(t)=t^3-6t^2+9t\) for \(t\ge0\). Find \(v(t)\) and \(a(t)\), then \(v\) at the moment the acceleration is zero.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(v(t)=s'(t)=3t^2-12t+9=3(t-1)(t-3)\) and \(a(t)=v'(t)=6t-12\). Then \(a(t)=0\) at \(t=2\), where \(v(2)=12-24+9=-3\): the particle is moving in the negative direction at that moment, and \(s(2)=2\).
+            </div>
+        </details>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find the number \(c\) that the Mean Value Theorem guarantees for \(f(x)=x^3\) on \([0,2]\).
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f\) is continuous and differentiable everywhere, so the theorem applies. The average rate is \(\dfrac{f(2)-f(0)}{2-0}=\dfrac82=4\). Solve \(f'(c)=3c^2=4\): \(c=\pm\dfrac{2}{\sqrt3}\), and only \(c=\dfrac{2}{\sqrt3}\approx1.155\) lies in \((0,2)\).
+            </div>
+        </details>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Notice what the last problem did: it checked that the theorem applied <em>before</em> using it, and it threw away a root that solved the equation but fell outside the interval. Both habits return in Part 4.</p>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; THE HONEST-REASONING CHECK</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Honesty in mathematics has a precise meaning: you may claim only what the hypotheses of a theorem entitle you to claim. When a hypothesis fails, the theorem has made <em>no</em> promise; sometimes its conclusion still happens to hold, and sometimes it fails outright. A careful mathematician says which. Settle each case below.</p>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; WHAT ARE YOU ENTITLED TO CLAIM?</div>
+          <div class="widget-question">For each, say which hypothesis fails or which conclusion the facts support.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. |x| is continuous, but it has a corner at 0, so the differentiability hypothesis fails. Here the conclusion really does fail: f'(c) is never 1/3." data-hint="Check both hypotheses one at a time: continuity on the closed interval, differentiability on the open interval.">
+            <div class="widget-row-prompt">1. \(f(x)=|x|\) on \([-1,2]\). The average rate of change is \(\tfrac13\), but \(f'(x)=\pm1\) everywhere it exists. Why does the Mean Value Theorem make no promise here?</div>
+            <div class="widget-options">
+              <button data-choice="0">f is not continuous on [-1, 2]</button>
+              <button data-choice="1">The interval is not symmetric about 0</button>
+              <button data-choice="2">f is not differentiable at x = 0, inside the interval</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. The IVT needs continuity on the whole closed interval, and 1/x blows up at 0. The endpoint values do straddle zero, but the theorem is silent, and 1/x never equals zero." data-hint="The IVT asks only for continuity. Is f continuous at every point of [-1, 1]?">
+            <div class="widget-row-prompt">2. \(f(x)=\dfrac1x\) has \(f(-1)=-1\) and \(f(1)=1\). Why can you not use the Intermediate Value Theorem to claim a zero on \([-1,1]\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">f(-1) and f(1) share a sign</button>
+              <button data-choice="1">f is discontinuous at 0, inside the interval</button>
+              <button data-choice="2">1/x is not differentiable anywhere</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. Substitution gives 1/2 directly, so there was nothing to resolve. L'Hopital's Rule is for 0/0 or infinity/infinity only." data-hint="What do you get by substituting x = 0 first?">
+            <div class="widget-row-prompt">3. A classmate computes \(\displaystyle\lim_{x\to0}\frac{x+1}{x+2}\) by differentiating top and bottom and gets \(1\). What went wrong?</div>
+            <div class="widget-options">
+              <button data-choice="0">The derivative of the top is wrong</button>
+              <button data-choice="1">The rule only works for trigonometric functions</button>
+              <button data-choice="2">The limit is not an indeterminate form, so the rule does not apply; the limit is 1/2</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. Differentiable implies continuous (Lesson 4.04). The converse fails, as |x| shows at 0, and nothing here promises that f' is continuous or that a is an extremum." data-hint="Think of Lesson 4.04: which property does differentiability always bring with it?">
+            <div class="widget-row-prompt">4. \(f\) is differentiable at \(x=a\). Which conclusion are you entitled to?</div>
+            <div class="widget-options">
+              <button data-choice="0">f is continuous at a</button>
+              <button data-choice="1">f' is continuous at a</button>
+              <button data-choice="2">f has a local extremum at a</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: check the hypotheses of Rolle's Theorem for \(f(x)=x^3-3x\) on \([-\sqrt3,\sqrt3]\), then find every \(c\) it guarantees.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Hypotheses: \(f\) is a polynomial, so it is continuous on the closed interval and differentiable on the open one. Endpoints: \(f(\sqrt3)=3\sqrt3-3\sqrt3=0\) and \(f(-\sqrt3)=-3\sqrt3+3\sqrt3=0\), so \(f(-\sqrt3)=f(\sqrt3)\). All hold, so some \(c\) has \(f'(c)=0\). Solve \(3c^2-3=0\): \(c=\pm1\), and both lie inside \((-\sqrt3,\sqrt3)\). The theorem promised at least one such point; here there are two.
+            </div>
+        </details>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Semester 1 Review Activity</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A mixed-topic review of the whole semester. Work it by hand, show your reasoning, and upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Semester 1 Final Exam</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Cumulative across Modules 1&ndash;8, written by hand in one sitting of about two hours. When you finish, upload your pages as one PDF.</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Semester 1 is one argument. A limit gives &ldquo;approaches&rdquo; a meaning you can compute; a derivative is a limit; every rule is that limit worked out once for a whole family of functions; and the great theorems are promises about change whose hypotheses you must check before you claim their conclusions. Carry the habit as much as the formulas. Semester 2 puts the derivative to work on tangent lines, extrema, curve shape, and optimization, and then turns to the integral, which runs the whole story in reverse.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Semester 1 Finals &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Week 17 &middot; Semester 1 Review: From Limits to the Mean Value Theorem</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

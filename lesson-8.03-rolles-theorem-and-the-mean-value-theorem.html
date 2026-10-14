@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 8.03</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q2 &middot; Module 8</div>
+        <div style="font-size: 12px; color: #666;">Higher-Order Derivatives and the Mean Value Theorem</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 8.03</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Rolle's Theorem and the Mean Value Theorem</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Higher-Order Derivatives and the Mean Value Theorem</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <!-- Lavender title strip -->
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 8.03</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Rolle's Theorem and the Mean Value Theorem</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <!-- Today's Focus -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">If a car averages 75 mph between two toll booths, must it have been going exactly 75 mph at some instant? The Mean Value Theorem says yes, and that is a surprisingly deep fact.</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Everything you have done since Module 4 has treated the derivative as a computation. Today the derivative becomes a <em>tool for proof</em>. The Mean Value Theorem ties together two things that look unrelated: an average rate of change over an interval (a secant slope, computed from two endpoint values) and an instantaneous rate of change at a single point (a tangent slope, computed from a limit). It guarantees the two agree at some point. It is the bridge from local information (the derivative) to global conclusions (what the function does across a whole interval), and nearly everything in Quarter 3 stands on it. Like every great theorem, it comes with fine print, and part of the work today is learning to read that fine print honestly.</div>
+    </div>
+
+    <!-- Objectives -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> state Rolle's Theorem and the Mean Value Theorem, including every hypothesis, and check the hypotheses for a given function and interval.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> prove Rolle's Theorem from the Extreme Value Theorem and Fermat's interior-extremum fact, and prove the Mean Value Theorem from Rolle's Theorem.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; ">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> find the value(s) of \(c\) the theorems guarantee, discarding solutions outside the open interval, and explain with an example why a failed hypothesis voids the guarantee.</div>
+        </div>
+    </div>
+
+    <!-- Materials -->
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus the Extreme Value Theorem from Lesson 3.04 and the one-sided limit and corner ideas from Lessons 1.04 and 4.04.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A willingness to read a hypothesis slowly: in this lesson, every word of the fine print matters.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 1 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE TWO THEOREMS AND THEIR FINE PRINT</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">A car passes one toll booth at 1:00 and the next booth, 60 miles down the road, at 1:48. Its average speed was 75 mph. Must the speedometer have read exactly 75 mph at some moment in between, or could the car have gone 70 for a while and 80 for a while and never touched 75?</div>
+          <div class="widget-options">
+            <button data-response="That instinct is the Mean Value Theorem in words. A speedometer reading changes continuously, so to go from below 75 to above 75 it has to pass through 75. Today you turn that instinct into a theorem with stated hypotheses, and then into a proof.">Yes, it must have read exactly 75 at some moment, because speed cannot jump over a value without passing through it.</button>
+            <button data-response="The average has to come from somewhere. If the speedometer were always below 75, the average would be below 75; if always above, the average would be above. For the average to be exactly 75 with a speed that changes smoothly, the speedometer has to cross 75. Making that precise is today's work.">No, a car could average 75 without ever reading exactly 75.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The idea is old and physical; the mathematics is where it earns its keep. Michel Rolle published the special case in 1691, in a book about solving algebraic equations. Rolle was, by the way, one of calculus's loudest critics in his day, which is a good reminder that a true theorem does not care what its discoverer thought of the field it would later belong to. The general statement carries Joseph-Louis Lagrange's name, from the 1790s, and a fully rigorous proof waited for Cauchy. Both statements begin with the same fine print, so we state the fine print first.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Rolle's Theorem</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Suppose \(f\) is <strong>continuous on the closed interval \([a,b]\)</strong> and <strong>differentiable on the open interval \((a,b)\)</strong>, and \(f(a)=f(b)\). Then there is at least one number \(c\) in \((a,b)\) with \(f'(c)=0\).</div>
+        </div>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>The Mean Value Theorem (MVT)</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">Suppose \(f\) is <strong>continuous on \([a,b]\)</strong> and <strong>differentiable on \((a,b)\)</strong>. Then there is at least one number \(c\) in \((a,b)\) with \[ f'(c)=\frac{f(b)-f(a)}{b-a}. \]</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">In words: somewhere strictly between the endpoints, the instantaneous rate of change equals the average rate of change over the whole interval. Geometrically, somewhere on the curve the tangent line is parallel to the secant line through \((a,f(a))\) and \((b,f(b))\). Rolle's Theorem is the special case where that secant line is horizontal.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; WORTH KNOWING</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Notice the asymmetry in the fine print, because it comes straight from Lesson 3.04 and Lesson 4.04. The function must be <em>continuous on the closed interval</em>, including both endpoints, but only <em>differentiable on the open interval</em>, which leaves the endpoints out. A corner at \(a\) or \(b\) does not hurt the theorem; a corner or a break anywhere inside does. Always check both hypotheses before you use either theorem.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 2 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; PROVING ROLLE'S THEOREM</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Why believe Rolle's Theorem? Picture a smooth hill whose two ends are at the same height. Walking across it, you climb and descend, or descend and climb, and at the top of the hill (or the bottom of the valley) the path is level. The proof makes that picture exact, and it needs two earlier results: the Extreme Value Theorem from Lesson 3.04, and one fact about extreme values that goes back to Pierre de Fermat in the 1630s.</p>
+        <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 12px; color: #0E1C42; margin-bottom: 8px; letter-spacing: 0.4px;"><strong>Fermat's interior-extremum fact</strong></div>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.65;">If \(f\) has a local maximum or local minimum at an interior point \(c\), and \(f'(c)\) exists, then \(f'(c)=0\).</div>
+        </div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Why it is true</strong> (for a local maximum at \(c\); the minimum case is the mirror image). For small \(h>0\), \(f(c+h)\le f(c)\), so the difference quotient \(\dfrac{f(c+h)-f(c)}{h}\le 0\). Letting \(h\to0^+\), the limit \(f'(c)\) is \(\le 0\). For small \(h<0\), the numerator is still \(\le 0\) but the denominator is negative, so the quotient is \(\ge 0\); letting \(h\to0^-\) gives \(f'(c)\ge 0\). The derivative exists, so both one-sided limits equal it, and a number that is both \(\le 0\) and \(\ge 0\) is \(0\). This is exactly the one-sided-limit reasoning of Lesson 1.04.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Proof of Rolle's Theorem</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(f\) satisfy the hypotheses, with \(f(a)=f(b)\).</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Case 1: \(f\) is constant on \([a,b]\).</strong> Then \(f'(x)=0\) for every \(x\) in \((a,b)\), so any \(c\) in the open interval works.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Case 2: \(f\) is not constant.</strong> Because \(f\) is continuous on the closed interval \([a,b]\), the Extreme Value Theorem (Lesson 3.04) says \(f\) attains an absolute maximum and an absolute minimum there. Since \(f\) is not constant, some value differs from \(f(a)=f(b)\). If that value is larger, the maximum exceeds \(f(a)\) and so is attained at a point \(c\) <em>not</em> at an endpoint; if smaller, the minimum is attained at such an interior point. Either way there is an interior point \(c\) in \((a,b)\) where \(f\) has an absolute, hence local, extreme value. \(f\) is differentiable at \(c\), so Fermat's fact gives \(f'(c)=0\). \(\blacksquare\)</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Look at what each hypothesis bought us. Continuity on \([a,b]\) bought the Extreme Value Theorem, so the extreme values exist. Equal endpoint values bought an <em>interior</em> extreme point. Differentiability inside bought Fermat's fact, so the derivative at that point exists and must be zero. Take any one away and the proof, and the theorem, fail.</p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Fermat found maxima and minima in the 1630s with a method he called <em>adequality</em>, decades before Newton and Leibniz. He noticed that near the top of a curve the function barely changes, so the rate of change there is zero. Your difference-quotient proof above is that same observation, made airtight with limits.</div>
+        </div>
+    </div>
+
+    <!-- ===================== PART 3 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; PROVING THE MEAN VALUE THEOREM, AND FINDING c</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Now the general theorem. The trick, which is the sort of move that looks obvious only after someone has made it, is to <em>subtract the secant line</em> so the endpoints come out level, and then hand the result to Rolle.</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Proof of the Mean Value Theorem</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(m=\dfrac{f(b)-f(a)}{b-a}\) be the slope of the secant line through \((a,f(a))\) and \((b,f(b))\). The secant line is \(y=f(a)+m(x-a)\). Define \(g\) to be the vertical gap between the curve and that line:</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ g(x)=f(x)-\bigl[f(a)+m(x-a)\bigr] \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Check the hypotheses of Rolle's Theorem for \(g\). It is continuous on \([a,b]\) and differentiable on \((a,b)\), because \(f\) is and the subtracted piece is a polynomial. At the endpoints,</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0;">
+        \[ g(a)=f(a)-f(a)=0,\qquad g(b)=f(b)-f(a)-m(b-a)=f(b)-f(a)-\bigl(f(b)-f(a)\bigr)=0. \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">So \(g(a)=g(b)\), and Rolle's Theorem gives a \(c\) in \((a,b)\) with \(g'(c)=0\). But \(g'(x)=f'(x)-m\), so \(f'(c)-m=0\), that is,</p>
+        <p style="font-size: 18px; color: #0e1c42; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+        \[ f'(c)=m=\frac{f(b)-f(a)}{b-a}.\qquad\blacksquare \]
+        </p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 10px 0; font-style: italic;"><strong>Convince a classmate:</strong> in two sentences, why does subtracting the secant line make Rolle's Theorem applicable? What would \(g\) look like if \(f\) were itself a straight line?</p>
+        <h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Finding \(c\): three worked examples</h3>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 1 (Rolle).</strong> Let \(f(x)=x^2-4x+3\) on \([1,3]\). Then \(f(1)=0=f(3)\), \(f\) is a polynomial, so all hypotheses hold. Solve \(f'(x)=2x-4=0\): \(c=2\), which lies in \((1,3)\). Check: \(f(2)=-1\), the vertex of the parabola, where the tangent is horizontal.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 2 (MVT).</strong> Let \(f(x)=x^3\) on \([0,2]\). The average rate is \(\dfrac{f(2)-f(0)}{2-0}=\dfrac{8}{2}=4\). Solve \(f'(c)=3c^2=4\): \(c=\pm\dfrac{2}{\sqrt3}=\pm\dfrac{2\sqrt3}{3}\). Only the positive root lies in \((0,2)\), so \(c=\dfrac{2\sqrt3}{3}\approx1.155\). The theorem promised <em>at least one</em> such \(c\) in the open interval; it found exactly one, and the other solution is correctly discarded because it is outside the interval.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Example 3 (MVT, a radical).</strong> Let \(f(x)=\sqrt x\) on \([1,4]\). It is continuous on \([1,4]\) and differentiable on \((1,4)\). The average rate is \(\dfrac{2-1}{4-1}=\dfrac13\). Solve \(f'(c)=\dfrac{1}{2\sqrt c}=\dfrac13\): \(\sqrt c=\dfrac32\), so \(c=\dfrac94=2.25\), which lies in \((1,4)\).</p>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: let \(f(x)=x^3-3x\) on \([0,\sqrt3]\). Check that Rolle's Theorem applies, then find every \(c\) it promises. Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                \(f(0)=0\) and \(f(\sqrt3)=3\sqrt3-3\sqrt3=0\), so \(f(a)=f(b)\); \(f\) is a polynomial, so the other hypotheses hold. Solve \(f'(x)=3x^2-3=0\): \(x=\pm1\). Only \(x=1\) is inside \((0,\sqrt3)\), so \(c=1\). Notice that you had to <em>throw away</em> \(x=-1\): the theorem speaks only about the open interval you gave it, and solving \(f'(x)=0\) will often return extra solutions that do not belong.
+            </div>
+        </details>
+    </div>
+
+    <!-- ===================== PART 4 ===================== -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 4 &middot; WHEN THE GUARANTEE DOES NOT APPLY</div>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">A theorem is a promise with conditions attached, and an honest mathematician states the conditions every time. Honesty is a virtue in the plainest sense here: when the hypotheses fail, the theorem says nothing at all, and we must not pretend that it does. These three examples are the ones to remember.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Not differentiable inside.</strong> \(f(x)=|x|\) on \([-1,1]\). It is continuous on \([-1,1]\), and \(f(-1)=1=f(1)\), so the endpoints match. But \(f\) has a corner at \(x=0\) (Lesson 4.04), so it is not differentiable on all of \((-1,1)\). The conclusion fails: \(f'(x)=-1\) for \(x<0\) and \(f'(x)=1\) for \(x>0\), and \(f'(x)\) is never \(0\). The same function on \([-1,2]\) has average rate \(\dfrac{f(2)-f(-1)}{2-(-1)}=\dfrac{2-1}{3}=\dfrac13\), and yet \(f'(x)\) is only ever \(1\) or \(-1\), so there is no \(c\) at all.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Not continuous on the closed interval.</strong> Define \(f(x)=x\) for \(0\le x<1\) and \(f(1)=0\). Then \(f(0)=0=f(1)\), and \(f\) is differentiable at every point of \((0,1)\) with \(f'(x)=1\). But the function jumps at \(x=1\), so it is not continuous on \([0,1]\). And \(f'(x)=1\) is never \(0\), so Rolle's conclusion fails.</p>
+        <p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;"><strong>Endpoints that do not match</strong> (for Rolle only). \(f(x)=x\) on \([0,1]\) has \(f'(x)=1\) everywhere, never \(0\). Rolle's Theorem does not apply, but the MVT does, and it is satisfied by every \(c\) in \((0,1)\), since the average rate is \(1\).</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A failed hypothesis does <em>not</em> prove the conclusion false. Take \(f(x)=|x^2-1|\) on \([-2,2]\): it has corners at \(x=\pm1\), so it is not differentiable on \((-2,2)\), yet \(f(-2)=f(2)=3\) and \(f'(0)=0\), because near \(x=0\) we have \(f(x)=1-x^2\). Rolle's conclusion happens to hold, but the theorem did not guarantee it. The honest sentence is &ldquo;the theorem does not apply here,&rdquo; never &ldquo;the conclusion is false here.&rdquo; Say what you have shown, and no more.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; DO THE HYPOTHESES HOLD?</div>
+          <div class="widget-question">For each function and interval, decide whether Rolle's Theorem applies, and if not, which hypothesis fails.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. |x| is continuous and has equal endpoint values, but it has a corner at 0, so it is not differentiable on all of (-1,1). The conclusion fails: f'(x) is never 0." data-hint="Check the graph at x = 0. Is there a corner? Is the function continuous there?">
+            <div class="widget-row-prompt">1. \(f(x)=|x|\) on \([-1,1]\)</div>
+            <div class="widget-options">
+              <button data-choice="0">All hypotheses hold, so Rolle guarantees a \(c\)</button>
+              <button data-choice="1">Not continuous on \([-1,1]\)</button>
+              <button data-choice="2">Not differentiable at a point inside \((-1,1)\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. It is a polynomial, so continuous and differentiable everywhere, and f(1) = f(3) = 0. Rolle gives c = 2." data-hint="A polynomial has no breaks or corners. Then check that f(1) and f(3) match.">
+            <div class="widget-row-prompt">2. \(f(x)=x^2-4x+3\) on \([1,3]\)</div>
+            <div class="widget-options">
+              <button data-choice="0">All hypotheses hold, so Rolle guarantees a \(c\)</button>
+              <button data-choice="1">Not continuous on \([1,3]\)</button>
+              <button data-choice="2">Not differentiable at a point inside \((1,3)\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. f(-1) = f(1) = 1, but f is not even defined at x = 0, so it is not continuous on the closed interval [-1,1]. (Its derivative, -2/x^3, is never 0 anyway.)" data-hint="What happens to 1/x^2 at x = 0? Is it defined on all of [-1,1]?">
+            <div class="widget-row-prompt">3. \(f(x)=\dfrac{1}{x^2}\) on \([-1,1]\)</div>
+            <div class="widget-options">
+              <button data-choice="0">All hypotheses hold, so Rolle guarantees a \(c\)</button>
+              <button data-choice="1">Not continuous on \([-1,1]\)</button>
+              <button data-choice="2">Not differentiable at a point inside \((-1,1)\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <!-- What You'll Do Next -->
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 16 Problem Set: Rolle's Theorem and the Mean Value Theorem</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Check hypotheses, find the values of c, and write out a short proof, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; ">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 16 Quiz: Rolle's Theorem and the Mean Value Theorem</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material. Lesson 8.04 comes first, so finish it before the quiz.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wrap-up -->
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">Rolle's Theorem and the Mean Value Theorem say that when a function is continuous on a closed interval and differentiable inside it, some interior tangent is parallel to the secant through the endpoints. The proof is a chain: the Extreme Value Theorem finds an extreme point, Fermat's fact makes the derivative zero there, and subtracting the secant line turns the general case into the special one. And the guarantee holds only while the hypotheses hold. Lesson 8.04 puts the theorem to work, proving that a zero derivative means a constant function, that two functions with the same derivative differ by a constant, and that a positive derivative means the function is increasing.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 2 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 8.03 &middot; Rolle's Theorem and the Mean Value Theorem</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>

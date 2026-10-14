@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Calculus Honors &mdash; Lesson 8.01</title>
+<script>
+  window.MathJax = { tex: { inlineMath: [['\\(', '\\)']], displayMath: [['\\[', '\\]']] }, svg: { fontCache: 'global' } };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" id="MathJax-script" async></script>
+<style>
+    body { margin: 0; padding: 0; font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #f4f6fa; }
+    .canvas-frame { max-width: 1100px; margin: 0 auto; background: #ffffff; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+
+    /* ===== WIDGET CSS (byte-consistent with the skill) ===== */
+    .optima-widget { background: linear-gradient(135deg, #E8F6FB 0%, #F4F9FC 100%); border: 1px solid #C5DCE5; border-left: 5px solid #2196D0; border-radius: 8px; padding: 18px 22px; margin: 18px 0; }
+    .widget-kicker { font-size: 11px; color: #1B6A94; margin-bottom: 10px; letter-spacing: 0.4px; }
+    .widget-question { font-size: 17px; color: #0E1C42; margin-bottom: 14px; line-height: 1.55; }
+    .widget-row { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 6px; padding: 12px 14px; margin-bottom: 10px; }
+    .widget-row-prompt { font-size: 15px; color: #0E1C42; margin-bottom: 8px; line-height: 1.5; font-style: italic; }
+    .widget-options { display: flex; flex-wrap: wrap; gap: 8px; }
+    .widget-options button { background: #FFFFFF; border: 1.5px solid #D0D9E8; border-radius: 8px; padding: 8px 14px; font-size: 14px; color: #0E1C42; cursor: pointer; transition: all 0.15s; font-family: inherit; }
+    .widget-options button:hover { background: #F4F6FA; border-color: #55C8E8; }
+    .widget-options button.selected { background: #0E1C42; color: #FFFFFF; border-color: #0E1C42; }
+    .widget-options button.correct { background: #D8F0DD; border-color: #2A9D5C; color: #1A6B3D; }
+    .widget-options button.incorrect { background: #FDECEC; border-color: #C0392B; color: #8A1F16; }
+    .widget-feedback { background: #FFFFFF; border-left: 3px solid #C7922C; padding: 10px 14px; font-size: 15px; color: #1a2340; line-height: 1.55; margin: 10px 0; display: none; border-radius: 4px; }
+    .widget-feedback.show { display: block; }
+    .row-feedback { padding: 8px 12px; margin-top: 8px; font-size: 14px; border-radius: 4px; line-height: 1.5; }
+    .row-feedback.correct { background: #D8F0DD; border-left: 3px solid #2A9D5C; color: #1A6B3D; }
+    .row-feedback.incorrect { background: #FDECEC; border-left: 3px solid #C0392B; color: #8A1F16; }
+    .widget-reset { background: transparent; border: 1px solid #C7922C; color: #C7922C; border-radius: 6px; padding: 6px 12px; font-size: 12px; cursor: pointer; font-family: inherit; margin-top: 6px; }
+    .widget-reset:hover { background: #FDF3E3; }
+    .ow-scale .widget-options { justify-content: space-between; }
+    .ow-scale .widget-options button { flex: 1; text-align: center; }
+    .ow-flip { background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 18px 20px; cursor: pointer; text-align: center; }
+    .ow-flip .ow-flip-back { display: none; color: #1a2340; }
+    .ow-flip.flipped .ow-flip-front { display: none; }
+    .ow-flip.flipped .ow-flip-back { display: block; }
+</style>
+</head>
+<body>
+<div class="canvas-frame">
+
+<!-- ===== HEADER ===== -->
+<div style="background: #0E1C42; border-bottom: 5px solid #55C8E8; padding: 22px 34px;">
+    <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 10px;">
+        <div style="width: 52px; height: 52px; border-radius: 50%; background: #FFFFFF; display: flex; align-items: center; justify-content: center; flex-shrink: 0;"><img src="https://raw.githubusercontent.com/optimaondemand/optima-assets/eeb0b335630058906d52f478028361d352253a93/images/Optima%20Final%20Circle%20-%20Owl%20Only.png" alt="Optima Academy" style="width: 50px; height: 40px; object-fit: contain;" /></div>
+        <div>
+            <div style="font-size: 28px; color: #ffffff; line-height: 1.2;">Optima Academy Online</div>
+            <div style="font-size: 12px; color: #55c8e8;">An Education Experience Company</div>
+        </div>
+    </div>
+    <div style="font-size: 36px; color: #ffffff; margin-bottom: 6px;">CALCULUS HONORS</div>
+</div>
+
+<!-- ===== METADATA STRIP ===== -->
+<div style="background: #FFFFFF; border-bottom: 2px solid #D0D9E8; display: flex; flex-wrap: wrap;">
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Quarter / Module</div>
+        <div style="font-size: 17px; color: #0e1c42;">Q2 &middot; Module 8</div>
+        <div style="font-size: 12px; color: #666;">Higher-Order Derivatives and the Mean Value Theorem</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Lesson</div>
+        <div style="font-size: 17px; color: #0e1c42;">Lesson 8.01</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px; border-right: 1px solid #D0D9E8;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Topic</div>
+        <div style="font-size: 17px; color: #0e1c42; font-style: italic;">Higher-Order Derivatives</div>
+    </div>
+    <div style="flex: 1; min-width: 140px; padding: 12px 16px;">
+        <div style="font-size: 11px; color: #6b7a99; margin-bottom: 4px;">Module Theme</div>
+        <div style="font-size: 16px; color: #0e1c42;">Higher-Order Derivatives and the Mean Value Theorem</div>
+    </div>
+</div>
+
+<!-- ===== BODY WRAPPER ===== -->
+<div style="padding: 24px 34px;">
+
+    <div style="background: #EEF1F8; border-left: 5px solid #0E1C42; border-radius: 7px; padding: 18px 22px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #0e1c42; margin-bottom: 6px;">Lesson 8.01</div>
+        <div style="font-size: 22px; color: #0e1c42; margin-bottom: 4px;">Higher-Order Derivatives</div>
+        <div style="font-size: 16px; color: #666;">Lesson</div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128214; TODAY'S FOCUS</div>
+        <div style="font-size: 20px; color: #0e1c42; font-style: italic; margin-bottom: 10px;">If the derivative measures how a function changes, what does it mean to ask how the <em>change itself</em> is changing?</div>
+        <div style="font-size: 18px; color: #1a2340; line-height: 1.65;">Since Module 4 you have turned a function \(f\) into a new function \(f'\). Nothing stops you from doing it again. \(f'\) is a function, so it has a derivative of its own: the <strong>second derivative</strong> \(f''\). And \(f''\) has a derivative, \(f'''\), and so on for as long as the function allows. These are the <strong>higher-order derivatives</strong>. Leibniz was already writing the second derivative as \(\dfrac{d^2y}{dx^2}\) in the 1680s, and Joseph-Louis Lagrange later gave us the compact prime notation you have been using. Today you learn to read both notations, to see the patterns that repeated differentiation produces (some functions die out, some cycle, some refuse to change at all), and to say in plain words what \(f''\) measures. Tomorrow, that last idea becomes the language of motion.</div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#127919; BY THE END OF THIS LESSON YOU WILL BE ABLE TO&hellip;</div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> compute \(f''\), \(f'''\), and \(f^{(n)}\) for polynomial, trigonometric, exponential, and logarithmic functions, using the rules from Modules 5 through 7.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> read and write higher-order derivatives in both prime notation and Leibniz notation, and avoid the confusions between \(f^{(n)}\), \(f^n\), and \((f')^2\).</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 12px; margin-bottom: 0;">
+            <div style="min-width: 26px; height: 26px; border-radius: 50%; background: #C7922C; color: #fff; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.65;"><strong>I will be able to</strong> describe what \(f''\) measures as the rate of change of the slope, and predict an \(n\)th derivative from the pattern of the first few.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128203; WHAT YOU NEED FOR THIS LESSON</div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">Your math notebook and a pencil, plus every differentiation rule from Modules 5 through 7: Power, Product, Quotient, Chain, and the trigonometric, exponential, and logarithmic derivatives.</div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 10px; margin-bottom: 0; border-left: 3px solid #D0D9E8; padding-left: 14px;"><span style="color: #c7922c; font-size: 18px; flex-shrink: 0;">&#9654;</span>
+            <div style="font-size: 18px; color: #1a2340; line-height: 1.6;">A calculator or graphing tool is optional and may be used only to check work you have already done by hand.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 1 &middot; THE DERIVATIVE OF THE DERIVATIVE</div>
+        <div class="optima-widget ow-reflect">
+          <div class="widget-kicker">&#9889; QUICK CHECK-IN</div>
+          <div class="widget-question">You differentiate \(f(x)=x^3\) and get \(f'(x)=3x^2\). If you differentiate \(f'\) once more, what are you really asking about the original curve?</div>
+          <div class="widget-options">
+            <button data-response="Yes. \(f'\) records the slope of \(f\) at every point. Differentiating \(f'\) asks how fast that slope is rising or falling, which is the second derivative's whole job. Hold that sentence in mind through Part 3.">How quickly the slope of the curve is itself changing as \(x\) increases.</button>
+            <button data-response="Not quite. \(f'\) already gives the slope at every point. Differentiating it measures how that slope changes from point to point, which is a different question and generally a different function. You will see it concretely in Part 3.">The same slope again, only measured at a different point.</button>
+          </div>
+          <div class="widget-feedback"></div>
+          <button class="widget-reset">Reset</button>
+        </div>
+
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Repeated differentiation is just the derivative applied to its own output. Each application earns a new name:</p>
+        <ul style="font-size: 17px; color: #1a2340; line-height: 1.9; padding-left: 22px; margin: 0 0 10px 0;">
+          <li>The first derivative: \(f'(x)\), or \(\dfrac{dy}{dx}\).</li>
+          <li>The second derivative: \(f''(x)\), or \(\dfrac{d^2y}{dx^2}\). In Leibniz notation, \(\dfrac{d}{dx}\!\left(\dfrac{dy}{dx}\right)\) is written \(\dfrac{d^2y}{dx^2}\).</li>
+          <li>The third derivative: \(f'''(x)\), or \(\dfrac{d^3y}{dx^3}\).</li>
+          <li>The \(n\)th derivative, once primes get unwieldy: \(f^{(n)}(x)\), or \(\dfrac{d^ny}{dx^n}\). The parentheses matter: \(f^{(4)}\) means "differentiate four times," while \(f^4\) would mean \(f\) raised to the fourth power.</li>
+        </ul>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: differentiate until it stops</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Let \(f(x)=x^5-4x^3+2x\). Differentiate repeatedly, one clean line at a time, using only the Power Rule and the Sum Rule:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ \begin{aligned} f'(x) &= 5x^4-12x^2+2 \\ f''(x) &= 20x^3-24x \\ f'''(x) &= 60x^2-24 \\ f^{(4)}(x) &= 120x \\ f^{(5)}(x) &= 120 \\ f^{(6)}(x) &= 0 \end{aligned} \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Read what happened. Each derivative lowered the degree by one, so after five derivatives the polynomial of degree 5 had become the constant \(120\), and the sixth derivative is \(0\) and stays \(0\) forever. Here is the reason: the \(n\)th derivative of \(x^n\) is \(n(n-1)(n-2)\cdots 1 = n!\), a constant, and the derivative of a constant is zero. So <strong>a polynomial of degree \(n\) has \(f^{(n+1)}(x)=0\)</strong>. Check the leading term above: \(1\cdot 5! = 120\) &#10003;.</p>
+        <div style="background: #FDECEC; border-left: 5px solid #C0392B; border-top: 3px solid #E74C3C; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A1F16; margin-bottom: 8px;">&#9888;&#65039; COMMON MISTAKE</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">Three look-alikes are not the same thing. \(f''(x)\) is the derivative of the derivative. \((f'(x))^2\) is the <em>square</em> of the derivative. And \(f(x)^2\) is the square of the function. For \(f(x)=x^3\): \(f''(x)=6x\), but \((f'(x))^2=(3x^2)^2=9x^4\). Likewise \(\dfrac{d^2y}{dx^2}\) is <em>not</em> \(\left(\dfrac{dy}{dx}\right)^2\): in the first the 2 counts differentiations, in the second it counts a square. Keep the notation exact and the arithmetic follows.</div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 2 &middot; PATTERNS THAT APPEAR</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Polynomials run out of derivatives. Other functions behave very differently, and the first few derivatives usually announce the pattern. Your job is to differentiate three or four times, <em>notice</em>, and then state the \(n\)th derivative with confidence. That is exactly how mathematicians guess a general law before proving it.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Pattern 1: the cycle of period four (sine and cosine)</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ \sin x \;\to\; \cos x \;\to\; -\sin x \;\to\; -\cos x \;\to\; \sin x \;\to\; \cdots \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">After four differentiations you are exactly where you started: \(f^{(4)}(x)=\sin x\) for \(f(x)=\sin x\). So the derivatives repeat in a cycle of length 4, and to find any high derivative you only need the remainder when the order is divided by 4. For example, \(100\) is a multiple of 4, so \(\dfrac{d^{100}}{dx^{100}}[\sin x]=\sin x\). For \(\sin 2x\) the Chain Rule adds a factor of 2 each time: \(\dfrac{d^2}{dx^2}[\sin 2x]=-4\sin 2x\), and \(\dfrac{d^4}{dx^4}[\sin 2x]=16\sin 2x\).</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Pattern 2: the function that never changes (the exponential)</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Since \(\dfrac{d}{dx}[e^x]=e^x\), every derivative of \(e^x\), of every order, is \(e^x\) itself: \(f^{(n)}(x)=e^x\). It is the one nonzero function that is its own derivative, which is why it sits at the center of growth and decay. Add a product and a pattern still appears. For \(f(x)=xe^x\) the Product Rule gives</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ f'(x)=(x+1)e^x,\qquad f''(x)=(x+2)e^x,\qquad f'''(x)=(x+3)e^x, \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">each step adding 1 to the bracket, so the conjecture is \(f^{(n)}(x)=(x+n)e^x\).</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Pattern 3: factorials appear (reciprocal and logarithm)</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Differentiate \(f(x)=x^{-1}=\dfrac1x\) with the Power Rule and watch the coefficients:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ f'=-x^{-2},\quad f''=2x^{-3},\quad f'''=-6x^{-4},\quad f^{(4)}=24x^{-5} \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">The coefficients \(1,\,2,\,6,\,24\) are the factorials \(1!,\,2!,\,3!,\,4!\), and the signs alternate. So \(f^{(n)}(x)=(-1)^n\,n!\,x^{-(n+1)}\). Now \(\ln x\): since \(\dfrac{d}{dx}[\ln x]=\dfrac1x\), the derivatives of \(\ln x\) are the derivatives of \(\dfrac1x\), shifted down one order:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ \frac{d}{dx}[\ln x]=x^{-1},\quad \frac{d^2}{dx^2}[\ln x]=-x^{-2},\quad \frac{d^3}{dx^3}[\ln x]=2x^{-3},\quad \frac{d^4}{dx^4}[\ln x]=-6x^{-4}, \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">which suggests \(\dfrac{d^n}{dx^n}[\ln x]=(-1)^{n-1}(n-1)!\,x^{-n}\). Test \(n=1\): \((-1)^0\,0!\,x^{-1}=x^{-1}\) &#10003;. Test \(n=3\): \((-1)^2\,2!\,x^{-3}=2x^{-3}\) &#10003;.</p>
+        <div style="background: #FDF3E3; border-left: 5px solid #C7922C; border-top: 3px solid #E8B96A; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #8A5F12; margin-bottom: 8px;">&#129302; AI AND COMPUTER ALGEBRA</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">A computer algebra system can print the 40th derivative of almost any function in a blink. It cannot tell you <em>why</em> the output looks the way it does, and it will happily hand you a long expression you could not check. The skill worth having is the one you just practiced: differentiate a few times by hand, spot the cycle or the factorial, and predict the answer yourself. Then, and only then, use a tool to confirm. A pattern you can state is knowledge; a pattern you merely received is not.</div>
+        </div>
+        <details style="background: #FFFFFF; border: 1px solid #D0D9E8; border-left: 4px solid #C7922C; border-radius: 6px; padding: 12px 18px; margin: 14px 0;">
+            <summary style="font-size: 16px; color: #0E1C42; cursor: pointer; list-style: none;">
+                <span style="color: #C7922C;">&#9654;</span>&nbsp; Try it in your notebook first: find \(f''(x)\) for \(f(x)=x^2\ln x\) \((x>0)\). Then reveal the check.
+            </summary>
+            <div style="font-size: 17px; color: #1a2340; line-height: 1.6; margin-top: 10px; padding-top: 10px; border-top: 1px solid #EEF1F8;">
+                Product Rule first: \(f'(x)=2x\ln x + x^2\cdot\dfrac1x = 2x\ln x + x\). Then differentiate again, using the Product Rule on \(2x\ln x\): \(f''(x)=2\ln x + 2x\cdot\dfrac1x + 1 = 2\ln x + 3\). Two things to notice: the \(x\) from the term \(x^2\cdot\frac1x\) was already simplified before you differentiated again, which saves work, and the result \(2\ln x+3\) is a perfectly good function on its own.
+            </div>
+        </details>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; PREDICT THE PATTERN</div>
+          <div class="widget-question">Use the patterns above to decide each answer before you click.</div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. A degree-4 polynomial reaches the constant \(24\) at the fourth derivative, so the fifth derivative is \(0\) (and so is every later one)." data-hint="Count the derivatives: how many does it take for x^4 to become a constant? What is the next derivative after that?">
+            <div class="widget-row-prompt">1. If \(f(x)=x^4\), what is \(f^{(5)}(x)\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(120\)</button>
+              <button data-choice="1">\(24\)</button>
+              <button data-choice="2">\(0\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. The cycle has period 4, and 102 leaves remainder 2. Two steps of the cycle take \(\sin x\) to \(\cos x\) to \(-\sin x\)." data-hint="Use the remainder of 102 divided by 4, then take that many steps through the cycle sin, cos, -sin, -cos.">
+            <div class="widget-row-prompt">2. If \(f(x)=\sin x\), what is \(f^{(102)}(x)\)? (Hint: \(102 = 4\cdot 25 + 2\).)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\sin x\)</button>
+              <button data-choice="1">\(\cos x\)</button>
+              <button data-choice="2">\(-\sin x\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. The Chain Rule brings out a factor of 3 each time, so the second derivative carries \(3\cdot 3=9\)." data-hint="The Chain Rule contributes a factor of 3 on every differentiation. How many differentiations are there?">
+            <div class="widget-row-prompt">3. If \(f(x)=e^{3x}\), what is \(f''(x)\)?</div>
+            <div class="widget-options">
+              <button data-choice="0">\(9e^{3x}\)</button>
+              <button data-choice="1">\(3e^{3x}\)</button>
+              <button data-choice="2">\(e^{3x}\)</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. With \(n=3\): \((-1)^3\cdot 3!\cdot x^{-4}=-6x^{-4}\), matching the third line of the hand computation." data-hint="Substitute n = 3 into the formula and be careful with both the sign (-1)^3 and the factorial 3!.">
+            <div class="widget-row-prompt">4. For \(f(x)=\dfrac1x\), the pattern \(f^{(n)}(x)=(-1)^n n!\,x^{-(n+1)}\) predicts \(f'''(x)=\)</div>
+            <div class="widget-options">
+              <button data-choice="0">\(\dfrac{6}{x^4}\)</button>
+              <button data-choice="1">\(-\dfrac{6}{x^4}\)</button>
+              <button data-choice="2">\(-\dfrac{3}{x^4}\)</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 14px;">&#128218; PART 3 &middot; WHAT THE SECOND DERIVATIVE SAYS</div>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Why bother with \(f''\) at all? Because it carries real information about the shape and behavior of the original function. Since \(f'\) is the slope of \(f\), the second derivative \(f''\) is <strong>the rate at which the slope is changing</strong>.</p>
+<h3 style="font-size: 20px; color: #0e1c42; margin: 4px 0 8px 0;">Worked example: the slope of the slope</h3>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">Take \(f(x)=x^3\), so \(f'(x)=3x^2\) and \(f''(x)=6x\). Compare two points:</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 6px 0 10px 0; text-align:center;">
+\[ \begin{aligned} x=2:&\quad f'(2)=12,\quad f''(2)=12 \\ x=-1:&\quad f'(-1)=3,\quad f''(-1)=-6 \end{aligned} \]
+</p>
+<p style="font-size: 17px; color: #1a2340; line-height: 1.65; margin: 0 0 10px 0;">At \(x=2\) the slope is \(12\) and \(f''(2)=12>0\): the slope is <em>increasing</em> as \(x\) moves right, so the curve is getting steeper. At \(x=-1\) the slope is \(3\), still positive, but \(f''(-1)=-6<0\): the slope is <em>decreasing</em> as \(x\) moves right, so the curve is still rising but flattening out. Two numbers, \(f'\) and \(f''\), tell you not just where the curve is heading but how its heading is bending. In Quarter 3 this idea becomes concavity and the whole art of curve sketching. For now, hold on to the sentence: <strong>\(f''>0\) means the slope is increasing; \(f''<0\) means the slope is decreasing.</strong></p>
+        <div style="background: #E8F6FB; border-left: 5px solid #2196D0; border-top: 3px solid #55C8E8; border-radius: 6px; padding: 14px 20px; margin: 14px 0;">
+            <div style="font-size: 11px; color: #1B6A94; margin-bottom: 8px;">&#128161; DID YOU KNOW?</div>
+            <div style="font-size: 17px; color: #0E1C42; line-height: 1.6;">You have felt a second derivative your whole life. When a car's speedometer needle climbs, you feel pushed back into the seat. Speed is the first derivative of position; that push is the second derivative. Isaac Newton's famous law, force equals mass times acceleration, is a statement about a <em>second</em> derivative: the physical world is written, at its most basic, in second derivatives of position. Tomorrow's lesson makes that precise.</div>
+        </div>
+        <div class="optima-widget ow-select">
+          <div class="widget-kicker">&#9889; TRY IT &middot; WHAT DOES THE SIGN OF f'' SAY?</div>
+          <div class="widget-question">For \(f(x)=x^3\) we found \(f''(x)=6x\). Decide what each value tells you about the slope.</div>
+
+          <div class="widget-row" data-correct="1" data-fb="Correct. \(f''>0\) means the slope is increasing: moving right, the tangent lines get steeper." data-hint="A positive second derivative describes how the slope changes, not what the slope itself is. Which direction does that point?">
+            <div class="widget-row-prompt">1. At \(x=3\), \(f''(3)=18\). The slope of \(f\) near \(x=3\) is&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">decreasing as \(x\) increases</button>
+              <button data-choice="1">increasing as \(x\) increases</button>
+              <button data-choice="2">zero</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="2" data-fb="Correct. \(f''<0\) means the slope is decreasing. (Here \(f'(-4)=48\) is still positive, so the curve is rising, but more and more gently.)" data-hint="Check the sign of f'': negative means the slope is falling as x moves to the right.">
+            <div class="widget-row-prompt">2. At \(x=-4\), \(f''(-4)=-24\). The slope of \(f\) near \(x=-4\) is&hellip;</div>
+            <div class="widget-options">
+              <button data-choice="0">increasing as \(x\) increases</button>
+              <button data-choice="1">zero</button>
+              <button data-choice="2">decreasing as \(x\) increases</button>
+            </div>
+          </div>
+
+          <div class="widget-row" data-correct="0" data-fb="Correct. \(f''(0)=0\) says the slope is momentarily neither rising nor falling. It does not say the slope itself is 0 (here \(f'(0)=0\) happens to be true, but that is a separate fact)." data-hint="f'' = 0 tells you about the change in the slope, not the value of the slope.">
+            <div class="widget-row-prompt">3. At \(x=0\), \(f''(0)=0\). What can you conclude about the slope at that instant?</div>
+            <div class="widget-options">
+              <button data-choice="0">The slope is not changing at that exact instant.</button>
+              <button data-choice="1">The curve must be flat there.</button>
+              <button data-choice="2">The slope must be negative.</button>
+            </div>
+          </div>
+
+          <button class="widget-reset">Reset</button>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #0E1C42; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 16px;">&#10145;&#65039; WHAT YOU'LL DO NEXT</div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 16px;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 15 Problem Set: Higher-Order Derivatives and Motion</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">Work the problems by hand, show every step, then upload your completed pages.</div>
+            </div>
+        </div>
+        <div style="display: flex; align-items: flex-start; gap: 14px; margin-bottom: 0;">
+            <div style="min-width: 34px; height: 34px; border-radius: 50%; background: #0E1C42; color: #fff; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+            <div>
+                <div style="font-size: 18px; color: #0e1c42; margin-bottom: 4px;"><strong>Week 15 Quiz: Higher-Order Derivatives and Motion</strong></div>
+                <div style="font-size: 16px; color: #1a2340; line-height: 1.55;">A short auto-graded check on this week's material.</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="background: #FFFFFF; border-top: 3px solid #C7922C; border: 1px solid #D0D9E8; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px;">
+        <div style="font-size: 11px; color: #c7922c; margin-bottom: 12px;">&#128170; THE ONE IDEA TO CARRY FORWARD</div>
+        <p style="font-size: 18px; color: #1a2340; line-height: 1.65; margin: 0;">A higher-order derivative is nothing new: it is the derivative applied again to its own output. Polynomials run out of derivatives, sine and cosine cycle with period four, \(e^x\) never changes, and \(\frac1x\) and \(\ln x\) produce factorials, so differentiating three or four times and noticing the pattern lets you predict \(f^{(n)}\). The second derivative \(f''\) measures how fast the slope is changing. Lesson 8.02 puts that to work on the most natural second derivative of all: the acceleration of a moving object.</p>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div style="background: #0E1C42; border-top: 3px solid #55C8E8; padding: 18px 34px; text-align: center;">
+    <div style="font-size: 18px; color: #ffffff; margin-bottom: 6px;"><span style="color: #55c8e8;">Optima Academy Online</span> &middot; CALCULUS HONORS &middot; Quarter 2 &middot; Student Lesson Page</div>
+    <div style="font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 4px;">Lesson 8.01 &middot; Higher-Order Derivatives</div>
+    <div style="font-size: 12px; color: rgba(255,255,255,0.4);">&copy; Optima Academy Online &middot; An Education Experience Company</div>
+</div>
+
+</div>
+
+<!-- ===== WIDGET RUNTIME (byte-consistent) ===== -->
+<script>
+(function () {
+  document.addEventListener('click', function (e) {
+    var reset = e.target.closest('.widget-reset');
+    if (reset) {
+      var w = reset.closest('.optima-widget');
+      w.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      w.querySelectorAll('.widget-feedback').forEach(function (f) { f.classList.remove('show'); f.textContent = ''; });
+      w.querySelectorAll('.row-feedback').forEach(function (f) { f.remove(); });
+      w.querySelectorAll('.ow-flip.flipped').forEach(function (c) { c.classList.remove('flipped'); });
+      return;
+    }
+    var rBtn = e.target.closest('.ow-reflect .widget-options button');
+    if (rBtn) {
+      var rw = rBtn.closest('.optima-widget');
+      rw.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected'); });
+      rBtn.classList.add('selected');
+      var fb = rw.querySelector('.widget-feedback');
+      fb.textContent = rBtn.dataset.response || '';
+      fb.classList.add('show');
+      return;
+    }
+    var sBtn = e.target.closest('.ow-select .widget-row .widget-options button, .ow-scale .widget-row .widget-options button');
+    if (sBtn) {
+      var row = sBtn.closest('.widget-row');
+      var correct = row.dataset.correct;
+      row.querySelectorAll('.widget-options button').forEach(function (b) { b.classList.remove('selected', 'correct', 'incorrect'); });
+      var right = sBtn.dataset.choice === correct;
+      sBtn.classList.add(right ? 'correct' : 'incorrect');
+      var text = right ? (sBtn.dataset.fb || row.dataset.fb || 'Right.') : (sBtn.dataset.fb || row.dataset.hint || 'Not quite. Try again.');
+      var rf = row.querySelector('.row-feedback') || row.appendChild(document.createElement('div'));
+      rf.className = 'row-feedback ' + (right ? 'correct' : 'incorrect');
+      rf.textContent = text;
+      return;
+    }
+    var flip = e.target.closest('.ow-flip');
+    if (flip) { flip.classList.toggle('flipped'); return; }
+  });
+})();
+</script>
+
+</body>
+</html>
